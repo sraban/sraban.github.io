@@ -1,0 +1,34 @@
+{
+	"settings": {
+		"url": "https:\/\/sraban.github.io",
+		"title": "FullStack Developer",
+		"tagline": "Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.",
+		"author": "Sraban Pahadasingh",
+		"layout": "default",
+		"theme": "slate.min.css",
+		"disqus": "",
+		"analytics": "",
+		"only_titles": ""
+	},
+	"customValues": [
+
+	],
+	"pages": [
+		{
+			"title": "contact",
+			"body": "<p>8328848690<\/p>",
+			"slug": "contact"
+		}
+	],
+	"follow": [
+
+	],
+	"posts": null,
+	"latestPosts": null,
+	"homePosts": null,
+	"categories": [
+
+	],
+	"tagsCloud": "\n",
+	"archives": "<ul class=\"archives list-group\"><\/ul>"
+}
