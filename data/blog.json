@@ -1,11 +1,11 @@
 {
 	"settings": {
 		"url": "https:\/\/sraban.github.io",
-		"title": "FullStack Developer",
+		"title": "<\/> FullStack Developer",
 		"tagline": "Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.",
 		"author": "Sraban Pahadasingh",
 		"layout": "default",
-		"theme": "slate.min.css",
+		"theme": "cerulean.min.css",
 		"disqus": "",
 		"analytics": "",
 		"only_titles": ""
@@ -15,9 +15,14 @@
 	],
 	"pages": [
 		{
-			"title": "contact",
-			"body": "<p>8328848690<\/p>",
+			"title": "Contact",
+			"body": "<p>To get in touch, Twitter or Email is best (depending on the length of the message). I\u2019m also on LinkedIn.<\/p>",
 			"slug": "contact"
+		},
+		{
+			"title": "About",
+			"body": "<p>Hello, I am Sraban Kumar, a full stack developer arround 8 years of expereince on web and hybrid application development. Basically I have worked in E-commerce and Travel Domain using PHP and Javascript Frameworks.<\/p>",
+			"slug": "about"
 		}
 	],
 	"follow": [

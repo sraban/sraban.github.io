@@ -8,7 +8,7 @@
     <meta name="description" content="Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.">
     <meta name="author" content="Sraban Pahadasingh">
 
-    <title>&lt;/&gt; FullStack Developer</title>
+    <title>About :: &lt;/&gt; FullStack Developer</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="&lt;/&gt; FullStack Developer" href="https://sraban.github.io/rss.xml"/>
@@ -67,22 +67,15 @@
     </div>
 </header>
 <div class="container">
+
     <div class="row">
         <div class="col-md-8 main-content">
+            <h3>About</h3>
+            <hr/>
 
-            <div class="text-center clearfix">
-                <div class="col-sm-4 col-md-4">
-                    &nbsp;
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <a class="btn btn-primary" href="https://sraban.github.io/posts.html"><i class="fa fa-navicon"></i> View All
-                        Post</a>
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
-                </div>
-            </div>
-
+            <p class="page-content">
+                <p>Hello, I am Sraban Kumar, a full stack developer arround 8 years of expereince on web and hybrid application development. Basically I have worked in E-commerce and Travel Domain using PHP and Javascript Frameworks.</p>
+            </p>
         </div>
 
         <div class="sidebar col-md-4">
@@ -161,36 +154,3 @@
 
 </body>
 </html>
-<!-- for pagination -->
-<script>
-    $(function () {
-
-        ///////////////////////////////////////////////////
-        // class/id/selector of prev link
-        var $nextPostSelector = $('.nextpost');
-        ///////////////////////////////////////////////////
-
-        $.ajax({
-            url: __blogURL + "/data/blog.json",
-            type: "GET",
-            dataType: "json",
-            success: function (data) {
-                if (data.posts !== undefined && data.posts !== null) {
-                    var nextPost = data.posts[1];
-
-                    if (nextPost === undefined || nextPost === null) {
-                        // hide previous link if blog has only one post
-                        $nextPostSelector.hide();
-                    }
-                    else {
-                        $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
-                    }
-                }
-            },
-            error: function (e) {
-                $nextPostSelector.hide();
-            }
-        });
-
-    });
-</script>
