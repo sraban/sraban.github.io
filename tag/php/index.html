@@ -69,65 +69,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 main-content">
-                <article>
-                    <h3><a href="https://sraban.github.io/post/api-rate-limiting">API Rate-Limiting</a></h3>
-                    <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
-                    &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> April 14, 2020 06:17 PM
-                
-                        <hr>
-                        <p class="post-content"><p><strong>Implementing API Rate-Limiting</strong></p>
-<ol>
-<li>
-<p>Request Queues:</p>
-<ul>
-<li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.</li>
-<li>Some library take 2 request per resecond from the queue and remaining kept in the queue for processing.</li>
-<li>Many custom &quot;request-rate-limiter&quot; library are avaialbe in package manager</li>
-</ul>
-</li>
-<li>
-<p>Throttling</p>
-<ul>
-<li>API is used by setting up a temporary state, allowing the API to assess each request. When the throttle is triggered, a user may either be disconnected or simply have their bandwidth reduced.</li>
-<li>Possible at the application, API, or user level, throttling is a popular method to rate-limit APIs</li>
-</ul>
-</li>
-<li>Rate-limiting Algorithms
-<ul>
-<li>&quot;Leaky Bucket&quot; is a algorithim which translate requests into FIFO format and processing the items on the queue on a regular rate.</li>
-<li>&quot;Sliding Log&quot; is time stampped algorithim, the sum of the logs are calculated to determine the request rate. if the request exceeds the limit threshold, they are simply queued.</li>
-</ul></li>
-</ol></p>
-                        <br/>
-                
-                        <div class="post-info">
-                                <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                                <a href="https://sraban.github.io/category/linux">Linux</a>
-                                &nbsp;&nbsp;
-                
-                            <span class="glyphicon glyphicon-bookmark"></span>
-                
-                                <a href="https://sraban.github.io/tag/PHP">PHP</a>&nbsp;&nbsp;
-                                <a href="https://sraban.github.io/tag/Server">Server</a>&nbsp;&nbsp;
-                        </div>
-                
-                    <hr>
-                </article>
+            <h1>Tag Posts</h1>
+            <hr/>
+            <br/>
 
-            <div class="text-center clearfix">
-                <div class="col-sm-4 col-md-4">
-                    &nbsp;
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <a class="btn btn-primary" href="https://sraban.github.io/posts.html"><i class="fa fa-navicon"></i> View All
-                        Post</a>
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
-                </div>
-            </div>
-
+                <h3><a href="https://sraban.github.io/post/api-rate-limiting">API Rate-Limiting</a></h3>
+                <span class="glyphicon glyphicon-time"></span> April 14, 2020 06:17 PM
+                <h3><a href="https://sraban.github.io/post/upload-large-files-to-server-using-script">Upload Large Files to server using script</a></h3>
+                <span class="glyphicon glyphicon-time"></span> April 14, 2020 05:51 PM
         </div>
 
         <div class="sidebar col-md-4">
@@ -221,36 +170,3 @@
 
 </body>
 </html>
-<!-- for pagination -->
-<script>
-    $(function () {
-
-        ///////////////////////////////////////////////////
-        // class/id/selector of prev link
-        var $nextPostSelector = $('.nextpost');
-        ///////////////////////////////////////////////////
-
-        $.ajax({
-            url: __blogURL + "/data/blog.json",
-            type: "GET",
-            dataType: "json",
-            success: function (data) {
-                if (data.posts !== undefined && data.posts !== null) {
-                    var nextPost = data.posts[1];
-
-                    if (nextPost === undefined || nextPost === null) {
-                        // hide previous link if blog has only one post
-                        $nextPostSelector.hide();
-                    }
-                    else {
-                        $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
-                    }
-                }
-            },
-            error: function (e) {
-                $nextPostSelector.hide();
-            }
-        });
-
-    });
-</script>

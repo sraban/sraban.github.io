@@ -8,7 +8,7 @@
     <meta name="description" content="Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.">
     <meta name="author" content="Sraban Pahadasingh">
 
-    <title>&lt;/&gt; FullStack Developer</title>
+    <title>Upload Large Files to server using script :: &lt;/&gt; FullStack Developer</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="&lt;/&gt; FullStack Developer" href="https://sraban.github.io/rss.xml"/>
@@ -69,55 +69,42 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 main-content">
-                <article>
-                    <h3><a href="https://sraban.github.io/post/api-rate-limiting">API Rate-Limiting</a></h3>
-                    <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
-                    &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> April 14, 2020 06:17 PM
-                
-                        <hr>
-                        <p class="post-content"><p><strong>Implementing API Rate-Limiting</strong></p>
+            <article>
+                <h3>Upload Large Files to server using script</h3>
+                <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-time"></span> April 14, 2020 05:51 PM
+                <hr>
+
+                <p class="post-content"><p><strong>Steps</strong></p>
 <ol>
 <li>
-<p>Request Queues:</p>
-<ul>
-<li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.</li>
-<li>Some library take 2 request per resecond from the queue and remaining kept in the queue for processing.</li>
-<li>Many custom &quot;request-rate-limiter&quot; library are avaialbe in package manager</li>
-</ul>
+<p>Choose a javascript plugin which devide the binary data into equal multiple chuncks from clinet.</p>
 </li>
 <li>
-<p>Throttling</p>
-<ul>
-<li>API is used by setting up a temporary state, allowing the API to assess each request. When the throttle is triggered, a user may either be disconnected or simply have their bandwidth reduced.</li>
-<li>Possible at the application, API, or user level, throttling is a popular method to rate-limit APIs</li>
-</ul>
+<p>Pass to server each chunk of binary data with file information. ex. mdf5 name, total chunks, processed chunk in each ajax request one by one to write/append  in same file on server.</p>
 </li>
-<li>Rate-limiting Algorithms
-<ul>
-<li>&quot;Leaky Bucket&quot; is a algorithim which translate requests into FIFO format and processing the items on the queue on a regular rate.</li>
-<li>&quot;Sliding Log&quot; is time stampped algorithim, the sum of the logs are calculated to determine the request rate. if the request exceeds the limit threshold, they are simply queued.</li>
-</ul></li>
+<li>when the total chunks and chunk count in ajax request is same, then file appending/uploading will complete in server, returning a message to clinet.</li>
 </ol></p>
-                        <br/>
-                
-                        <div class="post-info">
-                                <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                                <a href="https://sraban.github.io/category/linux">Linux</a>
-                                &nbsp;&nbsp;
-                
-                            <span class="glyphicon glyphicon-bookmark"></span>
-                
-                                <a href="https://sraban.github.io/tag/PHP">PHP</a>&nbsp;&nbsp;
-                                <a href="https://sraban.github.io/tag/Server">Server</a>&nbsp;&nbsp;
-                        </div>
-                
-                    <hr>
-                </article>
+                <br/><br/>
+
+                <div class="post-info">
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+                        <a href="https://sraban.github.io/category/javascript">Javascript</a>
+                        &nbsp;&nbsp;
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+                        <a href="https://sraban.github.io/tag/Javascript">Javascript</a>&nbsp;&nbsp;
+                        <a href="https://sraban.github.io/tag/PHP">PHP</a>&nbsp;&nbsp;
+                </div>
+
+            </article>
+            <hr/>
 
             <div class="text-center clearfix">
                 <div class="col-sm-4 col-md-4">
-                    &nbsp;
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
                 </div>
                 <div class="col-sm-4 col-md-4">
                     <a class="btn btn-primary" href="https://sraban.github.io/posts.html"><i class="fa fa-navicon"></i> View All
@@ -126,6 +113,17 @@
                 <div class="col-sm-4 col-md-4">
                     <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
                 </div>
+            </div>
+
+            <hr/>
+            
+            <!-- Comment form -->
+            <div class="well">
+                <div id="disqus_thread"></div>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
+                    powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
+                    <span class="logo-disqus">Disqus</span></a>
             </div>
 
         </div>
@@ -194,6 +192,7 @@
                     </div>
                 </div>
             </div>
+
     </div>
 </div>
 
@@ -227,8 +226,16 @@
 
         ///////////////////////////////////////////////////
         // class/id/selector of prev link
+        var $prevPostSelector = $('.prevpost');
         var $nextPostSelector = $('.nextpost');
         ///////////////////////////////////////////////////
+
+        var pageArray = document.location.href.split('/');
+        var currentPageSlug = pageArray[pageArray.length - 1];
+
+        if (!currentPageSlug) {
+            currentPageSlug = pageArray[pageArray.length - 2];
+        }
 
         $.ajax({
             url: __blogURL + "/data/blog.json",
@@ -236,21 +243,46 @@
             dataType: "json",
             success: function (data) {
                 if (data.posts !== undefined && data.posts !== null) {
-                    var nextPost = data.posts[1];
+                    $.each(data.posts, function (i, post) {
+                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
 
-                    if (nextPost === undefined || nextPost === null) {
-                        // hide previous link if blog has only one post
-                        $nextPostSelector.hide();
-                    }
-                    else {
-                        $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
-                    }
+                            var prevPost = data.posts[i - 1];
+                            var nextPost = data.posts[i + 1];
+
+                            if (prevPost === undefined || prevPost === null) {
+                                // hide previous link if it is first post
+                                $prevPostSelector.hide();
+                            }
+                            else {
+                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+                            }
+
+                            if (nextPost === undefined || nextPost === null) {
+                                // hide previous link if it is last post
+                                $nextPostSelector.hide();
+                            }
+                            else {
+                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+                            }
+
+                            return false; // break out of each
+                        }
+                    });
                 }
             },
             error: function (e) {
+                $prevPostSelector.hide();
                 $nextPostSelector.hide();
             }
         });
+
+        // for Disqus
+        var disqus_shortname = '';
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 
     });
 </script>

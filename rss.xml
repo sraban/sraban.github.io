@@ -5,5 +5,272 @@
 <link>https://sraban.github.io</link>
 <description>Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.</description>
 <language>en-us</language>
+<item>
+<title>API Rate-Limiting</title>
+<description><![CDATA[<p><strong>Implementing API Rate-Limiting</strong></p>
+<ol>
+<li>
+<p>Request Queues:</p>
+<ul>
+<li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.</li>
+<li>Some library take 2 request per resecond from the queue and remaining kept in the queue for processing.</li>
+<li>Many custom &quot;request-rate-limiter&quot; library are avaialbe in package manager</li>
+</ul>
+</li>
+<li>
+<p>Throttling</p>
+<ul>
+<li>API is used by setting up a temporary state, allowing the API to assess each request. When the throttle is triggered, a user may either be disconnected or simply have their bandwidth reduced.</li>
+<li>Possible at the application, API, or user level, throttling is a popular method to rate-limit APIs</li>
+</ul>
+</li>
+<li>Rate-limiting Algorithms
+<ul>
+<li>&quot;Leaky Bucket&quot; is a algorithim which translate requests into FIFO format and processing the items on the queue on a regular rate.</li>
+<li>&quot;Sliding Log&quot; is time stampped algorithim, the sum of the logs are calculated to determine the request rate. if the request exceeds the limit threshold, they are simply queued.</li>
+</ul></li>
+</ol>]]></description>
+<link>https://sraban.github.io/post/api-rate-limiting</link>
+<pubDate>Tue, 14 Apr 2020 18:17:00 +0500</pubDate>
+</item>
+<item>
+<title>Most Useful Linux Commands</title>
+<description><![CDATA[<ul>
+<li>
+<p><strong>uname</strong> command is simple tool which provides information about the kernel, machine, processor, and operating system</p>
+<p><code>uname -m</code></p>
+</li>
+<li>
+<p>check ubuntu linux version</p>
+<p><code>lsb_release -a</code></p>
+</li>
+<li>
+<p>show the amount of free disk space on each mounted disk</p>
+<p><code>df -h</code></p>
+</li>
+<li>
+<p>displays the total amount of free space available along with the amount of memory used and swap memory in the system</p>
+<p><code>free --human</code></p>
+</li>
+<li>
+<p>The grep filter searches a file for a particular pattern of characters, and displays all lines that contain that pattern</p>
+<p><code>grep -iRl "your-text-to-find" ./</code></p>
+</li>
+<li>
+<p>displays network connections for Transmission Control Protocol</p>
+<p><code>netstat -tlnp</code></p>
+</li>
+<li>
+<p>show all process even the current process is not associated with any TTY (terminal)</p>
+<p><code>ps ax | grep docker</code></p>
+</li>
+<li>
+<p>Watching activity on Linux with watch and tail commands </p>
+<p><code>watch "dmesg | tail -20"</code></p>
+</li>
+</ul>]]></description>
+<link>https://sraban.github.io/post/most-useful-linux-commands</link>
+<pubDate>Tue, 14 Apr 2020 18:09:00 +0500</pubDate>
+</item>
+<item>
+<title>Restful Services</title>
+<description><![CDATA[<p><strong># Why REST</strong> </p>
+<ol>
+<li>Rest can be fetched from cahced storage instead of always heating to Server</li>
+<li>Rest is Stateless.</li>
+<li>Rest can work in very low bandwidth</li>
+<li>REST request &amp; response can be in  TEXT, XML, HTML and JSON Format.</li>
+<li>REST is an architectural pattern not a protocal.</li>
+<li>REST can make use of SOAP services.</li>
+<li>Challenges in Rest - Lack of Security &amp; Lack of state</li>
+</ol>
+<p><strong># Methods:</strong></p>
+<ol>
+<li>
+<p>GET</p>
+<ul>
+<li>This method is like calling a uri with query parameters.</li>
+</ul>
+</li>
+<li>
+<p>POST</p>
+<ul>
+<li>Not idempotent method, used to <strong>create</strong> records in DB</li>
+<li>Since record does not exits before, save url and return url is different.</li>
+</ul>
+</li>
+<li>
+<p>PUT</p>
+<ul>
+<li>This method is idempotent. means client and server urls are same.</li>
+<li>Used for updating a resource by using the primary key.</li>
+<li>This method specifiy to fully update the db record with the variables.</li>
+<li>When the the url with primary key is not valid, the record is auto generated in database.</li>
+</ul>
+</li>
+<li>
+<p>PATCH</p>
+<ul>
+<li>This method is idempotent. means client and server urls are same.</li>
+<li>Used for updating a resource by using the primary key.</li>
+<li>This method specifiy to partially update the db record.</li>
+<li>When the the url with primary key is not valid, the record is auto generated in database.</li>
+</ul>
+</li>
+<li>DELETE
+<ul>
+<li>This method in REST is used to destroy the resource. </li>
+<li>Destroyed resource are not called again To DELETE the resource </li>
+</ul></li>
+</ol>]]></description>
+<link>https://sraban.github.io/post/restful-services</link>
+<pubDate>Tue, 14 Apr 2020 17:53:00 +0500</pubDate>
+</item>
+<item>
+<title>Upload Large Files to server using script</title>
+<description><![CDATA[<p><strong>Steps</strong></p>
+<ol>
+<li>
+<p>Choose a javascript plugin which devide the binary data into equal multiple chuncks from clinet.</p>
+</li>
+<li>
+<p>Pass to server each chunk of binary data with file information. ex. mdf5 name, total chunks, processed chunk in each ajax request one by one to write/append  in same file on server.</p>
+</li>
+<li>when the total chunks and chunk count in ajax request is same, then file appending/uploading will complete in server, returning a message to clinet.</li>
+</ol>]]></description>
+<link>https://sraban.github.io/post/upload-large-files-to-server-using-script</link>
+<pubDate>Tue, 14 Apr 2020 17:51:00 +0500</pubDate>
+</item>
+<item>
+<title>Optimising MySQL Query</title>
+<description><![CDATA[<p><strong>Steps</strong></p>
+<ol>
+<li>Expain in select query will produce the number of comparison done, look at the column to assign indexing to column</li>
+<li>Remove generalised statements, instead specifiy the required columns</li>
+<li>Remove in() and not In() from where clause rather use =. !=</li>
+<li>Never use subquery if possible, rather to use join</li>
+<li>De-normalize when not necessary to devide tables futher on basis of normalisation.</li>
+</ol>]]></description>
+<link>https://sraban.github.io/post/optimising-mysql-query</link>
+<pubDate>Tue, 14 Apr 2020 17:50:00 +0500</pubDate>
+</item>
+<item>
+<title>Supervisor & Crontabs</title>
+<description><![CDATA[<p><strong>Supervisor (Running Program as a process)</strong></p>
+<p>When commad stops after closing the shell terminal, Supervisor takes care to run the command in background as process, Whenever required the process can be killed on shell.</p>
+<p>Steps to run the angular development server in background</p>
+<ol>
+<li>sudo apt-get install supervisor</li>
+<li>vim /etc/supervisor/conf.d/ngServe.conf</li>
+<li>supervisorctl</li>
+<li>vim /var/log/ngServe.out.log</li>
+<li>tail -f /var/log/ngServe.out.log</li>
+<li>ps ax | grep PID(4098)</li>
+</ol>
+<p><strong>inside the file &quot;ngServe.conf&quot;</strong></p>
+<ol>
+<li>[program:ngServe]</li>
+<li>command=cd /var/www/html/ng &amp;&amp; ng serve --port=8088</li>
+<li>autostart=true</li>
+<li>autorestart=true</li>
+<li>stderr_logfil=/var/log/ngServe.out.log</li>
+<li>stdout_logfile=/var/log/ngServe.out.log</li>
+</ol>
+<hr />
+<p><strong>Crontab examples</strong></p>
+<ol>
+<li>crontab -e</li>
+<li>Examples
+<ul>
+<li>0 5 <em> </em> 1 tar -zcf /var/backups/home.tgz /home/</li>
+<li>0 5 <em> </em> 1 php  /var/www/html/run.php</li>
+<li>0 5 <em> </em> 1 php  php artisan comission:monthly</li>
+</ul></li>
+</ol>]]></description>
+<link>https://sraban.github.io/post/supervisor-crontabs</link>
+<pubDate>Tue, 14 Apr 2020 17:49:00 +0500</pubDate>
+</item>
+<item>
+<title>Design Patterns</title>
+<description><![CDATA[<p>In software engineering, a design pattern is a general, reusable solution to a commonly occurring problem within a given context in software design.</p>
+<p><strong>Some Of Design Patterns:</strong></p>
+<ol>
+<li>
+<p><strong>Singleton</strong></p>
+<ul>
+<li>Whenever only dingle instance of a object is required through out the system</li>
+<li>Example  DB connection &amp; Logger writing Object.</li>
+</ul>
+</li>
+<li>
+<p><strong>Factory</strong></p>
+<ul>
+<li>Factory pattern helps in instantiation and creation of Objects</li>
+<li>According to definition from wikipedia, Factory Pattern is &quot;A factory is an object for creating other objects&quot;</li>
+<li>In simple factory pattern, we have a factory class which has a method that returns different types of object based on given input</li>
+<li>For an example a Factory produces different type of fans, and all type of fan are kept for Testing, instead of swtiching on / off each fan, a factory function should be generated which will test the fan by passing the type of fan, no need to go detail to check how fans are switched off and switched on. It is kind of abstracting the deail functionality of various fans(table fan, ceiling fan, powered fan, wall fan).</li>
+</ul>
+</li>
+<li>
+<p><strong>Facade</strong></p>
+<ul>
+<li>A facade is an object that serves as a front-facing interface masking more complex underlying or structural code</li>
+<li>Provide a unified interface to a set of interfaces in a subsystem.</li>
+<li>Facade deals with interfaces, not implementation. Its purpose is to hide internal complexity behind a single interface that appears simple on the outside.</li>
+</ul>
+</li>
+<li>
+<p><strong>Adaptor</strong></p>
+<ul>
+<li>The Adapter pattern allows otherwise incompatible classes to work together by converting the interface of one class into an interface expected by the clients</li>
+<li>It allows two or more previously incompatible objects to interact.</li>
+<li>It allows reusability of existing functionality.</li>
+<li>For example, sharing post in diferent social medias like fb,tweet,linkedin can be done using one interface implements the common methods in different classes of social media to share the data. </li>
+</ul>
+</li>
+<li>
+<p><strong>Observable</strong></p>
+<ul>
+<li>An Observer Pattern says that &quot;just define a one-to-one dependency so that when one object changes state, all its dependents are notified and updated automatically&quot;.</li>
+<li>It describes the coupling between the objects and the observer.</li>
+<li>It provides the support for broadcast-type communication.</li>
+<li>When the change of a state in one object must be reflected in another object without keeping the objects tight coupled.</li>
+</ul>
+</li>
+<li><strong>Proxy</strong>
+<ul>
+<li>Simply, proxy means an object representing another object</li>
+<li>It provides the protection to the original object from the outside world.</li>
+<li>So, we can perform many operations like hiding the information of original object, on demand loading etc.</li>
+<li>A proxy, in its most general form, is a class functioning as an interface to something else.</li>
+<li>In proxy pattern, we create object having original object to interface its functionality to outer world.</li>
+</ul></li>
+</ol>]]></description>
+<link>https://sraban.github.io/post/design-patterns</link>
+<pubDate>Tue, 14 Apr 2020 17:46:00 +0500</pubDate>
+</item>
+<item>
+<title>Optimising PHP Scripts</title>
+<description><![CDATA[<p><em>Maily to avoid generalised coding for better usage of memory and time, use specific and proper logic, statement, inbuilt function.</em></p>
+<ol>
+<li>Take advantage of native php function</li>
+<li>Cut out unnecessary classes</li>
+<li>Turn off debugging notification</li>
+<li>close file and databse connections</li>
+<li>unnessary loop needs to breaked. unsetting memories after usages of variable and object.</li>
+<li>Use single quote rather double quote</li>
+<li>use identify operator ===</li>
+<li>use proper string function</li>
+<li>calculate only once</li>
+<li>Pass reference to the function to use the veriable outside the function</li>
+<li>Reduce number of hits to the database</li>
+<li>Use intermidate caching technology rather processing same thing again</li>
+<li>Use derived methods instead of base methods in class</li>
+<li>use json rather XML for data interchange</li>
+<li>use isset() always rather using variables directly</li>
+</ol>]]></description>
+<link>https://sraban.github.io/post/optimising-php-scripts</link>
+<pubDate>Tue, 14 Apr 2020 14:50:00 +0500</pubDate>
+</item>
 </channel>
 </rss>

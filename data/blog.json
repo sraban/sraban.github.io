@@ -15,25 +15,290 @@
 	],
 	"pages": [
 		{
-			"title": "Contact",
-			"body": "<p>To get in touch, Twitter or Email is best (depending on the length of the message). I\u2019m also on LinkedIn.<\/p>",
-			"slug": "contact"
-		},
-		{
 			"title": "About",
 			"body": "<p>Hello, I am Sraban Kumar, a full stack developer arround 8 years of expereince on web and hybrid application development. Basically I have worked in E-commerce and Travel Domain using PHP and Javascript Frameworks.<\/p>",
 			"slug": "about"
+		},
+		{
+			"title": "Contact",
+			"body": "<p>To get in touch, Twitter or Email is best (depending on the length of the message). I\u2019m also on LinkedIn.<\/p>",
+			"slug": "contact"
 		}
 	],
 	"follow": [
 
 	],
-	"posts": null,
-	"latestPosts": null,
-	"homePosts": null,
-	"categories": [
-
+	"posts": [
+		{
+			"author": "Sraban Pahadasingh",
+			"title": "API Rate-Limiting",
+			"tags": [
+				"PHP",
+				"Server"
+			],
+			"category": "Linux",
+			"body": "<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol>\n<li>\n<p>Request Queues:<\/p>\n<ul>\n<li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per resecond from the queue and remaining kept in the queue for processing.<\/li>\n<li>Many custom &quot;request-rate-limiter&quot; library are avaialbe in package manager<\/li>\n<\/ul>\n<\/li>\n<li>\n<p>Throttling<\/p>\n<ul>\n<li>API is used by setting up a temporary state, allowing the API to assess each request. When the throttle is triggered, a user may either be disconnected or simply have their bandwidth reduced.<\/li>\n<li>Possible at the application, API, or user level, throttling is a popular method to rate-limit APIs<\/li>\n<\/ul>\n<\/li>\n<li>Rate-limiting Algorithms\n<ul>\n<li>&quot;Leaky Bucket&quot; is a algorithim which translate requests into FIFO format and processing the items on the queue on a regular rate.<\/li>\n<li>&quot;Sliding Log&quot; is time stampped algorithim, the sum of the logs are calculated to determine the request rate. if the request exceeds the limit threshold, they are simply queued.<\/li>\n<\/ul><\/li>\n<\/ol>",
+			"addpost": "addpost",
+			"dated": "April 14, 2020 06:17 PM",
+			"slug": "api-rate-limiting",
+			"categoryslug": "linux",
+			"status": "publised",
+			"summary": "\n<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol><li>\n<p>Request Queues:<\/p>\n<ul><li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per resecond from the queue and remaining kept in the queue for proce...<\/li><\/ul><\/li><\/ol>\n",
+			"prevStatus": "publised",
+			"showbody": "1"
+		},
+		{
+			"author": "Sraban Pahadasingh",
+			"title": "Most Useful Linux Commands",
+			"tags": [
+				"common"
+			],
+			"category": "Linux",
+			"body": "<ul>\n<li>\n<p><strong>uname<\/strong> command is simple tool which provides information about the kernel, machine, processor, and operating system<\/p>\n<p><code>uname -m<\/code><\/p>\n<\/li>\n<li>\n<p>check ubuntu linux version<\/p>\n<p><code>lsb_release -a<\/code><\/p>\n<\/li>\n<li>\n<p>show the amount of free disk space on each mounted disk<\/p>\n<p><code>df -h<\/code><\/p>\n<\/li>\n<li>\n<p>displays the total amount of free space available along with the amount of memory used and swap memory in the system<\/p>\n<p><code>free --human<\/code><\/p>\n<\/li>\n<li>\n<p>The grep filter searches a file for a particular pattern of characters, and displays all lines that contain that pattern<\/p>\n<p><code>grep -iRl \"your-text-to-find\" .\/<\/code><\/p>\n<\/li>\n<li>\n<p>displays network connections for Transmission Control Protocol<\/p>\n<p><code>netstat -tlnp<\/code><\/p>\n<\/li>\n<li>\n<p>show all process even the current process is not associated with any TTY (terminal)<\/p>\n<p><code>ps ax | grep docker<\/code><\/p>\n<\/li>\n<li>\n<p>Watching activity on Linux with watch and tail commands <\/p>\n<p><code>watch \"dmesg | tail -20\"<\/code><\/p>\n<\/li>\n<\/ul>",
+			"addpost": "addpost",
+			"dated": "April 14, 2020 06:09 PM",
+			"slug": "most-useful-linux-commands",
+			"categoryslug": "linux",
+			"status": "publised",
+			"summary": "\n<ul><li>\n<p><strong>uname<\/strong> command is simple tool which provides information about the kernel, machine, processor, and operating system<\/p>\n<p><code>uname -m<\/code><\/p>\n<\/li>\n<li>\n<p>check ubuntu linux version<\/p>\n<p><code>lsb_release -a<\/code><\/p>\n<\/li>\n<li>\n<p>show the amount of free disk...<\/p><\/li><\/ul>\n",
+			"prevStatus": "publised",
+			"showbody": "1"
+		},
+		{
+			"author": "Sraban Pahadasingh",
+			"title": "Restful Services",
+			"tags": [
+				"common"
+			],
+			"category": "PHP",
+			"body": "<p><strong># Why REST<\/strong> <\/p>\n<ol>\n<li>Rest can be fetched from cahced storage instead of always heating to Server<\/li>\n<li>Rest is Stateless.<\/li>\n<li>Rest can work in very low bandwidth<\/li>\n<li>REST request &amp; response can be in  TEXT, XML, HTML and JSON Format.<\/li>\n<li>REST is an architectural pattern not a protocal.<\/li>\n<li>REST can make use of SOAP services.<\/li>\n<li>Challenges in Rest - Lack of Security &amp; Lack of state<\/li>\n<\/ol>\n<p><strong># Methods:<\/strong><\/p>\n<ol>\n<li>\n<p>GET<\/p>\n<ul>\n<li>This method is like calling a uri with query parameters.<\/li>\n<\/ul>\n<\/li>\n<li>\n<p>POST<\/p>\n<ul>\n<li>Not idempotent method, used to <strong>create<\/strong> records in DB<\/li>\n<li>Since record does not exits before, save url and return url is different.<\/li>\n<\/ul>\n<\/li>\n<li>\n<p>PUT<\/p>\n<ul>\n<li>This method is idempotent. means client and server urls are same.<\/li>\n<li>Used for updating a resource by using the primary key.<\/li>\n<li>This method specifiy to fully update the db record with the variables.<\/li>\n<li>When the the url with primary key is not valid, the record is auto generated in database.<\/li>\n<\/ul>\n<\/li>\n<li>\n<p>PATCH<\/p>\n<ul>\n<li>This method is idempotent. means client and server urls are same.<\/li>\n<li>Used for updating a resource by using the primary key.<\/li>\n<li>This method specifiy to partially update the db record.<\/li>\n<li>When the the url with primary key is not valid, the record is auto generated in database.<\/li>\n<\/ul>\n<\/li>\n<li>DELETE\n<ul>\n<li>This method in REST is used to destroy the resource. <\/li>\n<li>Destroyed resource are not called again To DELETE the resource <\/li>\n<\/ul><\/li>\n<\/ol>",
+			"addpost": "addpost",
+			"dated": "April 14, 2020 05:53 PM",
+			"slug": "restful-services",
+			"categoryslug": "php",
+			"status": "publised",
+			"summary": "\n<p><strong># Why REST<\/strong> <\/p>\n<ol><li>Rest can be fetched from cahced storage instead of always heating to Server<\/li>\n<li>Rest is Stateless.<\/li>\n<li>Rest can work in very low bandwidth<\/li>\n<li>REST request &amp; response can be in  TEXT, XML, HTML and JSON Format.<\/li>\n<li>REST is an archi...<\/li><\/ol>\n",
+			"prevStatus": "publised",
+			"showbody": "1"
+		},
+		{
+			"author": "Sraban Pahadasingh",
+			"title": "Upload Large Files to server using script",
+			"tags": [
+				"Javascript",
+				"PHP"
+			],
+			"category": "Javascript",
+			"body": "<p><strong>Steps<\/strong><\/p>\n<ol>\n<li>\n<p>Choose a javascript plugin which devide the binary data into equal multiple chuncks from clinet.<\/p>\n<\/li>\n<li>\n<p>Pass to server each chunk of binary data with file information. ex. mdf5 name, total chunks, processed chunk in each ajax request one by one to write\/append  in same file on server.<\/p>\n<\/li>\n<li>when the total chunks and chunk count in ajax request is same, then file appending\/uploading will complete in server, returning a message to clinet.<\/li>\n<\/ol>",
+			"addpost": "addpost",
+			"dated": "April 14, 2020 05:51 PM",
+			"slug": "upload-large-files-to-server-using-script",
+			"categoryslug": "javascript",
+			"status": "publised",
+			"summary": "\n<p><strong>Steps<\/strong><\/p>\n<ol><li>\n<p>Choose a javascript plugin which devide the binary data into equal multiple chuncks from clinet.<\/p>\n<\/li>\n<li>\n<p>Pass to server each chunk of binary data with file information. ex. mdf5 name, total chunks, processed chunk in each ajax request one by one t...<\/p><\/li><\/ol>\n",
+			"prevStatus": "publised",
+			"showbody": "1"
+		},
+		{
+			"author": "Sraban Pahadasingh",
+			"title": "Optimising MySQL Query",
+			"tags": [
+				"MySQL"
+			],
+			"category": "Database",
+			"body": "<p><strong>Steps<\/strong><\/p>\n<ol>\n<li>Expain in select query will produce the number of comparison done, look at the column to assign indexing to column<\/li>\n<li>Remove generalised statements, instead specifiy the required columns<\/li>\n<li>Remove in() and not In() from where clause rather use =. !=<\/li>\n<li>Never use subquery if possible, rather to use join<\/li>\n<li>De-normalize when not necessary to devide tables futher on basis of normalisation.<\/li>\n<\/ol>",
+			"addpost": "addpost",
+			"dated": "April 14, 2020 05:50 PM",
+			"slug": "optimising-mysql-query",
+			"categoryslug": "database",
+			"status": "publised",
+			"summary": "\n<p><strong>Steps<\/strong><\/p>\n<ol><li>Expain in select query will produce the number of comparison done, look at the column to assign indexing to column<\/li>\n<li>Remove generalised statements, instead specifiy the required columns<\/li>\n<li>Remove in() and not In() from where clause rather use =. !=...<\/li><\/ol>\n",
+			"prevStatus": "publised",
+			"showbody": "1"
+		},
+		{
+			"author": "Sraban Pahadasingh",
+			"title": "Supervisor & Crontabs",
+			"tags": [
+				"command"
+			],
+			"category": "Linux",
+			"body": "<p><strong>Supervisor (Running Program as a process)<\/strong><\/p>\n<p>When commad stops after closing the shell terminal, Supervisor takes care to run the command in background as process, Whenever required the process can be killed on shell.<\/p>\n<p>Steps to run the angular development server in background<\/p>\n<ol>\n<li>sudo apt-get install supervisor<\/li>\n<li>vim \/etc\/supervisor\/conf.d\/ngServe.conf<\/li>\n<li>supervisorctl<\/li>\n<li>vim \/var\/log\/ngServe.out.log<\/li>\n<li>tail -f \/var\/log\/ngServe.out.log<\/li>\n<li>ps ax | grep PID(4098)<\/li>\n<\/ol>\n<p><strong>inside the file &quot;ngServe.conf&quot;<\/strong><\/p>\n<ol>\n<li>[program:ngServe]<\/li>\n<li>command=cd \/var\/www\/html\/ng &amp;&amp; ng serve --port=8088<\/li>\n<li>autostart=true<\/li>\n<li>autorestart=true<\/li>\n<li>stderr_logfil=\/var\/log\/ngServe.out.log<\/li>\n<li>stdout_logfile=\/var\/log\/ngServe.out.log<\/li>\n<\/ol>\n<hr \/>\n<p><strong>Crontab examples<\/strong><\/p>\n<ol>\n<li>crontab -e<\/li>\n<li>Examples\n<ul>\n<li>0 5 <em> <\/em> 1 tar -zcf \/var\/backups\/home.tgz \/home\/<\/li>\n<li>0 5 <em> <\/em> 1 php  \/var\/www\/html\/run.php<\/li>\n<li>0 5 <em> <\/em> 1 php  php artisan comission:monthly<\/li>\n<\/ul><\/li>\n<\/ol>",
+			"addpost": "addpost",
+			"dated": "April 14, 2020 05:49 PM",
+			"slug": "supervisor-crontabs",
+			"categoryslug": "linux",
+			"status": "publised",
+			"summary": "\n<p><strong>Supervisor (Running Program as a process)<\/strong><\/p>\n<p>When commad stops after closing the shell terminal, Supervisor takes care to run the command in background as process, Whenever required the process can be killed on shell.<\/p>\n<p>Steps to run the angular development server in back...<\/p>\n",
+			"prevStatus": "publised",
+			"showbody": "1"
+		},
+		{
+			"author": "Sraban Pahadasingh",
+			"title": "Design Patterns",
+			"tags": [
+				"common"
+			],
+			"category": "Design Patterns",
+			"body": "<p>In software engineering, a design pattern is a general, reusable solution to a commonly occurring problem within a given context in software design.<\/p>\n<p><strong>Some Of Design Patterns:<\/strong><\/p>\n<ol>\n<li>\n<p><strong>Singleton<\/strong><\/p>\n<ul>\n<li>Whenever only dingle instance of a object is required through out the system<\/li>\n<li>Example  DB connection &amp; Logger writing Object.<\/li>\n<\/ul>\n<\/li>\n<li>\n<p><strong>Factory<\/strong><\/p>\n<ul>\n<li>Factory pattern helps in instantiation and creation of Objects<\/li>\n<li>According to definition from wikipedia, Factory Pattern is &quot;A factory is an object for creating other objects&quot;<\/li>\n<li>In simple factory pattern, we have a factory class which has a method that returns different types of object based on given input<\/li>\n<li>For an example a Factory produces different type of fans, and all type of fan are kept for Testing, instead of swtiching on \/ off each fan, a factory function should be generated which will test the fan by passing the type of fan, no need to go detail to check how fans are switched off and switched on. It is kind of abstracting the deail functionality of various fans(table fan, ceiling fan, powered fan, wall fan).<\/li>\n<\/ul>\n<\/li>\n<li>\n<p><strong>Facade<\/strong><\/p>\n<ul>\n<li>A facade is an object that serves as a front-facing interface masking more complex underlying or structural code<\/li>\n<li>Provide a unified interface to a set of interfaces in a subsystem.<\/li>\n<li>Facade deals with interfaces, not implementation. Its purpose is to hide internal complexity behind a single interface that appears simple on the outside.<\/li>\n<\/ul>\n<\/li>\n<li>\n<p><strong>Adaptor<\/strong><\/p>\n<ul>\n<li>The Adapter pattern allows otherwise incompatible classes to work together by converting the interface of one class into an interface expected by the clients<\/li>\n<li>It allows two or more previously incompatible objects to interact.<\/li>\n<li>It allows reusability of existing functionality.<\/li>\n<li>For example, sharing post in diferent social medias like fb,tweet,linkedin can be done using one interface implements the common methods in different classes of social media to share the data. <\/li>\n<\/ul>\n<\/li>\n<li>\n<p><strong>Observable<\/strong><\/p>\n<ul>\n<li>An Observer Pattern says that &quot;just define a one-to-one dependency so that when one object changes state, all its dependents are notified and updated automatically&quot;.<\/li>\n<li>It describes the coupling between the objects and the observer.<\/li>\n<li>It provides the support for broadcast-type communication.<\/li>\n<li>When the change of a state in one object must be reflected in another object without keeping the objects tight coupled.<\/li>\n<\/ul>\n<\/li>\n<li><strong>Proxy<\/strong>\n<ul>\n<li>Simply, proxy means an object representing another object<\/li>\n<li>It provides the protection to the original object from the outside world.<\/li>\n<li>So, we can perform many operations like hiding the information of original object, on demand loading etc.<\/li>\n<li>A proxy, in its most general form, is a class functioning as an interface to something else.<\/li>\n<li>In proxy pattern, we create object having original object to interface its functionality to outer world.<\/li>\n<\/ul><\/li>\n<\/ol>",
+			"addpost": "addpost",
+			"dated": "April 14, 2020 05:46 PM",
+			"slug": "design-patterns",
+			"categoryslug": "design-patterns",
+			"status": "publised",
+			"summary": "\n<p>In software engineering, a design pattern is a general, reusable solution to a commonly occurring problem within a given context in software design.<\/p>\n<p><strong>Some Of Design Patterns:<\/strong><\/p>\n<ol><li>\n<p><strong>Singleton<\/strong><\/p>\n<ul><li>Whenever only dingle instance of a object ...<\/li><\/ul><\/li><\/ol>\n",
+			"prevStatus": "publised",
+			"showbody": "1"
+		},
+		{
+			"author": "Sraban Pahadasingh",
+			"title": "Optimising PHP Scripts",
+			"tags": [
+				"common"
+			],
+			"category": "PHP",
+			"body": "<p><em>Maily to avoid generalised coding for better usage of memory and time, use specific and proper logic, statement, inbuilt function.<\/em><\/p>\n<ol>\n<li>Take advantage of native php function<\/li>\n<li>Cut out unnecessary classes<\/li>\n<li>Turn off debugging notification<\/li>\n<li>close file and databse connections<\/li>\n<li>unnessary loop needs to breaked. unsetting memories after usages of variable and object.<\/li>\n<li>Use single quote rather double quote<\/li>\n<li>use identify operator ===<\/li>\n<li>use proper string function<\/li>\n<li>calculate only once<\/li>\n<li>Pass reference to the function to use the veriable outside the function<\/li>\n<li>Reduce number of hits to the database<\/li>\n<li>Use intermidate caching technology rather processing same thing again<\/li>\n<li>Use derived methods instead of base methods in class<\/li>\n<li>use json rather XML for data interchange<\/li>\n<li>use isset() always rather using variables directly<\/li>\n<\/ol>",
+			"addpost": "addpost",
+			"dated": "April 14, 2020 02:50 PM",
+			"slug": "optimising-php-scripts",
+			"categoryslug": "php",
+			"status": "publised",
+			"summary": "\n<p><em>Maily to avoid generalised coding for better usage of memory and time, use specific and proper logic, statement, inbuilt function.<\/em><\/p>\n<ol><li>Take advantage of native php function<\/li>\n<li>Cut out unnecessary classes<\/li>\n<li>Turn off debugging notification<\/li>\n<li>close file and data...<\/li><\/ol>\n",
+			"prevStatus": "publised",
+			"showbody": "1"
+		}
 	],
-	"tagsCloud": "\n",
-	"archives": "<ul class=\"archives list-group\"><\/ul>"
+	"latestPosts": [
+		{
+			"author": "Sraban Pahadasingh",
+			"title": "API Rate-Limiting",
+			"tags": [
+				"PHP",
+				"Server"
+			],
+			"category": "Linux",
+			"body": "<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol>\n<li>\n<p>Request Queues:<\/p>\n<ul>\n<li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per resecond from the queue and remaining kept in the queue for processing.<\/li>\n<li>Many custom &quot;request-rate-limiter&quot; library are avaialbe in package manager<\/li>\n<\/ul>\n<\/li>\n<li>\n<p>Throttling<\/p>\n<ul>\n<li>API is used by setting up a temporary state, allowing the API to assess each request. When the throttle is triggered, a user may either be disconnected or simply have their bandwidth reduced.<\/li>\n<li>Possible at the application, API, or user level, throttling is a popular method to rate-limit APIs<\/li>\n<\/ul>\n<\/li>\n<li>Rate-limiting Algorithms\n<ul>\n<li>&quot;Leaky Bucket&quot; is a algorithim which translate requests into FIFO format and processing the items on the queue on a regular rate.<\/li>\n<li>&quot;Sliding Log&quot; is time stampped algorithim, the sum of the logs are calculated to determine the request rate. if the request exceeds the limit threshold, they are simply queued.<\/li>\n<\/ul><\/li>\n<\/ol>",
+			"addpost": "addpost",
+			"dated": "April 14, 2020 06:17 PM",
+			"slug": "api-rate-limiting",
+			"categoryslug": "linux",
+			"status": "publised",
+			"summary": "\n<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol><li>\n<p>Request Queues:<\/p>\n<ul><li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per resecond from the queue and remaining kept in the queue for proce...<\/li><\/ul><\/li><\/ol>\n",
+			"prevStatus": "publised",
+			"showbody": "1"
+		},
+		{
+			"author": "Sraban Pahadasingh",
+			"title": "Most Useful Linux Commands",
+			"tags": [
+				"common"
+			],
+			"category": "Linux",
+			"body": "<ul>\n<li>\n<p><strong>uname<\/strong> command is simple tool which provides information about the kernel, machine, processor, and operating system<\/p>\n<p><code>uname -m<\/code><\/p>\n<\/li>\n<li>\n<p>check ubuntu linux version<\/p>\n<p><code>lsb_release -a<\/code><\/p>\n<\/li>\n<li>\n<p>show the amount of free disk space on each mounted disk<\/p>\n<p><code>df -h<\/code><\/p>\n<\/li>\n<li>\n<p>displays the total amount of free space available along with the amount of memory used and swap memory in the system<\/p>\n<p><code>free --human<\/code><\/p>\n<\/li>\n<li>\n<p>The grep filter searches a file for a particular pattern of characters, and displays all lines that contain that pattern<\/p>\n<p><code>grep -iRl \"your-text-to-find\" .\/<\/code><\/p>\n<\/li>\n<li>\n<p>displays network connections for Transmission Control Protocol<\/p>\n<p><code>netstat -tlnp<\/code><\/p>\n<\/li>\n<li>\n<p>show all process even the current process is not associated with any TTY (terminal)<\/p>\n<p><code>ps ax | grep docker<\/code><\/p>\n<\/li>\n<li>\n<p>Watching activity on Linux with watch and tail commands <\/p>\n<p><code>watch \"dmesg | tail -20\"<\/code><\/p>\n<\/li>\n<\/ul>",
+			"addpost": "addpost",
+			"dated": "April 14, 2020 06:09 PM",
+			"slug": "most-useful-linux-commands",
+			"categoryslug": "linux",
+			"status": "publised",
+			"summary": "\n<ul><li>\n<p><strong>uname<\/strong> command is simple tool which provides information about the kernel, machine, processor, and operating system<\/p>\n<p><code>uname -m<\/code><\/p>\n<\/li>\n<li>\n<p>check ubuntu linux version<\/p>\n<p><code>lsb_release -a<\/code><\/p>\n<\/li>\n<li>\n<p>show the amount of free disk...<\/p><\/li><\/ul>\n",
+			"prevStatus": "publised",
+			"showbody": "1"
+		},
+		{
+			"author": "Sraban Pahadasingh",
+			"title": "Restful Services",
+			"tags": [
+				"common"
+			],
+			"category": "PHP",
+			"body": "<p><strong># Why REST<\/strong> <\/p>\n<ol>\n<li>Rest can be fetched from cahced storage instead of always heating to Server<\/li>\n<li>Rest is Stateless.<\/li>\n<li>Rest can work in very low bandwidth<\/li>\n<li>REST request &amp; response can be in  TEXT, XML, HTML and JSON Format.<\/li>\n<li>REST is an architectural pattern not a protocal.<\/li>\n<li>REST can make use of SOAP services.<\/li>\n<li>Challenges in Rest - Lack of Security &amp; Lack of state<\/li>\n<\/ol>\n<p><strong># Methods:<\/strong><\/p>\n<ol>\n<li>\n<p>GET<\/p>\n<ul>\n<li>This method is like calling a uri with query parameters.<\/li>\n<\/ul>\n<\/li>\n<li>\n<p>POST<\/p>\n<ul>\n<li>Not idempotent method, used to <strong>create<\/strong> records in DB<\/li>\n<li>Since record does not exits before, save url and return url is different.<\/li>\n<\/ul>\n<\/li>\n<li>\n<p>PUT<\/p>\n<ul>\n<li>This method is idempotent. means client and server urls are same.<\/li>\n<li>Used for updating a resource by using the primary key.<\/li>\n<li>This method specifiy to fully update the db record with the variables.<\/li>\n<li>When the the url with primary key is not valid, the record is auto generated in database.<\/li>\n<\/ul>\n<\/li>\n<li>\n<p>PATCH<\/p>\n<ul>\n<li>This method is idempotent. means client and server urls are same.<\/li>\n<li>Used for updating a resource by using the primary key.<\/li>\n<li>This method specifiy to partially update the db record.<\/li>\n<li>When the the url with primary key is not valid, the record is auto generated in database.<\/li>\n<\/ul>\n<\/li>\n<li>DELETE\n<ul>\n<li>This method in REST is used to destroy the resource. <\/li>\n<li>Destroyed resource are not called again To DELETE the resource <\/li>\n<\/ul><\/li>\n<\/ol>",
+			"addpost": "addpost",
+			"dated": "April 14, 2020 05:53 PM",
+			"slug": "restful-services",
+			"categoryslug": "php",
+			"status": "publised",
+			"summary": "\n<p><strong># Why REST<\/strong> <\/p>\n<ol><li>Rest can be fetched from cahced storage instead of always heating to Server<\/li>\n<li>Rest is Stateless.<\/li>\n<li>Rest can work in very low bandwidth<\/li>\n<li>REST request &amp; response can be in  TEXT, XML, HTML and JSON Format.<\/li>\n<li>REST is an archi...<\/li><\/ol>\n",
+			"prevStatus": "publised",
+			"showbody": "1"
+		},
+		{
+			"author": "Sraban Pahadasingh",
+			"title": "Upload Large Files to server using script",
+			"tags": [
+				"Javascript",
+				"PHP"
+			],
+			"category": "Javascript",
+			"body": "<p><strong>Steps<\/strong><\/p>\n<ol>\n<li>\n<p>Choose a javascript plugin which devide the binary data into equal multiple chuncks from clinet.<\/p>\n<\/li>\n<li>\n<p>Pass to server each chunk of binary data with file information. ex. mdf5 name, total chunks, processed chunk in each ajax request one by one to write\/append  in same file on server.<\/p>\n<\/li>\n<li>when the total chunks and chunk count in ajax request is same, then file appending\/uploading will complete in server, returning a message to clinet.<\/li>\n<\/ol>",
+			"addpost": "addpost",
+			"dated": "April 14, 2020 05:51 PM",
+			"slug": "upload-large-files-to-server-using-script",
+			"categoryslug": "javascript",
+			"status": "publised",
+			"summary": "\n<p><strong>Steps<\/strong><\/p>\n<ol><li>\n<p>Choose a javascript plugin which devide the binary data into equal multiple chuncks from clinet.<\/p>\n<\/li>\n<li>\n<p>Pass to server each chunk of binary data with file information. ex. mdf5 name, total chunks, processed chunk in each ajax request one by one t...<\/p><\/li><\/ol>\n",
+			"prevStatus": "publised",
+			"showbody": "1"
+		},
+		{
+			"author": "Sraban Pahadasingh",
+			"title": "Optimising MySQL Query",
+			"tags": [
+				"MySQL"
+			],
+			"category": "Database",
+			"body": "<p><strong>Steps<\/strong><\/p>\n<ol>\n<li>Expain in select query will produce the number of comparison done, look at the column to assign indexing to column<\/li>\n<li>Remove generalised statements, instead specifiy the required columns<\/li>\n<li>Remove in() and not In() from where clause rather use =. !=<\/li>\n<li>Never use subquery if possible, rather to use join<\/li>\n<li>De-normalize when not necessary to devide tables futher on basis of normalisation.<\/li>\n<\/ol>",
+			"addpost": "addpost",
+			"dated": "April 14, 2020 05:50 PM",
+			"slug": "optimising-mysql-query",
+			"categoryslug": "database",
+			"status": "publised",
+			"summary": "\n<p><strong>Steps<\/strong><\/p>\n<ol><li>Expain in select query will produce the number of comparison done, look at the column to assign indexing to column<\/li>\n<li>Remove generalised statements, instead specifiy the required columns<\/li>\n<li>Remove in() and not In() from where clause rather use =. !=...<\/li><\/ol>\n",
+			"prevStatus": "publised",
+			"showbody": "1"
+		}
+	],
+	"homePosts": [
+		{
+			"author": "Sraban Pahadasingh",
+			"title": "API Rate-Limiting",
+			"tags": [
+				"PHP",
+				"Server"
+			],
+			"category": "Linux",
+			"body": "<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol>\n<li>\n<p>Request Queues:<\/p>\n<ul>\n<li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per resecond from the queue and remaining kept in the queue for processing.<\/li>\n<li>Many custom &quot;request-rate-limiter&quot; library are avaialbe in package manager<\/li>\n<\/ul>\n<\/li>\n<li>\n<p>Throttling<\/p>\n<ul>\n<li>API is used by setting up a temporary state, allowing the API to assess each request. When the throttle is triggered, a user may either be disconnected or simply have their bandwidth reduced.<\/li>\n<li>Possible at the application, API, or user level, throttling is a popular method to rate-limit APIs<\/li>\n<\/ul>\n<\/li>\n<li>Rate-limiting Algorithms\n<ul>\n<li>&quot;Leaky Bucket&quot; is a algorithim which translate requests into FIFO format and processing the items on the queue on a regular rate.<\/li>\n<li>&quot;Sliding Log&quot; is time stampped algorithim, the sum of the logs are calculated to determine the request rate. if the request exceeds the limit threshold, they are simply queued.<\/li>\n<\/ul><\/li>\n<\/ol>",
+			"addpost": "addpost",
+			"dated": "April 14, 2020 06:17 PM",
+			"slug": "api-rate-limiting",
+			"categoryslug": "linux",
+			"status": "publised",
+			"summary": "\n<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol><li>\n<p>Request Queues:<\/p>\n<ul><li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per resecond from the queue and remaining kept in the queue for proce...<\/li><\/ul><\/li><\/ol>\n",
+			"prevStatus": "publised",
+			"showbody": "1"
+		}
+	],
+	"categories": [
+		{
+			"category": "Database",
+			"categoryslug": "database"
+		},
+		{
+			"category": "Design Patterns",
+			"categoryslug": "design-patterns"
+		},
+		{
+			"category": "Javascript",
+			"categoryslug": "javascript"
+		},
+		{
+			"category": "Linux",
+			"categoryslug": "linux"
+		},
+		{
+			"category": "PHP",
+			"categoryslug": "php"
+		}
+	],
+	"tagsCloud": "<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/sraban.github.io\/tag\/command\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">command<\/a>\n<a style=\"font-size: 30px\" class=\"tag_cloud\" href=\"https:\/\/sraban.github.io\/tag\/common\" title=\"4 total posts\" data-original-title=\"5 total posts\" data-toggle=\"tooltip\">common<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/sraban.github.io\/tag\/javascript\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">Javascript<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/sraban.github.io\/tag\/mysql\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">MySQL<\/a>\n<a style=\"font-size: 18px\" class=\"tag_cloud\" href=\"https:\/\/sraban.github.io\/tag\/php\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">PHP<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"https:\/\/sraban.github.io\/tag\/server\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">Server<\/a>\n",
+	"archives": "<ul class=\"archives list-group\"><li class=\"list-group-item archive_link\"><a href=\"https:\/\/sraban.github.io\/archive\/april-2020\">April 2020<\/a><\/li><\/ul>"
 }

@@ -8,7 +8,7 @@
     <meta name="description" content="Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.">
     <meta name="author" content="Sraban Pahadasingh">
 
-    <title>&lt;/&gt; FullStack Developer</title>
+    <title>Design Patterns :: &lt;/&gt; FullStack Developer</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="&lt;/&gt; FullStack Developer" href="https://sraban.github.io/rss.xml"/>
@@ -69,55 +69,85 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 main-content">
-                <article>
-                    <h3><a href="https://sraban.github.io/post/api-rate-limiting">API Rate-Limiting</a></h3>
-                    <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
-                    &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> April 14, 2020 06:17 PM
-                
-                        <hr>
-                        <p class="post-content"><p><strong>Implementing API Rate-Limiting</strong></p>
+            <article>
+                <h3>Design Patterns</h3>
+                <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-time"></span> April 14, 2020 05:46 PM
+                <hr>
+
+                <p class="post-content"><p>In software engineering, a design pattern is a general, reusable solution to a commonly occurring problem within a given context in software design.</p>
+<p><strong>Some Of Design Patterns:</strong></p>
 <ol>
 <li>
-<p>Request Queues:</p>
+<p><strong>Singleton</strong></p>
 <ul>
-<li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.</li>
-<li>Some library take 2 request per resecond from the queue and remaining kept in the queue for processing.</li>
-<li>Many custom &quot;request-rate-limiter&quot; library are avaialbe in package manager</li>
+<li>Whenever only dingle instance of a object is required through out the system</li>
+<li>Example  DB connection &amp; Logger writing Object.</li>
 </ul>
 </li>
 <li>
-<p>Throttling</p>
+<p><strong>Factory</strong></p>
 <ul>
-<li>API is used by setting up a temporary state, allowing the API to assess each request. When the throttle is triggered, a user may either be disconnected or simply have their bandwidth reduced.</li>
-<li>Possible at the application, API, or user level, throttling is a popular method to rate-limit APIs</li>
+<li>Factory pattern helps in instantiation and creation of Objects</li>
+<li>According to definition from wikipedia, Factory Pattern is &quot;A factory is an object for creating other objects&quot;</li>
+<li>In simple factory pattern, we have a factory class which has a method that returns different types of object based on given input</li>
+<li>For an example a Factory produces different type of fans, and all type of fan are kept for Testing, instead of swtiching on / off each fan, a factory function should be generated which will test the fan by passing the type of fan, no need to go detail to check how fans are switched off and switched on. It is kind of abstracting the deail functionality of various fans(table fan, ceiling fan, powered fan, wall fan).</li>
 </ul>
 </li>
-<li>Rate-limiting Algorithms
+<li>
+<p><strong>Facade</strong></p>
 <ul>
-<li>&quot;Leaky Bucket&quot; is a algorithim which translate requests into FIFO format and processing the items on the queue on a regular rate.</li>
-<li>&quot;Sliding Log&quot; is time stampped algorithim, the sum of the logs are calculated to determine the request rate. if the request exceeds the limit threshold, they are simply queued.</li>
+<li>A facade is an object that serves as a front-facing interface masking more complex underlying or structural code</li>
+<li>Provide a unified interface to a set of interfaces in a subsystem.</li>
+<li>Facade deals with interfaces, not implementation. Its purpose is to hide internal complexity behind a single interface that appears simple on the outside.</li>
+</ul>
+</li>
+<li>
+<p><strong>Adaptor</strong></p>
+<ul>
+<li>The Adapter pattern allows otherwise incompatible classes to work together by converting the interface of one class into an interface expected by the clients</li>
+<li>It allows two or more previously incompatible objects to interact.</li>
+<li>It allows reusability of existing functionality.</li>
+<li>For example, sharing post in diferent social medias like fb,tweet,linkedin can be done using one interface implements the common methods in different classes of social media to share the data. </li>
+</ul>
+</li>
+<li>
+<p><strong>Observable</strong></p>
+<ul>
+<li>An Observer Pattern says that &quot;just define a one-to-one dependency so that when one object changes state, all its dependents are notified and updated automatically&quot;.</li>
+<li>It describes the coupling between the objects and the observer.</li>
+<li>It provides the support for broadcast-type communication.</li>
+<li>When the change of a state in one object must be reflected in another object without keeping the objects tight coupled.</li>
+</ul>
+</li>
+<li><strong>Proxy</strong>
+<ul>
+<li>Simply, proxy means an object representing another object</li>
+<li>It provides the protection to the original object from the outside world.</li>
+<li>So, we can perform many operations like hiding the information of original object, on demand loading etc.</li>
+<li>A proxy, in its most general form, is a class functioning as an interface to something else.</li>
+<li>In proxy pattern, we create object having original object to interface its functionality to outer world.</li>
 </ul></li>
 </ol></p>
-                        <br/>
-                
-                        <div class="post-info">
-                                <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                                <a href="https://sraban.github.io/category/linux">Linux</a>
-                                &nbsp;&nbsp;
-                
-                            <span class="glyphicon glyphicon-bookmark"></span>
-                
-                                <a href="https://sraban.github.io/tag/PHP">PHP</a>&nbsp;&nbsp;
-                                <a href="https://sraban.github.io/tag/Server">Server</a>&nbsp;&nbsp;
-                        </div>
-                
-                    <hr>
-                </article>
+                <br/><br/>
+
+                <div class="post-info">
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+                        <a href="https://sraban.github.io/category/design-patterns">Design Patterns</a>
+                        &nbsp;&nbsp;
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+                        <a href="https://sraban.github.io/tag/common">common</a>&nbsp;&nbsp;
+                </div>
+
+            </article>
+            <hr/>
 
             <div class="text-center clearfix">
                 <div class="col-sm-4 col-md-4">
-                    &nbsp;
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
                 </div>
                 <div class="col-sm-4 col-md-4">
                     <a class="btn btn-primary" href="https://sraban.github.io/posts.html"><i class="fa fa-navicon"></i> View All
@@ -126,6 +156,17 @@
                 <div class="col-sm-4 col-md-4">
                     <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
                 </div>
+            </div>
+
+            <hr/>
+            
+            <!-- Comment form -->
+            <div class="well">
+                <div id="disqus_thread"></div>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
+                    powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
+                    <span class="logo-disqus">Disqus</span></a>
             </div>
 
         </div>
@@ -194,6 +235,7 @@
                     </div>
                 </div>
             </div>
+
     </div>
 </div>
 
@@ -227,8 +269,16 @@
 
         ///////////////////////////////////////////////////
         // class/id/selector of prev link
+        var $prevPostSelector = $('.prevpost');
         var $nextPostSelector = $('.nextpost');
         ///////////////////////////////////////////////////
+
+        var pageArray = document.location.href.split('/');
+        var currentPageSlug = pageArray[pageArray.length - 1];
+
+        if (!currentPageSlug) {
+            currentPageSlug = pageArray[pageArray.length - 2];
+        }
 
         $.ajax({
             url: __blogURL + "/data/blog.json",
@@ -236,21 +286,46 @@
             dataType: "json",
             success: function (data) {
                 if (data.posts !== undefined && data.posts !== null) {
-                    var nextPost = data.posts[1];
+                    $.each(data.posts, function (i, post) {
+                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
 
-                    if (nextPost === undefined || nextPost === null) {
-                        // hide previous link if blog has only one post
-                        $nextPostSelector.hide();
-                    }
-                    else {
-                        $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
-                    }
+                            var prevPost = data.posts[i - 1];
+                            var nextPost = data.posts[i + 1];
+
+                            if (prevPost === undefined || prevPost === null) {
+                                // hide previous link if it is first post
+                                $prevPostSelector.hide();
+                            }
+                            else {
+                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+                            }
+
+                            if (nextPost === undefined || nextPost === null) {
+                                // hide previous link if it is last post
+                                $nextPostSelector.hide();
+                            }
+                            else {
+                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+                            }
+
+                            return false; // break out of each
+                        }
+                    });
                 }
             },
             error: function (e) {
+                $prevPostSelector.hide();
                 $nextPostSelector.hide();
             }
         });
+
+        // for Disqus
+        var disqus_shortname = '';
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 
     });
 </script>
