@@ -13,7 +13,7 @@
 <p>Request Queues:</p>
 <ul>
 <li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.</li>
-<li>Some library take 2 request per resecond from the queue and remaining kept in the queue for processing.</li>
+<li>Some library take 2 request per second from the queue and remaining kept in the queue for processing.</li>
 <li>Many custom &quot;request-rate-limiter&quot; library are avaialbe in package manager</li>
 </ul>
 </li>

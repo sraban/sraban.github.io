@@ -25,9 +25,13 @@
 			"slug": "contact"
 		}
 	],
-	"follow": [
-
-	],
+	"follow": {
+		"twitter": "https:\/\/twitter.com\/srabann",
+		"linkedin": "https:\/\/www.linkedin.com\/in\/sraban\/",
+		"google": "",
+		"facebook": "https:\/\/www.facebook.com\/spahadasingh",
+		"github": "https:\/\/github.com\/sraban"
+	},
 	"posts": [
 		{
 			"author": "Sraban Pahadasingh",
@@ -37,13 +41,13 @@
 				"Server"
 			],
 			"category": "Linux",
-			"body": "<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol>\n<li>\n<p>Request Queues:<\/p>\n<ul>\n<li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per resecond from the queue and remaining kept in the queue for processing.<\/li>\n<li>Many custom &quot;request-rate-limiter&quot; library are avaialbe in package manager<\/li>\n<\/ul>\n<\/li>\n<li>\n<p>Throttling<\/p>\n<ul>\n<li>API is used by setting up a temporary state, allowing the API to assess each request. When the throttle is triggered, a user may either be disconnected or simply have their bandwidth reduced.<\/li>\n<li>Possible at the application, API, or user level, throttling is a popular method to rate-limit APIs<\/li>\n<\/ul>\n<\/li>\n<li>Rate-limiting Algorithms\n<ul>\n<li>&quot;Leaky Bucket&quot; is a algorithim which translate requests into FIFO format and processing the items on the queue on a regular rate.<\/li>\n<li>&quot;Sliding Log&quot; is time stampped algorithim, the sum of the logs are calculated to determine the request rate. if the request exceeds the limit threshold, they are simply queued.<\/li>\n<\/ul><\/li>\n<\/ol>",
+			"body": "<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol>\n<li>\n<p>Request Queues:<\/p>\n<ul>\n<li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per second from the queue and remaining kept in the queue for processing.<\/li>\n<li>Many custom &quot;request-rate-limiter&quot; library are avaialbe in package manager<\/li>\n<\/ul>\n<\/li>\n<li>\n<p>Throttling<\/p>\n<ul>\n<li>API is used by setting up a temporary state, allowing the API to assess each request. When the throttle is triggered, a user may either be disconnected or simply have their bandwidth reduced.<\/li>\n<li>Possible at the application, API, or user level, throttling is a popular method to rate-limit APIs<\/li>\n<\/ul>\n<\/li>\n<li>Rate-limiting Algorithms\n<ul>\n<li>&quot;Leaky Bucket&quot; is a algorithim which translate requests into FIFO format and processing the items on the queue on a regular rate.<\/li>\n<li>&quot;Sliding Log&quot; is time stampped algorithim, the sum of the logs are calculated to determine the request rate. if the request exceeds the limit threshold, they are simply queued.<\/li>\n<\/ul><\/li>\n<\/ol>",
 			"addpost": "addpost",
 			"dated": "April 14, 2020 06:17 PM",
 			"slug": "api-rate-limiting",
 			"categoryslug": "linux",
 			"status": "publised",
-			"summary": "\n<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol><li>\n<p>Request Queues:<\/p>\n<ul><li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per resecond from the queue and remaining kept in the queue for proce...<\/li><\/ul><\/li><\/ol>\n",
+			"summary": "\n<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol><li>\n<p>Request Queues:<\/p>\n<ul><li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per second from the queue and remaining kept in the queue for process...<\/li><\/ul><\/li><\/ol>\n",
 			"prevStatus": "publised",
 			"showbody": "1"
 		},
@@ -177,13 +181,13 @@
 				"Server"
 			],
 			"category": "Linux",
-			"body": "<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol>\n<li>\n<p>Request Queues:<\/p>\n<ul>\n<li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per resecond from the queue and remaining kept in the queue for processing.<\/li>\n<li>Many custom &quot;request-rate-limiter&quot; library are avaialbe in package manager<\/li>\n<\/ul>\n<\/li>\n<li>\n<p>Throttling<\/p>\n<ul>\n<li>API is used by setting up a temporary state, allowing the API to assess each request. When the throttle is triggered, a user may either be disconnected or simply have their bandwidth reduced.<\/li>\n<li>Possible at the application, API, or user level, throttling is a popular method to rate-limit APIs<\/li>\n<\/ul>\n<\/li>\n<li>Rate-limiting Algorithms\n<ul>\n<li>&quot;Leaky Bucket&quot; is a algorithim which translate requests into FIFO format and processing the items on the queue on a regular rate.<\/li>\n<li>&quot;Sliding Log&quot; is time stampped algorithim, the sum of the logs are calculated to determine the request rate. if the request exceeds the limit threshold, they are simply queued.<\/li>\n<\/ul><\/li>\n<\/ol>",
+			"body": "<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol>\n<li>\n<p>Request Queues:<\/p>\n<ul>\n<li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per second from the queue and remaining kept in the queue for processing.<\/li>\n<li>Many custom &quot;request-rate-limiter&quot; library are avaialbe in package manager<\/li>\n<\/ul>\n<\/li>\n<li>\n<p>Throttling<\/p>\n<ul>\n<li>API is used by setting up a temporary state, allowing the API to assess each request. When the throttle is triggered, a user may either be disconnected or simply have their bandwidth reduced.<\/li>\n<li>Possible at the application, API, or user level, throttling is a popular method to rate-limit APIs<\/li>\n<\/ul>\n<\/li>\n<li>Rate-limiting Algorithms\n<ul>\n<li>&quot;Leaky Bucket&quot; is a algorithim which translate requests into FIFO format and processing the items on the queue on a regular rate.<\/li>\n<li>&quot;Sliding Log&quot; is time stampped algorithim, the sum of the logs are calculated to determine the request rate. if the request exceeds the limit threshold, they are simply queued.<\/li>\n<\/ul><\/li>\n<\/ol>",
 			"addpost": "addpost",
 			"dated": "April 14, 2020 06:17 PM",
 			"slug": "api-rate-limiting",
 			"categoryslug": "linux",
 			"status": "publised",
-			"summary": "\n<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol><li>\n<p>Request Queues:<\/p>\n<ul><li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per resecond from the queue and remaining kept in the queue for proce...<\/li><\/ul><\/li><\/ol>\n",
+			"summary": "\n<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol><li>\n<p>Request Queues:<\/p>\n<ul><li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per second from the queue and remaining kept in the queue for process...<\/li><\/ul><\/li><\/ol>\n",
 			"prevStatus": "publised",
 			"showbody": "1"
 		},
@@ -266,13 +270,13 @@
 				"Server"
 			],
 			"category": "Linux",
-			"body": "<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol>\n<li>\n<p>Request Queues:<\/p>\n<ul>\n<li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per resecond from the queue and remaining kept in the queue for processing.<\/li>\n<li>Many custom &quot;request-rate-limiter&quot; library are avaialbe in package manager<\/li>\n<\/ul>\n<\/li>\n<li>\n<p>Throttling<\/p>\n<ul>\n<li>API is used by setting up a temporary state, allowing the API to assess each request. When the throttle is triggered, a user may either be disconnected or simply have their bandwidth reduced.<\/li>\n<li>Possible at the application, API, or user level, throttling is a popular method to rate-limit APIs<\/li>\n<\/ul>\n<\/li>\n<li>Rate-limiting Algorithms\n<ul>\n<li>&quot;Leaky Bucket&quot; is a algorithim which translate requests into FIFO format and processing the items on the queue on a regular rate.<\/li>\n<li>&quot;Sliding Log&quot; is time stampped algorithim, the sum of the logs are calculated to determine the request rate. if the request exceeds the limit threshold, they are simply queued.<\/li>\n<\/ul><\/li>\n<\/ol>",
+			"body": "<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol>\n<li>\n<p>Request Queues:<\/p>\n<ul>\n<li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per second from the queue and remaining kept in the queue for processing.<\/li>\n<li>Many custom &quot;request-rate-limiter&quot; library are avaialbe in package manager<\/li>\n<\/ul>\n<\/li>\n<li>\n<p>Throttling<\/p>\n<ul>\n<li>API is used by setting up a temporary state, allowing the API to assess each request. When the throttle is triggered, a user may either be disconnected or simply have their bandwidth reduced.<\/li>\n<li>Possible at the application, API, or user level, throttling is a popular method to rate-limit APIs<\/li>\n<\/ul>\n<\/li>\n<li>Rate-limiting Algorithms\n<ul>\n<li>&quot;Leaky Bucket&quot; is a algorithim which translate requests into FIFO format and processing the items on the queue on a regular rate.<\/li>\n<li>&quot;Sliding Log&quot; is time stampped algorithim, the sum of the logs are calculated to determine the request rate. if the request exceeds the limit threshold, they are simply queued.<\/li>\n<\/ul><\/li>\n<\/ol>",
 			"addpost": "addpost",
 			"dated": "April 14, 2020 06:17 PM",
 			"slug": "api-rate-limiting",
 			"categoryslug": "linux",
 			"status": "publised",
-			"summary": "\n<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol><li>\n<p>Request Queues:<\/p>\n<ul><li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per resecond from the queue and remaining kept in the queue for proce...<\/li><\/ul><\/li><\/ol>\n",
+			"summary": "\n<p><strong>Implementing API Rate-Limiting<\/strong><\/p>\n<ol><li>\n<p>Request Queues:<\/p>\n<ul><li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.<\/li>\n<li>Some library take 2 request per second from the queue and remaining kept in the queue for process...<\/li><\/ul><\/li><\/ol>\n",
 			"prevStatus": "publised",
 			"showbody": "1"
 		}
