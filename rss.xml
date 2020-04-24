@@ -6,6 +6,104 @@
 <description>Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.</description>
 <language>en-us</language>
 <item>
+<title>Uses of Http Guzzle PHP</title>
+<description><![CDATA[<h2>About PHP Guzzle for API Rest</h2>
+<ol>
+<li>
+<p><code>Initialize th instance</code></p>
+<pre>$this->client = new \GuzzleHttp\Client();</pre>
+</li>
+<li>
+<p><code>Get Method</code></p>
+<pre>
+$params = Array(
+        'key1' => $id, 
+        'key2' => $value,
+       );
+$promise = $this->client->request('GET',  route('statement'), [
+    'query' => $params,
+    'debug' => false
+]);
+
+$promise->getBody()->rewind();
+$output = $promise->getBody()->getContents();
+$httpStatusCode = $promise->getStatusCode();
+</pre>
+</li>
+<li>
+<p><code>Post Method: Raw data posting like posting json in payload</code></p>
+<pre>
+$rawInput = json_encode($array); // string
+
+-OR-
+
+$rawInput = <<<EOF
+        SET empdata 2 ‘Jack Petter’ ‘192.168.11.11’
+        GET empdata ‘192.168.11.11’
+        SET empwebhistory 192.168.11.11 ‘http://google.com’
+        SET empwebhistory 192.168.11.11 ‘http://facebook.com’
+        GET empwebhistory  192.168.11.11
+        UNSET empwebhistory  192.168.11.11
+        GET empwebhistory 192.168.11.11
+        END
+    EOF;
+
+$promise = $this->client->request('POST',  route('statement'), [
+    'body' => $rawInput,
+    'debug' => false
+]);
+
+$promise->getBody()->rewind();
+$output = $promise->getBody()->getContents();
+$httpStatusCode = $promise->getStatusCode();
+</pre>
+</li>
+<li>
+<p><code>Post using Form Fields</code></p>
+<pre>
+$filedInputs = Array(
+    'email' => 'test@gmail.com',
+    'name' => 'Test user',
+    'password' => 'testpassword',
+);
+
+$promise = $this->client->request('POST',  route('statement'), [
+    'form_params' => $rawInput,
+    'debug' => false
+]);
+
+$promise->getBody()->rewind();
+$output = $promise->getBody()->getContents();
+$httpStatusCode = $promise->getStatusCode();
+</pre>
+</li>
+<li>
+<p><code>POST File Upload from Directory</code></p>
+<pre>
+$promise = $this->client->request('POST', 'http://www.example.com/files/post', [
+    'multipart' => [
+        [
+            'name'     => 'file_name',
+            'contents' => fopen('/path/to/file', 'r')
+        ],
+        [
+            'name'     => 'csv_header',
+            'contents' => 'First Name, Last Name, Username',
+            'filename' => 'csv_header.csv'
+        ]
+    ]
+]);
+
+$promise->getBody()->rewind();
+$output = $promise->getBody()->getContents();
+$httpStatusCode = $promise->getStatusCode();
+</pre>
+</li>
+</ol>]]></description>
+<link>https://sraban.github.io/post/uses-of-http-guzzle-php</link>
+<pubDate>Fri, 24 Apr 2020 14:42:00 +0500</pubDate>
+</item>
+<item>
 <title>API Rate-Limiting</title>
 <description><![CDATA[<p><strong>Implementing API Rate-Limiting</strong></p>
 <ol>

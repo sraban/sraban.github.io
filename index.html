@@ -70,46 +70,115 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="https://sraban.github.io/post/api-rate-limiting">API Rate-Limiting</a></h3>
+                    <h3><a href="https://sraban.github.io/post/uses-of-http-guzzle-php">Uses of Http Guzzle PHP</a></h3>
                     <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> April 14, 2020 06:17 PM
+                    <span class="glyphicon glyphicon-time"></span> April 24, 2020 02:42 PM
                 
                         <hr>
-                        <p class="post-content"><p><strong>Implementing API Rate-Limiting</strong></p>
+                        <p class="post-content"><h2>About PHP Guzzle for API Rest</h2>
 <ol>
 <li>
-<p>Request Queues:</p>
-<ul>
-<li>Ex. ASQS(Amazon Simple Queue Service) is a readymade request queue library maintianed regularly.</li>
-<li>Some library take 2 request per second from the queue and remaining kept in the queue for processing.</li>
-<li>Many custom &quot;request-rate-limiter&quot; library are avaialbe in package manager</li>
-</ul>
+<p><code>Initialize th instance</code></p>
+<pre>$this->client = new \GuzzleHttp\Client();</pre>
 </li>
 <li>
-<p>Throttling</p>
-<ul>
-<li>API is used by setting up a temporary state, allowing the API to assess each request. When the throttle is triggered, a user may either be disconnected or simply have their bandwidth reduced.</li>
-<li>Possible at the application, API, or user level, throttling is a popular method to rate-limit APIs</li>
-</ul>
+<p><code>Get Method</code></p>
+<pre>
+$params = Array(
+        'key1' => $id, 
+        'key2' => $value,
+       );
+$promise = $this->client->request('GET',  route('statement'), [
+    'query' => $params,
+    'debug' => false
+]);
+
+$promise->getBody()->rewind();
+$output = $promise->getBody()->getContents();
+$httpStatusCode = $promise->getStatusCode();
+</pre>
 </li>
-<li>Rate-limiting Algorithms
-<ul>
-<li>&quot;Leaky Bucket&quot; is a algorithim which translate requests into FIFO format and processing the items on the queue on a regular rate.</li>
-<li>&quot;Sliding Log&quot; is time stampped algorithim, the sum of the logs are calculated to determine the request rate. if the request exceeds the limit threshold, they are simply queued.</li>
-</ul></li>
+<li>
+<p><code>Post Method: Raw data posting like posting json in payload</code></p>
+<pre>
+$rawInput = json_encode($array); // string
+
+-OR-
+
+$rawInput = <<<EOF
+        SET empdata 2 ‘Jack Petter’ ‘192.168.11.11’
+        GET empdata ‘192.168.11.11’
+        SET empwebhistory 192.168.11.11 ‘http://google.com’
+        SET empwebhistory 192.168.11.11 ‘http://facebook.com’
+        GET empwebhistory  192.168.11.11
+        UNSET empwebhistory  192.168.11.11
+        GET empwebhistory 192.168.11.11
+        END
+    EOF;
+
+$promise = $this->client->request('POST',  route('statement'), [
+    'body' => $rawInput,
+    'debug' => false
+]);
+
+$promise->getBody()->rewind();
+$output = $promise->getBody()->getContents();
+$httpStatusCode = $promise->getStatusCode();
+</pre>
+</li>
+<li>
+<p><code>Post using Form Fields</code></p>
+<pre>
+$filedInputs = Array(
+    'email' => 'test@gmail.com',
+    'name' => 'Test user',
+    'password' => 'testpassword',
+);
+
+$promise = $this->client->request('POST',  route('statement'), [
+    'form_params' => $rawInput,
+    'debug' => false
+]);
+
+$promise->getBody()->rewind();
+$output = $promise->getBody()->getContents();
+$httpStatusCode = $promise->getStatusCode();
+</pre>
+</li>
+<li>
+<p><code>POST File Upload from Directory</code></p>
+<pre>
+$promise = $this->client->request('POST', 'http://www.example.com/files/post', [
+    'multipart' => [
+        [
+            'name'     => 'file_name',
+            'contents' => fopen('/path/to/file', 'r')
+        ],
+        [
+            'name'     => 'csv_header',
+            'contents' => 'First Name, Last Name, Username',
+            'filename' => 'csv_header.csv'
+        ]
+    ]
+]);
+
+$promise->getBody()->rewind();
+$output = $promise->getBody()->getContents();
+$httpStatusCode = $promise->getStatusCode();
+</pre>
+</li>
 </ol></p>
                         <br/>
                 
                         <div class="post-info">
                                 <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                                <a href="https://sraban.github.io/category/linux">Linux</a>
+                                <a href="https://sraban.github.io/category/php">PHP</a>
                                 &nbsp;&nbsp;
                 
                             <span class="glyphicon glyphicon-bookmark"></span>
                 
-                                <a href="https://sraban.github.io/tag/PHP">PHP</a>&nbsp;&nbsp;
-                                <a href="https://sraban.github.io/tag/Server">Server</a>&nbsp;&nbsp;
+                                <a href="https://sraban.github.io/tag/common">common</a>&nbsp;&nbsp;
                         </div>
                 
                     <hr>
@@ -157,11 +226,11 @@
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="https://sraban.github.io/post/uses-of-http-guzzle-php">Uses of Http Guzzle PHP</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/api-rate-limiting">API Rate-Limiting</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/most-useful-linux-commands">Most Useful Linux Commands</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/restful-services">Restful Services</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/upload-large-files-to-server-using-script">Upload Large Files to server using script</a></li>
-                        <li class="list-group-item"><a href="https://sraban.github.io/post/optimising-mysql-query">Optimising MySQL Query</a></li>
                 </ul>
             </div>
         
@@ -198,10 +267,10 @@
                     <div class="panel-body">
                         <ul class="list-inline">
                             <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/command" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">command</a>
-<a style="font-size: 30px" class="tag_cloud" href="https://sraban.github.io/tag/common" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">common</a>
+<a style="font-size: 30px" class="tag_cloud" href="https://sraban.github.io/tag/common" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">common</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/javascript" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Javascript</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/mysql" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">MySQL</a>
-<a style="font-size: 18px" class="tag_cloud" href="https://sraban.github.io/tag/php" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PHP</a>
+<a style="font-size: 16px" class="tag_cloud" href="https://sraban.github.io/tag/php" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PHP</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/server" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Server</a>
 
                         </ul>
