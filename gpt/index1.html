@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book</title>
+
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style-type: decimal;
+        }
+
+        ul li {
+            margin: 5px 2px;
+            padding: 5px;
+            border-bottom: 1px solid grey;
+        }
+
+        ul li a {
+            text-decoration: none;
+            font-size: 16px;
+            text-transform: capitalize;
+        }
+    </style>
+
+</head>
+
+<body>
+    <ul id="list"></ul>
+    <script>
+        const cURl = window.location.href;
+        const isLocal = cURl.indexOf('localhost') !== -1;
+        const user = 'pahadasingh';
+        const initDir = 'book';
+        const browseUrl = isLocal ? `http://localhost:3000/${initDir}` : `https://${user}.github.io/${initDir}`;
+        const url = `https://api.github.com/repos/${user}/${initDir}/contents`;
+        const ul = document.getElementById('list');
+        const fragment = document.createDocumentFragment();
+
+
+        const extraParams = cURl.replace(browseUrl, '');
+        const apiUrl = `${url}${extraParams}`;
+
+        fetch(apiUrl)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                data.map(function (list) {
+                    if (list.name !== 'index.html' && list.name !== 'README.md') {
+                        let li = document.createElement('li');
+                        let a = document.createElement('a');
+
+                        let href = `${extraParams}/${list.name}`.replace(/[\/]+/, '/');
+                        a.textContent = `${list.name}`;
+                        a.href = `${browseUrl}${href}`;
+                        a.alt = `${list._links.html}`;
+
+                        li.appendChild(a);
+                        fragment.appendChild(li);
+                        ul.appendChild(fragment);
+                    }
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    </script>
+</body>
+
+</html>
