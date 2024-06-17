@@ -41,9 +41,9 @@
         const cURl = window.location.href;
         const isLocal = cURl.indexOf('localhost') !== -1;
         const user = 'sraban';
-        const initDir = 'sraban.github.io';
+        const initDir = 'gpt';
         const browseUrl = isLocal ? `http://localhost:3000/${initDir}` : `https://${user}.github.io/${initDir}`;
-        const url = `https://api.github.com/repos/${user}/${initDir}/contents/gpt`;
+        const url = `https://api.github.com/repos/${user}/sraban.github.io/contents/gpt`;
         const ul = document.getElementById('list');
         const fragment = document.createDocumentFragment();
 
