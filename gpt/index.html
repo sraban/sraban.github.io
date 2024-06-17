@@ -40,10 +40,10 @@
     <script>
         const cURl = window.location.href;
         const isLocal = cURl.indexOf('localhost') !== -1;
-        const user = 'pahadasingh';
-        const initDir = 'book';
+        const user = 'sraban';
+        const initDir = 'sraban.github.io';
         const browseUrl = isLocal ? `http://localhost:3000/${initDir}` : `https://${user}.github.io/${initDir}`;
-        const url = `https://api.github.com/repos/${user}/${initDir}/contents`;
+        const url = `https://api.github.com/repos/${user}/${initDir}/contents/gpt`;
         const ul = document.getElementById('list');
         const fragment = document.createDocumentFragment();
 
