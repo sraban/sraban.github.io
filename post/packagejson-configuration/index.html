@@ -8,7 +8,7 @@
     <meta name="description" content="Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.">
     <meta name="author" content="Sraban Pahadasingh">
 
-    <title>Optimising PHP Scripts :: &lt;/&gt; FullStack Developer</title>
+    <title>package.json configuration :: &lt;/&gt; FullStack Developer</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="&lt;/&gt; FullStack Developer" href="https://sraban.github.io/rss.xml"/>
@@ -70,40 +70,140 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>Optimising PHP Scripts</h3>
+                <h3>package.json configuration</h3>
                 <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> April 14, 2020 02:50 PM
+                <span class="glyphicon glyphicon-time"></span> June 22, 2024 06:03 PM
                 <hr>
 
-                <p class="post-content"><p><em>Mainly to avoid generalised coding for better usage of memory and time, use specific and proper logic, statement, inbuilt function.</em></p>
+                <p class="post-content"><p>The most common fields and configurations found in package.json. Depending on the project's needs and tooling used, some of these configurations may not be present or may have additional custom configurations.</p>
 <ol>
-<li>Take advantage of native php function</li>
-<li>Cut out unnecessary classes</li>
-<li>Turn off debugging notification</li>
-<li>close file and databse connections</li>
-<li>unnessary loop needs to breaked. unsetting memories after usages of variable and object.</li>
-<li>Use single quote rather double quote</li>
-<li>use identify operator ===</li>
-<li>use proper string function</li>
-<li>calculate only once</li>
-<li>Pass reference to the function to use the veriable outside the function</li>
-<li>Reduce number of hits to the database</li>
-<li>Use intermidate caching technology rather processing same thing again</li>
-<li>Use derived methods instead of base methods in class</li>
-<li>use json rather XML for data interchange</li>
-<li>use isset() always rather using variables directly</li>
-</ol></p>
+<li>
+<p><strong>name</strong>: The name of the package or project.</p>
+</li>
+<li>
+<p><strong>version</strong>: The version of the package or project, following Semantic Versioning (SemVer).</p>
+</li>
+<li>
+<p><strong>description</strong>: A brief description of the package or project.</p>
+</li>
+<li>
+<p><strong>keywords</strong>: An array of keywords that describe the package, useful for search optimization.</p>
+</li>
+<li>
+<p><strong>homepage</strong>: The URL to the project's homepage.</p>
+</li>
+<li>
+<p><strong>bugs</strong>: Information about where to report bugs for the package.</p>
+</li>
+<li>
+<p><strong>license</strong>: The license under which the package is distributed.</p>
+</li>
+<li>
+<p><strong>author</strong>: The name and email address of the package author.</p>
+</li>
+<li>
+<p><strong>contributors</strong>: An array of contributors to the project.</p>
+</li>
+<li>
+<p><strong>files</strong>: An array of files to include in the package.</p>
+</li>
+<li>
+<p><strong>main</strong>: The entry point of the package (the main module that gets executed when the package is required).</p>
+</li>
+<li>
+<p><strong>browser</strong>: Replacement files to use in the browser environment.</p>
+</li>
+<li>
+<p><strong>bin</strong>: Specifies command-line commands that are installed with the package.</p>
+</li>
+<li>
+<p><strong>scripts</strong>: An object where each key is a script name and the value is the command to run for that script.</p>
+</li>
+<li>
+<p><strong>dependencies</strong>: An object listing the packages that the project depends on in production.</p>
+</li>
+<li>
+<p><strong>devDependencies</strong>: An object listing packages that are only needed for development and testing.</p>
+</li>
+<li>
+<p><strong>peerDependencies</strong>: An object listing packages that the project expects the host environment to provide.</p>
+</li>
+<li>
+<p><strong>optionalDependencies</strong>: An object listing packages that are optional dependencies.</p>
+</li>
+<li>
+<p><strong>engines</strong>: Specifies the versions of Node.js and npm that the package is compatible with.</p>
+</li>
+<li>
+<p><strong>os</strong>: An array of operating systems on which the package runs.</p>
+</li>
+<li>
+<p><strong>cpu</strong>: An array of CPUs that the package runs on.</p>
+</li>
+<li>
+<p><strong>private</strong>: If true, prevents the package from being accidentally published to the npm registry.</p>
+</li>
+<li>
+<p><strong>publishConfig</strong>: Configures publishing options when using npm publish.</p>
+</li>
+<li>
+<p><strong>directories</strong>: Specifies a directory structure for the package.</p>
+</li>
+<li>
+<p><strong>repository</strong>: The URL and type of source control repository for the package.</p>
+</li>
+<li>
+<p><strong>scripts</strong>: Custom scripts that can be run with npm, typically used for build, test, and other automation tasks.</p>
+</li>
+<li>
+<p><strong>config</strong>: Configuration parameters that can be used by the scripts.</p>
+</li>
+<li>
+<p><strong>workspaces</strong>: An array of workspace packages that are part of a multi-package repository.</p>
+</li>
+<li>
+<p><strong>jest</strong> (or other test runner configurations): Specific configurations for test runners like Jest.</p>
+</li>
+<li><strong>eslintConfig</strong> (or other linter configurations): Configuration for linters like ESLint.</li>
+</ol>
+<p>ex.</p>
+<pre><code>{
+  "name": "my-node-project",
+  "version": "1.0.0",
+  "description": "A sample Node.js project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "jest": "^27.0.0"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/my-node-project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/my-node-project/issues"
+  },
+  "homepage": "https://github.com/your-username/my-node-project#readme"
+}</code></pre></p>
                 <br/><br/>
 
                 <div class="post-info">
                         <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                        <a href="https://sraban.github.io/category/php">PHP</a>
+                        <a href="https://sraban.github.io/category/javascript">Javascript</a>
                         &nbsp;&nbsp;
 
                     <span class="glyphicon glyphicon-bookmark"></span>
 
-                        <a href="https://sraban.github.io/tag/common">common</a>&nbsp;&nbsp;
+                        <a href="https://sraban.github.io/tag/Javascript">Javascript</a>&nbsp;&nbsp;
                 </div>
 
             </article>

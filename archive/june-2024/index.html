@@ -8,7 +8,7 @@
     <meta name="description" content="Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.">
     <meta name="author" content="Sraban Pahadasingh">
 
-    <title>Optimising PHP Scripts :: &lt;/&gt; FullStack Developer</title>
+    <title>&lt;/&gt; FullStack Developer</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="&lt;/&gt; FullStack Developer" href="https://sraban.github.io/rss.xml"/>
@@ -69,70 +69,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 main-content">
-            <article>
-                <h3>Optimising PHP Scripts</h3>
-                <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
-                &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> April 14, 2020 02:50 PM
-                <hr>
-
-                <p class="post-content"><p><em>Mainly to avoid generalised coding for better usage of memory and time, use specific and proper logic, statement, inbuilt function.</em></p>
-<ol>
-<li>Take advantage of native php function</li>
-<li>Cut out unnecessary classes</li>
-<li>Turn off debugging notification</li>
-<li>close file and databse connections</li>
-<li>unnessary loop needs to breaked. unsetting memories after usages of variable and object.</li>
-<li>Use single quote rather double quote</li>
-<li>use identify operator ===</li>
-<li>use proper string function</li>
-<li>calculate only once</li>
-<li>Pass reference to the function to use the veriable outside the function</li>
-<li>Reduce number of hits to the database</li>
-<li>Use intermidate caching technology rather processing same thing again</li>
-<li>Use derived methods instead of base methods in class</li>
-<li>use json rather XML for data interchange</li>
-<li>use isset() always rather using variables directly</li>
-</ol></p>
-                <br/><br/>
-
-                <div class="post-info">
-                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                        <a href="https://sraban.github.io/category/php">PHP</a>
-                        &nbsp;&nbsp;
-
-                    <span class="glyphicon glyphicon-bookmark"></span>
-
-                        <a href="https://sraban.github.io/tag/common">common</a>&nbsp;&nbsp;
-                </div>
-
-            </article>
+            <h1>Monthly Posts</h1>
             <hr/>
+            <br/>
 
-            <div class="text-center clearfix">
-                <div class="col-sm-4 col-md-4">
-                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <a class="btn btn-primary" href="https://sraban.github.io/posts.html"><i class="fa fa-navicon"></i> View All
-                        Post</a>
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
-                </div>
-            </div>
-
-            <hr/>
-            
-            <!-- Comment form -->
-            <div class="well">
-                <div id="disqus_thread"></div>
-                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
-                    powered by Disqus.</a></noscript>
-                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
-                    <span class="logo-disqus">Disqus</span></a>
-            </div>
-
+                <h3><a href="https://sraban.github.io/post/packagejson-configuration">package.json configuration</a></h3>
+                <span class="glyphicon glyphicon-time"></span> June 22, 2024 06:03 PM
+                <h3><a href="https://sraban.github.io/post/watch-production-errors-issues-important-transactions-from-a-system-mq">Watch - Production Errors &amp; Issues,  Important Transactions from a system MQ</a></h3>
+                <span class="glyphicon glyphicon-time"></span> June 15, 2024 03:42 PM
         </div>
 
         <div class="sidebar col-md-4">
@@ -213,7 +157,6 @@
                     </div>
                 </div>
             </div>
-
     </div>
 </div>
 
@@ -241,69 +184,3 @@
 
 </body>
 </html>
-<!-- for pagination -->
-<script>
-    $(function () {
-
-        ///////////////////////////////////////////////////
-        // class/id/selector of prev link
-        var $prevPostSelector = $('.prevpost');
-        var $nextPostSelector = $('.nextpost');
-        ///////////////////////////////////////////////////
-
-        var pageArray = document.location.href.split('/');
-        var currentPageSlug = pageArray[pageArray.length - 1];
-
-        if (!currentPageSlug) {
-            currentPageSlug = pageArray[pageArray.length - 2];
-        }
-
-        $.ajax({
-            url: __blogURL + "/data/blog.json",
-            type: "GET",
-            dataType: "json",
-            success: function (data) {
-                if (data.posts !== undefined && data.posts !== null) {
-                    $.each(data.posts, function (i, post) {
-                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
-
-                            var prevPost = data.posts[i - 1];
-                            var nextPost = data.posts[i + 1];
-
-                            if (prevPost === undefined || prevPost === null) {
-                                // hide previous link if it is first post
-                                $prevPostSelector.hide();
-                            }
-                            else {
-                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
-                            }
-
-                            if (nextPost === undefined || nextPost === null) {
-                                // hide previous link if it is last post
-                                $nextPostSelector.hide();
-                            }
-                            else {
-                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
-                            }
-
-                            return false; // break out of each
-                        }
-                    });
-                }
-            },
-            error: function (e) {
-                $prevPostSelector.hide();
-                $nextPostSelector.hide();
-            }
-        });
-
-        // for Disqus
-        var disqus_shortname = '';
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-
-    });
-</script>

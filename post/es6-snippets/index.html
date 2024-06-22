@@ -8,7 +8,7 @@
     <meta name="description" content="Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.">
     <meta name="author" content="Sraban Pahadasingh">
 
-    <title>Optimising PHP Scripts :: &lt;/&gt; FullStack Developer</title>
+    <title>ES6 Snippets :: &lt;/&gt; FullStack Developer</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="&lt;/&gt; FullStack Developer" href="https://sraban.github.io/rss.xml"/>
@@ -70,40 +70,244 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>Optimising PHP Scripts</h3>
+                <h3>ES6 Snippets</h3>
                 <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> April 14, 2020 02:50 PM
+                <span class="glyphicon glyphicon-time"></span> July 12, 2021 11:27 AM
                 <hr>
 
-                <p class="post-content"><p><em>Mainly to avoid generalised coding for better usage of memory and time, use specific and proper logic, statement, inbuilt function.</em></p>
-<ol>
-<li>Take advantage of native php function</li>
-<li>Cut out unnecessary classes</li>
-<li>Turn off debugging notification</li>
-<li>close file and databse connections</li>
-<li>unnessary loop needs to breaked. unsetting memories after usages of variable and object.</li>
-<li>Use single quote rather double quote</li>
-<li>use identify operator ===</li>
-<li>use proper string function</li>
-<li>calculate only once</li>
-<li>Pass reference to the function to use the veriable outside the function</li>
-<li>Reduce number of hits to the database</li>
-<li>Use intermidate caching technology rather processing same thing again</li>
-<li>Use derived methods instead of base methods in class</li>
-<li>use json rather XML for data interchange</li>
-<li>use isset() always rather using variables directly</li>
-</ol></p>
+                <p class="post-content"><p>In this article I tried to sort them based on their practical use, answering common questions you may face in your project:</p>
+<p><a href="https://medium.com/swlh/24-modern-es6-code-snippets-to-solve-practical-js-problems-3609f301859e">https://medium.com/swlh/24-modern-es6-code-snippets-to-solve-practical-js-problems-3609f301859e</a></p>
+<p>1.How to hide all elements specified?
+const hide = (...el) =&gt; [...el].forEach(e =&gt; (e.style.display = 'none'));</p>
+<p>// Example
+hide(document.querySelectorAll('img')); // Hides all <img> elements on the page
+2.How to check if the element has the specified class?
+const hasClass = (el, className) =&gt; el.classList.contains(className);</p>
+<p>// Example
+hasClass(document.querySelector('p.special'), 'special'); // true
+3.How to toggle a class for an element?
+const toggleClass = (el, className) =&gt; el.classList.toggle(className);</p>
+<p>// Example
+toggleClass(document.querySelector('p.special'), 'special');
+// The paragraph will not have the 'special' class anymore
+4.How to get the scroll position of the current page?
+const getScrollPosition = (el = window) =&gt; ({
+x: el.pageXOffset !== undefined ? el.pageXOffset : el.scrollLeft,
+y: el.pageYOffset !== undefined ? el.pageYOffset : el.scrollTop
+});</p>
+<p>// Example
+getScrollPosition(); // {x: 0, y: 200}
+5.How to smooth-scroll to the top of the page?
+const scrollToTop = () =&gt; {
+const c = document.documentElement.scrollTop || document.body.scrollTop;
+if (c &gt; 0) {
+window.requestAnimationFrame(scrollToTop);
+window.scrollTo(0, c - c / 8);
+}
+};</p>
+<p>// Example
+scrollToTop();
+6.How to check if the parent element contains the child element?
+const elementContains = (parent, child) =&gt; parent !== child &amp;&amp; parent.contains(child);</p>
+<p>// Examples
+elementContains(document.querySelector('head'), document.querySelector('title'));
+// true
+elementContains(document.querySelector('body'), document.querySelector('body')); // false
+7.How to check if the element specified is visible in the viewport?
+const elementIsVisibleInViewport = (el, partiallyVisible = false) =&gt; {
+const { top, left, bottom, right } = el.getBoundingClientRect();
+const { innerHeight, innerWidth } = window;
+return partiallyVisible
+? ((top &gt; 0 &amp;&amp; top &lt; innerHeight) || (bottom &gt; 0 &amp;&amp; bottom &lt; innerHeight)) &amp;&amp;
+((left &gt; 0 &amp;&amp; left &lt; innerWidth) || (right &gt; 0 &amp;&amp; right &lt; innerWidth))
+: top &gt;= 0 &amp;&amp; left &gt;= 0 &amp;&amp; bottom &lt;= innerHeight &amp;&amp; right &lt;= innerWidth;
+};</p>
+<p>// Examples
+elementIsVisibleInViewport(el); // (not fully visible)
+elementIsVisibleInViewport(el, true); // (partially visible)
+8.How to fetch all images within an element?
+const getImages = (el, includeDuplicates = false) =&gt; {
+const images = [...el.getElementsByTagName('img')].map(img =&gt; img.getAttribute('src'));
+return includeDuplicates ? images : [...new Set(images)];
+};</p>
+<p>// Examples
+getImages(document, true); // ['image1.jpg', 'image2.png', 'image1.png', '...']
+getImages(document, false); // ['image1.jpg', 'image2.png', '...']
+9.How to figure out if the device is a mobile device or a desktop/laptop?
+const detectDeviceType = () =&gt;
+/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+? 'Mobile'
+: 'Desktop';</p>
+<p>// Example
+detectDeviceType(); // &quot;Mobile&quot; or &quot;Desktop&quot;
+10.How to get the current URL?
+const currentURL = () =&gt; window.location.href;</p>
+<p>// Example
+currentURL(); // '<a href="https://google.com">https://google.com</a>'
+11.How to create an object containing the parameters of the current URL?
+const getURLParameters = url =&gt;
+(url.match(/([^?=&amp;]+)(=([^&amp;]*))/g) || []).reduce(
+(a, v) =&gt; ((a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a),
+{}
+);</p>
+<p>// Examples
+getURLParameters('<a href="http://url.com/page?n=Adam&s=Smith">http://url.com/page?n=Adam&s=Smith</a>'); // {n: 'Adam', s: 'Smith'}
+getURLParameters('google.com'); // {}
+12.How to encode a set of form elements as an object?
+const formToObject = form =&gt;
+Array.from(new FormData(form)).reduce(
+(acc, [key, value]) =&gt; ({
+...acc,</p>
+<pre><code>}),
+{}</code></pre>
+<p>);</p>
+<p>// Example
+formToObject(document.querySelector('#form')); // { email: 'test@email.com', name: 'Test Name' }
+13.How to retrieve a set of properties indicated by the given selectors from an object?
+const get = (from, ...selectors) =&gt;
+[...selectors].map(s =&gt;
+s
+.replace(/[([^[]]*)]/g, '.$1.')
+.split('.')
+.filter(t =&gt; t !== '')
+.reduce((prev, cur) =&gt; prev &amp;&amp; prev[cur], from)
+);
+const obj = { selector: { to: { val: 'val to select' } }, target: [1, 2, { a: 'test' }] };</p>
+<p>// Example
+get(obj, 'selector.to.val', 'target[0]', 'target[2].a'); // ['val to select', 1, 'test']
+14.How to invoke the provided function after wait (in milliseconds)?
+const delay = (fn, wait, ...args) =&gt; setTimeout(fn, wait, ...args);
+delay(
+function(text) {
+console.log(text);
+},
+1000,
+'later'
+); </p>
+<p>// Logs 'later' after one second.
+15.How to trigger a specific event on a given element, optionally passing custom data?
+const triggerEvent = (el, eventType, detail) =&gt;
+el.dispatchEvent(new CustomEvent(eventType, { detail }));</p>
+<p>// Examples
+triggerEvent(document.getElementById('myId'), 'click');
+triggerEvent(document.getElementById('myId'), 'click', { username: 'bob' });
+16.How to remove an event listener from an element?
+const off = (el, evt, fn, opts = false) =&gt; el.removeEventListener(evt, fn, opts);</p>
+<p>const fn = () =&gt; console.log('!');
+document.body.addEventListener('click', fn);
+off(document.body, 'click', fn); // no longer logs '!' upon clicking on the page
+17.How to get readable format of the given number of milliseconds?
+const formatDuration = ms =&gt; {
+if (ms &lt; 0) ms = -ms;
+const time = {
+day: Math.floor(ms / 86400000),
+hour: Math.floor(ms / 3600000) % 24,
+minute: Math.floor(ms / 60000) % 60,
+second: Math.floor(ms / 1000) % 60,
+millisecond: Math.floor(ms) % 1000
+};
+return Object.entries(time)
+.filter(val =&gt; val[1] !== 0)
+.map(([key, val]) =&gt; <code>${val} ${key}${val !== 1 ? 's' : ''}</code>)
+.join(', ');
+};</p>
+<p>// Examples
+formatDuration(1001); // '1 second, 1 millisecond'
+formatDuration(34325055574); // '397 days, 6 hours, 44 minutes, 15 seconds, 574 milliseconds'
+18.How to get the difference (in days) between two dates?
+const getDaysDiffBetweenDates = (dateInitial, dateFinal) =&gt;
+(dateFinal - dateInitial) / (1000 <em> 3600 </em> 24);</p>
+<p>// Example
+getDaysDiffBetweenDates(new Date('2017-12-13'), new Date('2017-12-22')); // 9
+19.How to make a GET request to the passed URL?
+const httpGet = (url, callback, err = console.error) =&gt; {
+const request = new XMLHttpRequest();
+request.open('GET', url, true);
+request.onload = () =&gt; callback(request.responseText);
+request.onerror = () =&gt; err(request);
+request.send();
+};</p>
+<p>httpGet(
+'<a href="https://jsonplaceholder.typicode.com/posts/1">https://jsonplaceholder.typicode.com/posts/1</a>',
+console.log
+); </p>
+<p>// Logs: {&quot;userId&quot;: 1, &quot;id&quot;: 1, &quot;title&quot;: &quot;sample title&quot;, &quot;body&quot;: &quot;my text&quot;}
+20.How to make a POST request to the passed URL?
+const httpPost = (url, data, callback, err = console.error) =&gt; {
+const request = new XMLHttpRequest();
+request.open('POST', url, true);
+request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+request.onload = () =&gt; callback(request.responseText);
+request.onerror = () =&gt; err(request);
+request.send(data);
+};</p>
+<p>const newPost = {
+userId: 1,
+id: 1337,
+title: 'Foo',
+body: 'bar bar bar'
+};
+const data = JSON.stringify(newPost);
+httpPost(
+'<a href="https://jsonplaceholder.typicode.com/posts">https://jsonplaceholder.typicode.com/posts</a>',
+data,
+console.log
+); </p>
+<p>// Logs: {&quot;userId&quot;: 1, &quot;id&quot;: 1337, &quot;title&quot;: &quot;Foo&quot;, &quot;body&quot;: &quot;bar bar bar&quot;}
+21.How to create a counter with the specified range, step and duration for the specified selector?
+const counter = (selector, start, end, step = 1, duration = 2000) =&gt; {
+let current = start,
+_step = (end - start) * step &lt; 0 ? -step : step,
+timer = setInterval(() =&gt; {
+current += _step;
+document.querySelector(selector).innerHTML = current;
+if (current &gt;= end) document.querySelector(selector).innerHTML = end;
+if (current &gt;= end) clearInterval(timer);
+}, Math.abs(Math.floor(duration / (end - start))));
+return timer;
+};</p>
+<p>// Example
+counter('#my-id', 1, 1000, 5, 2000); // Creates a 2-second timer for the element with id=&quot;my-id&quot;
+22.How to copy a string to the clipboard?
+const copyToClipboard = str =&gt; {
+const el = document.createElement('textarea');
+el.value = str;
+el.setAttribute('readonly', '');
+el.style.position = 'absolute';
+el.style.left = '-9999px';
+document.body.appendChild(el);
+const selected =
+document.getSelection().rangeCount &gt; 0 ? document.getSelection().getRangeAt(0) : false;
+el.select();
+document.execCommand('copy');
+document.body.removeChild(el);
+if (selected) {
+document.getSelection().removeAllRanges();
+document.getSelection().addRange(selected);
+}
+};</p>
+<p>// Example
+copyToClipboard('Lorem ipsum'); // 'Lorem ipsum' copied to clipboard.
+23.How to find out if the browser tab of the page is focused?
+const isBrowserTabFocused = () =&gt; !document.hidden;</p>
+<p>// Example
+isBrowserTabFocused(); // true
+24.How to create a directory, if it does not exist?
+const fs = require('fs');
+const createDirIfNotExists = dir =&gt; (!fs.existsSync(dir) ? fs.mkdirSync(dir) : undefined);</p>
+<p>// Example
+createDirIfNotExists('test'); // creates the directory 'test', if it doesn't exist</p></p>
                 <br/><br/>
 
                 <div class="post-info">
                         <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                        <a href="https://sraban.github.io/category/php">PHP</a>
+                        <a href="https://sraban.github.io/category/javascript">Javascript</a>
                         &nbsp;&nbsp;
 
                     <span class="glyphicon glyphicon-bookmark"></span>
 
-                        <a href="https://sraban.github.io/tag/common">common</a>&nbsp;&nbsp;
+                        <a href="https://sraban.github.io/tag/Javascript">Javascript</a>&nbsp;&nbsp;
                 </div>
 
             </article>
