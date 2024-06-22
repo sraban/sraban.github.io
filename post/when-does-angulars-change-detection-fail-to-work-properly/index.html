@@ -8,7 +8,7 @@
     <meta name="description" content="Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.">
     <meta name="author" content="Sraban Pahadasingh">
 
-    <title>&lt;/&gt; FullStack Developer</title>
+    <title>When does Angular's change detection fail to work properly? :: &lt;/&gt; FullStack Developer</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="&lt;/&gt; FullStack Developer" href="https://sraban.github.io/rss.xml"/>
@@ -69,18 +69,70 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 main-content">
-            <h1>Category Posts</h1>
-            <hr/>
-            <br/>
+            <article>
+                <h3>When does Angular's change detection fail to work properly?</h3>
+                <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-time"></span> June 22, 2024 07:23 PM
+                <hr>
 
-                <h3><a href="https://sraban.github.io/post/watch-production-errors-issues-important-transactions-from-a-system-mq">Watch - Production Errors &amp; Issues,  Important Transactions from a system MQ</a></h3>
-                <span class="glyphicon glyphicon-time"></span> June 15, 2024 03:42 PM
-                <h3><a href="https://sraban.github.io/post/uses-of-http-guzzle-php">Uses of Http Guzzle PHP</a></h3>
-                <span class="glyphicon glyphicon-time"></span> April 24, 2020 02:42 PM
-                <h3><a href="https://sraban.github.io/post/restful-services">Restful Services</a></h3>
-                <span class="glyphicon glyphicon-time"></span> April 14, 2020 05:53 PM
-                <h3><a href="https://sraban.github.io/post/optimising-php-scripts">Optimising PHP Scripts</a></h3>
-                <span class="glyphicon glyphicon-time"></span> April 14, 2020 02:50 PM
+                <p class="post-content"><p>Scenarios where Angular's change detection might not work as expected, specifically in projects and library components.</p>
+<ol>
+<li>
+<p><strong>Changes in Asynchronous Operations</strong>
+<br>you may need to manually trigger change detection using <code>ChangeDetectorRef.detectChanges()</code></p>
+</li>
+<li><strong>Immutable Objects</strong>
+<br>An object where its reference does not change, but its internal state does.
+You should use methods that return new instances when modifying immutable objects (e.g., Array methods like map, filter, etc., or libraries like Immutable.js, a nested object or array).
+<br>ex.
+<pre><code>this.agGridDynamicConfig = {... this.agGridDynamicConfig}</code></pre></li>
+<li>
+<p><strong>Events Outside Angular's Zone</strong>
+<br> If events (like DOM events) occur outside Angular's zone. You can use <code>NgZone.run()</code> to execute code within Angular's zone.</p>
+</li>
+<li><strong>Third-Party Libraries</strong>
+<br> If you're using third-party libraries that manipulate the DOM directly or change component state outside Angular's knowledge, you may need to wrap these operations in Angular's zone or handle change detection manually</li>
+</ol></p>
+                <br/><br/>
+
+                <div class="post-info">
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+                        <a href="https://sraban.github.io/category/javascript">Javascript</a>
+                        &nbsp;&nbsp;
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+                        <a href="https://sraban.github.io/tag/Javascript">Javascript</a>&nbsp;&nbsp;
+                </div>
+
+            </article>
+            <hr/>
+
+            <div class="text-center clearfix">
+                <div class="col-sm-4 col-md-4">
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="btn btn-primary" href="https://sraban.github.io/posts.html"><i class="fa fa-navicon"></i> View All
+                        Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
+                </div>
+            </div>
+
+            <hr/>
+            
+            <!-- Comment form -->
+            <div class="well">
+                <div id="disqus_thread"></div>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
+                    powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
+                    <span class="logo-disqus">Disqus</span></a>
+            </div>
+
         </div>
 
         <div class="sidebar col-md-4">
@@ -172,6 +224,7 @@
                     </div>
                 </div>
             </div>
+
     </div>
 </div>
 
@@ -199,3 +252,69 @@
 
 </body>
 </html>
+<!-- for pagination -->
+<script>
+    $(function () {
+
+        ///////////////////////////////////////////////////
+        // class/id/selector of prev link
+        var $prevPostSelector = $('.prevpost');
+        var $nextPostSelector = $('.nextpost');
+        ///////////////////////////////////////////////////
+
+        var pageArray = document.location.href.split('/');
+        var currentPageSlug = pageArray[pageArray.length - 1];
+
+        if (!currentPageSlug) {
+            currentPageSlug = pageArray[pageArray.length - 2];
+        }
+
+        $.ajax({
+            url: __blogURL + "/data/blog.json",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (data.posts !== undefined && data.posts !== null) {
+                    $.each(data.posts, function (i, post) {
+                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                            var prevPost = data.posts[i - 1];
+                            var nextPost = data.posts[i + 1];
+
+                            if (prevPost === undefined || prevPost === null) {
+                                // hide previous link if it is first post
+                                $prevPostSelector.hide();
+                            }
+                            else {
+                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+                            }
+
+                            if (nextPost === undefined || nextPost === null) {
+                                // hide previous link if it is last post
+                                $nextPostSelector.hide();
+                            }
+                            else {
+                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+                            }
+
+                            return false; // break out of each
+                        }
+                    });
+                }
+            },
+            error: function (e) {
+                $prevPostSelector.hide();
+                $nextPostSelector.hide();
+            }
+        });
+
+        // for Disqus
+        var disqus_shortname = '';
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+    });
+</script>

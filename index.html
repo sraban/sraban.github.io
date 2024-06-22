@@ -70,130 +70,30 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="https://sraban.github.io/post/packagejson-configuration">package.json configuration</a></h3>
+                    <h3><a href="https://sraban.github.io/post/when-does-angulars-change-detection-fail-to-work-properly">When does Angular's change detection fail to work properly?</a></h3>
                     <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> June 22, 2024 06:03 PM
+                    <span class="glyphicon glyphicon-time"></span> June 22, 2024 07:23 PM
                 
                         <hr>
-                        <p class="post-content"><p>The most common fields and configurations found in package.json. Depending on the project's needs and tooling used, some of these configurations may not be present or may have additional custom configurations.</p>
+                        <p class="post-content"><p>Scenarios where Angular's change detection might not work as expected, specifically in projects and library components.</p>
 <ol>
 <li>
-<p><strong>name</strong>: The name of the package or project.</p>
+<p><strong>Changes in Asynchronous Operations</strong>
+<br>you may need to manually trigger change detection using <code>ChangeDetectorRef.detectChanges()</code></p>
 </li>
+<li><strong>Immutable Objects</strong>
+<br>An object where its reference does not change, but its internal state does.
+You should use methods that return new instances when modifying immutable objects (e.g., Array methods like map, filter, etc., or libraries like Immutable.js, a nested object or array).
+<br>ex.
+<pre><code>this.agGridDynamicConfig = {... this.agGridDynamicConfig}</code></pre></li>
 <li>
-<p><strong>version</strong>: The version of the package or project, following Semantic Versioning (SemVer).</p>
+<p><strong>Events Outside Angular's Zone</strong>
+<br> If events (like DOM events) occur outside Angular's zone. You can use <code>NgZone.run()</code> to execute code within Angular's zone.</p>
 </li>
-<li>
-<p><strong>description</strong>: A brief description of the package or project.</p>
-</li>
-<li>
-<p><strong>keywords</strong>: An array of keywords that describe the package, useful for search optimization.</p>
-</li>
-<li>
-<p><strong>homepage</strong>: The URL to the project's homepage.</p>
-</li>
-<li>
-<p><strong>bugs</strong>: Information about where to report bugs for the package.</p>
-</li>
-<li>
-<p><strong>license</strong>: The license under which the package is distributed.</p>
-</li>
-<li>
-<p><strong>author</strong>: The name and email address of the package author.</p>
-</li>
-<li>
-<p><strong>contributors</strong>: An array of contributors to the project.</p>
-</li>
-<li>
-<p><strong>files</strong>: An array of files to include in the package.</p>
-</li>
-<li>
-<p><strong>main</strong>: The entry point of the package (the main module that gets executed when the package is required).</p>
-</li>
-<li>
-<p><strong>browser</strong>: Replacement files to use in the browser environment.</p>
-</li>
-<li>
-<p><strong>bin</strong>: Specifies command-line commands that are installed with the package.</p>
-</li>
-<li>
-<p><strong>scripts</strong>: An object where each key is a script name and the value is the command to run for that script.</p>
-</li>
-<li>
-<p><strong>dependencies</strong>: An object listing the packages that the project depends on in production.</p>
-</li>
-<li>
-<p><strong>devDependencies</strong>: An object listing packages that are only needed for development and testing.</p>
-</li>
-<li>
-<p><strong>peerDependencies</strong>: An object listing packages that the project expects the host environment to provide.</p>
-</li>
-<li>
-<p><strong>optionalDependencies</strong>: An object listing packages that are optional dependencies.</p>
-</li>
-<li>
-<p><strong>engines</strong>: Specifies the versions of Node.js and npm that the package is compatible with.</p>
-</li>
-<li>
-<p><strong>os</strong>: An array of operating systems on which the package runs.</p>
-</li>
-<li>
-<p><strong>cpu</strong>: An array of CPUs that the package runs on.</p>
-</li>
-<li>
-<p><strong>private</strong>: If true, prevents the package from being accidentally published to the npm registry.</p>
-</li>
-<li>
-<p><strong>publishConfig</strong>: Configures publishing options when using npm publish.</p>
-</li>
-<li>
-<p><strong>directories</strong>: Specifies a directory structure for the package.</p>
-</li>
-<li>
-<p><strong>repository</strong>: The URL and type of source control repository for the package.</p>
-</li>
-<li>
-<p><strong>scripts</strong>: Custom scripts that can be run with npm, typically used for build, test, and other automation tasks.</p>
-</li>
-<li>
-<p><strong>config</strong>: Configuration parameters that can be used by the scripts.</p>
-</li>
-<li>
-<p><strong>workspaces</strong>: An array of workspace packages that are part of a multi-package repository.</p>
-</li>
-<li>
-<p><strong>jest</strong> (or other test runner configurations): Specific configurations for test runners like Jest.</p>
-</li>
-<li><strong>eslintConfig</strong> (or other linter configurations): Configuration for linters like ESLint.</li>
-</ol>
-<p>ex.</p>
-<pre><code>{
-  "name": "my-node-project",
-  "version": "1.0.0",
-  "description": "A sample Node.js project",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "test": "jest"
-  },
-  "dependencies": {
-    "express": "^4.17.2"
-  },
-  "devDependencies": {
-    "jest": "^27.0.0"
-  },
-  "author": "Your Name",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/your-username/my-node-project.git"
-  },
-  "bugs": {
-    "url": "https://github.com/your-username/my-node-project/issues"
-  },
-  "homepage": "https://github.com/your-username/my-node-project#readme"
-}</code></pre></p>
+<li><strong>Third-Party Libraries</strong>
+<br> If you're using third-party libraries that manipulate the DOM directly or change component state outside Angular's knowledge, you may need to wrap these operations in Angular's zone or handle change detection manually</li>
+</ol></p>
                         <br/>
                 
                         <div class="post-info">
@@ -243,6 +143,17 @@
                 </div>
         
             <!-- Custom Values from Settings page -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <strong>AI</strong>
+                    </div>
+                    <div class="panel-body">
+
+<a target="_blank" href="https://sraban.github.io/gpt">Notes</a>
+
+
+</div>	
+                </div>
         
             <!-- Latest Posts -->
             <div class="panel panel-primary">
@@ -251,9 +162,9 @@
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="https://sraban.github.io/post/when-does-angulars-change-detection-fail-to-work-properly">When does Angular's change detection fail to work properly?</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/packagejson-configuration">package.json configuration</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/watch-production-errors-issues-important-transactions-from-a-system-mq">Watch - Production Errors &amp; Issues,  Important Transactions from a system MQ</a></li>
-                        <li class="list-group-item"><a href="https://sraban.github.io/post/es6-snippets">ES6 Snippets</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/uses-of-http-guzzle-php">Uses of Http Guzzle PHP</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/api-rate-limiting">API Rate-Limiting</a></li>
                 </ul>
@@ -280,7 +191,7 @@
                         <strong>Archives</strong>
                     </div>
         
-                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="https://sraban.github.io/archive/june-2024">June 2024</a></li><li class="list-group-item archive_link"><a href="https://sraban.github.io/archive/july-2021">July 2021</a></li><li class="list-group-item archive_link"><a href="https://sraban.github.io/archive/april-2020">April 2020</a></li></ul>
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="https://sraban.github.io/archive/june-2024">June 2024</a></li><li class="list-group-item archive_link"><a href="https://sraban.github.io/archive/april-2020">April 2020</a></li></ul>
                 </div>
         
             <!-- Tags -->
