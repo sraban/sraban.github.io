@@ -70,115 +70,140 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="https://sraban.github.io/post/uses-of-http-guzzle-php">Uses of Http Guzzle PHP</a></h3>
+                    <h3><a href="https://sraban.github.io/post/packagejson-configuration">package.json configuration</a></h3>
                     <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> April 24, 2020 02:42 PM
+                    <span class="glyphicon glyphicon-time"></span> June 22, 2024 06:03 PM
                 
                         <hr>
-                        <p class="post-content"><h4>About PHP Guzzle for API</h4>
+                        <p class="post-content"><p>The most common fields and configurations found in package.json. Depending on the project's needs and tooling used, some of these configurations may not be present or may have additional custom configurations.</p>
 <ol>
 <li>
-<p><code>Initialize th instance</code></p>
-<pre>$this->client = new \GuzzleHttp\Client();</pre>
+<p><strong>name</strong>: The name of the package or project.</p>
 </li>
 <li>
-<p><code>Get Method</code></p>
-<pre>
-$params = Array(
-        'key1' => $id, 
-        'key2' => $value,
-       );
-$promise = $this->client->request('GET',  route('statement'), [
-    'query' => $params,
-    'debug' => false
-]);
-
-$promise->getBody()->rewind();
-$output = $promise->getBody()->getContents();
-$httpStatusCode = $promise->getStatusCode();
-</pre>
+<p><strong>version</strong>: The version of the package or project, following Semantic Versioning (SemVer).</p>
 </li>
 <li>
-<p><code>Post Method: Raw data posting like posting json in payload</code></p>
-<pre>
-$rawInput = json_encode($array); // string
-
--OR-
-
-$rawInput = <<<EOF
-        SET empdata 2 ‘Jack Petter’ ‘192.168.11.11’
-        GET empdata ‘192.168.11.11’
-        SET empwebhistory 192.168.11.11 ‘http://google.com’
-        SET empwebhistory 192.168.11.11 ‘http://facebook.com’
-        GET empwebhistory  192.168.11.11
-        UNSET empwebhistory  192.168.11.11
-        GET empwebhistory 192.168.11.11
-        END
-    EOF;
-
-$promise = $this->client->request('POST',  route('statement'), [
-    'body' => $rawInput,
-    'debug' => false
-]);
-
-$promise->getBody()->rewind();
-$output = $promise->getBody()->getContents();
-$httpStatusCode = $promise->getStatusCode();
-</pre>
+<p><strong>description</strong>: A brief description of the package or project.</p>
 </li>
 <li>
-<p><code>Post using Form Fields</code></p>
-<pre>
-$filedInputs = Array(
-    'email' => 'test@gmail.com',
-    'name' => 'Test user',
-    'password' => 'testpassword',
-);
-
-$promise = $this->client->request('POST',  route('statement'), [
-    'form_params' => $rawInput,
-    'debug' => false
-]);
-
-$promise->getBody()->rewind();
-$output = $promise->getBody()->getContents();
-$httpStatusCode = $promise->getStatusCode();
-</pre>
+<p><strong>keywords</strong>: An array of keywords that describe the package, useful for search optimization.</p>
 </li>
 <li>
-<p><code>POST File Upload from Directory</code></p>
-<pre>
-$promise = $this->client->request('POST', 'http://www.example.com/files/post', [
-    'multipart' => [
-        [
-            'name'     => 'file_name',
-            'contents' => fopen('/path/to/file', 'r')
-        ],
-        [
-            'name'     => 'csv_header',
-            'contents' => 'First Name, Last Name, Username',
-            'filename' => 'csv_header.csv'
-        ]
-    ]
-]);
-
-$promise->getBody()->rewind();
-$output = $promise->getBody()->getContents();
-$httpStatusCode = $promise->getStatusCode();
-</pre>
+<p><strong>homepage</strong>: The URL to the project's homepage.</p>
 </li>
-</ol></p>
+<li>
+<p><strong>bugs</strong>: Information about where to report bugs for the package.</p>
+</li>
+<li>
+<p><strong>license</strong>: The license under which the package is distributed.</p>
+</li>
+<li>
+<p><strong>author</strong>: The name and email address of the package author.</p>
+</li>
+<li>
+<p><strong>contributors</strong>: An array of contributors to the project.</p>
+</li>
+<li>
+<p><strong>files</strong>: An array of files to include in the package.</p>
+</li>
+<li>
+<p><strong>main</strong>: The entry point of the package (the main module that gets executed when the package is required).</p>
+</li>
+<li>
+<p><strong>browser</strong>: Replacement files to use in the browser environment.</p>
+</li>
+<li>
+<p><strong>bin</strong>: Specifies command-line commands that are installed with the package.</p>
+</li>
+<li>
+<p><strong>scripts</strong>: An object where each key is a script name and the value is the command to run for that script.</p>
+</li>
+<li>
+<p><strong>dependencies</strong>: An object listing the packages that the project depends on in production.</p>
+</li>
+<li>
+<p><strong>devDependencies</strong>: An object listing packages that are only needed for development and testing.</p>
+</li>
+<li>
+<p><strong>peerDependencies</strong>: An object listing packages that the project expects the host environment to provide.</p>
+</li>
+<li>
+<p><strong>optionalDependencies</strong>: An object listing packages that are optional dependencies.</p>
+</li>
+<li>
+<p><strong>engines</strong>: Specifies the versions of Node.js and npm that the package is compatible with.</p>
+</li>
+<li>
+<p><strong>os</strong>: An array of operating systems on which the package runs.</p>
+</li>
+<li>
+<p><strong>cpu</strong>: An array of CPUs that the package runs on.</p>
+</li>
+<li>
+<p><strong>private</strong>: If true, prevents the package from being accidentally published to the npm registry.</p>
+</li>
+<li>
+<p><strong>publishConfig</strong>: Configures publishing options when using npm publish.</p>
+</li>
+<li>
+<p><strong>directories</strong>: Specifies a directory structure for the package.</p>
+</li>
+<li>
+<p><strong>repository</strong>: The URL and type of source control repository for the package.</p>
+</li>
+<li>
+<p><strong>scripts</strong>: Custom scripts that can be run with npm, typically used for build, test, and other automation tasks.</p>
+</li>
+<li>
+<p><strong>config</strong>: Configuration parameters that can be used by the scripts.</p>
+</li>
+<li>
+<p><strong>workspaces</strong>: An array of workspace packages that are part of a multi-package repository.</p>
+</li>
+<li>
+<p><strong>jest</strong> (or other test runner configurations): Specific configurations for test runners like Jest.</p>
+</li>
+<li><strong>eslintConfig</strong> (or other linter configurations): Configuration for linters like ESLint.</li>
+</ol>
+<p>ex.</p>
+<pre><code>{
+  "name": "my-node-project",
+  "version": "1.0.0",
+  "description": "A sample Node.js project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "jest": "^27.0.0"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/my-node-project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/my-node-project/issues"
+  },
+  "homepage": "https://github.com/your-username/my-node-project#readme"
+}</code></pre></p>
                         <br/>
                 
                         <div class="post-info">
                                 <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                                <a href="https://sraban.github.io/category/php">PHP</a>
+                                <a href="https://sraban.github.io/category/javascript">Javascript</a>
                                 &nbsp;&nbsp;
                 
                             <span class="glyphicon glyphicon-bookmark"></span>
                 
-                                <a href="https://sraban.github.io/tag/common">common</a>&nbsp;&nbsp;
+                                <a href="https://sraban.github.io/tag/Javascript">Javascript</a>&nbsp;&nbsp;
                         </div>
                 
                     <hr>
@@ -226,11 +251,11 @@ $httpStatusCode = $promise->getStatusCode();
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="https://sraban.github.io/post/packagejson-configuration">package.json configuration</a></li>
+                        <li class="list-group-item"><a href="https://sraban.github.io/post/watch-production-errors-issues-important-transactions-from-a-system-mq">Watch - Production Errors &amp; Issues,  Important Transactions from a system MQ</a></li>
+                        <li class="list-group-item"><a href="https://sraban.github.io/post/es6-snippets">ES6 Snippets</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/uses-of-http-guzzle-php">Uses of Http Guzzle PHP</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/api-rate-limiting">API Rate-Limiting</a></li>
-                        <li class="list-group-item"><a href="https://sraban.github.io/post/most-useful-linux-commands">Most Useful Linux Commands</a></li>
-                        <li class="list-group-item"><a href="https://sraban.github.io/post/restful-services">Restful Services</a></li>
-                        <li class="list-group-item"><a href="https://sraban.github.io/post/upload-large-files-to-server-using-script">Upload Large Files to server using script</a></li>
                 </ul>
             </div>
         
@@ -255,7 +280,7 @@ $httpStatusCode = $promise->getStatusCode();
                         <strong>Archives</strong>
                     </div>
         
-                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="https://sraban.github.io/archive/april-2020">April 2020</a></li></ul>
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="https://sraban.github.io/archive/june-2024">June 2024</a></li><li class="list-group-item archive_link"><a href="https://sraban.github.io/archive/july-2021">July 2021</a></li><li class="list-group-item archive_link"><a href="https://sraban.github.io/archive/april-2020">April 2020</a></li></ul>
                 </div>
         
             <!-- Tags -->
@@ -267,10 +292,10 @@ $httpStatusCode = $promise->getStatusCode();
                     <div class="panel-body">
                         <ul class="list-inline">
                             <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/command" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">command</a>
-<a style="font-size: 30px" class="tag_cloud" href="https://sraban.github.io/tag/common" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">common</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/javascript" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Javascript</a>
+<a style="font-size: 30px" class="tag_cloud" href="https://sraban.github.io/tag/common" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">common</a>
+<a style="font-size: 19px" class="tag_cloud" href="https://sraban.github.io/tag/javascript" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">Javascript</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/mysql" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">MySQL</a>
-<a style="font-size: 16px" class="tag_cloud" href="https://sraban.github.io/tag/php" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PHP</a>
+<a style="font-size: 15px" class="tag_cloud" href="https://sraban.github.io/tag/php" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PHP</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/server" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Server</a>
 
                         </ul>
