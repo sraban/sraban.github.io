@@ -5,6 +5,12 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
+<loc>https://sraban.github.io/post/tsconfigjson-configuration-details/</loc>
+<lastmod>2024-06-23T18:31:00+05:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.00</priority>
+</url>
+<url>
 <loc>https://sraban.github.io/post/when-does-angulars-change-detection-fail-to-work-properly/</loc>
 <lastmod>2024-06-22T19:23:00+05:00</lastmod>
 <changefreq>daily</changefreq>

@@ -6,6 +6,244 @@
 <description>Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.</description>
 <language>en-us</language>
 <item>
+<title>tsConfig.json configuration details</title>
+<description><![CDATA[<p>The <code>tsconfig.json</code> file is essential for configuring TypeScript projects, providing a wide range of options to control the compilation process. Below is a comprehensive list of <code>tsconfig.json</code> properties along with detailed descriptions and examples for each.</p>
+<h3>Overall Structure</h3>
+<p>A typical <code>tsconfig.json</code> file looks like this:</p>
+<pre><code>{
+  "compilerOptions": {
+    // Compiler options go here
+  },
+  "include": [
+    // File patterns to include
+  ],
+  "exclude": [
+    // File patterns to exclude
+  ],
+  "files": [
+    // Specific files to include
+  ],
+  "references": [
+    // References to other tsconfig files for project references
+  ],
+  "extends": "path/to/base/tsconfig",
+  "typeAcquisition": {
+    // Type acquisition options for type definitions
+  },
+  "compileOnSave": true,
+  "tsBuildInfoFile": "path/to/tsbuildinfo",
+  "watchOptions": {
+    // Options for the watch mode
+  },
+  "assumeChangesOnlyAffectDirectDependencies": true,
+  "plugins": [
+    // Plugins to extend TypeScript functionality
+  ]
+}</code></pre>
+<h3>Detailed Descriptions</h3>
+<h4><code>compilerOptions</code></h4>
+<ul>
+<li><strong>Purpose</strong>: Contains settings that influence the behavior of the TypeScript compiler.</li>
+<li><strong>Type</strong>: <code>object</code></li>
+<li>
+<p><strong>Common Properties</strong>:</p>
+<ul>
+<li>
+<p><strong><code>target</code></strong>: Specifies the output JavaScript version. Common values are <code>"ES5"</code>, <code>"ES6"</code>, <code>"ES2015"</code>, <code>"ES2020"</code>, etc.
+<code>{target": "ES6"}</code></p>
+</li>
+<li>
+<p><strong><code>module</code></strong>: Determines the module code generation. Options include <code>"commonjs"</code>, <code>"amd"</code>, <code>"esnext"</code>, etc.
+<code>{"module": "commonjs"}</code></p>
+</li>
+<li>
+<p><strong><code>strict</code></strong>: Enables all strict type-checking options.
+<code>{"strict": true}</code></p>
+</li>
+<li>
+<p><strong><code>outDir</code></strong>: Specifies the output directory for compiled files.
+<code>{ "outDir": "./dist"}</code></p>
+</li>
+<li>
+<p><strong><code>rootDir</code></strong>: Specifies the root directory of input files.
+<code>{"rootDir": "./src"}</code></p>
+</li>
+<li>
+<p><strong><code>sourceMap</code></strong>: Generates corresponding <code>.map</code> files for debugging.
+<code>{ "sourceMap": true}</code></p>
+</li>
+<li>
+<p><strong><code>declaration</code></strong>: Generates corresponding <code>.d.ts</code> files for TypeScript definitions.
+<code>{"declaration": true}</code></p>
+</li>
+<li>
+<p><strong><code>moduleResolution</code></strong>: Specifies the module resolution strategy, such as <code>"node"</code> or <code>"classic"</code>.
+<code>{"moduleResolution": "node"}</code></p>
+</li>
+<li>
+<p><strong><code>lib</code></strong>: Includes standard library files in the compilation.
+<code>{"lib": ["ES6", "DOM"]}</code></p>
+</li>
+<li>
+<p><strong><code>esModuleInterop</code></strong>: Enables interoperability between CommonJS and ES modules.
+<code>{"esModuleInterop": true}</code></p>
+</li>
+<li>
+<p><strong><code>jsx</code></strong>: Specifies the JSX code generation for React. Options are <code>"preserve"</code>, <code>"react"</code>, <code>"react-jsx"</code>, etc.
+<code>{"jsx": "react"}</code></p>
+</li>
+<li>
+<p><strong><code>allowJs</code></strong>: Allows JavaScript files to be compiled.
+<code>{"allowJs": true}</code></p>
+</li>
+<li>
+<p><strong><code>checkJs</code></strong>: Type-checks JavaScript files.
+<code>{"checkJs": true}</code></p>
+</li>
+<li>
+<p><strong><code>baseUrl</code></strong>: Base directory for resolving non-relative module names.
+<code>{"baseUrl": "./"}</code></p>
+</li>
+<li>
+<p><strong><code>paths</code></strong>: A set of path mappings for module resolution.
+<code>{"paths": { "@app/*": ["src/app/*"] }}</code></p>
+</li>
+<li>
+<p><strong><code>typeRoots</code></strong>: Specifies directories containing type definitions.
+<code>{"typeRoots": ["./node_modules/@types"]}</code></p>
+</li>
+<li>
+<p><strong><code>noEmit</code></strong>: Disables the emitting of output files.
+<code>{"noEmit": true}</code></p>
+</li>
+<li>
+<p><strong><code>skipLibCheck</code></strong>: Skips type checking of declaration files.
+<code>{"skipLibCheck": true}</code></p>
+</li>
+<li>
+<p><strong><code>noImplicitAny</code></strong>: Raises errors on expressions and declarations with an implied <code>any</code> type.
+<code>{"noImplicitAny": true}</code></p>
+</li>
+<li>
+<p><strong><code>resolveJsonModule</code></strong>: Enables importing JSON modules.
+<code>{"resolveJsonModule": true}</code></p>
+</li>
+<li>
+<p><strong><code>emitDecoratorMetadata</code></strong>: Emits design-type metadata for decorators.
+<code>{"emitDecoratorMetadata": true}</code></p>
+</li>
+<li>
+<p><strong><code>experimentalDecorators</code></strong>: Enables experimental support for decorators.
+<code>{"experimentalDecorators": true}</code></p>
+</li>
+<li>
+<p><strong><code>incremental</code></strong>: Enables incremental compilation, which speeds up builds.
+<code>{ "incremental": true}</code></p>
+</li>
+<li>
+<p><strong><code>composite</code></strong>: Enables project compilation.
+<code>{"composite": true}</code></p>
+</li>
+<li><strong><code>tsBuildInfoFile</code></strong>: Specifies the location of the build information file.
+<code>{"tsBuildInfoFile": "./build/cache/tsbuildinfo.json"}</code></li>
+</ul>
+</li>
+</ul>
+<h4><code>include</code></h4>
+<ul>
+<li><strong>Purpose</strong>: Specifies an array of file patterns to include in the compilation.</li>
+<li><strong>Type</strong>: <code>array</code></li>
+<li><strong>Example</strong>:
+<code>{"include": ["src/**/*", "tests/**/*"]}</code></li>
+</ul>
+<h4><code>exclude</code></h4>
+<ul>
+<li><strong>Purpose</strong>: Specifies an array of file patterns to exclude from the compilation.</li>
+<li><strong>Type</strong>: <code>array</code></li>
+<li><strong>Example</strong>:
+<code>{"exclude": ["node_modules", "dist", "build"]}</code></li>
+</ul>
+<h4><code>files</code></h4>
+<ul>
+<li><strong>Purpose</strong>: Lists specific files to include in the compilation, regardless of the <code>include</code> and <code>exclude</code> settings.</li>
+<li><strong>Type</strong>: <code>array</code></li>
+<li><strong>Example</strong>:
+<code>{"files": ["src/index.ts", "src/globals.d.ts"]}</code></li>
+</ul>
+<h4><code>references</code></h4>
+<ul>
+<li><strong>Purpose</strong>: Specifies a list of project references, allowing TypeScript projects to depend on other TypeScript projects.</li>
+<li><strong>Type</strong>: <code>array</code></li>
+<li><strong>Example</strong>:
+<code>{ "references": [ { "path": "../common" }, { "path": "../utilities" } ]}</code></li>
+</ul>
+<h4><code>extends</code></h4>
+<ul>
+<li><strong>Purpose</strong>: Allows the <code>tsconfig.json</code> to extend another configuration file.</li>
+<li><strong>Type</strong>: <code>string</code></li>
+<li><strong>Example</strong>:
+<code>{ "extends": "./base/tsconfig.json" }</code></li>
+</ul>
+<h4><code>typeAcquisition</code></h4>
+<ul>
+<li><strong>Purpose</strong>: Controls the acquisition of type definitions for JavaScript projects.</li>
+<li><strong>Type</strong>: <code>object</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><strong><code>enable</code></strong>: Enables type acquisition.
+<code>{ "enable": true }</code></li>
+<li><strong><code>include</code></strong>: Specifies a list of type definitions to include.
+<code>{ "include": ["jest", "lodash"] }</code></li>
+<li><strong><code>exclude</code></strong>: Specifies a list of type definitions to exclude.
+<code>{ "exclude": ["express"] }</code></li>
+</ul></li>
+</ul>
+<h4><code>compileOnSave</code></h4>
+<ul>
+<li><strong>Purpose</strong>: If set to <code>true</code>, TypeScript will compile files upon saving in the IDE.</li>
+<li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Example</strong>:
+<code>{ "compileOnSave": true }</code></li>
+</ul>
+<h4><code>tsBuildInfoFile</code></h4>
+<ul>
+<li><strong>Purpose</strong>: Specifies the location of the build information file to store incremental compilation information.</li>
+<li><strong>Type</strong>: <code>string</code></li>
+<li><strong>Example</strong>:
+<code>{ "tsBuildInfoFile": "./build/cache/tsbuildinfo.json" }</code></li>
+</ul>
+<h4><code>watchOptions</code></h4>
+<ul>
+<li><strong>Purpose</strong>: Specifies options for watching files in watch mode.</li>
+<li><strong>Type</strong>: <code>object</code></li>
+<li><strong>Properties</strong>:
+<ul>
+<li><strong><code>watchFile</code></strong>: Strategy for watching files.
+<code>{ "watchFile": "useFsEvents" }</code></li>
+<li><strong><code>watchDirectory</code></strong>: Strategy for watching directories.
+<code>{ "watchDirectory": "useFsEvents" }</code></li>
+<li><strong><code>fallbackPolling</code></strong>: Polling strategy for systems where <code>fs.watch</code> cannot be used.
+<code>{ "fallbackPolling": "dynamicPriority" }</code></li>
+</ul></li>
+</ul>
+<h4><code>assumeChangesOnlyAffectDirectDependencies</code></h4>
+<ul>
+<li><strong>Purpose</strong>: When set to <code>true</code>, TypeScript assumes changes only affect direct dependencies, which can speed up incremental builds.</li>
+<li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Example</strong>:
+<code>{ "assumeChangesOnlyAffectDirectDependencies": true }</code></li>
+</ul>
+<h4><code>plugins</code></h4>
+<ul>
+<li><strong>Purpose</strong>: Specifies a list of plugins that extend TypeScript's functionality.</li>
+<li><strong>Type</strong>: <code>array</code></li>
+<li><strong>Example</strong>:
+<code>{ "plugins": [ { "name": "typescript-tslint-plugin" }, { "name": "typescript-styled-plugin" } ] }</code></li>
+</ul>]]></description>
+<link>https://sraban.github.io/post/tsconfigjson-configuration-details</link>
+<pubDate>Sun, 23 Jun 2024 18:31:00 +0500</pubDate>
+</item>
+<item>
 <title>When does Angular's change detection fail to work properly?</title>
 <description><![CDATA[<p>Scenarios where Angular's change detection might not work as expected, specifically in projects and library components.</p>
 <ol>
