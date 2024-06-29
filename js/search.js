@@ -1,7 +1,3 @@
-/**
- * Created by Sarfraz on 4/6/2015.
- */
-
 $(function () {
 
     ////////////// EDIT BELOW THREE VARS ///////////////
@@ -66,3 +62,8 @@ $(function () {
     });
 
 });
+
+window.onload = function() {
+    const code = document.querySelectorAll("pre code");
+    [...code].forEach(el => el.textContent = el.textContent.replace(/^\n/,''));
+}

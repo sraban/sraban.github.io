@@ -70,368 +70,143 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="https://sraban.github.io/post/angular-performance-optimisation">Angular Performance Optimisation</a></h3>
+                    <h3><a href="https://sraban.github.io/post/custom-pipe-operator-rxjs">Custom Pipe Operator - RxJS</a></h3>
                     <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> June 24, 2024 11:07 AM
+                    <span class="glyphicon glyphicon-time"></span> June 24, 2024 02:13 PM
                 
                         <hr>
-                        <p class="post-content"><p>List of performance optimization steps for Angular applications</p>
-<h3>1. <strong>Event Coalescing</strong>: <code>{ngZoneEventCoalescing: true}</code></h3>
+                        <p class="post-content"><p>Creating a custom pipe operator in RxJS allows you to encapsulate complex logic into a reusable operator that you can apply to Observables using the <code>pipe</code> method. This can be particularly useful for operations that you need to perform repeatedly across different parts of your application.</p>
+<p>Here’s a detailed guide on how to create a custom pipe operator in RxJS:</p>
+<h2><strong>Steps to Create a Custom Pipe Operator in RxJS</strong></h2>
+<h3><strong>1. Import Necessary Functions</strong></h3>
+<p>First, import the necessary functions from RxJS. You’ll primarily need <code>Observable</code> and <code>OperatorFunction</code> from <code>rxjs</code>, and <code>map</code> or any other RxJS operators you may want to compose within your custom operator.</p>
+<pre><code class="language-javascript">
+    import { Observable, OperatorFunction } from 'rxjs';
+    import { map } from 'rxjs/operators';
+</code></pre>
+<h3><strong>2. Define the Operator Function</strong></h3>
+<p>Define a function that returns an <code>OperatorFunction</code>. This function should take the parameters you need for your custom logic and return a function that accepts an <code>Observable</code> and returns a new <code>Observable</code>.</p>
 <ul>
-<li><strong>Description</strong>: Aggregates multiple events into a single change detection run.</li>
-<li><strong>Benefits</strong>: Reduces the number of change detection cycles.</li>
+<li>The <code>OperatorFunction&lt;T, R&gt;</code> type represents a function that takes an <code>Observable&lt;T&gt;</code> and returns an <code>Observable&lt;R&gt;</code>.</li>
 </ul>
-<h3>2. <strong>Zone.js Optimization</strong>: <code>{ngZone: 'noop'}</code></h3>
+<pre><code class="language-javascript">
+    function myCustomOperator&lt;T, R&gt;(param1: T): OperatorFunction&lt;T, R&gt; {
+      return (source: Observable&lt;T&gt;): Observable&lt;R&gt; =&gt; {
+        // Implement your custom logic here
+        return source.pipe(
+          map(value =&gt; {
+            // Perform transformation using param1 and value
+            const result = /* some transformation logic */;
+            return result as unknown as R;
+          })
+        );
+      };
+    }
+</code></pre>
+<h3><strong>3. Implement the Custom Logic</strong></h3>
+<p>Inside the function, implement the custom logic. This could involve transforming the data, filtering it, or combining it with other streams. Use the existing RxJS operators to build up your functionality.</p>
 <ul>
-<li><strong>Description</strong>: Disables Zone.js to manage change detection manually.</li>
-<li><strong>Benefits</strong>: Provides fine-grained control over change detection, reducing unnecessary cycles.</li>
+<li>For example, let’s create a custom operator that multiplies each emitted value by a specified factor.</li>
 </ul>
-<h3>3. <strong>OnPush Change Detection</strong></h3>
-<ul>
-<li><strong>Description</strong>: Changes the default change detection strategy to <code>OnPush</code>, which only checks for changes when input properties change.</li>
-<li>
-<p><strong>Benefits</strong>: Limits change detection to specific component updates, improving performance.</p>
-<pre><code class="language-typescript">@Component({
-  selector: 'app-my-component',
-  templateUrl: './my-component.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
-})</code></pre>
-</li>
-</ul>
-<h3>4. <strong>Track By Function in ngFor</strong></h3>
-<ul>
-<li><strong>Description</strong>: Uses a <code>trackBy</code> function in <code>ngFor</code> to identify items in a collection by a unique identifier.</li>
-<li>
-<p><strong>Benefits</strong>: Minimizes DOM re-renders by tracking changes more efficiently.</p>
-<pre><code class="language-html">&lt;div *ngFor="let item of items; trackBy: trackByFn"&gt;
-  {{item.name}}
-&lt;/div&gt;</code></pre>
-<pre><code class="language-typescript">trackByFn(index: number, item: any): number {
-  return item.id; // unique id corresponding to item
-}</code></pre>
-</li>
-</ul>
-<h3>5. <strong>Lazy Loading Modules</strong></h3>
-<ul>
-<li><strong>Description</strong>: Defers loading of modules until they are needed, rather than loading all modules at startup.</li>
-<li>
-<p><strong>Benefits</strong>: Reduces initial load time and improves application performance.</p>
-<pre><code class="language-typescript">const routes: Routes = [
-  {
-      path: 'feature',
-      loadChildren: () =&gt; import('./feature/feature.module').then(m =&gt; m.FeatureModule)
-  }
-];</code></pre>
-</li>
-</ul>
-<h3>6. <strong>Preload Lazy-Loaded Modules</strong></h3>
-<ul>
-<li><strong>Description</strong>: Uses Angular’s <code>PreloadAllModules</code> strategy to preload lazy-loaded modules after the initial load.</li>
-<li>
-<p><strong>Benefits</strong>: Balances initial load time with module availability.</p>
-<pre><code class="language-typescript">RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })</code></pre>
-</li>
-</ul>
-<h3>7. <strong>AOT Compilation (Ahead of Time)</strong></h3>
-<ul>
-<li><strong>Description</strong>: Pre-compiles the application at build time instead of runtime.</li>
-<li>
-<p><strong>Benefits</strong>: Reduces application size and improves startup performance.</p>
-<pre><code class="language-json">"angularCompilerOptions": {
-  "enableIvy": true,
-  "aot": true
-}</code></pre>
-</li>
-</ul>
-<h3>8. <strong>Tree Shaking</strong></h3>
-<ul>
-<li><strong>Description</strong>: Removes unused code during the build process.</li>
-<li>
-<p><strong>Benefits</strong>: Decreases the size of the final JavaScript bundle, leading to faster load times.</p>
-<pre><code class="language-json">"optimization": {
-  "minify": true,
-  "removeUnusedDependencies": true
-}</code></pre>
-</li>
-</ul>
-<h3>9. <strong>Optimize Image Loading</strong></h3>
-<ul>
-<li><strong>Description</strong>: Uses modern image formats (like WebP), lazy loading, and responsive images.</li>
-<li>
-<p><strong>Benefits</strong>: Reduces the load on the network and improves rendering performance.</p>
-<pre><code class="language-html">&lt;img src="image.webp" loading="lazy" alt="description"&gt;</code></pre>
-</li>
-</ul>
-<h3>10. <strong>Code Splitting</strong></h3>
-<ul>
-<li><strong>Description</strong>: Splits the application code into smaller chunks that are loaded on demand.</li>
-<li>
-<p><strong>Benefits</strong>: Improves load times by only loading the necessary code for each route.</p>
-<pre><code class="language-json">"optimization": {
-  "splitChunks": {
-      "chunks": "all"
-  }
-}</code></pre>
-</li>
-</ul>
-<h3>11. <strong>Use Web Workers</strong></h3>
-<ul>
-<li><strong>Description</strong>: Offloads heavy computation to background threads.</li>
-<li>
-<p><strong>Benefits</strong>: Prevents blocking the main thread, maintaining a responsive UI.</p>
-<pre><code class="language-typescript">if (typeof Worker !== 'undefined') {
-  const worker = new Worker(new URL('./app.worker', import.meta.url));
-  worker.onmessage = ({ data }) =&gt; {
-      console.log(`Page received message: ${data}`);
-  };
-  worker.postMessage('hello');
-}</code></pre>
-</li>
-</ul>
-<h3>12. <strong>Service Worker for Caching</strong></h3>
-<ul>
-<li><strong>Description</strong>: Uses Angular’s service worker to cache application resources for offline access and faster load times.</li>
-<li>
-<p><strong>Benefits</strong>: Reduces network requests and improves load performance.</p>
-<pre><code class="language-typescript">import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+<pre><code class="language-javascript">
+    function multiplyBy&lt;T&gt;(factor: number): OperatorFunction&lt;number, number&gt; {
+      return (source: Observable&lt;number&gt;): Observable&lt;number&gt; =&gt; {
+        return new Observable&lt;number&gt;(subscriber =&gt; {
+          const subscription = source.subscribe({
+            next(value) {
+              subscriber.next(value * factor);
+            },
+            error(err) {
+              subscriber.error(err);
+            },
+            complete() {
+              subscriber.complete();
+            }
+          });
 
-ServiceWorkerModule.register('ngsw-worker.js', {
-  enabled: environment.production,
-  registrationStrategy: 'registerWhenStable:30000'
-})</code></pre>
-</li>
-</ul>
-<h3>13. <strong>Use <code>ng-container</code> to Group Elements</strong></h3>
+          // Return the teardown logic
+          return () =&gt; {
+            subscription.unsubscribe();
+          };
+        });
+      };
+    }
+</code></pre>
+<h3><strong>4. Use the Custom Operator</strong></h3>
+<p>Use your custom operator within an Observable pipeline by calling <code>pipe</code> and passing your custom operator.</p>
 <ul>
-<li><strong>Description</strong>: Uses <code>ng-container</code> to avoid unnecessary <code>&lt;div&gt;</code> tags and reduce the size of the DOM tree.</li>
-<li>
-<p><strong>Benefits</strong>: Minimizes the number of elements in the DOM, leading to improved rendering performance.</p>
-<pre><code class="language-html">&lt;ng-container *ngIf="condition"&gt;
-  &lt;p&gt;Content&lt;/p&gt;
-&lt;/ng-container&gt;</code></pre>
-</li>
+<li>Example usage:</li>
 </ul>
-<h3>14. <strong>Throttle or Debounce Event Handlers</strong></h3>
-<ul>
-<li><strong>Description</strong>: Uses RxJS operators to limit the frequency of event handling.</li>
-<li>
-<p><strong>Benefits</strong>: Reduces the number of function executions and subsequent change detection runs.</p>
-<pre><code class="language-typescript">import { fromEvent } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+<pre><code class="language-javascript">
+    import { of } from 'rxjs';
 
-fromEvent(document, 'click')
-  .pipe(debounceTime(300))
-  .subscribe((event) =&gt; console.log(event));</code></pre>
-</li>
-</ul>
-<h3>15. <strong>Memory Leak Prevention</strong></h3>
-<ul>
-<li><strong>Description</strong>: Ensures subscriptions are properly unsubscribed and components are destroyed cleanly.</li>
-<li>
-<p><strong>Benefits</strong>: Prevents memory leaks, which can degrade performance over time.</p>
-<pre><code class="language-typescript">import { Subscription } from 'rxjs';
-let subscription: Subscription = new Subscription();
+    const source$ = of(1, 2, 3, 4, 5);
 
-ngOnDestroy() {
-  subscription.unsubscribe();
-}</code></pre>
-</li>
-</ul>
-<h3>16. <strong>Avoid Direct DOM Manipulation</strong></h3>
+    source$
+      .pipe(
+        multiplyBy(10)  // Use custom operator here
+      )
+      .subscribe(value =&gt; console.log(value));  // Output: 10, 20, 30, 40, 50
+</code></pre>
+<h3><strong>5. Handling Errors and Completion</strong></h3>
+<p>Ensure that your custom operator properly handles errors and completion. Pass errors and completion notifications from the source Observable to the subscriber.</p>
 <ul>
-<li><strong>Description</strong>: Uses Angular’s templating system instead of direct DOM manipulation.</li>
-<li>
-<p><strong>Benefits</strong>: Ensures changes are tracked by Angular's change detection, maintaining application consistency.</p>
-<pre><code class="language-typescript">this.renderer.setStyle(element, 'display', 'none');</code></pre>
-</li>
+<li>Example with error handling:</li>
 </ul>
-<h3>17. <strong>Defer and Async Loading for Scripts</strong></h3>
-<ul>
-<li><strong>Description</strong>: Loads external scripts with <code>defer</code> or <code>async</code> attributes.</li>
-<li>
-<p><strong>Benefits</strong>: Prevents blocking the main thread during script loading, improving initial render times.</p>
-<pre><code class="language-html">&lt;script src="example.js" defer&gt;&lt;/script&gt;</code></pre>
-</li>
-</ul>
-<h3>18. <strong>Minimize Use of <code>*ngIf</code> and <code>*ngFor</code></strong></h3>
-<ul>
-<li><strong>Description</strong>: Reduces the use of <code>*ngIf</code> and <code>*ngFor</code> directives to avoid frequent DOM changes.</li>
-<li>
-<p><strong>Benefits</strong>: Decreases change detection and re-rendering overhead.</p>
-<pre><code class="language-html">&lt;ng-container *ngIf="condition"&gt;
-  &lt;!-- Conditional content here --&gt;
-&lt;/ng-container&gt;</code></pre>
-</li>
-</ul>
-<h3>19. <strong>Enable Production Mode</strong></h3>
-<ul>
-<li><strong>Description</strong>: Ensures Angular runs in production mode, which disables development mode checks and optimizations.</li>
-<li>
-<p><strong>Benefits</strong>: Reduces overhead and improves application performance.</p>
-<pre><code class="language-typescript">import { enableProdMode } from '@angular/core';
-import { environment } from './environments/environment';
+<pre><code class="language-javascript">
+    function safeDivideBy(divisor: number): OperatorFunction&lt;number, number&gt; {
+      return (source: Observable&lt;number&gt;): Observable&lt;number&gt; =&gt; {
+        return new Observable&lt;number&gt;(subscriber =&gt; {
+          const subscription = source.subscribe({
+            next(value) {
+              if (divisor === 0) {
+                subscriber.error(new Error('Division by zero'));
+              } else {
+                subscriber.next(value / divisor);
+              }
+            },
+            error(err) {
+              subscriber.error(err);
+            },
+            complete() {
+              subscriber.complete();
+            }
+          });
 
-if (environment.production) {
-  enableProdMode();
-}</code></pre>
-</li>
-</ul>
-<h3>Configure tree shaking in angular app</h3>
-<p>Tree shaking is an optimization technique used to eliminate dead code (unused code) from a JavaScript bundle. In Angular applications, tree shaking is handled primarily by the build tool, which is usually Webpack, as part of the Angular CLI's build process. Here’s how you can ensure tree shaking is effectively implemented in your Angular application:</p>
-<h3><strong>Key Steps to Ensure Tree Shaking in Angular Applications</strong></h3>
-<ol>
-<li>
-<p><strong>Ensure Production Mode is Enabled</strong></p>
-<p>Angular's build process differentiates between development and production builds. Production builds enable optimizations like tree shaking, minification, and Ahead-of-Time (AOT) compilation.</p>
-<p><strong>How to Enable:</strong></p>
+          return () =&gt; {
+            subscription.unsubscribe();
+          };
+        });
+      };
+    }
+</code></pre>
 <ul>
-<li>
-<p><strong>Via Command Line</strong>:
-Run your build command with the <code>--prod</code> flag:</p>
-<pre><code class="language-bash">ng build --prod</code></pre>
-</li>
-<li>
-<p><strong>In <code>angular.json</code> Configuration</strong>:
-Ensure your <code>production</code> configuration has <code>optimization</code> enabled.</p>
-<pre><code class="language-json">"configurations": {
- "production": {
-     "optimization": true,
-     "outputHashing": "all",
-     "sourceMap": false,
-     "extractCss": true,
-     "namedChunks": false,
-     "aot": true,
-     "extractLicenses": true,
-     "vendorChunk": false,
-     "buildOptimizer": true
- }
-}</code></pre>
-</li>
+<li>Usage:</li>
 </ul>
-</li>
-<li>
-<p><strong>Use ES6 Module Imports</strong></p>
-<p>Tree shaking works best with ES6 module syntax because the static structure of ES6 imports and exports makes it easier for the build tool to determine which code is used and which isn’t.</p>
-<p><strong>Example:</strong></p>
-<pre><code class="language-typescript"> // Import only the required parts
- import { Component, OnInit } from '@angular/core';</code></pre>
-</li>
-<li>
-<p><strong>Avoid Dynamic <code>require</code> Statements</strong></p>
-<p>Avoid using dynamic <code>require</code> statements, as they can prevent tree shaking. Always use static imports.</p>
-<p><strong>Good:</strong></p>
-<pre><code class="language-typescript">import { MyModule } from './path/to/module';</code></pre>
-<p><strong>Bad:</strong></p>
-<pre><code class="language-typescript">// Avoid dynamic imports that bring in unnecessary code
-const MyModule = require('./path/to/module');
-const Component = require('@angular/core').Component;
-
-// Sometime
-  import('large-module').then(module =&gt; {
-    module.someFunction();
-  });</code></pre>
-</li>
-<li>
-<p><strong>Optimize Angular CLI Configuration (<code>angular.json</code>)</strong></p>
-<p>Ensure your <code>angular.json</code> file is set up to take advantage of the Angular CLI's optimizations.</p>
-<p><strong>Configuration Snippet:</strong></p>
-<pre><code class="language-json">"optimization": {
-   "scripts": true,
-   "styles": true,
-   "fonts": true
-},
-"buildOptimizer": true,</code></pre>
-</li>
-<li>
-<p><strong>Minimize Polyfills</strong></p>
-<p>Polyfills can add significant bloat to your application if not carefully managed. Only include necessary polyfills.</p>
-<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    source$
+      .pipe(
+        safeDivideBy(2)  // Use custom operator
+      )
+      .subscribe({
+        next: value =&gt; console.log(value),
+        error: err =&gt; console.error(err.message)  // Output: 0.5, 1, 1.5, 2, 2.5
+      });
+</code></pre>
+<h3><strong>6. Composing with Other Operators</strong></h3>
+<p>You can combine your custom operator with other existing RxJS operators to build more complex pipelines.</p>
 <ul>
-<li>Remove unnecessary polyfills from <code>polyfills.ts</code>.</li>
+<li>Example with additional operators:</li>
 </ul>
-</li>
-<li>
-<p><strong>Use <code>sideEffects</code> in <code>package.json</code></strong></p>
-<p>Specify that your code is side-effect free to help Webpack in identifying and eliminating dead code. The <code>sideEffects</code> field in <code>package.json</code> indicates which files are safe to prune.</p>
-<p><strong>Example:</strong></p>
-<pre><code class="language-json">{
-   "name": "your-app",
-   "version": "1.0.0",
-   "sideEffects": false
-}</code></pre>
-</li>
-<li>
-<p><strong>Use Angular CLI's Tree Shakable Libraries</strong></p>
-<p>Angular CLI supports tree-shakable libraries. Ensure the libraries you use are designed to support tree shaking by checking their <code>package.json</code> for proper module fields like <code>es2015</code>, <code>module</code>, or <code>esnext</code>.</p>
-</li>
-<li>
-<p><strong>Optimize Third-Party Library Imports</strong></p>
-<p>Import only what you need from third-party libraries instead of the entire library.</p>
-<p><strong>Example:</strong></p>
-<pre><code class="language-typescript">// Good: Import only required parts
-import { debounceTime } from 'rxjs/operators';
-
-// Bad: Import the whole library
-import * as _ from 'lodash';</code></pre>
-</li>
-<li>
-<p><strong>Use AOT Compilation</strong></p>
-<p>AOT compilation precompiles the Angular application before the browser downloads and runs it. This helps reduce the bundle size and improve the runtime performance, indirectly aiding tree shaking.</p>
-<p><strong>How to Enable:</strong></p>
-<ul>
-<li>
-<p><strong>Via Command Line</strong>:</p>
-<pre><code class="language-bash">ng build --aot</code></pre>
-</li>
-<li><strong>In <code>angular.json</code></strong>:
-<pre><code class="language-json">"aot": true</code></pre></li>
-</ul>
-</li>
-<li>
-<p><strong>Review Webpack Configuration (Advanced)</strong></p>
-<p>Although Angular CLI abstracts Webpack configuration, advanced users might want to review and adjust Webpack settings directly to ensure tree shaking is optimized.</p>
-<p><strong>Example:</strong></p>
-<ul>
-<li>
-<p>Custom Webpack configuration through Angular CLI builders like <code>@angular-builders/custom-webpack</code>.</p>
-<pre><code class="language-json">"architect": {
-  "build": {
-      "builder": "@angular-builders/custom-webpack:browser",
-      "options": {
-          "customWebpackConfig": {
-              "path": "./extra-webpack.config.js"
-          },
-          // other options...
-      }
-  }
-}</code></pre>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Monitor and Analyze Bundle Size</strong></p>
-<p>Regularly analyze your bundle size to ensure tree shaking is effectively reducing the application size. Tools like <code>source-map-explorer</code> or <code>webpack-bundle-analyzer</code> can be used for this purpose.</p>
-<p><strong>Example:</strong></p>
-<pre><code class="language-bash">  npm install -g source-map-explorer
-  source-map-explorer dist/your-app/main.*.js</code></pre>
-</li>
-</ol>
-<h3>Summary</h3>
-<p>To ensure effective tree shaking in your Angular application:</p>
-<ol>
-<li><strong>Enable Production Mode</strong> in your build configuration.</li>
-<li><strong>Use ES6 Module Imports</strong> and avoid dynamic requires.</li>
-<li><strong>Optimize Angular CLI Configuration</strong> for tree shaking.</li>
-<li><strong>Minimize Polyfills</strong> and specify side effects in <code>package.json</code>.</li>
-<li><strong>Leverage Tree Shakable Libraries</strong> and optimize third-party imports.</li>
-<li><strong>Utilize AOT Compilation</strong> for pre-compilation benefits.</li>
-<li><strong>Analyze Bundle Size</strong> to verify the effectiveness of tree shaking.</li>
-</ol>
-<p>By following these steps, you can significantly reduce your application's bundle size, leading to faster load times and better performance.</p>
-<h3>Conclusion</h3>
-<p>Applying these performance optimization steps can significantly enhance the responsiveness, efficiency, and overall user experience of an Angular application. Each step targets specific aspects of application performance, from initial load times to runtime efficiency and resource management.</p></p>
+<pre><code class="language-javascript">
+    source$
+      .pipe(
+        multiplyBy(2),
+        safeDivideBy(4)
+      )
+      .subscribe(value =&gt; console.log(value));  // Output: 0.5, 1, 1.5, 2, 2.5
+</code></pre></p>
                         <br/>
                 
                         <div class="post-info">
@@ -500,11 +275,11 @@ import * as _ from 'lodash';</code></pre>
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="https://sraban.github.io/post/custom-pipe-operator-rxjs">Custom Pipe Operator - RxJS</a></li>
+                        <li class="list-group-item"><a href="https://sraban.github.io/post/when-and-how-to-use-rxjs">When and How to use RxJS</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/angular-performance-optimisation">Angular Performance Optimisation</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/es6-features">ES6 Features</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/tsconfigjson-configuration-details">tsConfig.json configuration details</a></li>
-                        <li class="list-group-item"><a href="https://sraban.github.io/post/when-does-angulars-change-detection-fail-to-work-properly">When does Angular's change detection fail to work properly?</a></li>
-                        <li class="list-group-item"><a href="https://sraban.github.io/post/packagejson-configuration">package.json configuration</a></li>
                 </ul>
             </div>
         
@@ -541,10 +316,10 @@ import * as _ from 'lodash';</code></pre>
                     <div class="panel-body">
                         <ul class="list-inline">
                             <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/command" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">command</a>
-<a style="font-size: 30px" class="tag_cloud" href="https://sraban.github.io/tag/common" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">common</a>
-<a style="font-size: 30px" class="tag_cloud" href="https://sraban.github.io/tag/javascript" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">Javascript</a>
+<a style="font-size: 24px" class="tag_cloud" href="https://sraban.github.io/tag/common" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">common</a>
+<a style="font-size: 30px" class="tag_cloud" href="https://sraban.github.io/tag/javascript" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">Javascript</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/mysql" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">MySQL</a>
-<a style="font-size: 15px" class="tag_cloud" href="https://sraban.github.io/tag/php" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PHP</a>
+<a style="font-size: 14px" class="tag_cloud" href="https://sraban.github.io/tag/php" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PHP</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/server" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Server</a>
 
                         </ul>

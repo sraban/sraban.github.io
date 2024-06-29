@@ -6,6 +6,271 @@
 <description>Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.</description>
 <language>en-us</language>
 <item>
+<title>Custom Pipe Operator - RxJS</title>
+<description><![CDATA[<p>Creating a custom pipe operator in RxJS allows you to encapsulate complex logic into a reusable operator that you can apply to Observables using the <code>pipe</code> method. This can be particularly useful for operations that you need to perform repeatedly across different parts of your application.</p>
+<p>Here’s a detailed guide on how to create a custom pipe operator in RxJS:</p>
+<h2><strong>Steps to Create a Custom Pipe Operator in RxJS</strong></h2>
+<h3><strong>1. Import Necessary Functions</strong></h3>
+<p>First, import the necessary functions from RxJS. You’ll primarily need <code>Observable</code> and <code>OperatorFunction</code> from <code>rxjs</code>, and <code>map</code> or any other RxJS operators you may want to compose within your custom operator.</p>
+<pre><code class="language-javascript">
+    import { Observable, OperatorFunction } from 'rxjs';
+    import { map } from 'rxjs/operators';
+</code></pre>
+<h3><strong>2. Define the Operator Function</strong></h3>
+<p>Define a function that returns an <code>OperatorFunction</code>. This function should take the parameters you need for your custom logic and return a function that accepts an <code>Observable</code> and returns a new <code>Observable</code>.</p>
+<ul>
+<li>The <code>OperatorFunction&lt;T, R&gt;</code> type represents a function that takes an <code>Observable&lt;T&gt;</code> and returns an <code>Observable&lt;R&gt;</code>.</li>
+</ul>
+<pre><code class="language-javascript">
+    function myCustomOperator&lt;T, R&gt;(param1: T): OperatorFunction&lt;T, R&gt; {
+      return (source: Observable&lt;T&gt;): Observable&lt;R&gt; =&gt; {
+        // Implement your custom logic here
+        return source.pipe(
+          map(value =&gt; {
+            // Perform transformation using param1 and value
+            const result = /* some transformation logic */;
+            return result as unknown as R;
+          })
+        );
+      };
+    }
+</code></pre>
+<h3><strong>3. Implement the Custom Logic</strong></h3>
+<p>Inside the function, implement the custom logic. This could involve transforming the data, filtering it, or combining it with other streams. Use the existing RxJS operators to build up your functionality.</p>
+<ul>
+<li>For example, let’s create a custom operator that multiplies each emitted value by a specified factor.</li>
+</ul>
+<pre><code class="language-javascript">
+    function multiplyBy&lt;T&gt;(factor: number): OperatorFunction&lt;number, number&gt; {
+      return (source: Observable&lt;number&gt;): Observable&lt;number&gt; =&gt; {
+        return new Observable&lt;number&gt;(subscriber =&gt; {
+          const subscription = source.subscribe({
+            next(value) {
+              subscriber.next(value * factor);
+            },
+            error(err) {
+              subscriber.error(err);
+            },
+            complete() {
+              subscriber.complete();
+            }
+          });
+
+          // Return the teardown logic
+          return () =&gt; {
+            subscription.unsubscribe();
+          };
+        });
+      };
+    }
+</code></pre>
+<h3><strong>4. Use the Custom Operator</strong></h3>
+<p>Use your custom operator within an Observable pipeline by calling <code>pipe</code> and passing your custom operator.</p>
+<ul>
+<li>Example usage:</li>
+</ul>
+<pre><code class="language-javascript">
+    import { of } from 'rxjs';
+
+    const source$ = of(1, 2, 3, 4, 5);
+
+    source$
+      .pipe(
+        multiplyBy(10)  // Use custom operator here
+      )
+      .subscribe(value =&gt; console.log(value));  // Output: 10, 20, 30, 40, 50
+</code></pre>
+<h3><strong>5. Handling Errors and Completion</strong></h3>
+<p>Ensure that your custom operator properly handles errors and completion. Pass errors and completion notifications from the source Observable to the subscriber.</p>
+<ul>
+<li>Example with error handling:</li>
+</ul>
+<pre><code class="language-javascript">
+    function safeDivideBy(divisor: number): OperatorFunction&lt;number, number&gt; {
+      return (source: Observable&lt;number&gt;): Observable&lt;number&gt; =&gt; {
+        return new Observable&lt;number&gt;(subscriber =&gt; {
+          const subscription = source.subscribe({
+            next(value) {
+              if (divisor === 0) {
+                subscriber.error(new Error('Division by zero'));
+              } else {
+                subscriber.next(value / divisor);
+              }
+            },
+            error(err) {
+              subscriber.error(err);
+            },
+            complete() {
+              subscriber.complete();
+            }
+          });
+
+          return () =&gt; {
+            subscription.unsubscribe();
+          };
+        });
+      };
+    }
+</code></pre>
+<ul>
+<li>Usage:</li>
+</ul>
+<pre><code class="language-javascript">
+    source$
+      .pipe(
+        safeDivideBy(2)  // Use custom operator
+      )
+      .subscribe({
+        next: value =&gt; console.log(value),
+        error: err =&gt; console.error(err.message)  // Output: 0.5, 1, 1.5, 2, 2.5
+      });
+</code></pre>
+<h3><strong>6. Composing with Other Operators</strong></h3>
+<p>You can combine your custom operator with other existing RxJS operators to build more complex pipelines.</p>
+<ul>
+<li>Example with additional operators:</li>
+</ul>
+<pre><code class="language-javascript">
+    source$
+      .pipe(
+        multiplyBy(2),
+        safeDivideBy(4)
+      )
+      .subscribe(value =&gt; console.log(value));  // Output: 0.5, 1, 1.5, 2, 2.5
+</code></pre>]]></description>
+<link>https://sraban.github.io/post/custom-pipe-operator-rxjs</link>
+<pubDate>Mon, 24 Jun 2024 14:13:00 +0500</pubDate>
+</item>
+<item>
+<title>When and How to use RxJS</title>
+<description><![CDATA[<p>RxJS is a powerful tool for handling complex asynchronous operations in a declarative and functional way. While it offers many advantages, such as improved readability, composability, and efficient data handling, it also comes with complexities and challenges, including a steep learning curve and potential performance overhead. Understanding these pros and cons can help you make informed decisions about when and how to use RxJS in your projects.</p>
+<h3>1. <strong>Declarative Code</strong></h3>
+<ul>
+<li><strong>Benefit:</strong> RxJS allows developers to write declarative code for handling asynchronous operations, making it easier to reason about data flows.</li>
+<li><strong>Example:</strong> Using <code>map</code>, <code>filter</code>, and <code>reduce</code> to transform and process data streams.</li>
+</ul>
+<h3>2. <strong>Composability</strong></h3>
+<ul>
+<li><strong>Benefit:</strong> Operators in RxJS can be easily composed to create complex data pipelines from simpler components.</li>
+<li><strong>Example:</strong> Combining multiple data streams using operators like <code>merge</code> and <code>combineLatest</code>.</li>
+</ul>
+<h3>3. <strong>Powerful Asynchronous Handling</strong></h3>
+<ul>
+<li><strong>Benefit:</strong> RxJS provides powerful tools for handling complex asynchronous scenarios, such as event handling, timers, and network requests.</li>
+<li><strong>Example:</strong> Managing WebSocket connections and handling real-time updates.</li>
+</ul>
+<h3>4. <strong>Functional Programming Paradigm</strong></h3>
+<ul>
+<li><strong>Benefit:</strong> Encourages a functional programming approach, leading to more predictable and maintainable code.</li>
+<li><strong>Example:</strong> Using pure functions and avoiding side effects with operators like <code>map</code> and <code>filter</code>.</li>
+</ul>
+<h3>5. <strong>Reactive Programming</strong></h3>
+<ul>
+<li><strong>Benefit:</strong> Enables reactive programming, where changes in data sources automatically propagate through the system.</li>
+<li><strong>Example:</strong> Automatically updating UI components in response to data changes using <code>BehaviorSubject</code>.</li>
+</ul>
+<h3>6. <strong>Operator Richness</strong></h3>
+<ul>
+<li><strong>Benefit:</strong> A rich set of operators allows for sophisticated data manipulation and transformation.</li>
+<li><strong>Example:</strong> Transforming and filtering data streams with <code>map</code>, <code>filter</code>, and <code>flatMap</code>.</li>
+</ul>
+<h3>7. <strong>Cancellation and Cleanup</strong></h3>
+<ul>
+<li><strong>Benefit:</strong> Provides mechanisms for easily canceling and cleaning up subscriptions, preventing resource leaks.</li>
+<li><strong>Example:</strong> Using <code>takeUntil</code> or <code>unsubscribe</code> to clean up subscriptions.</li>
+</ul>
+<h3>8. <strong>Unified Asynchronous API</strong></h3>
+<ul>
+<li><strong>Benefit:</strong> RxJS unifies handling of various asynchronous patterns (events, promises, etc.) under a single API.</li>
+<li><strong>Example:</strong> Converting promises to Observables with <code>fromPromise</code> and handling them consistently.</li>
+</ul>
+<h3>9. <strong>Real-time Data Handling</strong></h3>
+<ul>
+<li><strong>Benefit:</strong> Ideal for handling real-time data streams and event-driven applications.</li>
+<li><strong>Example:</strong> Using <code>Subject</code> to manage live data feeds, like stock prices or chat messages.</li>
+</ul>
+<h3>10. <strong>Improved Readability and Maintenance</strong></h3>
+<ul>
+<li><strong>Benefit:</strong> Declarative and composable code can be easier to read and maintain, especially for complex asynchronous logic.</li>
+<li><strong>Example:</strong> Expressing complex event handling logic in a concise and readable way.</li>
+</ul>
+<hr />
+<hr />
+<h2><strong>Checklist: Think Before you write RxJS program</strong></h2>
+<h3>1. <strong>Steep Learning Curve</strong></h3>
+<ul>
+<li><strong>Description:</strong> RxJS introduces a new way of thinking about asynchronous programming with concepts like Observables, Operators, and Schedulers.</li>
+<li><strong>Challenges:</strong> Developers accustomed to traditional imperative programming may find it difficult to grasp the reactive paradigm and the extensive set of operators.</li>
+</ul>
+<h3>2. <strong>Large API Surface</strong></h3>
+<ul>
+<li><strong>Description:</strong> RxJS has a vast number of operators (over 100), each with unique behaviors and use cases.</li>
+<li><strong>Challenges:</strong> Learning and remembering the appropriate operator for each task can be daunting, and misuse of operators can lead to performance issues or bugs.</li>
+</ul>
+<h3>3. <strong>Debugging Difficulty</strong></h3>
+<ul>
+<li><strong>Description:</strong> Due to the functional and asynchronous nature of RxJS, debugging can be challenging.</li>
+<li><strong>Challenges:</strong> Tracing errors and understanding the flow of data through various operators can be complex, especially in large, intricate data streams.</li>
+</ul>
+<h3>4. <strong>Performance Overhead</strong></h3>
+<ul>
+<li><strong>Description:</strong> The use of Observables and operators can introduce additional performance overhead compared to direct imperative code.</li>
+<li><strong>Challenges:</strong> Inefficient use of operators or excessive use of Observables for simple tasks can lead to performance bottlenecks.</li>
+</ul>
+<h3>5. <strong>Memory Management</strong></h3>
+<ul>
+<li><strong>Description:</strong> Managing subscriptions and ensuring that Observables are properly unsubscribed to avoid memory leaks.</li>
+<li><strong>Challenges:</strong> Forgetting to unsubscribe from long-lived Observables can cause memory leaks and retain unnecessary resources.</li>
+</ul>
+<h3>6. <strong>Concurrency Management</strong></h3>
+<ul>
+<li><strong>Description:</strong> RxJS allows fine-grained control over concurrency and scheduling, which can add complexity.</li>
+<li><strong>Challenges:</strong> Understanding and managing concurrency with operators like <code>mergeMap</code>, <code>switchMap</code>, and <code>concatMap</code> requires careful planning.</li>
+</ul>
+<h3>7. <strong>Integration Complexity</strong></h3>
+<ul>
+<li><strong>Description:</strong> Integrating RxJS into existing projects and systems can be complex, especially if they are not designed with reactive principles in mind.</li>
+<li><strong>Challenges:</strong> Combining reactive code with traditional callback or promise-based code can be tricky and may require additional handling.</li>
+</ul>
+<h3>8. <strong>Operator Overloading</strong></h3>
+<ul>
+<li><strong>Description:</strong> The large number of operators and their chaining can lead to over-complication of simple tasks.</li>
+<li><strong>Challenges:</strong> Developers might use complex operator chains for tasks that could be handled more simply, making the code harder to read and maintain.</li>
+</ul>
+<h3>9. <strong>State Management</strong></h3>
+<ul>
+<li><strong>Description:</strong> Managing state reactively with Observables can be less intuitive compared to traditional state management techniques.</li>
+<li><strong>Challenges:</strong> Maintaining and updating application state in a reactive way can require a shift in thinking and careful design.</li>
+</ul>
+<h3>10. <strong>Type Safety and Compatibility</strong></h3>
+<ul>
+<li><strong>Description:</strong> Ensuring type safety and compatibility across various Observables and operators, especially in TypeScript.</li>
+<li><strong>Challenges:</strong> Misalignments in types can lead to compile-time errors or unexpected runtime behavior.</li>
+</ul>
+<h3>11. <strong>Overuse of Observables</strong></h3>
+<ul>
+<li><strong>Drawback:</strong> Over-reliance on Observables can lead to overly complex code for tasks that could be handled more simply.</li>
+<li><strong>Impact:</strong> Code can become harder to read, maintain, and debug.</li>
+</ul>
+<h3>12. <strong>Not Always Intuitive</strong></h3>
+<ul>
+<li><strong>Drawback:</strong> The reactive paradigm may not be intuitive for all use cases, especially for developers new to functional programming.</li>
+<li><strong>Impact:</strong> There can be a mismatch between problem-solving approaches and the reactive model, leading to confusion.</li>
+</ul>
+<h3>13. <strong>Tooling and Ecosystem Maturity</strong></h3>
+<ul>
+<li><strong>Drawback:</strong> Tooling for RxJS debugging and profiling is still evolving and may not be as mature as for other paradigms.</li>
+<li><strong>Impact:</strong> Limited tooling support can hinder development and troubleshooting.</li>
+</ul>
+<h3>14. <strong>Potential Overhead in TypeScript</strong></h3>
+<ul>
+<li><strong>Drawback:</strong> Ensuring type safety with RxJS in TypeScript can add complexity.</li>
+<li><strong>Impact:</strong> Complex type definitions and generics can make the codebase harder to understand and maintain.</li>
+</ul>]]></description>
+<link>https://sraban.github.io/post/when-and-how-to-use-rxjs</link>
+<pubDate>Mon, 24 Jun 2024 14:01:00 +0500</pubDate>
+</item>
+<item>
 <title>Angular Performance Optimisation</title>
 <description><![CDATA[<p>List of performance optimization steps for Angular applications</p>
 <h3>1. <strong>Event Coalescing</strong>: <code>{ngZoneEventCoalescing: true}</code></h3>

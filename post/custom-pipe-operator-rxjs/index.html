@@ -8,7 +8,7 @@
     <meta name="description" content="Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.">
     <meta name="author" content="Sraban Pahadasingh">
 
-    <title>Restful Services :: &lt;/&gt; FullStack Developer</title>
+    <title>Custom Pipe Operator - RxJS :: &lt;/&gt; FullStack Developer</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="&lt;/&gt; FullStack Developer" href="https://sraban.github.io/rss.xml"/>
@@ -70,71 +70,153 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>Restful Services</h3>
+                <h3>Custom Pipe Operator - RxJS</h3>
                 <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> April 14, 2020 05:53 PM
+                <span class="glyphicon glyphicon-time"></span> June 24, 2024 02:13 PM
                 <hr>
 
-                <p class="post-content"><p><strong># Why REST</strong> </p>
-<ol>
-<li>Rest can be fetched from cahced storage instead of always heating to Server</li>
-<li>Rest is Stateless.</li>
-<li>Rest can work in very low bandwidth</li>
-<li>REST request &amp; response can be in  TEXT, XML, HTML and JSON Format.</li>
-<li>REST is an architectural pattern not a protocal.</li>
-<li>REST can make use of SOAP services.</li>
-<li>Challenges in Rest - Lack of Security &amp; Lack of state</li>
-</ol>
-<p><strong># Methods:</strong></p>
-<ol>
-<li>
-<p>GET</p>
+                <p class="post-content"><p>Creating a custom pipe operator in RxJS allows you to encapsulate complex logic into a reusable operator that you can apply to Observables using the <code>pipe</code> method. This can be particularly useful for operations that you need to perform repeatedly across different parts of your application.</p>
+<p>Here’s a detailed guide on how to create a custom pipe operator in RxJS:</p>
+<h2><strong>Steps to Create a Custom Pipe Operator in RxJS</strong></h2>
+<h3><strong>1. Import Necessary Functions</strong></h3>
+<p>First, import the necessary functions from RxJS. You’ll primarily need <code>Observable</code> and <code>OperatorFunction</code> from <code>rxjs</code>, and <code>map</code> or any other RxJS operators you may want to compose within your custom operator.</p>
+<pre><code class="language-javascript">
+    import { Observable, OperatorFunction } from 'rxjs';
+    import { map } from 'rxjs/operators';
+</code></pre>
+<h3><strong>2. Define the Operator Function</strong></h3>
+<p>Define a function that returns an <code>OperatorFunction</code>. This function should take the parameters you need for your custom logic and return a function that accepts an <code>Observable</code> and returns a new <code>Observable</code>.</p>
 <ul>
-<li>This method is like calling a uri with query parameters.</li>
+<li>The <code>OperatorFunction&lt;T, R&gt;</code> type represents a function that takes an <code>Observable&lt;T&gt;</code> and returns an <code>Observable&lt;R&gt;</code>.</li>
 </ul>
-</li>
-<li>
-<p>POST</p>
+<pre><code class="language-javascript">
+    function myCustomOperator&lt;T, R&gt;(param1: T): OperatorFunction&lt;T, R&gt; {
+      return (source: Observable&lt;T&gt;): Observable&lt;R&gt; =&gt; {
+        // Implement your custom logic here
+        return source.pipe(
+          map(value =&gt; {
+            // Perform transformation using param1 and value
+            const result = /* some transformation logic */;
+            return result as unknown as R;
+          })
+        );
+      };
+    }
+</code></pre>
+<h3><strong>3. Implement the Custom Logic</strong></h3>
+<p>Inside the function, implement the custom logic. This could involve transforming the data, filtering it, or combining it with other streams. Use the existing RxJS operators to build up your functionality.</p>
 <ul>
-<li>Not idempotent method, used to <strong>create</strong> records in DB</li>
-<li>Since record does not exits before, save url and return url is different.</li>
+<li>For example, let’s create a custom operator that multiplies each emitted value by a specified factor.</li>
 </ul>
-</li>
-<li>
-<p>PUT</p>
+<pre><code class="language-javascript">
+    function multiplyBy&lt;T&gt;(factor: number): OperatorFunction&lt;number, number&gt; {
+      return (source: Observable&lt;number&gt;): Observable&lt;number&gt; =&gt; {
+        return new Observable&lt;number&gt;(subscriber =&gt; {
+          const subscription = source.subscribe({
+            next(value) {
+              subscriber.next(value * factor);
+            },
+            error(err) {
+              subscriber.error(err);
+            },
+            complete() {
+              subscriber.complete();
+            }
+          });
+
+          // Return the teardown logic
+          return () =&gt; {
+            subscription.unsubscribe();
+          };
+        });
+      };
+    }
+</code></pre>
+<h3><strong>4. Use the Custom Operator</strong></h3>
+<p>Use your custom operator within an Observable pipeline by calling <code>pipe</code> and passing your custom operator.</p>
 <ul>
-<li>This method is idempotent. means client and server urls are same.</li>
-<li>Used for updating a resource by using the primary key.</li>
-<li>This method specifiy to fully update the db record with the variables.</li>
-<li>When the the url with primary key is not valid, the record is auto generated in database.</li>
+<li>Example usage:</li>
 </ul>
-</li>
-<li>
-<p>PATCH</p>
+<pre><code class="language-javascript">
+    import { of } from 'rxjs';
+
+    const source$ = of(1, 2, 3, 4, 5);
+
+    source$
+      .pipe(
+        multiplyBy(10)  // Use custom operator here
+      )
+      .subscribe(value =&gt; console.log(value));  // Output: 10, 20, 30, 40, 50
+</code></pre>
+<h3><strong>5. Handling Errors and Completion</strong></h3>
+<p>Ensure that your custom operator properly handles errors and completion. Pass errors and completion notifications from the source Observable to the subscriber.</p>
 <ul>
-<li>This method is idempotent. means client and server urls are same.</li>
-<li>Used for updating a resource by using the primary key.</li>
-<li>This method specifiy to partially update the db record.</li>
-<li>When the the url with primary key is not valid, the record is auto generated in database.</li>
+<li>Example with error handling:</li>
 </ul>
-</li>
-<li>DELETE
+<pre><code class="language-javascript">
+    function safeDivideBy(divisor: number): OperatorFunction&lt;number, number&gt; {
+      return (source: Observable&lt;number&gt;): Observable&lt;number&gt; =&gt; {
+        return new Observable&lt;number&gt;(subscriber =&gt; {
+          const subscription = source.subscribe({
+            next(value) {
+              if (divisor === 0) {
+                subscriber.error(new Error('Division by zero'));
+              } else {
+                subscriber.next(value / divisor);
+              }
+            },
+            error(err) {
+              subscriber.error(err);
+            },
+            complete() {
+              subscriber.complete();
+            }
+          });
+
+          return () =&gt; {
+            subscription.unsubscribe();
+          };
+        });
+      };
+    }
+</code></pre>
 <ul>
-<li>This method in REST is used to destroy the resource. </li>
-<li>Destroyed resource are not called again To DELETE the resource </li>
-</ul></li>
-</ol></p>
+<li>Usage:</li>
+</ul>
+<pre><code class="language-javascript">
+    source$
+      .pipe(
+        safeDivideBy(2)  // Use custom operator
+      )
+      .subscribe({
+        next: value =&gt; console.log(value),
+        error: err =&gt; console.error(err.message)  // Output: 0.5, 1, 1.5, 2, 2.5
+      });
+</code></pre>
+<h3><strong>6. Composing with Other Operators</strong></h3>
+<p>You can combine your custom operator with other existing RxJS operators to build more complex pipelines.</p>
+<ul>
+<li>Example with additional operators:</li>
+</ul>
+<pre><code class="language-javascript">
+    source$
+      .pipe(
+        multiplyBy(2),
+        safeDivideBy(4)
+      )
+      .subscribe(value =&gt; console.log(value));  // Output: 0.5, 1, 1.5, 2, 2.5
+</code></pre></p>
                 <br/><br/>
 
                 <div class="post-info">
                         <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                        <a href="https://sraban.github.io/category/php">PHP</a>
+                        <a href="https://sraban.github.io/category/javascript">Javascript</a>
                         &nbsp;&nbsp;
 
                     <span class="glyphicon glyphicon-bookmark"></span>
 
-                        <a href="https://sraban.github.io/tag/common">common</a>&nbsp;&nbsp;
+                        <a href="https://sraban.github.io/tag/Javascript">Javascript</a>&nbsp;&nbsp;
                 </div>
 
             </article>
