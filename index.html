@@ -266,57 +266,66 @@ source$.subscribe(value =&gt; console.log(value)); // Executes asynchronously</c
 <p>Enhanced type definitions in TypeScript for RxJS operators provide better type safety and auto-completion, making it easier to write and maintain code.</p>
 <p><strong>Example with TypeScript:</strong></p>
 <pre><code class="language-typescript">
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
+    import { of } from 'rxjs';
+    import { map } from 'rxjs/operators';
 
-const source$ = of&lt;number&gt;(1, 2, 3).pipe(
-  map(value =&gt; value * 2)
-);
+    const source$ = of&lt;number&gt;(1, 2, 3).pipe(
+      map(value =&gt; value * 2)
+    );
 
-source$.subscribe(value =&gt; console.log(value)); // Outputs: 2, 4, 6
-
------------
-
-### **. Tooling and Development Tools**
-
-#### **Overview**
-Tools that support RxJS development have evolved, making it easier to develop, debug, and maintain reactive applications. These tools range from debugging utilities to code generators and performance monitors.
-
-#### **Key Tools**
-
-- **RxJS DevTools:** Provides a way to visualize and debug RxJS streams in a browser.
-- **RxFiddle:** A playground for experimenting with RxJS code and observing its behavior in real-time.
-- **RxJS Marbles:** A tool for testing RxJS observables using marble diagrams.
-
-#### **Detailed Tooling Overview**
-
-**RxJS DevTools:**
-
-- **Features:** 
-  - Visualizes Observable streams.
-  - Debugs subscription chains and events.
-  - Provides insights into stream behaviors and performance.
-- **Usage:** 
-  - Install as a Chrome extension or use a standalone version.
-  - Connect it to your application to start visualizing streams.
-
-**RxFiddle:**
-
-- **Features:**
-  - Interactive RxJS playground.
-  - Supports visualization of operators and data flow.
-- **Usage:**
-  - Write and run RxJS code snippets.
-  - Observe how data flows through operators.
-
-**RxJS Marbles:**
-
-- **Features:**
-  - Enables marble testing for RxJS observables.
-  - Provides a visual representation of stream interactions.
-- **Usage:**
-  - Write tests using marble diagrams to simulate observable emissions.
-  - Verify the expected behavior of streams and operators.</code></pre></p>
+    source$.subscribe(value =&gt; console.log(value)); // Outputs: 2, 4, 6
+</code></pre>
+<hr />
+<h3><strong>Tooling and Development Tools</strong></h3>
+<h4><strong>Overview</strong></h4>
+<p>Tools that support RxJS development have evolved, making it easier to develop, debug, and maintain reactive applications. These tools range from debugging utilities to code generators and performance monitors.</p>
+<h4><strong>Key Tools</strong></h4>
+<ul>
+<li><strong>RxJS DevTools:</strong> Provides a way to visualize and debug RxJS streams in a browser.</li>
+<li><strong>RxFiddle:</strong> A playground for experimenting with RxJS code and observing its behavior in real-time.</li>
+<li><strong>RxJS Marbles:</strong> A tool for testing RxJS observables using marble diagrams.</li>
+</ul>
+<h4><strong>Detailed Tooling Overview</strong></h4>
+<p><strong>RxJS DevTools:</strong></p>
+<ul>
+<li><strong>Features:</strong> 
+<ul>
+<li>Visualizes Observable streams.</li>
+<li>Debugs subscription chains and events.</li>
+<li>Provides insights into stream behaviors and performance.</li>
+</ul></li>
+<li><strong>Usage:</strong> 
+<ul>
+<li>Install as a Chrome extension or use a standalone version.</li>
+<li>Connect it to your application to start visualizing streams.</li>
+</ul></li>
+</ul>
+<p><strong>RxFiddle:</strong></p>
+<ul>
+<li><strong>Features:</strong>
+<ul>
+<li>Interactive RxJS playground.</li>
+<li>Supports visualization of operators and data flow.</li>
+</ul></li>
+<li><strong>Usage:</strong>
+<ul>
+<li>Write and run RxJS code snippets.</li>
+<li>Observe how data flows through operators.</li>
+</ul></li>
+</ul>
+<p><strong>RxJS Marbles:</strong></p>
+<ul>
+<li><strong>Features:</strong>
+<ul>
+<li>Enables marble testing for RxJS observables.</li>
+<li>Provides a visual representation of stream interactions.</li>
+</ul></li>
+<li><strong>Usage:</strong>
+<ul>
+<li>Write tests using marble diagrams to simulate observable emissions.</li>
+<li>Verify the expected behavior of streams and operators.</li>
+</ul></li>
+</ul></p>
                         <br/>
                 
                         <div class="post-info">
