@@ -70,245 +70,251 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="https://sraban.github.io/post/tsconfigjson-configuration-details">tsConfig.json configuration details</a></h3>
+                    <h3><a href="https://sraban.github.io/post/es6-features">ES6 Features</a></h3>
                     <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> June 23, 2024 06:31 PM
+                    <span class="glyphicon glyphicon-time"></span> June 24, 2024 07:24 AM
                 
                         <hr>
-                        <p class="post-content"><p>The <code>tsconfig.json</code> file is essential for configuring TypeScript projects, providing a wide range of options to control the compilation process. Below is a comprehensive list of <code>tsconfig.json</code> properties along with detailed descriptions and examples for each.</p>
-<h3>Overall Structure</h3>
-<p>A typical <code>tsconfig.json</code> file looks like this:</p>
-<pre><code>{
-  "compilerOptions": {
-    // Compiler options go here
-  },
-  "include": [
-    // File patterns to include
-  ],
-  "exclude": [
-    // File patterns to exclude
-  ],
-  "files": [
-    // Specific files to include
-  ],
-  "references": [
-    // References to other tsconfig files for project references
-  ],
-  "extends": "path/to/base/tsconfig",
-  "typeAcquisition": {
-    // Type acquisition options for type definitions
-  },
-  "compileOnSave": true,
-  "tsBuildInfoFile": "path/to/tsbuildinfo",
-  "watchOptions": {
-    // Options for the watch mode
-  },
-  "assumeChangesOnlyAffectDirectDependencies": true,
-  "plugins": [
-    // Plugins to extend TypeScript functionality
-  ]
+                        <p class="post-content"><p>Below is a comprehensive list of these features:
+ES6 = ECMAScript 2015</p>
+<h3>1. <strong>Arrow Functions</strong></h3>
+<ul>
+<li>Syntactic sugar for anonymous functions with a concise syntax.</li>
+<li>
+<p>Does not have its own <code>this</code> context, which is lexically scoped.</p>
+<pre><code class="language-javascript">const add = (a, b) =&gt; a + b;</code></pre>
+<h3>2. <strong>Block-Scoped Variables: <code>let</code> and <code>const</code></strong></h3>
+</li>
+<li><code>let</code>: Allows block-scoped variables.</li>
+<li>
+<p><code>const</code>: Declares block-scoped constants that cannot be reassigned.</p>
+<pre><code class="language-javascript">  let variable = "mutable";
+  const constant = "immutable";</code></pre>
+<h3>3. <strong>Default Parameters</strong></h3>
+</li>
+<li>
+<p>Allows function parameters to have default values.</p>
+<pre><code class="language-javascript">function greet(name = "World") {
+    return `Hello, ${name}`;
 }</code></pre>
-<h3>Detailed Descriptions</h3>
-<h4><code>compilerOptions</code></h4>
-<ul>
-<li><strong>Purpose</strong>: Contains settings that influence the behavior of the TypeScript compiler.</li>
-<li><strong>Type</strong>: <code>object</code></li>
-<li>
-<p><strong>Common Properties</strong>:</p>
-<ul>
-<li>
-<p><strong><code>target</code></strong>: Specifies the output JavaScript version. Common values are <code>"ES5"</code>, <code>"ES6"</code>, <code>"ES2015"</code>, <code>"ES2020"</code>, etc.
-<code>{target": "ES6"}</code></p>
-</li>
-<li>
-<p><strong><code>module</code></strong>: Determines the module code generation. Options include <code>"commonjs"</code>, <code>"amd"</code>, <code>"esnext"</code>, etc.
-<code>{"module": "commonjs"}</code></p>
-</li>
-<li>
-<p><strong><code>strict</code></strong>: Enables all strict type-checking options.
-<code>{"strict": true}</code></p>
-</li>
-<li>
-<p><strong><code>outDir</code></strong>: Specifies the output directory for compiled files.
-<code>{ "outDir": "./dist"}</code></p>
-</li>
-<li>
-<p><strong><code>rootDir</code></strong>: Specifies the root directory of input files.
-<code>{"rootDir": "./src"}</code></p>
-</li>
-<li>
-<p><strong><code>sourceMap</code></strong>: Generates corresponding <code>.map</code> files for debugging.
-<code>{ "sourceMap": true}</code></p>
-</li>
-<li>
-<p><strong><code>declaration</code></strong>: Generates corresponding <code>.d.ts</code> files for TypeScript definitions.
-<code>{"declaration": true}</code></p>
-</li>
-<li>
-<p><strong><code>moduleResolution</code></strong>: Specifies the module resolution strategy, such as <code>"node"</code> or <code>"classic"</code>.
-<code>{"moduleResolution": "node"}</code></p>
-</li>
-<li>
-<p><strong><code>lib</code></strong>: Includes standard library files in the compilation.
-<code>{"lib": ["ES6", "DOM"]}</code></p>
-</li>
-<li>
-<p><strong><code>esModuleInterop</code></strong>: Enables interoperability between CommonJS and ES modules.
-<code>{"esModuleInterop": true}</code></p>
-</li>
-<li>
-<p><strong><code>jsx</code></strong>: Specifies the JSX code generation for React. Options are <code>"preserve"</code>, <code>"react"</code>, <code>"react-jsx"</code>, etc.
-<code>{"jsx": "react"}</code></p>
-</li>
-<li>
-<p><strong><code>allowJs</code></strong>: Allows JavaScript files to be compiled.
-<code>{"allowJs": true}</code></p>
-</li>
-<li>
-<p><strong><code>checkJs</code></strong>: Type-checks JavaScript files.
-<code>{"checkJs": true}</code></p>
-</li>
-<li>
-<p><strong><code>baseUrl</code></strong>: Base directory for resolving non-relative module names.
-<code>{"baseUrl": "./"}</code></p>
-</li>
-<li>
-<p><strong><code>paths</code></strong>: A set of path mappings for module resolution.
-<code>{"paths": { "@app/*": ["src/app/*"] }}</code></p>
-</li>
-<li>
-<p><strong><code>typeRoots</code></strong>: Specifies directories containing type definitions.
-<code>{"typeRoots": ["./node_modules/@types"]}</code></p>
-</li>
-<li>
-<p><strong><code>noEmit</code></strong>: Disables the emitting of output files.
-<code>{"noEmit": true}</code></p>
-</li>
-<li>
-<p><strong><code>skipLibCheck</code></strong>: Skips type checking of declaration files.
-<code>{"skipLibCheck": true}</code></p>
-</li>
-<li>
-<p><strong><code>noImplicitAny</code></strong>: Raises errors on expressions and declarations with an implied <code>any</code> type.
-<code>{"noImplicitAny": true}</code></p>
-</li>
-<li>
-<p><strong><code>resolveJsonModule</code></strong>: Enables importing JSON modules.
-<code>{"resolveJsonModule": true}</code></p>
-</li>
-<li>
-<p><strong><code>emitDecoratorMetadata</code></strong>: Emits design-type metadata for decorators.
-<code>{"emitDecoratorMetadata": true}</code></p>
-</li>
-<li>
-<p><strong><code>experimentalDecorators</code></strong>: Enables experimental support for decorators.
-<code>{"experimentalDecorators": true}</code></p>
-</li>
-<li>
-<p><strong><code>incremental</code></strong>: Enables incremental compilation, which speeds up builds.
-<code>{ "incremental": true}</code></p>
-</li>
-<li>
-<p><strong><code>composite</code></strong>: Enables project compilation.
-<code>{"composite": true}</code></p>
-</li>
-<li><strong><code>tsBuildInfoFile</code></strong>: Specifies the location of the build information file.
-<code>{"tsBuildInfoFile": "./build/cache/tsbuildinfo.json"}</code></li>
-</ul>
 </li>
 </ul>
-<h4><code>include</code></h4>
+<h3>4. <strong>Template Literals</strong></h3>
 <ul>
-<li><strong>Purpose</strong>: Specifies an array of file patterns to include in the compilation.</li>
-<li><strong>Type</strong>: <code>array</code></li>
-<li><strong>Example</strong>:
-<code>{"include": ["src/**/*", "tests/**/*"]}</code></li>
+<li>
+<p>Multi-line strings and string interpolation using backticks (`).</p>
+<pre><code class="language-javascript">const name = "John";
+const greeting = `Hello, ${name}!`;</code></pre>
+</li>
 </ul>
-<h4><code>exclude</code></h4>
+<h3>5. <strong>Destructuring Assignment</strong></h3>
 <ul>
-<li><strong>Purpose</strong>: Specifies an array of file patterns to exclude from the compilation.</li>
-<li><strong>Type</strong>: <code>array</code></li>
-<li><strong>Example</strong>:
-<code>{"exclude": ["node_modules", "dist", "build"]}</code></li>
+<li>
+<p>Extract values from arrays or properties from objects into distinct variables.</p>
+<pre><code class="language-javascript">const [x, y] = [1, 2];
+const { name, age } = { name: "Alice", age: 25 };</code></pre>
+</li>
 </ul>
-<h4><code>files</code></h4>
+<h3>6. <strong>Rest and Spread Operators</strong></h3>
 <ul>
-<li><strong>Purpose</strong>: Lists specific files to include in the compilation, regardless of the <code>include</code> and <code>exclude</code> settings.</li>
-<li><strong>Type</strong>: <code>array</code></li>
-<li><strong>Example</strong>:
-<code>{"files": ["src/index.ts", "src/globals.d.ts"]}</code></li>
+<li><code>Rest</code>: Collects arguments into an array.</li>
+<li>
+<p><code>Spread</code>: Expands elements of an array or object.</p>
+<pre><code class="language-javascript">const sum = (...args) =&gt; args.reduce((a, b) =&gt; a + b, 0); // Rest
+const arr = [1, 2, 3];
+const newArr = [...arr, 4, 5]; // Spread</code></pre>
+</li>
 </ul>
-<h4><code>references</code></h4>
+<h3>7. <strong>Enhanced Object Literals</strong></h3>
 <ul>
-<li><strong>Purpose</strong>: Specifies a list of project references, allowing TypeScript projects to depend on other TypeScript projects.</li>
-<li><strong>Type</strong>: <code>array</code></li>
-<li><strong>Example</strong>:
-<code>{ "references": [ { "path": "../common" }, { "path": "../utilities" } ]}</code></li>
+<li>
+<p>Shorthand property names, method definitions, and computed property names.</p>
+<pre><code class="language-javascript">const name = "Alice";
+const person = {
+  name,
+  greet() {
+    console.log(`Hello, ${this.name}`);
+  },
+};</code></pre>
+</li>
 </ul>
-<h4><code>extends</code></h4>
+<h3>8. <strong>Classes</strong></h3>
 <ul>
-<li><strong>Purpose</strong>: Allows the <code>tsconfig.json</code> to extend another configuration file.</li>
-<li><strong>Type</strong>: <code>string</code></li>
-<li><strong>Example</strong>:
-<code>{ "extends": "./base/tsconfig.json" }</code></li>
+<li>
+<p>Syntactic sugar for creating objects and handling inheritance.</p>
+<pre><code class="language-javascript">class Person {
+  constructor(name) {
+    this.name = name;
+  }
+  greet() {
+    console.log(`Hello, ${this.name}`);
+  }
+}</code></pre>
+</li>
 </ul>
-<h4><code>typeAcquisition</code></h4>
+<h3>9. <strong>Modules (import/export)</strong></h3>
 <ul>
-<li><strong>Purpose</strong>: Controls the acquisition of type definitions for JavaScript projects.</li>
-<li><strong>Type</strong>: <code>object</code></li>
-<li><strong>Properties</strong>:
-<ul>
-<li><strong><code>enable</code></strong>: Enables type acquisition.
-<code>{ "enable": true }</code></li>
-<li><strong><code>include</code></strong>: Specifies a list of type definitions to include.
-<code>{ "include": ["jest", "lodash"] }</code></li>
-<li><strong><code>exclude</code></strong>: Specifies a list of type definitions to exclude.
-<code>{ "exclude": ["express"] }</code></li>
-</ul></li>
+<li>
+<p>Official support for module loading with <code>import</code> and <code>export</code> keywords.</p>
+<pre><code class="language-javascript">// module.js
+export const name = "Alice";
+
+// main.js
+import { name } from './module.js';</code></pre>
+</li>
 </ul>
-<h4><code>compileOnSave</code></h4>
+<h3>10. <strong>Promises</strong></h3>
 <ul>
-<li><strong>Purpose</strong>: If set to <code>true</code>, TypeScript will compile files upon saving in the IDE.</li>
-<li><strong>Type</strong>: <code>boolean</code></li>
-<li><strong>Example</strong>:
-<code>{ "compileOnSave": true }</code></li>
+<li>
+<p>Asynchronous operations management with <code>then</code>, <code>catch</code>, and <code>finally</code>.</p>
+<pre><code class="language-javascript">const promise = new Promise((resolve, reject) =&gt; {
+  setTimeout(() =&gt; resolve("Done"), 1000);
+});
+
+promise.then(result =&gt; console.log(result));</code></pre>
+</li>
 </ul>
-<h4><code>tsBuildInfoFile</code></h4>
+<h3>11. <strong>Block-Scoped Functions</strong></h3>
 <ul>
-<li><strong>Purpose</strong>: Specifies the location of the build information file to store incremental compilation information.</li>
-<li><strong>Type</strong>: <code>string</code></li>
-<li><strong>Example</strong>:
-<code>{ "tsBuildInfoFile": "./build/cache/tsbuildinfo.json" }</code></li>
+<li>
+<p>Functions defined in a block are scoped to that block.</p>
+<pre><code class="language-javascript">if (true) {
+  function sayHi() {
+    console.log("Hi");
+  }
+  sayHi();
+}</code></pre>
+</li>
 </ul>
-<h4><code>watchOptions</code></h4>
+<h3>12. <strong>Generators</strong></h3>
 <ul>
-<li><strong>Purpose</strong>: Specifies options for watching files in watch mode.</li>
-<li><strong>Type</strong>: <code>object</code></li>
-<li><strong>Properties</strong>:
-<ul>
-<li><strong><code>watchFile</code></strong>: Strategy for watching files.
-<code>{ "watchFile": "useFsEvents" }</code></li>
-<li><strong><code>watchDirectory</code></strong>: Strategy for watching directories.
-<code>{ "watchDirectory": "useFsEvents" }</code></li>
-<li><strong><code>fallbackPolling</code></strong>: Polling strategy for systems where <code>fs.watch</code> cannot be used.
-<code>{ "fallbackPolling": "dynamicPriority" }</code></li>
-</ul></li>
+<li>
+<p>Functions that can be paused and resumed, maintaining their own state.</p>
+<pre><code class="language-javascript">function* generator() {
+yield 1;
+yield 2;
+return 3;
+}</code></pre>
+</li>
 </ul>
-<h4><code>assumeChangesOnlyAffectDirectDependencies</code></h4>
+<h3>13. <strong>New Built-in Methods</strong></h3>
 <ul>
-<li><strong>Purpose</strong>: When set to <code>true</code>, TypeScript assumes changes only affect direct dependencies, which can speed up incremental builds.</li>
-<li><strong>Type</strong>: <code>boolean</code></li>
-<li><strong>Example</strong>:
-<code>{ "assumeChangesOnlyAffectDirectDependencies": true }</code></li>
+<li>
+<p>New methods for various objects like <code>Array</code>, <code>String</code>, <code>Object</code>, etc.</p>
+<pre><code class="language-javascript">const str = "hello";
+str.includes("e"); // true
+
+const arr = Array.from("hello");</code></pre>
+</li>
 </ul>
-<h4><code>plugins</code></h4>
+<h3>14. <strong>New Collections: Map, Set, WeakMap, WeakSet</strong></h3>
 <ul>
-<li><strong>Purpose</strong>: Specifies a list of plugins that extend TypeScript's functionality.</li>
-<li><strong>Type</strong>: <code>array</code></li>
-<li><strong>Example</strong>:
-<code>{ "plugins": [ { "name": "typescript-tslint-plugin" }, { "name": "typescript-styled-plugin" } ] }</code></li>
-</ul></p>
+<li><code>Map</code>: Key-value pairs.</li>
+<li><code>Set</code>: Unique values.</li>
+<li>
+<p><code>WeakMap</code> and <code>WeakSet</code>: Garbage-collection friendly collections.</p>
+<pre><code class="language-javascript">const map = new Map();
+map.set('key', 'value');
+
+const set = new Set([1, 2, 2, 3]);</code></pre>
+</li>
+</ul>
+<h3>15. <strong>for...of Loop</strong></h3>
+<ul>
+<li>
+<p>Iterates over iterable objects like arrays, strings, etc.</p>
+<pre><code class="language-javascript">for (const item of [1, 2, 3]) {
+  console.log(item);
+}</code></pre>
+</li>
+</ul>
+<h3>16. <strong>Binary and Octal Literals</strong></h3>
+<ul>
+<li>
+<p>Literal notations for binary (<code>0b</code>) and octal (<code>0o</code>) numbers.</p>
+<pre><code class="language-javascript">const binary = 0b1010;
+const octal = 0o755;</code></pre>
+</li>
+</ul>
+<h3>17. <strong>New Target Meta-Property</strong></h3>
+<ul>
+<li>
+<p>Provides a reference to the target of a function call.</p>
+<pre><code class="language-javascript">class Parent {
+  constructor() {
+    console.log(new.target.name);
+  }
+}
+
+class Child extends Parent {
+  constructor() {
+    super();
+  }
+}
+
+new Child(); // logs "Child"</code></pre>
+</li>
+</ul>
+<h3>18. <strong>New Math, Number, String, Object Methods</strong></h3>
+<ul>
+<li>
+<p>New methods for mathematical computations, number checking, string manipulation, and object handling.</p>
+<pre><code class="language-javascript">Number.isFinite(42); // true
+Math.trunc(4.9); // 4
+Object.assign({}, {a: 1}, {b: 2}); // {a: 1, b: 2}</code></pre>
+</li>
+</ul>
+<h3>19. <strong>Reflect API</strong></h3>
+<ul>
+<li>
+<p>Provides methods for interceptable JavaScript operations, similar to the proxy handlers.</p>
+<pre><code class="language-javascript">const obj = { x: 1 };
+Reflect.set(obj, 'x', 2);</code></pre>
+</li>
+</ul>
+<h3>20. <strong>Proxy API</strong></h3>
+<ul>
+<li>
+<p>Used to define custom behavior for fundamental operations (e.g., property lookup, assignment).</p>
+<pre><code class="language-javascript">const handler = {
+  get: (target, property) =&gt; {
+    return property in target ? target[property] : 42;
+  }
+};
+
+const proxy = new Proxy({}, handler);
+console.log(proxy.foo); // 42</code></pre>
+</li>
+</ul>
+<h3>21. <strong>Symbol Type</strong></h3>
+<ul>
+<li>
+<p>A new primitive type for creating unique identifiers.</p>
+<pre><code class="language-javascript">const sym = Symbol("identifier");
+const obj = { [sym]: "value" };</code></pre>
+</li>
+</ul>
+<hr />
+<h4>In Summary:</h4>
+<h5>Arrow functions, let and const, default parameters, template       literals, destructuring assignment, rest and spread operators,       enhanced object literals, classes, modules (import/export), promises,    block-scoped functions, generators, new built-in methods       (String.prototype.includes, Array.from, etc.), new collections (Map,     Set, WeakMap, WeakSet), for...of loop, binary and octal literals, new    target meta-property, new Math, Number, String, Object methods,       Reflect API, Proxy API, Symbol type.</h5>
+<hr />
+<ul>
+<li><strong>declaration</strong> - let,const</li>
+<li><strong>data type(primitive, nonprimitive)</strong> - Symbol, binary, octal</li>
+<li><strong>operator</strong> -&gt; ??, ...</li>
+<li><strong>enhanced object literal , template literal</strong></li>
+<li><strong>conditions/loop</strong> -&gt; (for of loop)</li>
+<li><strong>function</strong> - blocked scope, default params assignment</li>
+<li><strong>generators</strong> yeild</li>
+<li><strong>class</strong> - new.target.name</li>
+<li><strong>new methods</strong> - String, Number, Array, Object Prototype</li>
+<li><strong>new collection</strong> - Map, Set, WeekMap, WeekSet</li>
+<li><strong>module</strong> - export/import</li>
+<li><strong>API</strong> - Math, Proxy, Reflect</li>
+</ul>
+<hr />
+<p><img src="https://i.imgur.com/NaX1CXC.png" alt="medium" /></p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -377,11 +383,11 @@
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="https://sraban.github.io/post/es6-features">ES6 Features</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/tsconfigjson-configuration-details">tsConfig.json configuration details</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/when-does-angulars-change-detection-fail-to-work-properly">When does Angular's change detection fail to work properly?</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/packagejson-configuration">package.json configuration</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/watch-production-errors-issues-important-transactions-from-a-system-mq">Watch - Production Errors &amp; Issues,  Important Transactions from a system MQ</a></li>
-                        <li class="list-group-item"><a href="https://sraban.github.io/post/uses-of-http-guzzle-php">Uses of Http Guzzle PHP</a></li>
                 </ul>
             </div>
         
@@ -419,7 +425,7 @@
                         <ul class="list-inline">
                             <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/command" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">command</a>
 <a style="font-size: 30px" class="tag_cloud" href="https://sraban.github.io/tag/common" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">common</a>
-<a style="font-size: 22px" class="tag_cloud" href="https://sraban.github.io/tag/javascript" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">Javascript</a>
+<a style="font-size: 26px" class="tag_cloud" href="https://sraban.github.io/tag/javascript" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">Javascript</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/mysql" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">MySQL</a>
 <a style="font-size: 15px" class="tag_cloud" href="https://sraban.github.io/tag/php" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PHP</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/server" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Server</a>
