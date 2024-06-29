@@ -6,7 +6,7 @@
 <description>Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.</description>
 <language>en-us</language>
 <item>
-<title>Angular Perfomane Optimisation</title>
+<title>Angular Performance Optimisation</title>
 <description><![CDATA[<p>List of performance optimization steps for Angular applications</p>
 <h3>1. <strong>Event Coalescing</strong>: <code>{ngZoneEventCoalescing: true}</code></h3>
 <ul>
@@ -363,7 +363,7 @@ import * as _ from 'lodash';</code></pre>
 <p>By following these steps, you can significantly reduce your application's bundle size, leading to faster load times and better performance.</p>
 <h3>Conclusion</h3>
 <p>Applying these performance optimization steps can significantly enhance the responsiveness, efficiency, and overall user experience of an Angular application. Each step targets specific aspects of application performance, from initial load times to runtime efficiency and resource management.</p>]]></description>
-<link>https://sraban.github.io/post/angular-perfomane-optimisation</link>
+<link>https://sraban.github.io/post/angular-performance-optimisation</link>
 <pubDate>Mon, 24 Jun 2024 11:07:00 +0500</pubDate>
 </item>
 <item>
