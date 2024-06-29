@@ -70,13 +70,19 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="https://sraban.github.io/post/custom-pipe-operator-rxjs">Custom Pipe Operator - RxJS</a></h3>
+                    <h3><a href="https://sraban.github.io/post/custom-pipe-operator-new-feature-debugging-rxjs">Custom Pipe Operator &amp; New Feature, Debugging - RxJS</a></h3>
                     <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
                     &nbsp;&nbsp;
                     <span class="glyphicon glyphicon-time"></span> June 24, 2024 02:13 PM
                 
                         <hr>
                         <p class="post-content"><p>Creating a custom pipe operator in RxJS allows you to encapsulate complex logic into a reusable operator that you can apply to Observables using the <code>pipe</code> method. This can be particularly useful for operations that you need to perform repeatedly across different parts of your application.</p>
+<h4><strong>Key Aspects</strong></h4>
+<ul>
+<li><strong>Encapsulation:</strong> Encapsulate complex logic into a reusable function.</li>
+<li><strong>Reusability:</strong> Use the same operator in different parts of your application.</li>
+<li><strong>Readability:</strong> Improve code readability by abstracting complex logic.</li>
+</ul>
 <p>Here’s a detailed guide on how to create a custom pipe operator in RxJS:</p>
 <h2><strong>Steps to Create a Custom Pipe Operator in RxJS</strong></h2>
 <h3><strong>1. Import Necessary Functions</strong></h3>
@@ -206,7 +212,111 @@
         safeDivideBy(4)
       )
       .subscribe(value =&gt; console.log(value));  // Output: 0.5, 1, 1.5, 2, 2.5
-</code></pre></p>
+</code></pre>
+<hr />
+<h3><strong>1. Multicasting Operators</strong></h3>
+<h4><strong>Overview</strong></h4>
+<p>Multicasting allows multiple subscribers to share a single subscription to an Observable, optimizing resource usage. Operators like <code>share</code> and <code>shareReplay</code> are commonly used for this purpose.</p>
+<p><strong>Example with <code>shareReplay</code>:</strong></p>
+<pre><code class="language-javascript">import { of } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
+
+const source$ = of(1, 2, 3).pipe(shareReplay(1));
+
+source$.subscribe(value =&gt; console.log(`Subscriber 1: ${value}`));
+source$.subscribe(value =&gt; console.log(`Subscriber 2: ${value}`));</code></pre>
+<h3><strong>2. Higher-Order Observables</strong></h3>
+<h4><strong>Overview</strong></h4>
+<p>Higher-order Observables are Observables that emit other Observables. Operators like <code>switchMap</code>, <code>concatMap</code>, and <code>mergeMap</code> help manage these higher-order streams.</p>
+<p><strong>Example with <code>switchMap</code>:</strong></p>
+<pre><code class="language-javascript">import { of, interval } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
+const source$ = interval(1000).pipe(
+  switchMap(() =&gt; of('new observable'))
+);
+
+source$.subscribe(value =&gt; console.log(value));</code></pre>
+<h3><strong>3. Error Handling Enhancements</strong></h3>
+<h4><strong>Overview</strong></h4>
+<p>Advanced error handling in RxJS includes operators like <code>catchError</code> and <code>retryWhen</code> to manage errors more effectively.</p>
+<p><strong>Example with <code>catchError</code>:</strong></p>
+<pre><code class="language-javascript">import { of, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+const source$ = throwError('An error occurred').pipe(
+  catchError(error =&gt; of(`Caught: ${error}`))
+);
+
+source$.subscribe(value =&gt; console.log(value));</code></pre>
+<h3><strong>4. Scheduling and Concurrency Control</strong></h3>
+<h4><strong>Overview</strong></h4>
+<p>Schedulers in RxJS manage the timing of Observable execution. They help control concurrency and the execution context, which is crucial for optimizing performance in complex applications.</p>
+<p><strong>Example with <code>asyncScheduler</code>:</strong></p>
+<pre><code class="language-javascript">import { of, asyncScheduler } from 'rxjs';
+import { observeOn } from 'rxjs/operators';
+
+const source$ = of('Hello World').pipe(
+  observeOn(asyncScheduler)
+);
+
+source$.subscribe(value =&gt; console.log(value)); // Executes asynchronously</code></pre>
+<h3><strong>5. Improved Type Support</strong></h3>
+<h4><strong>Overview</strong></h4>
+<p>Enhanced type definitions in TypeScript for RxJS operators provide better type safety and auto-completion, making it easier to write and maintain code.</p>
+<p><strong>Example with TypeScript:</strong></p>
+<pre><code class="language-typescript">
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+const source$ = of&lt;number&gt;(1, 2, 3).pipe(
+  map(value =&gt; value * 2)
+);
+
+source$.subscribe(value =&gt; console.log(value)); // Outputs: 2, 4, 6
+
+-----------
+
+### **. Tooling and Development Tools**
+
+#### **Overview**
+Tools that support RxJS development have evolved, making it easier to develop, debug, and maintain reactive applications. These tools range from debugging utilities to code generators and performance monitors.
+
+#### **Key Tools**
+
+- **RxJS DevTools:** Provides a way to visualize and debug RxJS streams in a browser.
+- **RxFiddle:** A playground for experimenting with RxJS code and observing its behavior in real-time.
+- **RxJS Marbles:** A tool for testing RxJS observables using marble diagrams.
+
+#### **Detailed Tooling Overview**
+
+**RxJS DevTools:**
+
+- **Features:** 
+  - Visualizes Observable streams.
+  - Debugs subscription chains and events.
+  - Provides insights into stream behaviors and performance.
+- **Usage:** 
+  - Install as a Chrome extension or use a standalone version.
+  - Connect it to your application to start visualizing streams.
+
+**RxFiddle:**
+
+- **Features:**
+  - Interactive RxJS playground.
+  - Supports visualization of operators and data flow.
+- **Usage:**
+  - Write and run RxJS code snippets.
+  - Observe how data flows through operators.
+
+**RxJS Marbles:**
+
+- **Features:**
+  - Enables marble testing for RxJS observables.
+  - Provides a visual representation of stream interactions.
+- **Usage:**
+  - Write tests using marble diagrams to simulate observable emissions.
+  - Verify the expected behavior of streams and operators.</code></pre></p>
                         <br/>
                 
                         <div class="post-info">
@@ -275,7 +385,7 @@
                 </div>
         
                 <ul class="list-group">
-                        <li class="list-group-item"><a href="https://sraban.github.io/post/custom-pipe-operator-rxjs">Custom Pipe Operator - RxJS</a></li>
+                        <li class="list-group-item"><a href="https://sraban.github.io/post/custom-pipe-operator-new-feature-debugging-rxjs">Custom Pipe Operator &amp; New Feature, Debugging - RxJS</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/when-and-how-to-use-rxjs">When and How to use RxJS</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/angular-performance-optimisation">Angular Performance Optimisation</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/es6-features">ES6 Features</a></li>
@@ -316,10 +426,11 @@
                     <div class="panel-body">
                         <ul class="list-inline">
                             <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/command" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">command</a>
-<a style="font-size: 24px" class="tag_cloud" href="https://sraban.github.io/tag/common" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">common</a>
-<a style="font-size: 30px" class="tag_cloud" href="https://sraban.github.io/tag/javascript" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">Javascript</a>
+<a style="font-size: 27px" class="tag_cloud" href="https://sraban.github.io/tag/common" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">common</a>
+<a style="font-size: 30px" class="tag_cloud" href="https://sraban.github.io/tag/javascript" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">Javascript</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/javascript" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">javascript</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/mysql" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">MySQL</a>
-<a style="font-size: 14px" class="tag_cloud" href="https://sraban.github.io/tag/php" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PHP</a>
+<a style="font-size: 15px" class="tag_cloud" href="https://sraban.github.io/tag/php" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PHP</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/server" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Server</a>
 
                         </ul>
