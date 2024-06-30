@@ -8,7 +8,7 @@
     <meta name="description" content="Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.">
     <meta name="author" content="Sraban Pahadasingh">
 
-    <title>&lt;/&gt; FullStack Developer</title>
+    <title>JS API :: &lt;/&gt; FullStack Developer</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="&lt;/&gt; FullStack Developer" href="https://sraban.github.io/rss.xml"/>
@@ -69,12 +69,90 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 main-content">
-            <h1>Tag Posts</h1>
-            <hr/>
-            <br/>
+            <article>
+                <h3>JS API</h3>
+                <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-time"></span> June 25, 2024 01:06 AM
+                <hr>
 
-                <h3><a href="https://sraban.github.io/post/supervisor-crontabs">Supervisor &amp; Crontabs</a></h3>
-                <span class="glyphicon glyphicon-time"></span> April 14, 2020 05:49 PM
+                <p class="post-content"><h4><strong><code>setTimeout()</code></strong></h4>
+<p>Executes a function after a specified delay.</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+    setTimeout(() =&gt; {
+      console.log('Executed after 1 second');
+    }, 1000);
+</code></pre>
+<h4><strong><code>fetch()</code></strong></h4>
+<p>Used for making network requests. It returns a <code>Promise</code> that resolves to the response.</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+    fetch('https://api.example.com/data')
+      .then(response =&gt; response.json())
+      .then(data =&gt; console.log(data));
+</code></pre>
+<h4><strong><code>Promise()</code></strong></h4>
+<p>Represents the eventual completion (or failure) of an asynchronous operation and its resulting value.</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+    const promise = new Promise((resolve, reject) =&gt; {
+      const success = true;
+      if (success) {
+        resolve('Operation successful');
+      } else {
+        reject('Operation failed');
+      }
+    });
+
+    promise.then(result =&gt; console.log(result))
+           .catch(error =&gt; console.log(error));
+</code></pre></p>
+                <br/><br/>
+
+                <div class="post-info">
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+                        <a href="https://sraban.github.io/category/javascript">Javascript</a>
+                        &nbsp;&nbsp;
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+                        <a href="https://sraban.github.io/tag/Javascript">Javascript</a>&nbsp;&nbsp;
+                </div>
+
+            </article>
+            <hr/>
+
+            <div class="text-center clearfix">
+                <div class="col-sm-4 col-md-4">
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="btn btn-primary" href="https://sraban.github.io/posts.html"><i class="fa fa-navicon"></i> View All
+                        Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
+                </div>
+            </div>
+
+            <hr/>
+            
+            <!-- Comment form -->
+            <div class="well">
+                <div id="disqus_thread"></div>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
+                    powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
+                    <span class="logo-disqus">Disqus</span></a>
+            </div>
+
         </div>
 
         <div class="sidebar col-md-4">
@@ -162,6 +240,7 @@
                     </div>
                 </div>
             </div>
+
     </div>
 </div>
 
@@ -189,3 +268,69 @@
 
 </body>
 </html>
+<!-- for pagination -->
+<script>
+    $(function () {
+
+        ///////////////////////////////////////////////////
+        // class/id/selector of prev link
+        var $prevPostSelector = $('.prevpost');
+        var $nextPostSelector = $('.nextpost');
+        ///////////////////////////////////////////////////
+
+        var pageArray = document.location.href.split('/');
+        var currentPageSlug = pageArray[pageArray.length - 1];
+
+        if (!currentPageSlug) {
+            currentPageSlug = pageArray[pageArray.length - 2];
+        }
+
+        $.ajax({
+            url: __blogURL + "/data/blog.json",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (data.posts !== undefined && data.posts !== null) {
+                    $.each(data.posts, function (i, post) {
+                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                            var prevPost = data.posts[i - 1];
+                            var nextPost = data.posts[i + 1];
+
+                            if (prevPost === undefined || prevPost === null) {
+                                // hide previous link if it is first post
+                                $prevPostSelector.hide();
+                            }
+                            else {
+                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+                            }
+
+                            if (nextPost === undefined || nextPost === null) {
+                                // hide previous link if it is last post
+                                $nextPostSelector.hide();
+                            }
+                            else {
+                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+                            }
+
+                            return false; // break out of each
+                        }
+                    });
+                }
+            },
+            error: function (e) {
+                $prevPostSelector.hide();
+                $nextPostSelector.hide();
+            }
+        });
+
+        // for Disqus
+        var disqus_shortname = '';
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+    });
+</script>

@@ -6,6 +6,555 @@
 <description>Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.</description>
 <language>en-us</language>
 <item>
+<title>ngRx Features</title>
+<description><![CDATA[<p>NgRx (pronounced &quot;N-G-R-X&quot;) is a powerful library for managing state in Angular applications using reactive programming principles. It is built on top of <a href="https://rxjs.dev/">RxJS</a>, which provides a way to compose asynchronous and event-based programs using observable sequences. NgRx follows the Redux pattern, a predictable state container for JavaScript applications, making it easier to manage and debug the state of your application. Here’s a detailed breakdown of NgRx and its core concepts:</p>
+<p>Imagine NgRx as a well-organized factory. Each part of the factory represents a core concept:</p>
+<ul>
+<li><strong>Store</strong>: This is the warehouse where all the finished products (state) are stored. It's a single, central location where everything is neatly organized and immutable.</li>
+<li><strong>Actions</strong>: These are the orders or requests that come into the factory, specifying what products (state changes) need to be made.</li>
+<li><strong>Reducers</strong>: These are the machines in the factory that process raw materials (current state and actions) and produce new products (new state).</li>
+<li><strong>Selectors</strong>: These are the quality inspectors that check the products (state) and pick out the parts that are needed.</li>
+<li><strong>Effects</strong>: These are the logistic operations that handle external interactions like fetching raw materials (data fetching) and ensure that everything is running smoothly.</li>
+</ul>
+<h3>Core Concepts of NgRx</h3>
+<ol>
+<li>
+<p><strong>Store</strong></p>
+<ul>
+<li>The <strong>Store</strong> is a single source of truth that holds the state of your application. It is an immutable object tree in which the state is represented as a plain JavaScript object. You can think of it as a database that holds all the state of your application.</li>
+<li>Example:</li>
+</ul>
+<pre><code class="language-typescript">
+    interface AppState {
+     counter: number;
+    }
+</code></pre>
+</li>
+<li>
+<p><strong>Actions</strong></p>
+<ul>
+<li><strong>Actions</strong> are payloads of information that send data from your application to your store. They are the only source of information for the store and follow a strict structure with a <code>type</code> field that describes the action being performed and an optional <code>payload</code>.</li>
+<li>Example:</li>
+</ul>
+<pre><code class="language-typescript">
+    export const increment = createAction('[Counter] Increment');
+    export const decrement = createAction('[Counter] Decrement');
+    export const reset = createAction('[Counter] Reset');
+</code></pre>
+</li>
+<li>
+<p><strong>Reducers</strong></p>
+<ul>
+<li><strong>Reducers</strong> are pure functions that determine how the state changes in response to an action. They take the current state and an action as arguments and return a new state.</li>
+<li>Example:</li>
+</ul>
+<pre><code class="language-typescript">
+    const initialState: AppState = { counter: 0 };
+
+    const counterReducer = createReducer(
+     initialState,
+     on(increment, state =&gt; ({ counter: state.counter + 1 })),
+     on(decrement, state =&gt; ({ counter: state.counter - 1 })),
+     on(reset, state =&gt; ({ counter: 0 }))
+    );
+</code></pre>
+</li>
+<li>
+<p><strong>Selectors</strong></p>
+<ul>
+<li><strong>Selectors</strong> are pure functions used for obtaining slices of the state from the store. They provide a way to access parts of the state and are memoized to improve performance.</li>
+<li>Example:</li>
+</ul>
+<pre><code class="language-typescript">
+    const selectCounter = (state: AppState) =&gt; state.counter;
+</code></pre>
+</li>
+<li>
+<p><strong>Effects</strong></p>
+<ul>
+<li><strong>Effects</strong> handle side effects in NgRx, such as fetching data from a server or logging actions. They listen for dispatched actions, perform operations, and then return new actions to the store.</li>
+<li>Example:</li>
+</ul>
+<pre><code class="language-typescript">
+    @Injectable()
+    export class CounterEffects {
+     loadCounters$ = createEffect(() =&gt;
+       this.actions$.pipe(
+         ofType(loadCounters),
+         mergeMap(() =&gt;
+           this.counterService.getAll().pipe(
+             map(counters =&gt; loadCountersSuccess({ counters })),
+             catchError(error =&gt; of(loadCountersFailure({ error })))
+           )
+         )
+       )
+     );
+
+     constructor(
+       private actions$: Actions,
+       private counterService: CounterService
+     ) {}
+    }
+</code></pre>
+</li>
+</ol>
+<h3>Key Features of NgRx</h3>
+<ol>
+<li>
+<p><strong>State Management</strong></p>
+<ul>
+<li>NgRx provides a robust state management solution that helps maintain a consistent state across different parts of the application. It encourages the use of a single source of truth and a unidirectional data flow, making state changes predictable and traceable.</li>
+</ul>
+</li>
+<li>
+<p><strong>Immutable State</strong></p>
+<ul>
+<li>The state in NgRx is immutable, meaning it cannot be changed directly. Instead, new states are created based on actions and the current state, which helps prevent accidental mutations and simplifies debugging.</li>
+</ul>
+</li>
+<li>
+<p><strong>Reactive Programming</strong></p>
+<ul>
+<li>NgRx leverages RxJS to handle asynchronous operations and state changes reactively. Observables and operators allow for powerful state management patterns and efficient handling of async data flows.</li>
+</ul>
+</li>
+<li>
+<p><strong>DevTools Integration</strong></p>
+<ul>
+<li>NgRx integrates with Redux DevTools, providing time-travel debugging and state inspection. This makes it easier to understand and debug the state changes in your application.</li>
+</ul>
+</li>
+<li>
+<p><strong>Modularity</strong></p>
+<ul>
+<li>NgRx encourages modular code organization by separating concerns through actions, reducers, selectors, and effects. This separation improves code maintainability and readability.</li>
+</ul>
+</li>
+<li><strong>Side Effects Management</strong>
+<ul>
+<li>NgRx effects handle side effects such as API calls, ensuring that business logic and state management are decoupled and maintainable.</li>
+</ul></li>
+</ol>
+<h3>Examples and Use Cases</h3>
+<h4>Basic Counter Example</h4>
+<ol>
+<li>
+<p><strong>Action Definitions</strong>:</p>
+<pre><code class="language-typescript">
+    export const increment = createAction('[Counter] Increment');
+    export const decrement = createAction('[Counter] Decrement');
+    export const reset = createAction('[Counter] Reset');
+</code></pre>
+</li>
+<li>
+<p><strong>Reducer</strong>:</p>
+<pre><code class="language-typescript">
+    const initialState: AppState = { counter: 0 };
+
+    const counterReducer = createReducer(
+     initialState,
+     on(increment, state =&gt; ({ counter: state.counter + 1 })),
+     on(decrement, state =&gt; ({ counter: state.counter - 1 })),
+     on(reset, state =&gt; ({ counter: 0 }))
+    );
+</code></pre>
+</li>
+<li>
+<p><strong>Selector</strong>:</p>
+<pre><code class="language-typescript">
+    const selectCounter = (state: AppState) =&gt; state.counter;
+</code></pre>
+</li>
+<li>
+<p><strong>Component Integration</strong>:</p>
+<pre><code class="language-typescript">
+    @Component({
+     selector: 'app-counter',
+     template: `
+       &lt;div&gt;Current Count: {{ counter$ | async }}&lt;/div&gt;
+       &lt;button (click)="increment()"&gt;Increment&lt;/button&gt;
+       &lt;button (click)="decrement()"&gt;Decrement&lt;/button&gt;
+       &lt;button (click)="reset()"&gt;Reset&lt;/button&gt;
+     `
+    })
+    export class CounterComponent {
+     counter$ = this.store.select(selectCounter);
+
+     constructor(private store: Store&lt;AppState&gt;) {}
+
+     increment() {
+       this.store.dispatch(increment());
+     }
+
+     decrement() {
+       this.store.dispatch(decrement());
+     }
+
+     reset() {
+       this.store.dispatch(reset());
+     }
+    }
+</code></pre>
+</li>
+</ol>]]></description>
+<link>https://sraban.github.io/post/ngrx-features</link>
+<pubDate>Tue, 25 Jun 2024 01:24:00 +0500</pubDate>
+</item>
+<item>
+<title>Typescript Features</title>
+<description><![CDATA[<p>TypeScript concepts:</p>
+<h3>01. Type Assertion</h3>
+<p>Type assertion in TypeScript is a way to tell the compiler that you know more about the type of a value than TypeScript can infer automatically. It has two forms:</p>
+<ul>
+<li>
+<p><strong>Angle-bracket syntax</strong>: <code>&lt;Type&gt;value</code></p>
+<pre><code class="language-typescript">
+  let myList = [1, 2, 3];
+  let length1 = (&lt;number[]&gt;myList).length; // Using angle-bracket syntax
+</code></pre>
+</li>
+<li>
+<p><strong>As syntax</strong>: <code>value as Type</code></p>
+<pre><code class="language-typescript">
+  let length2 = (myList as number[]).length; // Using 'as' syntax
+</code></pre>
+</li>
+</ul>
+<p>Type assertion does not change the runtime behavior but helps TypeScript's type checker understand the intended type when the developer has more specific knowledge about it.</p>
+<h3>02. TypeScript Generics</h3>
+<p>Generics in TypeScript allow you to create reusable components that can work with a variety of data types while maintaining type safety. The syntax for generics involves using angle brackets (<code>&lt; &gt;</code>) to declare type parameters:</p>
+<pre><code class="language-typescript">
+    function myMethod&lt;T&gt;(arg: T): T {
+      return arg;
+    }
+
+    let value = myMethod&lt;number&gt;(10); // Specify the type explicitly
+    let anotherValue = myMethod("Hello"); // TypeScript infers the type
+</code></pre>
+<p>Generics can be used with interfaces, classes, functions, properties, and variables to create flexible and type-safe constructs.</p>
+<h3>03. <code>typeof</code> and <code>keyof</code></h3>
+<ul>
+<li><strong><code>typeof</code></strong>: Returns the type of a variable, function, or object.</li>
+</ul>
+<pre><code class="language-typescript">
+      let x = 10;
+      type T = typeof x; // T is 'number'
+</code></pre>
+<ul>
+<li><strong><code>keyof</code></strong>: Returns the union of keys of a given type.</li>
+</ul>
+<pre><code class="language-typescript">
+    interface Person {
+     name: string;
+     age: number;
+    }
+
+    type Keys = keyof Person; // Keys is 'name' | 'age'
+</code></pre>
+<h3>04. Type Inference</h3>
+<p>Type inference in TypeScript refers to the ability of the type system to deduce types in certain situations based on the context and initialization values, without requiring explicit type annotations:</p>
+<pre><code class="language-typescript">
+    let x = 10; // TypeScript infers 'number' type for x
+    let y = "Hello"; // TypeScript infers 'string' type for y
+</code></pre>
+<p>Type inference reduces the need for manual type annotations, making code more concise while maintaining type safety.</p>
+<h3>05. Type Aliases</h3>
+<p>Type aliases in TypeScript allow you to create new names for existing types. They are particularly useful for defining complex types or for simplifying type annotations:</p>
+<pre><code class="language-typescript">
+    type Container&lt;T&gt; = { value: T };
+
+    let numContainer: Container&lt;number&gt; = { value: 10 };
+    let strContainer: Container&lt;string&gt; = { value: "Hello" };
+</code></pre>
+<p>Type aliases improve code readability and maintainability by providing descriptive names for types.</p>
+<h3>06. Conditional Types</h3>
+<p>Conditional types in TypeScript enable the creation of types that depend on the relationships between types:</p>
+<pre><code class="language-typescript">
+    type TypeName&lt;T&gt; =
+      T extends string ? "string" :
+      T extends number ? "number" :
+      T extends boolean ? "boolean" :
+      "unknown";
+
+    let strType: TypeName&lt;string&gt; = "string";
+    let numType: TypeName&lt;number&gt; = "number";
+</code></pre>
+<p>Conditional types use the <code>extends</code> keyword to check if a type satisfies a condition and then return different types based on that condition (<code>X</code> if true, <code>Y</code> if false).</p>
+<h3>07. Distributive Conditional Types</h3>
+<p>Distributive conditional types in TypeScript automatically distribute over union types:</p>
+<pre><code class="language-typescript">
+    type BoxedValue&lt;T&gt; = { value: T };
+
+    type BoxedNumber = BoxedValue&lt;number | string&gt;;
+    // Equivalent to:
+    // type BoxedNumber = BoxedValue&lt;number&gt; | BoxedValue&lt;string&gt;;
+</code></pre>
+<p>When a conditional type is applied to a union type, TypeScript applies the type condition to each constituent type of the union.</p>
+<h3>08. Object-Oriented Principles supported by TypeScript</h3>
+<p>TypeScript supports fundamental object-oriented principles such as:</p>
+<ul>
+<li>
+<p><strong>Encapsulation</strong>: Bundling data and methods that operate on the data into a single unit (class).</p>
+</li>
+<li>
+<p><strong>Inheritance</strong>: Creating new classes (derived classes) from existing ones (base classes) to reuse and extend functionality.</p>
+</li>
+<li><strong>Polymorphism</strong>: Using a single interface to represent multiple types (subtyping), allowing objects of different types to be treated as instances of a common superclass.</li>
+</ul>
+<h3>09. Awaited Type and Promise Improvements</h3>
+<p>TypeScript 4.3 introduced the <code>Awaited</code> type to extract the type awaited by a Promise:</p>
+<pre><code class="language-typescript">
+    type Awaited&lt;T&gt; = T extends PromiseLike&lt;infer U&gt; ? U : T;
+
+    async function fetchData(): Promise&lt;string&gt; {
+      return "Data";
+    }
+
+    type Data = Awaited&lt;ReturnType&lt;typeof fetchData&gt;&gt;; // Data is 'string'
+</code></pre>
+<p>This improvement enhances type inference and provides better support for async functions and promise chains.</p>
+<h3>10. Recursive Type Aliases</h3>
+<p>Recursive type aliases in TypeScript allow defining types that reference themselves:</p>
+<pre><code class="language-typescript">
+    type TreeNode&lt;T&gt; = {
+      value: T;
+      left?: TreeNode&lt;T&gt;;
+      right?: TreeNode&lt;T&gt;;
+    };
+
+    let node: TreeNode&lt;number&gt; = {
+      value: 10,
+      left: {
+        value: 5
+      }
+    };
+</code></pre>
+<p>Recursive type aliases are useful for defining recursive data structures like trees or linked lists.</p>]]></description>
+<link>https://sraban.github.io/post/typescript-features</link>
+<pubDate>Tue, 25 Jun 2024 01:13:00 +0500</pubDate>
+</item>
+<item>
+<title>JS API</title>
+<description><![CDATA[<h4><strong><code>setTimeout()</code></strong></h4>
+<p>Executes a function after a specified delay.</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+    setTimeout(() =&gt; {
+      console.log('Executed after 1 second');
+    }, 1000);
+</code></pre>
+<h4><strong><code>fetch()</code></strong></h4>
+<p>Used for making network requests. It returns a <code>Promise</code> that resolves to the response.</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+    fetch('https://api.example.com/data')
+      .then(response =&gt; response.json())
+      .then(data =&gt; console.log(data));
+</code></pre>
+<h4><strong><code>Promise()</code></strong></h4>
+<p>Represents the eventual completion (or failure) of an asynchronous operation and its resulting value.</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+    const promise = new Promise((resolve, reject) =&gt; {
+      const success = true;
+      if (success) {
+        resolve('Operation successful');
+      } else {
+        reject('Operation failed');
+      }
+    });
+
+    promise.then(result =&gt; console.log(result))
+           .catch(error =&gt; console.log(error));
+</code></pre>]]></description>
+<link>https://sraban.github.io/post/js-api</link>
+<pubDate>Tue, 25 Jun 2024 01:06:00 +0500</pubDate>
+</item>
+<item>
+<title>Types of Errors, Error Codes in JavaScript</title>
+<description><![CDATA[<p>JavaScript has several built-in error types that help in identifying and handling different kinds of errors. Here are some common error types:</p>
+<h4><strong>SyntaxError</strong></h4>
+<p>Occurs when there is a syntax issue in the code.</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+    console.log('Hello; // Missing closing quote
+</code></pre>
+<h4><strong>ReferenceError</strong></h4>
+<p>Occurs when a non-existent variable is referenced.</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+    console.log(nonExistentVariable); // ReferenceError
+</code></pre>
+<h4><strong>TypeError</strong></h4>
+<p>Occurs when a value is not of the expected type.</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+    null.foo(); // TypeError: Cannot read property 'foo' of null
+</code></pre>
+<h4><strong>RangeError</strong></h4>
+<p>Occurs when a value is not within the set or acceptable range.</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+    new Array(-1); // RangeError: Invalid array length
+</code></pre>
+<h4><strong>EvalError</strong></h4>
+<p>Occurs when the <code>eval()</code> function is used incorrectly. It's rarely encountered because <code>eval()</code> is discouraged.</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+    eval('foo)'); // SyntaxError: Unexpected token
+</code></pre>
+<h4><strong>URIError</strong></h4>
+<p>Occurs when there is an error in encoding or decoding URIs.</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+    decodeURIComponent('%'); // URIError: URI malformed
+</code></pre>
+<h4><strong>Error Codes</strong></h4>
+<p>Custom errors can be created with specific codes to handle specific conditions.</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+    class CustomError extends Error {
+      constructor(message, code) {
+        super(message);
+        this.code = code;
+      }
+    }
+
+    throw new CustomError('Custom error message', 'E_CUSTOM');
+</code></pre>]]></description>
+<link>https://sraban.github.io/post/types-of-errors-error-codes-in-javascript</link>
+<pubDate>Tue, 25 Jun 2024 00:48:00 +0500</pubDate>
+</item>
+<item>
+<title>.call(), .bind(), .apply() Differences in JS</title>
+<description><![CDATA[<p>Certainly! Understanding the differences between <code>.call()</code>, <code>.apply()</code>, and <code>.bind()</code> is crucial for effective JavaScript development. They all serve the purpose of function invocation with a specific context (<code>this</code> value), but they differ in their usage and application.</p>
+<h4><strong><code>.call()</code></strong></h4>
+<p>Calls a function with a specified <code>this</code> value and individual arguments.</p>
+<ul>
+<li>Invokes the function immediately.</li>
+<li>Allows you to pass arguments individually.</li>
+<li>Useful when you need to call a function with a specific <code>this</code> value and arguments.</li>
+</ul>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+    function greet(greeting, name) {
+      console.log(`${greeting}, ${name}`);
+    }
+
+    greet.call(null, 'Hello', 'Alice'); // Output: Hello, Alice
+</code></pre>
+<h4><strong><code>.apply()</code></strong></h4>
+<p>Similar to <code>.call()</code>, but takes an array of arguments.</p>
+<ul>
+<li>Invokes the function immediately.</li>
+<li>Allows you to pass arguments as an array.</li>
+<li>
+<p>Handy when the arguments are already in an array or array-like structure.</p>
+</li>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+    greet.apply(null, ['Hello', 'Alice']); // Output: Hello, Alice
+</code></pre>
+<pre><code class="language-javascript">
+    function showThis() {
+      console.log(this);
+    }
+
+    showThis.call({ name: 'Bob' }); // Output: { name: 'Bob' }
+    showThis.apply({ name: 'Bob' }); // Output: { name: 'Bob' }
+</code></pre>
+<h4><strong><code>.bind()</code></strong></h4>
+<p>Creates a new function that, when called, has its <code>this</code> value set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.</p>
+<ul>
+<li>Does not invoke the function immediately.</li>
+<li>Creates a new function with a bound <code>this</code> value and optionally, pre-set arguments.</li>
+<li>
+<p>Useful for creating a new function that can be called later with the specific <code>this</code> context.</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-javascript">
+    const greetAlice = greet.bind(null, 'Hello', 'Alice');
+    greetAlice(); // Output: Hello, Alice
+</code></pre>
+<pre><code class="language-javascript">
+    const person = {
+      name: 'Alice',
+      showThis() {
+        console.log(this);
+      }
+    };
+
+    const boundShowThis = person.showThis.bind({ name: 'Bob' });
+    boundShowThis(); // Output: { name: 'Bob' }
+</code></pre>
+<hr />
+<h4><strong>Summary Table</strong></h4>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th><code>.call()</code></th>
+<th><code>.apply()</code></th>
+<th><code>.bind()</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Invocation</td>
+<td>Immediate</td>
+<td>Immediate</td>
+<td>Delayed (returns new function)</td>
+</tr>
+<tr>
+<td>Arguments</td>
+<td>Individual (arg1, arg2, ...)</td>
+<td>Array ([arg1, arg2, ...])</td>
+<td>Individual (arg1, arg2, ...)</td>
+</tr>
+<tr>
+<td><code>this</code> Binding</td>
+<td>Immediate, changes <code>this</code> context</td>
+<td>Immediate, changes <code>this</code> context</td>
+<td>Delayed, changes <code>this</code> context for the new function</td>
+</tr>
+<tr>
+<td>Use Case</td>
+<td>Borrowing methods, invoking with a different <code>this</code></td>
+<td>Functions expecting arguments as arrays</td>
+<td>Event handlers, preserving <code>this</code> context</td>
+</tr>
+</tbody>
+</table>]]></description>
+<link>https://sraban.github.io/post/call-bind-apply-differences-in-js</link>
+<pubDate>Tue, 25 Jun 2024 00:23:00 +0500</pubDate>
+</item>
+<item>
 <title>Event Loop, Call Stack, Callback Queue, Event Table, Mapping, Microtask</title>
 <description><![CDATA[<h4><strong>1.Event Loop</strong></h4>
 <p>The Event Loop is a fundamental concept in JavaScript that enables asynchronous programming. It allows non-blocking operations to be executed in a single-threaded environment, managing the execution of multiple operations over time.</p>

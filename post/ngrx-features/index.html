@@ -8,7 +8,7 @@
     <meta name="description" content="Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.">
     <meta name="author" content="Sraban Pahadasingh">
 
-    <title>Most Useful Linux Commands :: &lt;/&gt; FullStack Developer</title>
+    <title>ngRx Features :: &lt;/&gt; FullStack Developer</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="&lt;/&gt; FullStack Developer" href="https://sraban.github.io/rss.xml"/>
@@ -70,56 +70,212 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>Most Useful Linux Commands</h3>
+                <h3>ngRx Features</h3>
                 <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> April 14, 2020 06:09 PM
+                <span class="glyphicon glyphicon-time"></span> June 25, 2024 01:24 AM
                 <hr>
 
-                <p class="post-content"><ul>
+                <p class="post-content"><p>NgRx (pronounced &quot;N-G-R-X&quot;) is a powerful library for managing state in Angular applications using reactive programming principles. It is built on top of <a href="https://rxjs.dev/">RxJS</a>, which provides a way to compose asynchronous and event-based programs using observable sequences. NgRx follows the Redux pattern, a predictable state container for JavaScript applications, making it easier to manage and debug the state of your application. Here’s a detailed breakdown of NgRx and its core concepts:</p>
+<p>Imagine NgRx as a well-organized factory. Each part of the factory represents a core concept:</p>
+<ul>
+<li><strong>Store</strong>: This is the warehouse where all the finished products (state) are stored. It's a single, central location where everything is neatly organized and immutable.</li>
+<li><strong>Actions</strong>: These are the orders or requests that come into the factory, specifying what products (state changes) need to be made.</li>
+<li><strong>Reducers</strong>: These are the machines in the factory that process raw materials (current state and actions) and produce new products (new state).</li>
+<li><strong>Selectors</strong>: These are the quality inspectors that check the products (state) and pick out the parts that are needed.</li>
+<li><strong>Effects</strong>: These are the logistic operations that handle external interactions like fetching raw materials (data fetching) and ensure that everything is running smoothly.</li>
+</ul>
+<h3>Core Concepts of NgRx</h3>
+<ol>
 <li>
-<p><strong>uname</strong> command is simple tool which provides information about the kernel, machine, processor, and operating system</p>
-<p><code>uname -m</code></p>
+<p><strong>Store</strong></p>
+<ul>
+<li>The <strong>Store</strong> is a single source of truth that holds the state of your application. It is an immutable object tree in which the state is represented as a plain JavaScript object. You can think of it as a database that holds all the state of your application.</li>
+<li>Example:</li>
+</ul>
+<pre><code class="language-typescript">
+    interface AppState {
+     counter: number;
+    }
+</code></pre>
 </li>
 <li>
-<p>check ubuntu linux version</p>
-<p><code>lsb_release -a</code></p>
+<p><strong>Actions</strong></p>
+<ul>
+<li><strong>Actions</strong> are payloads of information that send data from your application to your store. They are the only source of information for the store and follow a strict structure with a <code>type</code> field that describes the action being performed and an optional <code>payload</code>.</li>
+<li>Example:</li>
+</ul>
+<pre><code class="language-typescript">
+    export const increment = createAction('[Counter] Increment');
+    export const decrement = createAction('[Counter] Decrement');
+    export const reset = createAction('[Counter] Reset');
+</code></pre>
 </li>
 <li>
-<p>show the amount of free disk space on each mounted disk</p>
-<p><code>df -h</code></p>
+<p><strong>Reducers</strong></p>
+<ul>
+<li><strong>Reducers</strong> are pure functions that determine how the state changes in response to an action. They take the current state and an action as arguments and return a new state.</li>
+<li>Example:</li>
+</ul>
+<pre><code class="language-typescript">
+    const initialState: AppState = { counter: 0 };
+
+    const counterReducer = createReducer(
+     initialState,
+     on(increment, state =&gt; ({ counter: state.counter + 1 })),
+     on(decrement, state =&gt; ({ counter: state.counter - 1 })),
+     on(reset, state =&gt; ({ counter: 0 }))
+    );
+</code></pre>
 </li>
 <li>
-<p>displays the total amount of free space available along with the amount of memory used and swap memory in the system</p>
-<p><code>free --human</code></p>
+<p><strong>Selectors</strong></p>
+<ul>
+<li><strong>Selectors</strong> are pure functions used for obtaining slices of the state from the store. They provide a way to access parts of the state and are memoized to improve performance.</li>
+<li>Example:</li>
+</ul>
+<pre><code class="language-typescript">
+    const selectCounter = (state: AppState) =&gt; state.counter;
+</code></pre>
 </li>
 <li>
-<p>The grep filter searches a file for a particular pattern of characters, and displays all lines that contain that pattern</p>
-<p><code>grep -iRl "your-text-to-find" ./</code></p>
+<p><strong>Effects</strong></p>
+<ul>
+<li><strong>Effects</strong> handle side effects in NgRx, such as fetching data from a server or logging actions. They listen for dispatched actions, perform operations, and then return new actions to the store.</li>
+<li>Example:</li>
+</ul>
+<pre><code class="language-typescript">
+    @Injectable()
+    export class CounterEffects {
+     loadCounters$ = createEffect(() =&gt;
+       this.actions$.pipe(
+         ofType(loadCounters),
+         mergeMap(() =&gt;
+           this.counterService.getAll().pipe(
+             map(counters =&gt; loadCountersSuccess({ counters })),
+             catchError(error =&gt; of(loadCountersFailure({ error })))
+           )
+         )
+       )
+     );
+
+     constructor(
+       private actions$: Actions,
+       private counterService: CounterService
+     ) {}
+    }
+</code></pre>
+</li>
+</ol>
+<h3>Key Features of NgRx</h3>
+<ol>
+<li>
+<p><strong>State Management</strong></p>
+<ul>
+<li>NgRx provides a robust state management solution that helps maintain a consistent state across different parts of the application. It encourages the use of a single source of truth and a unidirectional data flow, making state changes predictable and traceable.</li>
+</ul>
 </li>
 <li>
-<p>displays network connections for Transmission Control Protocol</p>
-<p><code>netstat -tlnp</code></p>
+<p><strong>Immutable State</strong></p>
+<ul>
+<li>The state in NgRx is immutable, meaning it cannot be changed directly. Instead, new states are created based on actions and the current state, which helps prevent accidental mutations and simplifies debugging.</li>
+</ul>
 </li>
 <li>
-<p>show all process even the current process is not associated with any TTY (terminal)</p>
-<p><code>ps ax | grep docker</code></p>
+<p><strong>Reactive Programming</strong></p>
+<ul>
+<li>NgRx leverages RxJS to handle asynchronous operations and state changes reactively. Observables and operators allow for powerful state management patterns and efficient handling of async data flows.</li>
+</ul>
 </li>
 <li>
-<p>Watching activity on Linux with watch and tail commands </p>
-<p><code>watch "dmesg | tail -20"</code></p>
+<p><strong>DevTools Integration</strong></p>
+<ul>
+<li>NgRx integrates with Redux DevTools, providing time-travel debugging and state inspection. This makes it easier to understand and debug the state changes in your application.</li>
+</ul>
 </li>
-</ul></p>
+<li>
+<p><strong>Modularity</strong></p>
+<ul>
+<li>NgRx encourages modular code organization by separating concerns through actions, reducers, selectors, and effects. This separation improves code maintainability and readability.</li>
+</ul>
+</li>
+<li><strong>Side Effects Management</strong>
+<ul>
+<li>NgRx effects handle side effects such as API calls, ensuring that business logic and state management are decoupled and maintainable.</li>
+</ul></li>
+</ol>
+<h3>Examples and Use Cases</h3>
+<h4>Basic Counter Example</h4>
+<ol>
+<li>
+<p><strong>Action Definitions</strong>:</p>
+<pre><code class="language-typescript">
+    export const increment = createAction('[Counter] Increment');
+    export const decrement = createAction('[Counter] Decrement');
+    export const reset = createAction('[Counter] Reset');
+</code></pre>
+</li>
+<li>
+<p><strong>Reducer</strong>:</p>
+<pre><code class="language-typescript">
+    const initialState: AppState = { counter: 0 };
+
+    const counterReducer = createReducer(
+     initialState,
+     on(increment, state =&gt; ({ counter: state.counter + 1 })),
+     on(decrement, state =&gt; ({ counter: state.counter - 1 })),
+     on(reset, state =&gt; ({ counter: 0 }))
+    );
+</code></pre>
+</li>
+<li>
+<p><strong>Selector</strong>:</p>
+<pre><code class="language-typescript">
+    const selectCounter = (state: AppState) =&gt; state.counter;
+</code></pre>
+</li>
+<li>
+<p><strong>Component Integration</strong>:</p>
+<pre><code class="language-typescript">
+    @Component({
+     selector: 'app-counter',
+     template: `
+       &lt;div&gt;Current Count: {{ counter$ | async }}&lt;/div&gt;
+       &lt;button (click)="increment()"&gt;Increment&lt;/button&gt;
+       &lt;button (click)="decrement()"&gt;Decrement&lt;/button&gt;
+       &lt;button (click)="reset()"&gt;Reset&lt;/button&gt;
+     `
+    })
+    export class CounterComponent {
+     counter$ = this.store.select(selectCounter);
+
+     constructor(private store: Store&lt;AppState&gt;) {}
+
+     increment() {
+       this.store.dispatch(increment());
+     }
+
+     decrement() {
+       this.store.dispatch(decrement());
+     }
+
+     reset() {
+       this.store.dispatch(reset());
+     }
+    }
+</code></pre>
+</li>
+</ol></p>
                 <br/><br/>
 
                 <div class="post-info">
                         <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                        <a href="https://sraban.github.io/category/linux">Linux</a>
+                        <a href="https://sraban.github.io/category/javascript">Javascript</a>
                         &nbsp;&nbsp;
 
                     <span class="glyphicon glyphicon-bookmark"></span>
 
-                        <a href="https://sraban.github.io/tag/common">common</a>&nbsp;&nbsp;
+                        <a href="https://sraban.github.io/tag/Javascript">Javascript</a>&nbsp;&nbsp;
                 </div>
 
             </article>
