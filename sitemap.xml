@@ -5,6 +5,12 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
+<loc>https://sraban.github.io/post/event-loop-call-stack-callback-queue-event-table-mapping-microtask/</loc>
+<lastmod>2024-06-24T22:38:00+05:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.00</priority>
+</url>
+<url>
 <loc>https://sraban.github.io/post/custom-pipe-operator-new-feature-debugging-rxjs/</loc>
 <lastmod>2024-06-24T14:13:00+05:00</lastmod>
 <changefreq>daily</changefreq>

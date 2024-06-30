@@ -70,262 +70,71 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="https://sraban.github.io/post/custom-pipe-operator-new-feature-debugging-rxjs">Custom Pipe Operator &amp; New Feature, Debugging - RxJS</a></h3>
+                    <h3><a href="https://sraban.github.io/post/event-loop-call-stack-callback-queue-event-table-mapping-microtask">Event Loop, Call Stack, Callback Queue, Event Table, Mapping, Microtask</a></h3>
                     <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> June 24, 2024 02:13 PM
+                    <span class="glyphicon glyphicon-time"></span> June 24, 2024 10:38 PM
                 
                         <hr>
-                        <p class="post-content"><p>Creating a custom pipe operator in RxJS allows you to encapsulate complex logic into a reusable operator that you can apply to Observables using the <code>pipe</code> method. This can be particularly useful for operations that you need to perform repeatedly across different parts of your application.</p>
-<h4><strong>Key Aspects</strong></h4>
+                        <p class="post-content"><h4><strong>1.Event Loop</strong></h4>
+<p>The Event Loop is a fundamental concept in JavaScript that enables asynchronous programming. It allows non-blocking operations to be executed in a single-threaded environment, managing the execution of multiple operations over time.</p>
 <ul>
-<li><strong>Encapsulation:</strong> Encapsulate complex logic into a reusable function.</li>
-<li><strong>Reusability:</strong> Use the same operator in different parts of your application.</li>
-<li><strong>Readability:</strong> Improve code readability by abstracting complex logic.</li>
+<li><strong>How It Works</strong>: The Event Loop constantly checks the Call Stack to see if it's empty. If it is, it pushes the first callback from the Callback Queue (or Microtask Queue) onto the Call Stack to be executed.</li>
 </ul>
-<p>Here’s a detailed guide on how to create a custom pipe operator in RxJS:</p>
-<h2><strong>Steps to Create a Custom Pipe Operator in RxJS</strong></h2>
-<h3><strong>1. Import Necessary Functions</strong></h3>
-<p>First, import the necessary functions from RxJS. You’ll primarily need <code>Observable</code> and <code>OperatorFunction</code> from <code>rxjs</code>, and <code>map</code> or any other RxJS operators you may want to compose within your custom operator.</p>
-<pre><code class="language-javascript">
-    import { Observable, OperatorFunction } from 'rxjs';
-    import { map } from 'rxjs/operators';
-</code></pre>
-<h3><strong>2. Define the Operator Function</strong></h3>
-<p>Define a function that returns an <code>OperatorFunction</code>. This function should take the parameters you need for your custom logic and return a function that accepts an <code>Observable</code> and returns a new <code>Observable</code>.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*5qxfasS_NYSn5nO4JFFNDQ.png" alt="Event Loop Diagram" title="Event Loop Diagram" /></p>
+<h4><strong>2.Call Stack</strong></h4>
+<p>The Call Stack is a data structure that keeps track of function calls. When a function is called, it is pushed onto the stack, and when the function completes, it is popped off the stack.</p>
 <ul>
-<li>The <code>OperatorFunction&lt;T, R&gt;</code> type represents a function that takes an <code>Observable&lt;T&gt;</code> and returns an <code>Observable&lt;R&gt;</code>.</li>
+<li><strong>Example</strong>:</li>
 </ul>
 <pre><code class="language-javascript">
-    function myCustomOperator&lt;T, R&gt;(param1: T): OperatorFunction&lt;T, R&gt; {
-      return (source: Observable&lt;T&gt;): Observable&lt;R&gt; =&gt; {
-        // Implement your custom logic here
-        return source.pipe(
-          map(value =&gt; {
-            // Perform transformation using param1 and value
-            const result = /* some transformation logic */;
-            return result as unknown as R;
-          })
-        );
-      };
-    }
-</code></pre>
-<h3><strong>3. Implement the Custom Logic</strong></h3>
-<p>Inside the function, implement the custom logic. This could involve transforming the data, filtering it, or combining it with other streams. Use the existing RxJS operators to build up your functionality.</p>
-<ul>
-<li>For example, let’s create a custom operator that multiplies each emitted value by a specified factor.</li>
-</ul>
-<pre><code class="language-javascript">
-    function multiplyBy&lt;T&gt;(factor: number): OperatorFunction&lt;number, number&gt; {
-      return (source: Observable&lt;number&gt;): Observable&lt;number&gt; =&gt; {
-        return new Observable&lt;number&gt;(subscriber =&gt; {
-          const subscription = source.subscribe({
-            next(value) {
-              subscriber.next(value * factor);
-            },
-            error(err) {
-              subscriber.error(err);
-            },
-            complete() {
-              subscriber.complete();
-            }
-          });
+      function greet() {
+        console.log('Hello');
+      }
 
-          // Return the teardown logic
-          return () =&gt; {
-            subscription.unsubscribe();
-          };
-        });
-      };
-    }
-</code></pre>
-<h3><strong>4. Use the Custom Operator</strong></h3>
-<p>Use your custom operator within an Observable pipeline by calling <code>pipe</code> and passing your custom operator.</p>
+      function sayGoodbye() {
+        console.log('Goodbye');
+      }
+
+      greet(); // Pushed onto the Call Stack
+      sayGoodbye(); // Pushed onto the Call Stack after greet() completes</code></pre>
+<h4><strong>3.Callback Queue</strong></h4>
+<p>The Callback Queue (or Task Queue) is a queue where callback functions are stored after being moved from the Event Table (or task scheduler).</p>
 <ul>
-<li>Example usage:</li>
+<li><strong>Example</strong>:</li>
 </ul>
 <pre><code class="language-javascript">
-    import { of } from 'rxjs';
-
-    const source$ = of(1, 2, 3, 4, 5);
-
-    source$
-      .pipe(
-        multiplyBy(10)  // Use custom operator here
-      )
-      .subscribe(value =&gt; console.log(value));  // Output: 10, 20, 30, 40, 50
+      setTimeout(() =&gt; {
+        console.log('This is a callback');
+      }, 1000);
 </code></pre>
-<h3><strong>5. Handling Errors and Completion</strong></h3>
-<p>Ensure that your custom operator properly handles errors and completion. Pass errors and completion notifications from the source Observable to the subscriber.</p>
+<h4><strong>4.Event Table</strong></h4>
+<p>The Event Table is a data structure that keeps track of events and their associated callback functions. When an event occurs, the corresponding callback function is moved to the Callback Queue.</p>
 <ul>
-<li>Example with error handling:</li>
+<li><strong>Example</strong>:</li>
 </ul>
 <pre><code class="language-javascript">
-    function safeDivideBy(divisor: number): OperatorFunction&lt;number, number&gt; {
-      return (source: Observable&lt;number&gt;): Observable&lt;number&gt; =&gt; {
-        return new Observable&lt;number&gt;(subscriber =&gt; {
-          const subscription = source.subscribe({
-            next(value) {
-              if (divisor === 0) {
-                subscriber.error(new Error('Division by zero'));
-              } else {
-                subscriber.next(value / divisor);
-              }
-            },
-            error(err) {
-              subscriber.error(err);
-            },
-            complete() {
-              subscriber.complete();
-            }
-          });
-
-          return () =&gt; {
-            subscription.unsubscribe();
-          };
-        });
-      };
-    }
-</code></pre>
-<ul>
-<li>Usage:</li>
-</ul>
-<pre><code class="language-javascript">
-    source$
-      .pipe(
-        safeDivideBy(2)  // Use custom operator
-      )
-      .subscribe({
-        next: value =&gt; console.log(value),
-        error: err =&gt; console.error(err.message)  // Output: 0.5, 1, 1.5, 2, 2.5
+      document.addEventListener('click', () =&gt; {
+        console.log('Document clicked');
       });
 </code></pre>
-<h3><strong>6. Composing with Other Operators</strong></h3>
-<p>You can combine your custom operator with other existing RxJS operators to build more complex pipelines.</p>
+<h4><strong>5.Microtasks</strong></h4>
+<p>Microtasks are similar to tasks in the Callback Queue but have higher priority. Microtasks include operations like <code>Promise</code> callbacks and <code>MutationObserver</code> callbacks.</p>
 <ul>
-<li>Example with additional operators:</li>
+<li><strong>Example</strong>:</li>
 </ul>
 <pre><code class="language-javascript">
-    source$
-      .pipe(
-        multiplyBy(2),
-        safeDivideBy(4)
-      )
-      .subscribe(value =&gt; console.log(value));  // Output: 0.5, 1, 1.5, 2, 2.5
+      Promise.resolve().then(() =&gt; {
+        console.log('Microtask');
+      });
 </code></pre>
-<hr />
-<h3><strong>1. Multicasting Operators</strong></h3>
-<h4><strong>Overview</strong></h4>
-<p>Multicasting allows multiple subscribers to share a single subscription to an Observable, optimizing resource usage. Operators like <code>share</code> and <code>shareReplay</code> are commonly used for this purpose.</p>
-<p><strong>Example with <code>shareReplay</code>:</strong></p>
-<pre><code class="language-javascript">import { of } from 'rxjs';
-import { shareReplay } from 'rxjs/operators';
-
-const source$ = of(1, 2, 3).pipe(shareReplay(1));
-
-source$.subscribe(value =&gt; console.log(`Subscriber 1: ${value}`));
-source$.subscribe(value =&gt; console.log(`Subscriber 2: ${value}`));</code></pre>
-<h3><strong>2. Higher-Order Observables</strong></h3>
-<h4><strong>Overview</strong></h4>
-<p>Higher-order Observables are Observables that emit other Observables. Operators like <code>switchMap</code>, <code>concatMap</code>, and <code>mergeMap</code> help manage these higher-order streams.</p>
-<p><strong>Example with <code>switchMap</code>:</strong></p>
-<pre><code class="language-javascript">import { of, interval } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-
-const source$ = interval(1000).pipe(
-  switchMap(() =&gt; of('new observable'))
-);
-
-source$.subscribe(value =&gt; console.log(value));</code></pre>
-<h3><strong>3. Error Handling Enhancements</strong></h3>
-<h4><strong>Overview</strong></h4>
-<p>Advanced error handling in RxJS includes operators like <code>catchError</code> and <code>retryWhen</code> to manage errors more effectively.</p>
-<p><strong>Example with <code>catchError</code>:</strong></p>
-<pre><code class="language-javascript">import { of, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-
-const source$ = throwError('An error occurred').pipe(
-  catchError(error =&gt; of(`Caught: ${error}`))
-);
-
-source$.subscribe(value =&gt; console.log(value));</code></pre>
-<h3><strong>4. Scheduling and Concurrency Control</strong></h3>
-<h4><strong>Overview</strong></h4>
-<p>Schedulers in RxJS manage the timing of Observable execution. They help control concurrency and the execution context, which is crucial for optimizing performance in complex applications.</p>
-<p><strong>Example with <code>asyncScheduler</code>:</strong></p>
-<pre><code class="language-javascript">import { of, asyncScheduler } from 'rxjs';
-import { observeOn } from 'rxjs/operators';
-
-const source$ = of('Hello World').pipe(
-  observeOn(asyncScheduler)
-);
-
-source$.subscribe(value =&gt; console.log(value)); // Executes asynchronously</code></pre>
-<h3><strong>5. Improved Type Support</strong></h3>
-<h4><strong>Overview</strong></h4>
-<p>Enhanced type definitions in TypeScript for RxJS operators provide better type safety and auto-completion, making it easier to write and maintain code.</p>
-<p><strong>Example with TypeScript:</strong></p>
-<pre><code class="language-typescript">
-    import { of } from 'rxjs';
-    import { map } from 'rxjs/operators';
-
-    const source$ = of&lt;number&gt;(1, 2, 3).pipe(
-      map(value =&gt; value * 2)
-    );
-
-    source$.subscribe(value =&gt; console.log(value)); // Outputs: 2, 4, 6
-</code></pre>
-<hr />
-<h3><strong>Tooling and Development Tools</strong></h3>
-<h4><strong>Overview</strong></h4>
-<p>Tools that support RxJS development have evolved, making it easier to develop, debug, and maintain reactive applications. These tools range from debugging utilities to code generators and performance monitors.</p>
-<h4><strong>Key Tools</strong></h4>
-<ul>
-<li><strong>RxJS DevTools:</strong> Provides a way to visualize and debug RxJS streams in a browser.</li>
-<li><strong>RxFiddle:</strong> A playground for experimenting with RxJS code and observing its behavior in real-time.</li>
-<li><strong>RxJS Marbles:</strong> A tool for testing RxJS observables using marble diagrams.</li>
-</ul>
-<h4><strong>Detailed Tooling Overview</strong></h4>
-<p><strong>RxJS DevTools:</strong></p>
-<ul>
-<li><strong>Features:</strong> 
-<ul>
-<li>Visualizes Observable streams.</li>
-<li>Debugs subscription chains and events.</li>
-<li>Provides insights into stream behaviors and performance.</li>
-</ul></li>
-<li><strong>Usage:</strong> 
-<ul>
-<li>Install as a Chrome extension or use a standalone version.</li>
-<li>Connect it to your application to start visualizing streams.</li>
-</ul></li>
-</ul>
-<p><strong>RxFiddle:</strong></p>
-<ul>
-<li><strong>Features:</strong>
-<ul>
-<li>Interactive RxJS playground.</li>
-<li>Supports visualization of operators and data flow.</li>
-</ul></li>
-<li><strong>Usage:</strong>
-<ul>
-<li>Write and run RxJS code snippets.</li>
-<li>Observe how data flows through operators.</li>
-</ul></li>
-</ul>
-<p><strong>RxJS Marbles:</strong></p>
-<ul>
-<li><strong>Features:</strong>
-<ul>
-<li>Enables marble testing for RxJS observables.</li>
-<li>Provides a visual representation of stream interactions.</li>
-</ul></li>
-<li><strong>Usage:</strong>
-<ul>
-<li>Write tests using marble diagrams to simulate observable emissions.</li>
-<li>Verify the expected behavior of streams and operators.</li>
-</ul></li>
-</ul></p>
+<h4><strong>6.Mapping</strong></h4>
+<p>Mapping in the context of the event loop refers to how the execution context is transferred between the different structures (like the Call Stack and Callback Queue) based on the Event Loop's management.</p>
+<h4><strong>Summary:</strong></h4>
+<p>The Order of execution as follows</p>
+<p><em>Call Stack(functions) --&gt; Job Queue(promises, mutationObserver) ---&gt; Callable Queue(setTimeout(), ....)</em></p>
+<p>Reference:
+<a href="https://gurindernarang.medium.com/event-looping-in-js-part-1-3cb8fa08121a" title="medium">Event Looping in JS</a></p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -394,11 +203,11 @@ source$.subscribe(value =&gt; console.log(value)); // Executes asynchronously</c
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="https://sraban.github.io/post/event-loop-call-stack-callback-queue-event-table-mapping-microtask">Event Loop, Call Stack, Callback Queue, Event Table, Mapping, Microtask</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/custom-pipe-operator-new-feature-debugging-rxjs">Custom Pipe Operator &amp; New Feature, Debugging - RxJS</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/when-and-how-to-use-rxjs">When and How to use RxJS</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/angular-performance-optimisation">Angular Performance Optimisation</a></li>
                         <li class="list-group-item"><a href="https://sraban.github.io/post/es6-features">ES6 Features</a></li>
-                        <li class="list-group-item"><a href="https://sraban.github.io/post/tsconfigjson-configuration-details">tsConfig.json configuration details</a></li>
                 </ul>
             </div>
         
@@ -435,11 +244,11 @@ source$.subscribe(value =&gt; console.log(value)); // Executes asynchronously</c
                     <div class="panel-body">
                         <ul class="list-inline">
                             <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/command" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">command</a>
-<a style="font-size: 27px" class="tag_cloud" href="https://sraban.github.io/tag/common" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">common</a>
-<a style="font-size: 30px" class="tag_cloud" href="https://sraban.github.io/tag/javascript" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">Javascript</a>
+<a style="font-size: 24px" class="tag_cloud" href="https://sraban.github.io/tag/common" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">common</a>
+<a style="font-size: 30px" class="tag_cloud" href="https://sraban.github.io/tag/javascript" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">Javascript</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/javascript" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">javascript</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/mysql" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">MySQL</a>
-<a style="font-size: 15px" class="tag_cloud" href="https://sraban.github.io/tag/php" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PHP</a>
+<a style="font-size: 14px" class="tag_cloud" href="https://sraban.github.io/tag/php" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PHP</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://sraban.github.io/tag/server" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Server</a>
 
                         </ul>

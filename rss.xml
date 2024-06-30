@@ -6,6 +6,70 @@
 <description>Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.</description>
 <language>en-us</language>
 <item>
+<title>Event Loop, Call Stack, Callback Queue, Event Table, Mapping, Microtask</title>
+<description><![CDATA[<h4><strong>1.Event Loop</strong></h4>
+<p>The Event Loop is a fundamental concept in JavaScript that enables asynchronous programming. It allows non-blocking operations to be executed in a single-threaded environment, managing the execution of multiple operations over time.</p>
+<ul>
+<li><strong>How It Works</strong>: The Event Loop constantly checks the Call Stack to see if it's empty. If it is, it pushes the first callback from the Callback Queue (or Microtask Queue) onto the Call Stack to be executed.</li>
+</ul>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*5qxfasS_NYSn5nO4JFFNDQ.png" alt="Event Loop Diagram" title="Event Loop Diagram" /></p>
+<h4><strong>2.Call Stack</strong></h4>
+<p>The Call Stack is a data structure that keeps track of function calls. When a function is called, it is pushed onto the stack, and when the function completes, it is popped off the stack.</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+      function greet() {
+        console.log('Hello');
+      }
+
+      function sayGoodbye() {
+        console.log('Goodbye');
+      }
+
+      greet(); // Pushed onto the Call Stack
+      sayGoodbye(); // Pushed onto the Call Stack after greet() completes</code></pre>
+<h4><strong>3.Callback Queue</strong></h4>
+<p>The Callback Queue (or Task Queue) is a queue where callback functions are stored after being moved from the Event Table (or task scheduler).</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+      setTimeout(() =&gt; {
+        console.log('This is a callback');
+      }, 1000);
+</code></pre>
+<h4><strong>4.Event Table</strong></h4>
+<p>The Event Table is a data structure that keeps track of events and their associated callback functions. When an event occurs, the corresponding callback function is moved to the Callback Queue.</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+      document.addEventListener('click', () =&gt; {
+        console.log('Document clicked');
+      });
+</code></pre>
+<h4><strong>5.Microtasks</strong></h4>
+<p>Microtasks are similar to tasks in the Callback Queue but have higher priority. Microtasks include operations like <code>Promise</code> callbacks and <code>MutationObserver</code> callbacks.</p>
+<ul>
+<li><strong>Example</strong>:</li>
+</ul>
+<pre><code class="language-javascript">
+      Promise.resolve().then(() =&gt; {
+        console.log('Microtask');
+      });
+</code></pre>
+<h4><strong>6.Mapping</strong></h4>
+<p>Mapping in the context of the event loop refers to how the execution context is transferred between the different structures (like the Call Stack and Callback Queue) based on the Event Loop's management.</p>
+<h4><strong>Summary:</strong></h4>
+<p>The Order of execution as follows</p>
+<p><em>Call Stack(functions) --&gt; Job Queue(promises, mutationObserver) ---&gt; Callable Queue(setTimeout(), ....)</em></p>
+<p>Reference:
+<a href="https://gurindernarang.medium.com/event-looping-in-js-part-1-3cb8fa08121a" title="medium">Event Looping in JS</a></p>]]></description>
+<link>https://sraban.github.io/post/event-loop-call-stack-callback-queue-event-table-mapping-microtask</link>
+<pubDate>Mon, 24 Jun 2024 22:38:00 +0500</pubDate>
+</item>
+<item>
 <title>Custom Pipe Operator & New Feature, Debugging - RxJS</title>
 <description><![CDATA[<p>Creating a custom pipe operator in RxJS allows you to encapsulate complex logic into a reusable operator that you can apply to Observables using the <code>pipe</code> method. This can be particularly useful for operations that you need to perform repeatedly across different parts of your application.</p>
 <h4><strong>Key Aspects</strong></h4>
