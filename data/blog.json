@@ -10,13 +10,13 @@
 		"analytics": "",
 		"only_titles": ""
 	},
-	"customValues": [
-		{
-			"title": "AI",
-			"value": "<div class=\"panel-body\">\r\n\r\n<a target=\"_blank\" href=\"https:\/\/sraban.github.io\/gpt\">Notes<\/a>\r\n\r\n\r\n<\/div>\t",
-			"id": 1719064648
+	"customValues": {
+		"1": {
+			"title": "Resources",
+			"value": "<div class=\"panel-body\"> \r\n<a target=\"_blank\" href=\"https:\/\/sraban.github.io\/gpt\">Notes<\/a> | \r\n<a target=\"_blank\" href=\"https:\/\/sraban.github.io\/snippet\">Snippets<\/a>\r\n<\/div>",
+			"id": 1719252279
 		}
-	],
+	},
 	"pages": [
 		{
 			"title": "About",
