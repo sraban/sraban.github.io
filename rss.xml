@@ -6,6 +6,466 @@
 <description>Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.</description>
 <language>en-us</language>
 <item>
+<title>Common Errors in JS and from Rest API</title>
+<description><![CDATA[<p>In JavaScript, errors can be categorized into different types, including logical errors, runtime errors, and syntax errors. Logical errors occur when the code does not behave as intended, often due to a mistake in the code logic. There are many other common errors that you might encounter or need to handle in JavaScript.</p>
+<h2>List of JS Errors:</h2>
+<h4>1. <strong>Division by Zero</strong></h4>
+<ul>
+<li><strong>Description:</strong> Attempting to divide a number by zero, which is mathematically undefined. In JavaScript, this results in <code>Infinity</code> for positive numbers and <code>-Infinity</code> for negative numbers.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    let result = 10 / 0;  // Result is Infinity
+</code></pre>
+</li>
+</ul>
+<h4>2. <strong>Null or Undefined Reference</strong></h4>
+<ul>
+<li><strong>Description:</strong> Trying to access a property or call a method on <code>null</code> or <code>undefined</code>.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    let obj = null;
+    console.log(obj.property);  // Throws TypeError: Cannot read property 'property' of null
+</code></pre>
+</li>
+</ul>
+<h4>3. <strong>NaN (Not a Number)</strong></h4>
+<ul>
+<li><strong>Description:</strong> Using a mathematical operation that does not produce a meaningful number, resulting in <code>NaN</code>.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    let result = "string" / 2;  // Result is NaN
+</code></pre>
+</li>
+</ul>
+<h4>4. <strong>Array Out of Bounds</strong></h4>
+<ul>
+<li><strong>Description:</strong> Accessing an array element with an index that is outside the array's range.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    let array = [1, 2, 3];
+    console.log(array[5]);  // Result is undefined
+</code></pre>
+</li>
+</ul>
+<h4>5. <strong>Invalid JSON Parsing</strong></h4>
+<ul>
+<li><strong>Description:</strong> Attempting to parse a string as JSON when it is not properly formatted.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    let jsonString = "{ invalid JSON }";
+    JSON.parse(jsonString);  // Throws SyntaxError: Unexpected token i in JSON at position 2
+</code></pre>
+</li>
+</ul>
+<h4>6. <strong>Division by Zero in Modulo Operation</strong></h4>
+<ul>
+<li><strong>Description:</strong> Using zero as the divisor in a modulo operation.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    let result = 10 % 0;  // Result is NaN
+</code></pre>
+</li>
+</ul>
+<h4>7. <strong>Negative Square Root</strong></h4>
+<ul>
+<li><strong>Description:</strong> Calculating the square root of a negative number, which is not a real number in real number space.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    let result = Math.sqrt(-1);  // Result is NaN
+</code></pre>
+</li>
+</ul>
+<h4>8. <strong>Exponential Overflow</strong></h4>
+<ul>
+<li><strong>Description:</strong> Exceeding the upper limit of the number range that JavaScript can handle.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    let result = Math.pow(10, 1000);  // Result is Infinity
+</code></pre>
+</li>
+</ul>
+<h4>9. <strong>Function Argument Count Mismatch</strong></h4>
+<ul>
+<li><strong>Description:</strong> Passing an incorrect number of arguments to a function, which can lead to unexpected results.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    function add(a, b) {
+      return a + b;
+    }
+    let result = add(1);  // Result is NaN because b is undefined
+</code></pre>
+</li>
+</ul>
+<h4>10. <strong>Circular JSON Structure</strong></h4>
+<ul>
+<li><strong>Description:</strong> Attempting to stringify an object with circular references, which is not possible.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    let obj = {};
+    obj.self = obj;
+    JSON.stringify(obj);  // Throws TypeError: Converting circular structure to JSON
+</code></pre>
+</li>
+</ul>
+<h4>11. <strong>Array Length Modification</strong></h4>
+<ul>
+<li><strong>Description:</strong> Changing the length of an array manually can cause truncation or add undefined elements.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    let array = [1, 2, 3];
+    array.length = 5;
+    console.log(array);  // Result is [1, 2, 3, undefined, undefined]
+</code></pre>
+</li>
+</ul>
+<h4>12. <strong>Invalid Function Constructor</strong></h4>
+<ul>
+<li><strong>Description:</strong> Passing incorrect or malicious code to the <code>Function</code> constructor.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    let func = new Function('console.log("hello');  // Throws SyntaxError: Unexpected end of input
+</code></pre>
+</li>
+</ul>
+<h4>13. <strong>Range Error</strong></h4>
+<ul>
+<li><strong>Description:</strong> Using a number outside the allowable range for a specific function.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    let result = new Array(-1);  // Throws RangeError: Invalid array length
+</code></pre>
+</li>
+</ul>
+<h4>14. <strong>Type Error</strong></h4>
+<ul>
+<li><strong>Description:</strong> Performing an operation on a value that is not of the expected type.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    let num = 123;
+    num.toUpperCase();  // Throws TypeError: num.toUpperCase is not a function
+</code></pre>
+</li>
+</ul>
+<h4>15. <strong>Stack Overflow</strong></h4>
+<ul>
+<li><strong>Description:</strong> Caused by excessive recursion, leading to the call stack exceeding its limit.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    function recursive() {
+      recursive();
+    }
+    recursive();  // Throws RangeError: Maximum call stack size exceeded
+</code></pre>
+</li>
+</ul>
+<h4>16. <strong>Invalid Array Index</strong></h4>
+<ul>
+<li><strong>Description:</strong> Using a non-integer or negative index to access an array element.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    let array = [1, 2, 3];
+    console.log(array[-1]);  // Result is undefined
+</code></pre>
+</li>
+</ul>
+<h4>17. <strong>Invalid Date</strong></h4>
+<ul>
+<li><strong>Description:</strong> Creating a <code>Date</code> object with invalid date values.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">
+    let date = new Date('invalid date');  // Result is Invalid Date
+</code></pre>
+</li>
+</ul>
+<h4>Conclusion</h4>
+<p>Understanding these common errors can help you write more robust JavaScript code and handle edge cases effectively. Proper error handling and validation can prevent many of these issues from occurring, improving both the stability and user experience of your applications.</p>
+<h2>List of Rest API Errors</h2>
+<p>REST API errors can occur due to various reasons ranging from client errors to server issues. Properly handling and returning meaningful error responses in a REST API can significantly improve the developer experience and make debugging easier. Here’s a list of common REST API errors along with descriptions and examples.</p>
+<h4>1. <strong>400 Bad Request</strong></h4>
+<ul>
+<li><strong>Description:</strong> The server cannot process the request due to client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Bad Request",
+      "message": "Invalid JSON format in request body."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>2. <strong>401 Unauthorized</strong></h4>
+<ul>
+<li><strong>Description:</strong> The client must authenticate itself to get the requested response. This is typically used when authentication is required and has failed or has not yet been provided.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Unauthorized",
+      "message": "Authentication is required to access this resource."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>3. <strong>403 Forbidden</strong></h4>
+<ul>
+<li><strong>Description:</strong> The server understands the request but refuses to authorize it. This status is used when the client does not have the necessary permissions for the resource.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Forbidden",
+      "message": "You do not have permission to access this resource."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>4. <strong>404 Not Found</strong></h4>
+<ul>
+<li><strong>Description:</strong> The server cannot find the requested resource. This status is typically used when the endpoint is valid but the resource itself does not exist.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Not Found",
+      "message": "The requested resource could not be found."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>5. <strong>405 Method Not Allowed</strong></h4>
+<ul>
+<li><strong>Description:</strong> The request method is not supported for the requested resource. For example, an API might support <code>GET</code> but not <code>POST</code> for a specific endpoint.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Method Not Allowed",
+      "message": "The requested HTTP method is not allowed for this endpoint."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>6. <strong>406 Not Acceptable</strong></h4>
+<ul>
+<li><strong>Description:</strong> The requested resource is capable of generating only content not acceptable according to the Accept headers sent in the request.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Not Acceptable",
+      "message": "The requested content type is not supported by this resource."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>7. <strong>409 Conflict</strong></h4>
+<ul>
+<li><strong>Description:</strong> The request could not be processed because of conflict in the request, such as an edit conflict between multiple simultaneous updates.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Conflict",
+      "message": "The request could not be completed due to a conflict with the current state of the resource."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>8. <strong>410 Gone</strong></h4>
+<ul>
+<li><strong>Description:</strong> The requested resource is no longer available and has been permanently removed.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Gone",
+      "message": "The requested resource is no longer available and will not be available again."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>9. <strong>415 Unsupported Media Type</strong></h4>
+<ul>
+<li><strong>Description:</strong> The request entity has a media type which the server or resource does not support. For example, the client uploads an image in a format not supported by the server.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Unsupported Media Type",
+      "message": "The requested media type is not supported."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>10. <strong>422 Unprocessable Entity</strong></h4>
+<ul>
+<li><strong>Description:</strong> The request was well-formed but was unable to be followed due to semantic errors. This is commonly used for validation errors in APIs.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Unprocessable Entity",
+      "message": "Validation failed for one or more fields.",
+      "details": {
+        "field": "username",
+        "error": "Username already exists."
+      }
+    }
+</code></pre>
+</li>
+</ul>
+<h4>11. <strong>429 Too Many Requests</strong></h4>
+<ul>
+<li><strong>Description:</strong> The user has sent too many requests in a given amount of time (&quot;rate limiting&quot;).</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Too Many Requests",
+      "message": "You have exceeded the rate limit. Please try again later."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>12. <strong>500 Internal Server Error</strong></h4>
+<ul>
+<li><strong>Description:</strong> The server encountered a situation it doesn't know how to handle. This is a generic error message for unexpected conditions.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Internal Server Error",
+      "message": "An unexpected error occurred on the server."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>13. <strong>502 Bad Gateway</strong></h4>
+<ul>
+<li><strong>Description:</strong> The server, while acting as a gateway or proxy, received an invalid response from the upstream server it accessed in attempting to fulfill the request.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Bad Gateway",
+      "message": "The server received an invalid response from the upstream server."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>14. <strong>503 Service Unavailable</strong></h4>
+<ul>
+<li><strong>Description:</strong> The server is not ready to handle the request. Common causes are a server that is down for maintenance or that is overloaded.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Service Unavailable",
+      "message": "The service is temporarily unavailable. Please try again later."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>15. <strong>504 Gateway Timeout</strong></h4>
+<ul>
+<li><strong>Description:</strong> The server, while acting as a gateway or proxy, did not receive a timely response from the upstream server specified by the URI.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Gateway Timeout",
+      "message": "The server did not receive a timely response from the upstream server."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>16. <strong>502 Invalid Token</strong></h4>
+<ul>
+<li><strong>Description:</strong> The token provided in the request is invalid, expired, or missing.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Invalid Token",
+      "message": "The token provided is either invalid or has expired. Please authenticate again."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>17. <strong>404 Resource Not Found</strong></h4>
+<ul>
+<li><strong>Description:</strong> The requested resource could not be found. This is similar to a generic 404 error but more specific to API resources.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Resource Not Found",
+      "message": "The specified resource was not found."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>18. <strong>400 Missing Parameters</strong></h4>
+<ul>
+<li><strong>Description:</strong> Required parameters for the request are missing or incomplete.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Missing Parameters",
+      "message": "Required parameters are missing from the request."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>19. <strong>405 Rate Limit Exceeded</strong></h4>
+<ul>
+<li><strong>Description:</strong> The client has exceeded the number of requests allowed in a given period.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Rate Limit Exceeded",
+      "message": "You have made too many requests in a short period of time. Please slow down."
+    }
+</code></pre>
+</li>
+</ul>
+<h4>20. <strong>403 Insufficient Permissions</strong></h4>
+<ul>
+<li><strong>Description:</strong> The client does not have the required permissions to access the resource.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-json">
+    {
+      "error": "Insufficient Permissions",
+      "message": "You do not have the necessary permissions to access this resource."
+    }
+</code></pre>
+</li>
+</ul>]]></description>
+<link>https://sraban.github.io/post/common-errors-in-js-and-from-rest-api</link>
+<pubDate>Tue, 25 Jun 2024 01:49:00 +0500</pubDate>
+</item>
+<item>
 <title>ngRx Features</title>
 <description><![CDATA[<p>NgRx (pronounced &quot;N-G-R-X&quot;) is a powerful library for managing state in Angular applications using reactive programming principles. It is built on top of <a href="https://rxjs.dev/">RxJS</a>, which provides a way to compose asynchronous and event-based programs using observable sequences. NgRx follows the Redux pattern, a predictable state container for JavaScript applications, making it easier to manage and debug the state of your application. Here’s a detailed breakdown of NgRx and its core concepts:</p>
 <p>Imagine NgRx as a well-organized factory. Each part of the factory represents a core concept:</p>
