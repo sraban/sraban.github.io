@@ -271,7 +271,7 @@
 </code></pre>
 </li>
 </ul>
-<h3>21. *<em>`&lt;input type=&quot;file&quot; accept=&quot;image/</em>&quot;&gt;` Attribute**</h3>
+<h3>21. <strong><code>&lt;input type="file" accept="image/\*"&gt;</code> Attribute</strong></h3>
 <ul>
 <li><strong>Description:</strong> Limits file selection to specific file types.</li>
 <li><strong>Features:</strong> Offers file type filtering.</li>
