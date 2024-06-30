@@ -6,6 +6,299 @@
 <description>Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.</description>
 <language>en-us</language>
 <item>
+<title>Newly added HTML features</title>
+<description><![CDATA[<p>Here’s a list of some of the latest HTML features as documented by MDN Web Docs. These features enhance functionality, improve performance, and provide more flexibility for modern web development.</p>
+<h3>1. <strong><code>&lt;dialog&gt;</code> Element</strong></h3>
+<ul>
+<li><strong>Description:</strong> Represents a dialog box or other interactive component such as a modal.</li>
+<li><strong>Features:</strong> Supports methods like <code>.showModal()</code> and <code>.close()</code>.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;dialog id="myDialog"&gt;Hello, I am a dialog!&lt;/dialog&gt;
+    &lt;button onclick="document.getElementById('myDialog').showModal()"&gt;Open Dialog&lt;/button&gt;
+</code></pre>
+</li>
+</ul>
+<h3>2. <strong><code>&lt;template&gt;</code> Element</strong></h3>
+<ul>
+<li><strong>Description:</strong> Holds client-side content that is not to be rendered when the page loads but can be used later via JavaScript.</li>
+<li><strong>Features:</strong> Ideal for reusable code blocks.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;template id="myTemplate"&gt;
+      &lt;p&gt;Template content goes here.&lt;/p&gt;
+    &lt;/template&gt;
+    &lt;script&gt;
+      const template = document.getElementById('myTemplate').content.cloneNode(true);
+      document.body.appendChild(template);
+    &lt;/script&gt;
+</code></pre>
+</li>
+</ul>
+<h3>3. <strong><code>&lt;picture&gt;</code> Element</strong></h3>
+<ul>
+<li><strong>Description:</strong> Provides an easy way to offer alternative versions of an image for different device displays.</li>
+<li><strong>Features:</strong> Works with <code>srcset</code> and <code>media</code> attributes for responsive images.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;picture&gt;
+      &lt;source srcset="image.webp" type="image/webp"&gt;
+      &lt;source srcset="image.jpg" type="image/jpeg"&gt;
+      &lt;img src="image.jpg" alt="A descriptive text"&gt;
+    &lt;/picture&gt;
+</code></pre>
+</li>
+</ul>
+<h3>4. <strong><code>&lt;input type="color"&gt;</code> Element</strong></h3>
+<ul>
+<li><strong>Description:</strong> Allows users to select a color, offering a color picker interface.</li>
+<li><strong>Features:</strong> Provides a default color input UI.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="favcolor"&gt;Choose a color:&lt;/label&gt;
+    &lt;input type="color" id="favcolor" name="favcolor" value="#ff0000"&gt;
+</code></pre>
+</li>
+</ul>
+<h3>5. <strong><code>&lt;input type="date"&gt;</code> Element</strong></h3>
+<ul>
+<li><strong>Description:</strong> Provides a date picker, allowing users to select a date.</li>
+<li><strong>Features:</strong> No need for JavaScript libraries for basic date picking.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="birthday"&gt;Select your birthday:&lt;/label&gt;
+    &lt;input type="date" id="birthday" name="birthday"&gt;
+</code></pre>
+</li>
+</ul>
+<h3>6. <strong><code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> Elements</strong></h3>
+<ul>
+<li><strong>Description:</strong> Allows the creation of collapsible content.</li>
+<li><strong>Features:</strong> <code>&lt;summary&gt;</code> defines the visible heading, while <code>&lt;details&gt;</code> contains the collapsible content.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;details&gt;
+      &lt;summary&gt;More info&lt;/summary&gt;
+      &lt;p&gt;Hidden content here.&lt;/p&gt;
+    &lt;/details&gt;
+</code></pre>
+</li>
+</ul>
+<h3>7. <strong><code>&lt;datalist&gt;</code> Element</strong></h3>
+<ul>
+<li><strong>Description:</strong> Provides a list of pre-defined options for an <code>&lt;input&gt;</code> element.</li>
+<li><strong>Features:</strong> Enhances user input with suggestions.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="browser"&gt;Choose your browser:&lt;/label&gt;
+    &lt;input list="browsers" id="browser" name="browser"&gt;
+    &lt;datalist id="browsers"&gt;
+      &lt;option value="Chrome"&gt;
+      &lt;option value="Firefox"&gt;
+      &lt;option value="Safari"&gt;
+      &lt;option value="Edge"&gt;
+    &lt;/datalist&gt;
+</code></pre>
+</li>
+</ul>
+<h3>8. <strong><code>&lt;input type="range"&gt;</code> Element</strong></h3>
+<ul>
+<li><strong>Description:</strong> Creates a slider control for numeric input.</li>
+<li><strong>Features:</strong> Allows users to specify a numeric value within a given range.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="volume"&gt;Volume:&lt;/label&gt;
+    &lt;input type="range" id="volume" name="volume" min="0" max="100"&gt;
+</code></pre>
+</li>
+</ul>
+<h3>9. <strong><code>&lt;output&gt;</code> Element</strong></h3>
+<ul>
+<li><strong>Description:</strong> Represents the result of a calculation or user action.</li>
+<li><strong>Features:</strong> Ideal for displaying calculated results.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="a"&gt;Value A:&lt;/label&gt;
+    &lt;input id="a" type="number" value="10"&gt;
+    &lt;label for="b"&gt;Value B:&lt;/label&gt;
+    &lt;input id="b" type="number" value="20"&gt;
+    &lt;button onclick="document.querySelector('output').value = parseInt(a.value) + parseInt(b.value)"&gt;Calculate&lt;/button&gt;
+    &lt;output&gt;&lt;/output&gt;
+</code></pre>
+</li>
+</ul>
+<h3>10. <strong><code>&lt;progress&gt;</code> Element</strong></h3>
+<ul>
+<li><strong>Description:</strong> Represents the completion progress of a task.</li>
+<li><strong>Features:</strong> Displays a progress bar.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="file"&gt;Uploading file:&lt;/label&gt;
+    &lt;progress id="file" value="32" max="100"&gt;32%&lt;/progress&gt;
+</code></pre>
+</li>
+</ul>
+<h3>11. <strong><code>&lt;meter&gt;</code> Element</strong></h3>
+<ul>
+<li><strong>Description:</strong> Represents a scalar measurement within a known range, or a fractional value.</li>
+<li><strong>Features:</strong> Displays a gauge.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="diskUsage"&gt;Disk Usage:&lt;/label&gt;
+    &lt;meter id="diskUsage" value="0.6" min="0" max="1"&gt;60%&lt;/meter&gt;
+</code></pre>
+</li>
+</ul>
+<h3>12. <strong><code>&lt;input type="email"&gt;</code> and <code>&lt;input type="url"&gt;</code> Elements</strong></h3>
+<ul>
+<li><strong>Description:</strong> Validate email and URL input automatically.</li>
+<li><strong>Features:</strong> Provides built-in validation.</li>
+<li>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email"&gt;
+
+    &lt;label for="website"&gt;Website:&lt;/label&gt;
+    &lt;input type="url" id="website" name="website"&gt;
+</code></pre>
+</li>
+</ul>
+<h3>13. <strong><code>&lt;input type="file" multiple&gt;</code> Attribute</strong></h3>
+<ul>
+<li><strong>Description:</strong> Allows the selection of multiple files.</li>
+<li><strong>Features:</strong> Simplifies file uploads.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="files"&gt;Select files:&lt;/label&gt;
+    &lt;input type="file" id="files" name="files" multiple&gt;
+</code></pre>
+</li>
+</ul>
+<h3>14. <strong><code>&lt;input type="search"&gt;</code> Element</strong></h3>
+<ul>
+<li><strong>Description:</strong> Provides a search input field with an optional clear button.</li>
+<li><strong>Features:</strong> Enhances user experience for search inputs.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="search"&gt;Search:&lt;/label&gt;
+    &lt;input type="search" id="search" name="search"&gt;
+</code></pre>
+</li>
+</ul>
+<h3>15. <strong><code>&lt;input type="number"&gt;</code> Element</strong></h3>
+<ul>
+<li><strong>Description:</strong> Allows numeric input with optional min, max, and step attributes.</li>
+<li><strong>Features:</strong> Provides a spinner control.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="quantity"&gt;Quantity:&lt;/label&gt;
+    &lt;input type="number" id="quantity" name="quantity" min="1" max="10" step="1"&gt;
+</code></pre>
+</li>
+</ul>
+<h3>16. <strong><code>&lt;input type="tel"&gt;</code> Element</strong></h3>
+<ul>
+<li><strong>Description:</strong> Provides an input field for telephone numbers.</li>
+<li><strong>Features:</strong> Offers a specialized keyboard on mobile devices.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="phone"&gt;Phone number:&lt;/label&gt;
+    &lt;input type="tel" id="phone" name="phone"&gt;
+</code></pre>
+</li>
+</ul>
+<h3>17. <strong><code>&lt;input type="datetime-local"&gt;</code> Element</strong></h3>
+<ul>
+<li><strong>Description:</strong> Combines date and time input.</li>
+<li><strong>Features:</strong> Provides a date-time picker UI.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="appointment"&gt;Appointment:&lt;/label&gt;
+    &lt;input type="datetime-local" id="appointment" name="appointment"&gt;
+</code></pre>
+</li>
+</ul>
+<h3>18. <strong><code>&lt;input type="week"&gt;</code> Element</strong></h3>
+<ul>
+<li><strong>Description:</strong> Allows the selection of a specific week.</li>
+<li><strong>Features:</strong> Provides a week picker UI.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="week"&gt;Select week:&lt;/label&gt;
+    &lt;input type="week" id="week" name="week"&gt;
+</code></pre>
+</li>
+</ul>
+<h3>19. <strong><code>&lt;input type="month"&gt;</code> Element</strong></h3>
+<ul>
+<li><strong>Description:</strong> Allows the selection of a specific month and year.</li>
+<li><strong>Features:</strong> Provides a month picker UI.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="month"&gt;Select month:&lt;/label&gt;
+    &lt;input type="month" id="month" name="month"&gt;
+</code></pre>
+</li>
+</ul>
+<h3>20. <strong><code>&lt;input type="time"&gt;</code> Element</strong></h3>
+<ul>
+<li><strong>Description:</strong> Allows the selection of a time without a date.</li>
+<li><strong>Features:</strong> Provides a time picker UI.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="time"&gt;Select time:&lt;/label&gt;
+    &lt;input type="time" id="time" name="time"&gt;
+</code></pre>
+</li>
+</ul>
+<h3>21. *<em>`&lt;input type=&quot;file&quot; accept=&quot;image/</em>&quot;&gt;` Attribute**</h3>
+<ul>
+<li><strong>Description:</strong> Limits file selection to specific file types.</li>
+<li><strong>Features:</strong> Offers file type filtering.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="avatar"&gt;Select an image:&lt;/label&gt;
+    &lt;input type="file" id="avatar" name="avatar" accept="image/*"&gt;
+</code></pre>
+</li>
+</ul>
+<h3>22. <strong><code>&lt;input type="password" autocomplete="new-password"&gt;</code> Attribute</strong></h3>
+<ul>
+<li><strong>Description:</strong> Improves security by preventing the browser from auto-filling passwords.</li>
+<li><strong>Features:</strong> Encourages strong password practices.</li>
+<li>
+<p><strong>Example:</strong></p>
+<pre><code class="language-html">
+    &lt;label for="password"&gt;Password:&lt;/label&gt;
+    &lt;input type="password" id="password" name="password"  autocomplete="new-password"&gt;
+</code></pre>
+</li>
+</ul>]]></description>
+<link>https://sraban.github.io/post/newly-added-html-features</link>
+<pubDate>Tue, 25 Jun 2024 02:03:00 +0500</pubDate>
+</item>
+<item>
 <title>Common Errors in JS and from Rest API</title>
 <description><![CDATA[<p>In JavaScript, errors can be categorized into different types, including logical errors, runtime errors, and syntax errors. Logical errors occur when the code does not behave as intended, often due to a mistake in the code logic. There are many other common errors that you might encounter or need to handle in JavaScript.</p>
 <h2>List of JS Errors:</h2>
