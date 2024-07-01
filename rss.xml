@@ -950,7 +950,185 @@
 </code></pre>
 </li>
 </ol>
-<h4><strong>Example:</strong></h4>
+<p>NgRx, a popular state management library for Angular applications, has evolved significantly over time. If you're looking for the &quot;old&quot; NgRx structure, you might be interested in the architecture and practices that were common before the significant changes introduced in NgRx version 8 and later.</p>
+<p>Below is an overview of the old NgRx structure, covering key concepts such as actions, reducers, effects, selectors, and how they were typically organized and used in Angular applications.</p>
+<h2>Old NgRx Structure (Pre-NgRx 8)</h2>
+<h3>1. <strong>Actions</strong></h3>
+<p>Actions are payloads of information that are dispatched to the store to signal the type of change or operation to be performed.</p>
+<p><strong>Typical Structure:</strong></p>
+<ul>
+<li><strong>Action Creators:</strong> Actions were typically created as classes with <code>type</code> properties, often defined as string constants.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-typescript">
+    // action-types.ts
+    export const ADD_ITEM = '[Item] Add Item';
+    export const REMOVE_ITEM = '[Item] Remove Item';
+
+    // item.actions.ts
+    import { Action } from '@ngrx/store';
+    import { Item } from './item.model';
+
+    export class AddItem implements Action {
+      readonly type = ADD_ITEM;
+      constructor(public payload: Item) {}
+    }
+
+    export class RemoveItem implements Action {
+      readonly type = REMOVE_ITEM;
+      constructor(public payload: number) {} // payload could be an ID
+    }
+
+    export type All = AddItem | RemoveItem;
+</code></pre>
+<h3>2. <strong>Reducers</strong></h3>
+<p>Reducers are functions that specify how the state changes in response to an action. They are pure functions that take the current state and an action, returning the new state.</p>
+<p><strong>Typical Structure:</strong></p>
+<ul>
+<li>Reducers were often defined in a single file with a switch-case statement to handle different action types.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-typescript">
+    // item.reducer.ts
+    import { ADD_ITEM, REMOVE_ITEM } from './action-types';
+    import { Item } from './item.model';
+    import * as ItemActions from './item.actions';
+
+    export interface ItemState {
+      items: Item[];
+    }
+
+    const initialState: ItemState = {
+      items: []
+    };
+
+    export function itemReducer(state: ItemState = initialState, action: ItemActions.All): ItemState {
+      switch (action.type) {
+        case ADD_ITEM:
+          return {
+            ...state,
+            items: [...state.items, action.payload]
+          };
+        case REMOVE_ITEM:
+          return {
+            ...state,
+            items: state.items.filter(item =&gt; item.id !== action.payload)
+          };
+        default:
+          return state;
+      }
+    }
+</code></pre>
+<h3>3. <strong>Selectors</strong></h3>
+<p>Selectors are used to query slices of the state tree, typically defined in the reducer file.</p>
+<p><strong>Typical Structure:</strong></p>
+<ul>
+<li>Selectors were simple functions that extracted parts of the state.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-typescript">
+    // item.selectors.ts
+    import { createFeatureSelector, createSelector } from '@ngrx/store';
+    import { ItemState } from './item.reducer';
+
+    export const selectItemState = createFeatureSelector&lt;ItemState&gt;('items');
+
+    export const selectAllItems = createSelector(
+      selectItemState,
+      (state: ItemState) =&gt; state.items
+    );
+</code></pre>
+<h3>4. <strong>Effects</strong></h3>
+<p>Effects are used to handle side effects like HTTP requests or other asynchronous operations. They listen to actions dispatched to the store and perform tasks without affecting the state directly.</p>
+<p><strong>Typical Structure:</strong></p>
+<ul>
+<li>Effects were typically defined in a separate file and used observables to handle side effects.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-typescript">
+    // item.effects.ts
+    import { Injectable } from '@angular/core';
+    import { Actions, Effect, ofType } from '@ngrx/effects';
+    import { Observable } from 'rxjs';
+    import { map, mergeMap } from 'rxjs/operators';
+    import { ItemService } from './item.service';
+    import * as ItemActions from './item.actions';
+
+    @Injectable()
+    export class ItemEffects {
+      @Effect()
+      loadItems$: Observable&lt;ItemActions.All&gt; = this.actions$.pipe(
+        ofType(ItemActions.ADD_ITEM),
+        mergeMap(action =&gt;
+          this.itemService.getItems().pipe(
+            map(items =&gt; new ItemActions.AddItem(items))
+          )
+        )
+      );
+
+      constructor(private actions$: Actions, private itemService: ItemService) {}
+    }
+</code></pre>
+<h3>5. <strong>Store Module Configuration</strong></h3>
+<p>The <code>StoreModule</code> and <code>EffectsModule</code> were typically configured in the <code>AppModule</code> or a feature module.</p>
+<p><strong>Typical Structure:</strong></p>
+<ul>
+<li>Modules were configured to import <code>StoreModule</code> and <code>EffectsModule</code> with reducers and effects.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-typescript">
+    // app.module.ts
+    import { BrowserModule } from '@angular/platform-browser';
+    import { NgModule } from '@angular/core';
+    import { StoreModule } from '@ngrx/store';
+    import { EffectsModule } from '@ngrx/effects';
+    import { itemReducer } from './items/item.reducer';
+    import { ItemEffects } from './items/item.effects';
+
+    @NgModule({
+      declarations: [
+        // components
+      ],
+      imports: [
+        BrowserModule,
+        StoreModule.forRoot({ items: itemReducer }),
+        EffectsModule.forRoot([ItemEffects])
+      ],
+      providers: [],
+      bootstrap: [/* main component */]
+    })
+    export class AppModule { }
+</code></pre>
+<h3>6. <strong>Feature Modules</strong></h3>
+<p>For larger applications, NgRx structure typically involved feature modules to encapsulate related actions, reducers, effects, and selectors.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-typescript">
+    // items.module.ts
+    import { NgModule } from '@angular/core';
+    import { CommonModule } from '@angular/common';
+    import { StoreModule } from '@ngrx/store';
+    import { EffectsModule } from '@ngrx/effects';
+    import { itemReducer } from './item.reducer';
+    import { ItemEffects } from './item.effects';
+
+    @NgModule({
+      imports: [
+        CommonModule,
+        StoreModule.forFeature('items', itemReducer),
+        EffectsModule.forFeature([ItemEffects])
+      ],
+      declarations: [
+        // components
+      ]
+    })
+    export class ItemsModule {}
+</code></pre>
+<h3>7. <strong>Deprecations and Evolutions</strong></h3>
+<p>Many of these patterns have evolved, with NgRx introducing more concise ways to define actions and reducers. Action creators, <code>createReducer</code>, and <code>createEffect</code> functions were introduced to simplify and streamline the code.</p>
+<h3>Summary</h3>
+<p>The old NgRx structure focused on a more verbose way of defining actions, reducers, and effects. Over time, the library has introduced new APIs and practices to reduce boilerplate and make the code more maintainable and concise.</p>
+<p>For modern practices and more efficient ways to manage state using NgRx, consider looking into the latest NgRx documentation and best practices.</p>
+<h4><strong>Old &amp; New Changes:</strong></h4>
 <p><img src="https://i.imgur.com/8D3Jjy9.png" alt="enter image description here" /></p>]]></description>
 <link>https://sraban.github.io/post/ngrx-features</link>
 <pubDate>Tue, 25 Jun 2024 01:24:00 +0500</pubDate>
