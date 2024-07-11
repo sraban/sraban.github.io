@@ -6,6 +6,81 @@
 <description>Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.</description>
 <language>en-us</language>
 <item>
+<title>Use cases of async / await</title>
+<description><![CDATA[<p>Q.  What is the problem with the below snippets, assume srabanAsync() returns an api response.</p>
+<pre><code class="language-javascript">
+    let data;
+    async function sraban() {
+     try {
+      data = await srabanAsync();
+     } catch(err) {
+      console.log("Error", err);
+     }
+    }
+
+    sraban();
+    console.log("data", data);
+</code></pre>
+<p>Answer:</p>
+<p>The main problem with the code is that <code>console.log("data", data);</code> is executed before the <code>sraban</code> function finishes its asynchronous operation. As a result, <code>data</code> is likely to be <code>undefined</code> at the time of logging. This happens because the <code>sraban</code> function runs asynchronously, and JavaScript does not wait for it to complete before continuing with the next line of code.</p>
+<p>Here's a breakdown of the issues:</p>
+<ol>
+<li><strong>Asynchronous Execution</strong>: The <code>sraban</code> function is asynchronous and returns immediately after initiating the <code>await</code> operation. The logging statement <code>console.log("data", data);</code> runs before the asynchronous operation completes.</li>
+<li><strong>Uninitialized Data</strong>: The <code>data</code> variable is uninitialized when <code>console.log</code> is called, so it logs <code>undefined</code>.</li>
+</ol>
+<p>To fix this, you can use one of the following approaches:</p>
+<h3>Using <code>then</code> for chaining</h3>
+<p>You can call the <code>sraban</code> function and chain a <code>then</code> method to handle the logging once the data is available.</p>
+<pre><code class="language-javascript">
+    let data;
+    async function sraban() {
+     try {
+      data = await srabanAsync();
+      console.log("data", data); // Log data here after it is available
+     } catch(err) {
+      console.log("Error", err);
+     }
+    }
+
+    sraban(); // Call the function to start the async operation
+</code></pre>
+<h3>Using an Immediately Invoked Function Expression (IIFE)</h3>
+<p>You can wrap the asynchronous code in an immediately invoked function expression (IIFE) to handle the async operation synchronously in a controlled block.</p>
+<pre><code class="language-javascript">
+    let data;
+    (async function() {
+     try {
+      data = await srabanAsync();
+      console.log("data", data); // Log data here after it is available
+     } catch(err) {
+      console.log("Error", err);
+     }
+    })();
+</code></pre>
+<h3>Awaiting the Async Function Call</h3>
+<p>If you are in an async context (another async function), you can await the <code>sraban</code> function call.</p>
+<pre><code class="language-javascript">
+    let data;
+    async function sraban() {
+     try {
+      data = await srabanAsync();
+     } catch(err) {
+      console.log("Error", err);
+     }
+    }
+
+    async function main() {
+     await sraban();
+     console.log("data", data); // Log data here after it is available
+    }
+
+    main(); // Call the main function to start the async operation
+</code></pre>
+<p>By ensuring the logging happens after the asynchronous operation completes, you can correctly capture and log the <code>data</code> variable.</p>]]></description>
+<link>https://sraban.github.io/post/use-cases-of-async-await</link>
+<pubDate>Thu, 11 Jul 2024 17:36:00 +0500</pubDate>
+</item>
+<item>
 <title>Newly added HTML features</title>
 <description><![CDATA[<p>Here’s a list of some of the latest HTML features as documented by MDN Web Docs. These features enhance functionality, improve performance, and provide more flexibility for modern web development.</p>
 <h3>1. <strong><code>&lt;dialog&gt;</code> Element</strong></h3>

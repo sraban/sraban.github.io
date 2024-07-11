@@ -8,7 +8,7 @@
     <meta name="description" content="Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.">
     <meta name="author" content="Sraban Pahadasingh">
 
-    <title>.call(), .bind(), .apply() Differences in JS :: &lt;/&gt; FullStack Developer</title>
+    <title>Use cases of async / await :: &lt;/&gt; FullStack Developer</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="&lt;/&gt; FullStack Developer" href="https://sraban.github.io/rss.xml"/>
@@ -70,116 +70,82 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>.call(), .bind(), .apply() Differences in JS</h3>
+                <h3>Use cases of async / await</h3>
                 <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> June 25, 2024 12:23 AM
+                <span class="glyphicon glyphicon-time"></span> July 11, 2024 05:36 PM
                 <hr>
 
-                <p class="post-content"><p>Certainly! Understanding the differences between <code>.call()</code>, <code>.apply()</code>, and <code>.bind()</code> is crucial for effective JavaScript development. They all serve the purpose of function invocation with a specific context (<code>this</code> value), but they differ in their usage and application.</p>
-<h4><strong><code>.call()</code></strong></h4>
-<p>Calls a function with a specified <code>this</code> value and individual arguments.</p>
-<ul>
-<li>Invokes the function immediately.</li>
-<li>Allows you to pass arguments individually.</li>
-<li>Useful when you need to call a function with a specific <code>this</code> value and arguments.</li>
-</ul>
-<ul>
-<li><strong>Example</strong>:</li>
-</ul>
+                <p class="post-content"><p>Q.  What is the problem with the below snippets, assume srabanAsync() returns an api response.</p>
 <pre><code class="language-javascript">
-    function greet(greeting, name) {
-      console.log(`${greeting}, ${name}`);
+    let data;
+    async function sraban() {
+     try {
+      data = await srabanAsync();
+     } catch(err) {
+      console.log("Error", err);
+     }
     }
 
-    greet.call(null, 'Hello', 'Alice'); // Output: Hello, Alice
+    sraban();
+    console.log("data", data);
 </code></pre>
-<h4><strong><code>.apply()</code></strong></h4>
-<p>Similar to <code>.call()</code>, but takes an array of arguments.</p>
-<ul>
-<li>Invokes the function immediately.</li>
-<li>Allows you to pass arguments as an array.</li>
-<li>
-<p>Handy when the arguments are already in an array or array-like structure.</p>
-</li>
-<li><strong>Example</strong>:</li>
-</ul>
+<p>Answer:</p>
+<p>The main problem with the code is that <code>console.log("data", data);</code> is executed before the <code>sraban</code> function finishes its asynchronous operation. As a result, <code>data</code> is likely to be <code>undefined</code> at the time of logging. This happens because the <code>sraban</code> function runs asynchronously, and JavaScript does not wait for it to complete before continuing with the next line of code.</p>
+<p>Here's a breakdown of the issues:</p>
+<ol>
+<li><strong>Asynchronous Execution</strong>: The <code>sraban</code> function is asynchronous and returns immediately after initiating the <code>await</code> operation. The logging statement <code>console.log("data", data);</code> runs before the asynchronous operation completes.</li>
+<li><strong>Uninitialized Data</strong>: The <code>data</code> variable is uninitialized when <code>console.log</code> is called, so it logs <code>undefined</code>.</li>
+</ol>
+<p>To fix this, you can use one of the following approaches:</p>
+<h3>Using <code>then</code> for chaining</h3>
+<p>You can call the <code>sraban</code> function and chain a <code>then</code> method to handle the logging once the data is available.</p>
 <pre><code class="language-javascript">
-    greet.apply(null, ['Hello', 'Alice']); // Output: Hello, Alice
-</code></pre>
-<pre><code class="language-javascript">
-    function showThis() {
-      console.log(this);
+    let data;
+    async function sraban() {
+     try {
+      data = await srabanAsync();
+      console.log("data", data); // Log data here after it is available
+     } catch(err) {
+      console.log("Error", err);
+     }
     }
 
-    showThis.call({ name: 'Bob' }); // Output: { name: 'Bob' }
-    showThis.apply({ name: 'Bob' }); // Output: { name: 'Bob' }
+    sraban(); // Call the function to start the async operation
 </code></pre>
-<h4><strong><code>.bind()</code></strong></h4>
-<p>Creates a new function that, when called, has its <code>this</code> value set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.</p>
-<ul>
-<li>Does not invoke the function immediately.</li>
-<li>Creates a new function with a bound <code>this</code> value and optionally, pre-set arguments.</li>
-<li>
-<p>Useful for creating a new function that can be called later with the specific <code>this</code> context.</p>
-<ul>
-<li><strong>Example</strong>:</li>
-</ul>
-</li>
-</ul>
+<h3>Using an Immediately Invoked Function Expression (IIFE)</h3>
+<p>You can wrap the asynchronous code in an immediately invoked function expression (IIFE) to handle the async operation synchronously in a controlled block.</p>
 <pre><code class="language-javascript">
-    const greetAlice = greet.bind(null, 'Hello', 'Alice');
-    greetAlice(); // Output: Hello, Alice
+    let data;
+    (async function() {
+     try {
+      data = await srabanAsync();
+      console.log("data", data); // Log data here after it is available
+     } catch(err) {
+      console.log("Error", err);
+     }
+    })();
 </code></pre>
+<h3>Awaiting the Async Function Call</h3>
+<p>If you are in an async context (another async function), you can await the <code>sraban</code> function call.</p>
 <pre><code class="language-javascript">
-    const person = {
-      name: 'Alice',
-      showThis() {
-        console.log(this);
-      }
-    };
+    let data;
+    async function sraban() {
+     try {
+      data = await srabanAsync();
+     } catch(err) {
+      console.log("Error", err);
+     }
+    }
 
-    const boundShowThis = person.showThis.bind({ name: 'Bob' });
-    boundShowThis(); // Output: { name: 'Bob' }
+    async function main() {
+     await sraban();
+     console.log("data", data); // Log data here after it is available
+    }
+
+    main(); // Call the main function to start the async operation
 </code></pre>
-<hr />
-<h4><strong>Summary Table</strong></h4>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th><code>.call()</code></th>
-<th><code>.apply()</code></th>
-<th><code>.bind()</code></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Invocation</td>
-<td>Immediate</td>
-<td>Immediate</td>
-<td>Delayed (returns new function)</td>
-</tr>
-<tr>
-<td>Arguments</td>
-<td>Individual (arg1, arg2, ...)</td>
-<td>Array ([arg1, arg2, ...])</td>
-<td>Individual (arg1, arg2, ...)</td>
-</tr>
-<tr>
-<td><code>this</code> Binding</td>
-<td>Immediate, changes <code>this</code> context</td>
-<td>Immediate, changes <code>this</code> context</td>
-<td>Delayed, changes <code>this</code> context for the new function</td>
-</tr>
-<tr>
-<td>Use Case</td>
-<td>Borrowing methods, invoking with a different <code>this</code></td>
-<td>Functions expecting arguments as arrays</td>
-<td>Event handlers, preserving <code>this</code> context</td>
-</tr>
-</tbody>
-</table></p>
+<p>By ensuring the logging happens after the asynchronous operation completes, you can correctly capture and log the <code>data</code> variable.</p></p>
                 <br/><br/>
 
                 <div class="post-info">

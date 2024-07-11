@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPT</title>
+    <title>JDS</title>
 
     <style>
         html,
@@ -41,7 +41,7 @@
         const cURl = window.location.href;
         const isLocal = cURl.indexOf('localhost') !== -1;
         const user = 'sraban';
-        const initDir = 'gpt';
+        const initDir = 'jds';
         const browseUrl = isLocal ? `http://localhost:3000/${initDir}` : `https://${user}.github.io/${initDir}`;
         const url = `https://api.github.com/repos/${user}/sraban.github.io/contents/${initDir}`;
         const ul = document.getElementById('list');
