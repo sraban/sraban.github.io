@@ -1,0 +1,48 @@
+## TODO
+
+using parcel
+create application like stackblitz 
+1. ng: material and ngrx
+
+
+1. Stencil Website
+   Animation with smooth tranistion
+   Sticky headers / Contents / Lists/ widget
+
+2. AppDirect for ecommerce features and setup
+
+
+===================
+1. Bootstrap 3/4
+2. Smooth transition and examples
+3. small website using golang and deploy it it in a server with react
+
+Task - 1 (no job)
+:: Determination(ନିଷ୍ଠା) and Perseverance(ସ୍ଥିରତା) will lead you to the right job opportunity
+============================================
+1. Enhance your skills
+2. Explore new opportunities
+3. Networking and reaching out to connections	
+
+Task - 2(Me){Rotation wise schedule the task on each Technology everyday(in 24hrs)}
+=============================================
+1. Angular Project(AI Gen Code, FigmaX, )
+2. React Project
+3. Ionic Project
+4. React Native Project
+5. Stencil Project
+=============================================
+Task - 3(Lipu)
+=============================================
+1. Azure Certification
+2. Google Certification
+3. Skill-Arbitrage Certification(skilled workers)
+4. Other Projects Certification...
+5. y-axis.com( Y-Axis Solutions Pvt Ltd )
+6. upwork.com - profile
+7. y-combinator.com - profile
+8. Read about tools like (pyCharm, vscode extensions, chrome extensions, beyond compare)
+9. 
+
+
+
