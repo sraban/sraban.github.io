@@ -5,6 +5,12 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
+<loc>https://sraban.github.io/post/differences-in-structure-angular-vs-laravel/</loc>
+<lastmod>2024-09-07T02:05:00+05:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.00</priority>
+</url>
+<url>
 <loc>https://sraban.github.io/post/use-cases-of-async-await/</loc>
 <lastmod>2024-07-11T17:36:00+05:00</lastmod>
 <changefreq>daily</changefreq>

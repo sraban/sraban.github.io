@@ -19,6 +19,7 @@ create application like stackblitz
 
 Task - 1 (no job)
 :: Determination(ନିଷ୍ଠା) and Perseverance(ସ୍ଥିରତା) will lead you to the right job opportunity
+:: Daily Speak loudly newspaper(like Venketesh) and then sleep for 10 min
 ============================================
 1. Enhance your skills
 2. Explore new opportunities
@@ -34,6 +35,7 @@ Task - 2(Me){Rotation wise schedule the task on each Technology everyday(in 24hr
 =============================================
 Task - 3(Lipu)
 =============================================
+0. Udemy Course/Project Completion....
 1. Azure Certification
 2. Google Certification
 3. Skill-Arbitrage Certification(skilled workers)
@@ -42,7 +44,7 @@ Task - 3(Lipu)
 6. upwork.com - profile
 7. y-combinator.com - profile
 8. Read about tools like (pyCharm, vscode extensions, chrome extensions, beyond compare)
-9. 
+
 
 
 

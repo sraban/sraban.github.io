@@ -1,0 +1,50 @@
+Job Description
+SN Required Information Details
+1 Role** UI Tech Lead/Architect
+2 Required Technical Skill Set** HTML5, CSS3, AJAX, JSON, jQuery, Bootstrap, Angular 9+
+3 Desired Experience Range** 3-8 years
+4 Location of Requirement- Bangalore
+5 Mode of Interview- Walking Drive
+Walking Location- TCS Abhilash - 
+Plot No. 96, Abhilash Building, Whitefield Main Rd, EP-IP, Industrial Area, Bengaluru, Karnataka 560066, India
+
+
+
+Desired Competencies (Technical/Behavioral Competency)
+Must-Have**(Ideally should not be more than 3-5)
+
+
+1. 3+ years’ experience developing critical, large scale customer facing web commerce front-end applications / sites with high volume and high-reliability requirements.
+2. Strong knowledge and experience in n-tier web applications, with knowledge of the different tiers, including: web servers, application servers, databases and infrastructure.
+3. Hands-on Expertise in Front-end technologies - HTML5, CSS3, Java script, Jquery, Ajax, JSON
+4. Proficient understanding of client-side scripting and JavaScript frameworks, including jQuery
+5. Proficient understanding of cross-browser compatibility issues and ways to work around them. 
+6. Hands-on experience on Angular 7+, bootstrap and minimal knowledge on Backbone.JS, Ember.JS,
+7. Hands-On experience on Angular 9+ and upgrade of application from old versions of Angular to Angular 13+
+8. Basic understanding of server-side CSS pre-processing platforms, such as LESS and SASS
+9. Hands on experience in HTML5/CSS3, and JavaScript framework for rapid prototyping
+10. Experience in RWD and AWD designing
+11. Exp. on integration technologies: JSON, XML, REST, SOAP
+12. Exp. using source code control systems- Azure DevOps
+13. Exp. in mobile application development and deployment
+14. Server side Scripting using Node/Modenizer.js 
+15. Experience in UI Testing framework/tool 
+16. Exposure in UI design is additional
+
+Good-to-Have
+1. Experience working in an Agile/Scrum development process
+2. Excellent communication skills
+
+
+SN Responsibility of / Expectations from the Role
+1 Collaborate with product management and engineering to define and implement innovative solutions for the product direction, visuals and experience
+2 Execute all visual design stages from concept to final hand-off to engineering
+3 Conceptualize original ideas that bring simplicity and user friendliness to complex design roadblocks
+4 Create HTML mockups based on wireframes, storyboards, user flows, process flows to effectively communicate interaction
+5 Establish and promote design guidelines, best practices and standards
+6 Build reusable code and libraries for future use
+7 Design with Mobile First approach using RWD/AWD designs.
+8 Optimize application for maximum speed and scalability
+9 Assure that all user input is validated before submitting to back-end
+10 Good understanding of asynchronous request handling, partial page updates, and AJAX
+

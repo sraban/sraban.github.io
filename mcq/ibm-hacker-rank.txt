@@ -1,0 +1,68 @@
+Question.
+let quantity = [1,2,4];
+let m = 3;
+
+Answer.
+
+function getMaximumAmount(quantity, m) {
+	// Write your code here
+	let maxSell = 0;
+	for(let i = 0; i < m; i++) {
+	   let maxPrice = Math.max(...quantity); // _max(quantity)_ since Math.max() is time consuming
+	   let indexFirstMaxPrice = quantity.indexOf(maxPrice);
+	   quantity[indexFirstMaxPrice] = maxPrice - 1;
+	   maxSell += maxPrice;
+	}
+	return maxSell;
+}
+
+function max(numbers) {
+  let max = numbers[0];
+  for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i] > max) {
+      max = numbers[i];
+    }
+  }
+  return max;
+}
+
+====================================================================================
+Question.
+let requests = [[1,8], [4,9], [6,7]];
+let max_packets = 10;
+let rate = 2;
+
+Answer:
+function getNumberOfDroppedPackets(requests, max_packets, rate) {
+  let droppedPackets = 0;
+  let initTimer = requests[0][0];
+  let initPackets = requests[0][1];
+  let packetSet = new Map(requests);
+  let packetsCounter = packetSet.size - 1;
+
+  let timer = initTimer + 1;
+  let totalPackets = initPackets - rate;
+  // console.log(initTimer, 0, initPackets);
+  while (packetsCounter > 0) {
+    while (totalPackets > 0) {
+      let extraPacketsCount = 0;
+      // console.log(timer, totalPackets, packetSet.get(timer) );
+      if (packetSet.has(timer)) {
+        totalPackets += packetSet.get(timer);
+        extraPacketsCount = totalPackets - max_packets;
+
+        if (extraPacketsCount > 0) {
+          totalPackets = max_packets - rate;
+          droppedPackets += extraPacketsCount;
+        }
+        packetsCounter--;
+      } else {
+        totalPackets = totalPackets - rate;
+      }
+      timer++;
+    }
+  }
+
+  // console.log("dropped", droppedPackets);
+  return droppedPackets;
+}

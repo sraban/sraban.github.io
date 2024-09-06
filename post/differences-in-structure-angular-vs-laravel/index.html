@@ -7,7 +7,7 @@
     <meta name="description" content="Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.">
     <meta name="author" content="Sraban Pahadasingh">
 
-    <title>Uses of Http Guzzle PHP :: &lt;/&gt; FullStack Developer</title>
+    <title>Differences in Structure: Angular vs Laravel :: &lt;/&gt; FullStack Developer</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="&lt;/&gt; FullStack Developer" href="https://sraban.github.io/rss.xml"/>
@@ -69,115 +69,136 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>Uses of Http Guzzle PHP</h3>
+                <h3>Differences in Structure: Angular vs Laravel</h3>
                 <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> April 24, 2020 02:42 PM
+                <span class="glyphicon glyphicon-time"></span> September 07, 2024 02:05 AM
                 <hr>
 
-                <p class="post-content"><h4>About PHP Guzzle for API</h4>
-<ol>
+                <p class="post-content"><p>Angular and Laravel are both widely used frameworks, but they belong to different areas of development. Angular is a <strong>front-end</strong> framework for building web applications, while Laravel is a <strong>back-end</strong> PHP framework. Both frameworks adopt modular structures to promote scalability, reusability, and maintainability, but they handle modularity differently due to their distinct purposes.</p>
+<p>Here’s a comparison of their modular structures:</p>
+<h3>1. <strong>Angular Modular Structure (Front-end Framework)</strong></h3>
+<p><strong>Purpose:</strong><br />
+Angular uses modules to organize the front-end application. Its goal is to break down the user interface and associated logic into smaller, reusable pieces.</p>
+<p><strong>Core Concepts:</strong></p>
+<ul>
+<li><strong>Modules:</strong> Angular applications are built using <strong>NgModules</strong>. These modules bundle components, services, directives, and other code into cohesive blocks of functionality.
+<ul>
+<li><strong>Feature Modules:</strong> Specific to a certain feature or section of the application (e.g., user management, product listings).</li>
+<li><strong>Shared Module:</strong> A module that contains shared components, pipes, and directives used across multiple feature modules.</li>
+<li><strong>Core Module:</strong> Contains singleton services like authentication and API handlers that are used globally across the application.</li>
+</ul></li>
+</ul>
+<p><strong>Structure:</strong></p>
+<ul>
+<li><strong>Components:</strong> Components define views (UI) and their associated logic.</li>
+<li><strong>Services:</strong> Singleton objects for handling business logic and data fetching.</li>
+<li><strong>Pipes:</strong> Custom transformations for displaying data.</li>
+<li><strong>Directives:</strong> Custom behavior that can be applied to the DOM.</li>
+<li><strong>Routing:</strong> Handles navigation between components and modules.</li>
+</ul>
+<h3>2. <strong>Laravel Modular Structure (Back-end Framework)</strong></h3>
+<p><strong>Purpose:</strong><br />
+Laravel’s modular structure is used to organize the backend logic. It focuses on separating different concerns, such as routing, models, controllers, services, and views.</p>
+<p><strong>Core Concepts:</strong></p>
+<ul>
+<li><strong>Modules:</strong> Laravel applications are typically organized into <strong>MVC (Model-View-Controller)</strong> patterns or package-based modularization.
+<ul>
+<li><strong>Models:</strong> Define the data structure and interact with the database.</li>
+<li><strong>Controllers:</strong> Handle HTTP requests and business logic, then return views or JSON responses.</li>
+<li><strong>Views:</strong> Blade templates for rendering HTML or emails.</li>
+<li><strong>Service Providers:</strong> Register services, configuration, or package-related code.</li>
+<li><strong>Routes:</strong> Define the routes and endpoints of the application.</li>
+<li><strong>Middleware:</strong> Handle HTTP request/response manipulation, authentication, etc.</li>
+</ul></li>
+</ul>
+<p><strong>Laravel Package Approach:</strong> Laravel also supports a more modular architecture by using packages or third-party libraries to encapsulate code for specific features (e.g., API, authentication).</p>
+<h3>Key Differences in Modular Structure</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Aspect</strong></th>
+<th><strong>Angular (Front-end)</strong></th>
+<th><strong>Laravel (Back-end)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Modular Unit</strong></td>
+<td><strong>NgModules</strong> (Feature Modules, Shared/Core Modules)</td>
+<td><strong>MVC</strong> (Models, Views, Controllers)</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Organize UI, components, and client-side logic</td>
+<td>Organize server-side logic and HTTP responses</td>
+</tr>
+<tr>
+<td><strong>UI Components</strong></td>
+<td>Components, Directives, Pipes</td>
+<td>Blade Templates for views</td>
+</tr>
+<tr>
+<td><strong>Service Layer</strong></td>
+<td>Services for handling state, data, and APIs</td>
+<td>Service Classes, Providers for business logic</td>
+</tr>
+<tr>
+<td><strong>Routing</strong></td>
+<td>Angular Router (client-side routing)</td>
+<td>Web &amp; API routes (server-side routing)</td>
+</tr>
+<tr>
+<td><strong>State Management</strong></td>
+<td>NgRx (optional, for managing state)</td>
+<td>No built-in state management</td>
+</tr>
+<tr>
+<td><strong>Shared Functionality</strong></td>
+<td>Shared Module (Reusable components, services, etc.)</td>
+<td>Service Providers, Middleware, Packages</td>
+</tr>
+<tr>
+<td><strong>Feature Separation</strong></td>
+<td>Feature Modules (Encapsulated features)</td>
+<td>Controllers, Models, Services for each feature</td>
+</tr>
+<tr>
+<td><strong>Lazy Loading</strong></td>
+<td>Lazy loading of modules for performance</td>
+<td>Laravel doesn’t inherently support lazy loading</td>
+</tr>
+<tr>
+<td><strong>Assets</strong></td>
+<td>Styles, images, and resources managed via <code>assets/</code></td>
+<td>Blade Views and assets managed via <code>resources/</code></td>
+</tr>
+<tr>
+<td><strong>Package System</strong></td>
+<td>Libraries for reusable code within the project</td>
+<td>Composer packages for third-party integration</td>
+</tr>
+</tbody>
+</table>
+<h3>Summary</h3>
+<ul>
 <li>
-<p><code>Initialize th instance</code></p>
-<pre>$this->client = new \GuzzleHttp\Client();</pre>
+<p><strong>Angular</strong> is primarily focused on organizing <strong>front-end logic</strong> and components through <strong>NgModules</strong>, which include views, services, and routing that are tightly coupled to the user interface. It's highly modularized with features like lazy loading and shared modules to optimize performance and reusability.</p>
 </li>
-<li>
-<p><code>Get Method</code></p>
-<pre>
-$params = Array(
-        'key1' => $id, 
-        'key2' => $value,
-       );
-$promise = $this->client->request('GET',  route('statement'), [
-    'query' => $params,
-    'debug' => false
-]);
-
-$promise->getBody()->rewind();
-$output = $promise->getBody()->getContents();
-$httpStatusCode = $promise->getStatusCode();
-</pre>
-</li>
-<li>
-<p><code>Post Method: Raw data posting like posting json in payload</code></p>
-<pre>
-$rawInput = json_encode($array); // string
-
--OR-
-
-$rawInput = <<<EOF
-        SET empdata 2 ‘Jack Petter’ ‘192.168.11.11’
-        GET empdata ‘192.168.11.11’
-        SET empwebhistory 192.168.11.11 ‘http://google.com’
-        SET empwebhistory 192.168.11.11 ‘http://facebook.com’
-        GET empwebhistory  192.168.11.11
-        UNSET empwebhistory  192.168.11.11
-        GET empwebhistory 192.168.11.11
-        END
-    EOF;
-
-$promise = $this->client->request('POST',  route('statement'), [
-    'body' => $rawInput,
-    'debug' => false
-]);
-
-$promise->getBody()->rewind();
-$output = $promise->getBody()->getContents();
-$httpStatusCode = $promise->getStatusCode();
-</pre>
-</li>
-<li>
-<p><code>Post using Form Fields</code></p>
-<pre>
-$filedInputs = Array(
-    'email' => 'test@gmail.com',
-    'name' => 'Test user',
-    'password' => 'testpassword',
-);
-
-$promise = $this->client->request('POST',  route('statement'), [
-    'form_params' => $rawInput,
-    'debug' => false
-]);
-
-$promise->getBody()->rewind();
-$output = $promise->getBody()->getContents();
-$httpStatusCode = $promise->getStatusCode();
-</pre>
-</li>
-<li>
-<p><code>POST File Upload from Directory</code></p>
-<pre>
-$promise = $this->client->request('POST', 'http://www.example.com/files/post', [
-    'multipart' => [
-        [
-            'name'     => 'file_name',
-            'contents' => fopen('/path/to/file', 'r')
-        ],
-        [
-            'name'     => 'csv_header',
-            'contents' => 'First Name, Last Name, Username',
-            'filename' => 'csv_header.csv'
-        ]
-    ]
-]);
-
-$promise->getBody()->rewind();
-$output = $promise->getBody()->getContents();
-$httpStatusCode = $promise->getStatusCode();
-</pre>
-</li>
-</ol></p>
+<li><strong>Laravel</strong>, being a <strong>back-end framework</strong>, organizes the application using the <strong>MVC</strong> pattern, focusing on <strong>HTTP handling, business logic</strong>, and <strong>data interactions</strong>. It uses service providers, middleware, and routing to structure the backend efficiently, and views are rendered using Blade templating. Laravel’s modules are based on a package system that encapsulates functionality like authentication, notifications, and more.</li>
+</ul>
+<p>Both structures are modular but are designed for different purposes and domains: Angular for front-end logic and Laravel for backend operations.</p>
+<p><img src="https://sraban.github.io/images/172565703866db6fce556de.jpg" alt="enter image description here" /></p></p>
                 <br/><br/>
 
                 <div class="post-info">
                         <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                        <a href="https://sraban.github.io/category/php">PHP</a>
+                        <a href="https://sraban.github.io/category/javascript">Javascript</a>
                         &nbsp;&nbsp;
 
                     <span class="glyphicon glyphicon-bookmark"></span>
 
-                        <a href="https://sraban.github.io/tag/common">common</a>&nbsp;&nbsp;
+                        <a href="https://sraban.github.io/tag/PHP">PHP</a>&nbsp;&nbsp;
                 </div>
 
             </article>

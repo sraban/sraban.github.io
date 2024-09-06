@@ -7,7 +7,7 @@
     <meta name="description" content="Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.">
     <meta name="author" content="Sraban Pahadasingh">
 
-    <title>Uses of Http Guzzle PHP :: &lt;/&gt; FullStack Developer</title>
+    <title>&lt;/&gt; FullStack Developer</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="&lt;/&gt; FullStack Developer" href="https://sraban.github.io/rss.xml"/>
@@ -68,145 +68,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 main-content">
-            <article>
-                <h3>Uses of Http Guzzle PHP</h3>
-                <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
-                &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> April 24, 2020 02:42 PM
-                <hr>
-
-                <p class="post-content"><h4>About PHP Guzzle for API</h4>
-<ol>
-<li>
-<p><code>Initialize th instance</code></p>
-<pre>$this->client = new \GuzzleHttp\Client();</pre>
-</li>
-<li>
-<p><code>Get Method</code></p>
-<pre>
-$params = Array(
-        'key1' => $id, 
-        'key2' => $value,
-       );
-$promise = $this->client->request('GET',  route('statement'), [
-    'query' => $params,
-    'debug' => false
-]);
-
-$promise->getBody()->rewind();
-$output = $promise->getBody()->getContents();
-$httpStatusCode = $promise->getStatusCode();
-</pre>
-</li>
-<li>
-<p><code>Post Method: Raw data posting like posting json in payload</code></p>
-<pre>
-$rawInput = json_encode($array); // string
-
--OR-
-
-$rawInput = <<<EOF
-        SET empdata 2 ‘Jack Petter’ ‘192.168.11.11’
-        GET empdata ‘192.168.11.11’
-        SET empwebhistory 192.168.11.11 ‘http://google.com’
-        SET empwebhistory 192.168.11.11 ‘http://facebook.com’
-        GET empwebhistory  192.168.11.11
-        UNSET empwebhistory  192.168.11.11
-        GET empwebhistory 192.168.11.11
-        END
-    EOF;
-
-$promise = $this->client->request('POST',  route('statement'), [
-    'body' => $rawInput,
-    'debug' => false
-]);
-
-$promise->getBody()->rewind();
-$output = $promise->getBody()->getContents();
-$httpStatusCode = $promise->getStatusCode();
-</pre>
-</li>
-<li>
-<p><code>Post using Form Fields</code></p>
-<pre>
-$filedInputs = Array(
-    'email' => 'test@gmail.com',
-    'name' => 'Test user',
-    'password' => 'testpassword',
-);
-
-$promise = $this->client->request('POST',  route('statement'), [
-    'form_params' => $rawInput,
-    'debug' => false
-]);
-
-$promise->getBody()->rewind();
-$output = $promise->getBody()->getContents();
-$httpStatusCode = $promise->getStatusCode();
-</pre>
-</li>
-<li>
-<p><code>POST File Upload from Directory</code></p>
-<pre>
-$promise = $this->client->request('POST', 'http://www.example.com/files/post', [
-    'multipart' => [
-        [
-            'name'     => 'file_name',
-            'contents' => fopen('/path/to/file', 'r')
-        ],
-        [
-            'name'     => 'csv_header',
-            'contents' => 'First Name, Last Name, Username',
-            'filename' => 'csv_header.csv'
-        ]
-    ]
-]);
-
-$promise->getBody()->rewind();
-$output = $promise->getBody()->getContents();
-$httpStatusCode = $promise->getStatusCode();
-</pre>
-</li>
-</ol></p>
-                <br/><br/>
-
-                <div class="post-info">
-                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                        <a href="https://sraban.github.io/category/php">PHP</a>
-                        &nbsp;&nbsp;
-
-                    <span class="glyphicon glyphicon-bookmark"></span>
-
-                        <a href="https://sraban.github.io/tag/common">common</a>&nbsp;&nbsp;
-                </div>
-
-            </article>
+            <h1>Monthly Posts</h1>
             <hr/>
+            <br/>
 
-            <div class="text-center clearfix">
-                <div class="col-sm-4 col-md-4">
-                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <a class="btn btn-primary" href="https://sraban.github.io/posts.html"><i class="fa fa-navicon"></i> View All
-                        Post</a>
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
-                </div>
-            </div>
-
-            <hr/>
-            
-            <!-- Comment form -->
-            <div class="well">
-                <div id="disqus_thread"></div>
-                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
-                    powered by Disqus.</a></noscript>
-                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
-                    <span class="logo-disqus">Disqus</span></a>
-            </div>
-
+                <h3><a href="https://sraban.github.io/post/differences-in-structure-angular-vs-laravel">Differences in Structure: Angular vs Laravel</a></h3>
+                <span class="glyphicon glyphicon-time"></span> September 07, 2024 02:05 AM
         </div>
 
         <div class="sidebar col-md-4">
@@ -296,7 +163,6 @@ $httpStatusCode = $promise->getStatusCode();
                     </div>
                 </div>
             </div>
-
     </div>
 </div>
 
@@ -324,69 +190,3 @@ $httpStatusCode = $promise->getStatusCode();
 
 </body>
 </html>
-<!-- for pagination -->
-<script>
-    $(function () {
-
-        ///////////////////////////////////////////////////
-        // class/id/selector of prev link
-        var $prevPostSelector = $('.prevpost');
-        var $nextPostSelector = $('.nextpost');
-        ///////////////////////////////////////////////////
-
-        var pageArray = document.location.href.split('/');
-        var currentPageSlug = pageArray[pageArray.length - 1];
-
-        if (!currentPageSlug) {
-            currentPageSlug = pageArray[pageArray.length - 2];
-        }
-
-        $.ajax({
-            url: __blogURL + "/data/blog.json",
-            type: "GET",
-            dataType: "json",
-            success: function (data) {
-                if (data.posts !== undefined && data.posts !== null) {
-                    $.each(data.posts, function (i, post) {
-                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
-
-                            var prevPost = data.posts[i - 1];
-                            var nextPost = data.posts[i + 1];
-
-                            if (prevPost === undefined || prevPost === null) {
-                                // hide previous link if it is first post
-                                $prevPostSelector.hide();
-                            }
-                            else {
-                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
-                            }
-
-                            if (nextPost === undefined || nextPost === null) {
-                                // hide previous link if it is last post
-                                $nextPostSelector.hide();
-                            }
-                            else {
-                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
-                            }
-
-                            return false; // break out of each
-                        }
-                    });
-                }
-            },
-            error: function (e) {
-                $prevPostSelector.hide();
-                $nextPostSelector.hide();
-            }
-        });
-
-        // for Disqus
-        var disqus_shortname = '';
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-
-    });
-</script>
