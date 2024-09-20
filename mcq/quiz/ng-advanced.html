@@ -1,0 +1,1222 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Typescript.md</title><style>@charset "UTF-8";@import 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css';code{color:#c7254e;background-color:#f9f2f4;border-radius:4px}code,kbd{padding:2px 4px}kbd{color:#fff;background-color:#333;border-radius:3px;box-shadow:inset 0 -1px 0 rgba(0,0,0,.25)}kbd kbd{padding:0;font-size:100%;box-shadow:none}pre{display:block;margin:0 0 10px;word-break:break-all;word-wrap:break-word;color:#333;background-color:#f5f5f5;border:1px solid #ccc;border-radius:4px}pre code{padding:0;font-size:inherit;color:inherit;white-space:pre-wrap;background-color:transparent;border-radius:0}.pre-scrollable{max-height:340px;overflow-y:scroll}table{background-color:transparent}th{text-align:left}.table{width:100%;max-width:100%;margin-bottom:20px}.table>thead>tr>th{padding:8px;line-height:1.4285714;border-top:1px solid #ddd}.table>thead>tr>td,.table>tbody>tr>th,.table>tbody>tr>td,.table>tfoot>tr>th,.table>tfoot>tr>td{padding:8px;line-height:1.4285714;vertical-align:top;border-top:1px solid #ddd}.table>thead>tr>th{vertical-align:bottom;border-bottom:2px solid #ddd}.table>caption+thead>tr:first-child>th,.table>caption+thead>tr:first-child>td,.table>colgroup+thead>tr:first-child>th,.table>colgroup+thead>tr:first-child>td,.table>thead:first-child>tr:first-child>th,.table>thead:first-child>tr:first-child>td{border-top:0}.table>tbody+tbody{border-top:2px solid #ddd}.table .table{background-color:#fff}.table-condensed>thead>tr>th,.table-condensed>thead>tr>td,.table-condensed>tbody>tr>th,.table-condensed>tbody>tr>td,.table-condensed>tfoot>tr>th,.table-condensed>tfoot>tr>td{padding:5px}.table-bordered,.table-bordered>thead>tr>th,.table-bordered>thead>tr>td,.table-bordered>tbody>tr>th,.table-bordered>tbody>tr>td,.table-bordered>tfoot>tr>th,.table-bordered>tfoot>tr>td{border:1px solid #ddd}.table-bordered>thead>tr>th,.table-bordered>thead>tr>td{border-bottom-width:2px}.table-striped>tbody>tr:nth-child(odd)>td,.table-striped>tbody>tr:nth-child(odd)>th{background-color:#f9f9f9}.table-hover>tbody>tr:hover>td,.table-hover>tbody>tr:hover>th{background-color:#f5f5f5}table col[class*="col-"]{position:static;float:none;display:table-column}table td[class*="col-"],table th[class*="col-"]{position:static;float:none;display:table-cell}.table>thead>tr>td.active,.table>thead>tr>th.active,.table>thead>tr.active>td,.table>thead>tr.active>th,.table>tbody>tr>td.active,.table>tbody>tr>th.active,.table>tbody>tr.active>td,.table>tbody>tr.active>th,.table>tfoot>tr>td.active,.table>tfoot>tr>th.active,.table>tfoot>tr.active>td,.table>tfoot>tr.active>th{background-color:#f5f5f5}.table-hover>tbody>tr>td.active:hover,.table-hover>tbody>tr>th.active:hover,.table-hover>tbody>tr.active:hover>td,.table-hover>tbody>tr:hover>.active,.table-hover>tbody>tr.active:hover>th{background-color:#e8e8e8}.table>thead>tr>td.success,.table>thead>tr>th.success,.table>thead>tr.success>td,.table>thead>tr.success>th,.table>tbody>tr>td.success,.table>tbody>tr>th.success,.table>tbody>tr.success>td,.table>tbody>tr.success>th,.table>tfoot>tr>td.success,.table>tfoot>tr>th.success,.table>tfoot>tr.success>td,.table>tfoot>tr.success>th{background-color:#dff0d8}.table-hover>tbody>tr>td.success:hover,.table-hover>tbody>tr>th.success:hover,.table-hover>tbody>tr.success:hover>td,.table-hover>tbody>tr:hover>.success,.table-hover>tbody>tr.success:hover>th{background-color:#d0e9c6}.table>thead>tr>td.info,.table>thead>tr>th.info,.table>thead>tr.info>td,.table>thead>tr.info>th,.table>tbody>tr>td.info,.table>tbody>tr>th.info,.table>tbody>tr.info>td,.table>tbody>tr.info>th,.table>tfoot>tr>td.info,.table>tfoot>tr>th.info,.table>tfoot>tr.info>td,.table>tfoot>tr.info>th{background-color:#d9edf7}.table-hover>tbody>tr>td.info:hover,.table-hover>tbody>tr>th.info:hover,.table-hover>tbody>tr.info:hover>td,.table-hover>tbody>tr:hover>.info,.table-hover>tbody>tr.info:hover>th{background-color:#c4e3f3}.table>thead>tr>td.warning,.table>thead>tr>th.warning,.table>thead>tr.warning>td,.table>thead>tr.warning>th,.table>tbody>tr>td.warning,.table>tbody>tr>th.warning,.table>tbody>tr.warning>td,.table>tbody>tr.warning>th,.table>tfoot>tr>td.warning,.table>tfoot>tr>th.warning,.table>tfoot>tr.warning>td,.table>tfoot>tr.warning>th{background-color:#fcf8e3}.table-hover>tbody>tr>td.warning:hover,.table-hover>tbody>tr>th.warning:hover,.table-hover>tbody>tr.warning:hover>td,.table-hover>tbody>tr:hover>.warning,.table-hover>tbody>tr.warning:hover>th{background-color:#faf2cc}.table>thead>tr>td.danger,.table>thead>tr>th.danger,.table>thead>tr.danger>td,.table>thead>tr.danger>th,.table>tbody>tr>td.danger,.table>tbody>tr>th.danger,.table>tbody>tr.danger>td,.table>tbody>tr.danger>th,.table>tfoot>tr>td.danger,.table>tfoot>tr>th.danger,.table>tfoot>tr.danger>td,.table>tfoot>tr.danger>th{background-color:#f2dede}.table-hover>tbody>tr>td.danger:hover,.table-hover>tbody>tr>th.danger:hover,.table-hover>tbody>tr.danger:hover>td,.table-hover>tbody>tr:hover>.danger,.table-hover>tbody>tr.danger:hover>th{background-color:#ebcccc}fieldset{border:0;min-width:0}legend{display:block;width:100%;margin-bottom:20px;font-size:21px;line-height:inherit;color:#333;border-bottom:1px solid #e5e5e5}label{display:inline-block;max-width:100%;margin-bottom:5px;font-weight:700}input[type="radio"],input[type="checkbox"]{margin:4px 0 0;margin-top:1px \9;line-height:normal}input[type="file"]{display:block}input[type="range"]{display:block;width:100%}select[multiple],select[size]{height:auto}input[type="file"]:focus,input[type="radio"]:focus,input[type="checkbox"]:focus{outline:thin dotted;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px}output{padding-top:7px}output,.form-control{display:block;font-size:14px;line-height:1.4285714;color:#555}.form-control{width:100%;height:34px;padding:6px 12px;background-color:#fff;background-image:none;border:1px solid #ccc;border-radius:4px;box-shadow:inset 0 1px 1px rgba(0,0,0,.075);transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s}.form-control:focus{border-color:#66afe9;outline:0;box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)}.form-control::-moz-placeholder{color:#777;opacity:1}.form-control:-ms-input-placeholder{color:#777}.form-control::-webkit-input-placeholder{color:#777}.form-control[disabled],.form-control[readonly],fieldset[disabled] .form-control{cursor:not-allowed;background-color:#eee;opacity:1}textarea.form-control{height:auto}input[type="date"],input[type="time"],input[type="datetime-local"],input[type="month"]{line-height:34px;line-height:1.4285714 \0}input[type="date"].input-sm,.form-horizontal .form-group-sm input.form-control[type="date"],.input-group-sm>input.form-control[type="date"],.input-group-sm>input.input-group-addon[type="date"],.input-group-sm>.input-group-btn>input.btn[type="date"],input[type="time"].input-sm,.form-horizontal .form-group-sm input.form-control[type="time"],.input-group-sm>input.form-control[type="time"],.input-group-sm>input.input-group-addon[type="time"],.input-group-sm>.input-group-btn>input.btn[type="time"],input[type="datetime-local"].input-sm,.form-horizontal .form-group-sm input.form-control[type="datetime-local"],.input-group-sm>input.form-control[type="datetime-local"],.input-group-sm>input.input-group-addon[type="datetime-local"],.input-group-sm>.input-group-btn>input.btn[type="datetime-local"],input[type="month"].input-sm,.form-horizontal .form-group-sm input.form-control[type="month"],.input-group-sm>input.form-control[type="month"],.input-group-sm>input.input-group-addon[type="month"],.input-group-sm>.input-group-btn>input.btn[type="month"]{line-height:30px}input[type="date"].input-lg,.form-horizontal .form-group-lg input.form-control[type="date"],.input-group-lg>input.form-control[type="date"],.input-group-lg>input.input-group-addon[type="date"],.input-group-lg>.input-group-btn>input.btn[type="date"],input[type="time"].input-lg,.form-horizontal .form-group-lg input.form-control[type="time"],.input-group-lg>input.form-control[type="time"],.input-group-lg>input.input-group-addon[type="time"],.input-group-lg>.input-group-btn>input.btn[type="time"],input[type="datetime-local"].input-lg,.form-horizontal .form-group-lg input.form-control[type="datetime-local"],.input-group-lg>input.form-control[type="datetime-local"],.input-group-lg>input.input-group-addon[type="datetime-local"],.input-group-lg>.input-group-btn>input.btn[type="datetime-local"],input[type="month"].input-lg,.form-horizontal .form-group-lg input.form-control[type="month"],.input-group-lg>input.form-control[type="month"],.input-group-lg>input.input-group-addon[type="month"],.input-group-lg>.input-group-btn>input.btn[type="month"]{line-height:46px}.form-group{margin-bottom:15px}.radio,.checkbox{position:relative;display:block;min-height:20px;margin-top:10px;margin-bottom:10px}.radio label,.checkbox label{padding-left:20px;margin-bottom:0;font-weight:400;cursor:pointer}.radio input[type="radio"],.radio-inline input[type="radio"],.checkbox input[type="checkbox"],.checkbox-inline input[type="checkbox"]{position:absolute;margin-left:-20px;margin-top:4px \9}.radio+.radio,.checkbox+.checkbox{margin-top:-5px}.radio-inline,.checkbox-inline{display:inline-block;padding-left:20px;margin-bottom:0;vertical-align:middle;font-weight:400;cursor:pointer}.radio-inline+.radio-inline,.checkbox-inline+.checkbox-inline{margin-top:0;margin-left:10px}input[type="radio"][disabled],input[type="radio"].disabled,fieldset[disabled] input[type="radio"],input[type="checkbox"][disabled],input[type="checkbox"].disabled,fieldset[disabled] input[type="checkbox"],.radio-inline.disabled,fieldset[disabled] .radio-inline,.checkbox-inline.disabled,fieldset[disabled] .checkbox-inline,.radio.disabled label,fieldset[disabled] .radio label,.checkbox.disabled label,fieldset[disabled] .checkbox label{cursor:not-allowed}.form-control-static{padding-top:7px;padding-bottom:7px;margin-bottom:0}.form-control-static.input-lg,.form-horizontal .form-group-lg .form-control-static.form-control,.input-group-lg>.form-control-static.form-control,.input-group-lg>.form-control-static.input-group-addon,.input-group-lg>.input-group-btn>.form-control-static.btn,.form-control-static.input-sm,.form-horizontal .form-group-sm .form-control-static.form-control,.input-group-sm>.form-control-static.form-control,.input-group-sm>.form-control-static.input-group-addon,.input-group-sm>.input-group-btn>.form-control-static.btn{padding-left:0;padding-right:0}.input-sm,.form-horizontal .form-group-sm .form-control,.input-group-sm>.form-control{height:30px;padding:5px 10px;font-size:12px;line-height:1.5;border-radius:3px}.input-group-sm>.input-group-addon{height:30px;line-height:1.5}.input-group-sm>.input-group-btn>.btn{height:30px;padding:5px 10px;font-size:12px;line-height:1.5;border-radius:3px}select.input-sm,.form-horizontal .form-group-sm select.form-control,.input-group-sm>select.form-control,.input-group-sm>select.input-group-addon,.input-group-sm>.input-group-btn>select.btn{height:30px;line-height:30px}textarea.input-sm,.form-horizontal .form-group-sm textarea.form-control,.input-group-sm>textarea.form-control,.input-group-sm>textarea.input-group-addon,.input-group-sm>.input-group-btn>textarea.btn,select[multiple].input-sm,.form-horizontal .form-group-sm select.form-control[multiple],.input-group-sm>select.form-control[multiple],.input-group-sm>select.input-group-addon[multiple],.input-group-sm>.input-group-btn>select.btn[multiple]{height:auto}.input-lg,.form-horizontal .form-group-lg .form-control,.input-group-lg>.form-control{height:46px;padding:10px 16px;font-size:18px;line-height:1.33;border-radius:6px}.input-group-lg>.input-group-addon{height:46px;line-height:1.33}.input-group-lg>.input-group-btn>.btn{height:46px;padding:10px 16px;font-size:18px;line-height:1.33;border-radius:6px}select.input-lg,.form-horizontal .form-group-lg select.form-control,.input-group-lg>select.form-control,.input-group-lg>select.input-group-addon,.input-group-lg>.input-group-btn>select.btn{height:46px;line-height:46px}textarea.input-lg,.form-horizontal .form-group-lg textarea.form-control,.input-group-lg>textarea.form-control,.input-group-lg>textarea.input-group-addon,.input-group-lg>.input-group-btn>textarea.btn,select[multiple].input-lg,.form-horizontal .form-group-lg select.form-control[multiple],.input-group-lg>select.form-control[multiple],.input-group-lg>select.input-group-addon[multiple],.input-group-lg>.input-group-btn>select.btn[multiple]{height:auto}.has-feedback{position:relative}.has-feedback .form-control{padding-right:42.5px}.form-control-feedback{position:absolute;top:25px;right:0;z-index:2;display:block;width:34px;height:34px;line-height:34px;text-align:center}.input-lg+.form-control-feedback,.form-horizontal .form-group-lg .form-control+.form-control-feedback,.input-group-lg>.form-control+.form-control-feedback,.input-group-lg>.input-group-addon+.form-control-feedback,.input-group-lg>.input-group-btn>.btn+.form-control-feedback{width:46px;height:46px;line-height:46px}.input-sm+.form-control-feedback,.form-horizontal .form-group-sm .form-control+.form-control-feedback,.input-group-sm>.form-control+.form-control-feedback,.input-group-sm>.input-group-addon+.form-control-feedback,.input-group-sm>.input-group-btn>.btn+.form-control-feedback{width:30px;height:30px;line-height:30px}.has-success .help-block,.has-success .control-label,.has-success .radio,.has-success .checkbox,.has-success .radio-inline,.has-success .checkbox-inline{color:#3c763d}.has-success .form-control{border-color:#3c763d;box-shadow:inset 0 1px 1px rgba(0,0,0,.075)}.has-success .form-control:focus{border-color:#2b542c;box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #67b168}.has-success .input-group-addon{color:#3c763d;border-color:#3c763d;background-color:#dff0d8}.has-success .form-control-feedback{color:#3c763d}.has-warning .help-block,.has-warning .control-label,.has-warning .radio,.has-warning .checkbox,.has-warning .radio-inline,.has-warning .checkbox-inline{color:#8a6d3b}.has-warning .form-control{border-color:#8a6d3b;box-shadow:inset 0 1px 1px rgba(0,0,0,.075)}.has-warning .form-control:focus{border-color:#66512c;box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #c0a16b}.has-warning .input-group-addon{color:#8a6d3b;border-color:#8a6d3b;background-color:#fcf8e3}.has-warning .form-control-feedback{color:#8a6d3b}.has-error .help-block,.has-error .control-label,.has-error .radio,.has-error .checkbox,.has-error .radio-inline,.has-error .checkbox-inline{color:#a94442}.has-error .form-control{border-color:#a94442;box-shadow:inset 0 1px 1px rgba(0,0,0,.075)}.has-error .form-control:focus{border-color:#843534;box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #ce8483}.has-error .input-group-addon{color:#a94442;border-color:#a94442;background-color:#f2dede}.has-error .form-control-feedback{color:#a94442}.has-feedback label.sr-only~.form-control-feedback{top:0}.help-block{display:block;margin-top:5px;margin-bottom:10px;color:#737373}.form-horizontal .radio,.form-horizontal .checkbox,.form-horizontal .radio-inline,.form-horizontal .checkbox-inline{margin-top:0;margin-bottom:0;padding-top:7px}.form-horizontal .radio,.form-horizontal .checkbox{min-height:27px}.form-horizontal .form-group{margin-left:-15px;margin-right:-15px}.form-horizontal .form-group:before{content:" ";display:table}.form-horizontal .form-group:after{content:" ";display:table;clear:both}.form-horizontal .has-feedback .form-control-feedback{top:0;right:15px}.btn{display:inline-block;vertical-align:middle;cursor:pointer;background-image:none;border:1px solid transparent;white-space:nowrap;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.btn:focus,.btn:active:focus,.btn.active:focus{outline:thin dotted;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px}.btn:hover,.btn:focus{color:#333;text-decoration:none}.btn:active,.btn.active{outline:0;background-image:none;box-shadow:inset 0 3px 5px rgba(0,0,0,.125)}.btn.disabled,.btn[disabled],fieldset[disabled] .btn{cursor:not-allowed;pointer-events:none;opacity:.65;filter:alpha(opacity=65);box-shadow:none}.btn-default{color:#333;background-color:#fff;border-color:#ccc}.btn-default:hover,.btn-default:focus,.btn-default:active,.btn-default.active,.open>.btn-default.dropdown-toggle{color:#333;background-color:#e6e6e6;border-color:#adadad}.btn-default:active,.btn-default.active,.open>.btn-default.dropdown-toggle{background-image:none}.btn-default.disabled,.btn-default.disabled:hover,.btn-default.disabled:focus,.btn-default.disabled:active,.btn-default.disabled.active,.btn-default[disabled],.btn-default[disabled]:hover,.btn-default[disabled]:focus,.btn-default[disabled]:active,.btn-default[disabled].active,fieldset[disabled] .btn-default,fieldset[disabled] .btn-default:hover,fieldset[disabled] .btn-default:focus,fieldset[disabled] .btn-default:active,fieldset[disabled] .btn-default.active{background-color:#fff;border-color:#ccc}.btn-default .badge{color:#fff;background-color:#333}.btn-primary{color:#fff;background-color:#428bca;border-color:#357ebd}.btn-primary:hover,.btn-primary:focus,.btn-primary:active,.btn-primary.active,.open>.btn-primary.dropdown-toggle{color:#fff;background-color:#3071a9;border-color:#285e8e}.btn-primary:active,.btn-primary.active,.open>.btn-primary.dropdown-toggle{background-image:none}.btn-primary.disabled,.btn-primary.disabled:hover,.btn-primary.disabled:focus,.btn-primary.disabled:active,.btn-primary.disabled.active,.btn-primary[disabled],.btn-primary[disabled]:hover,.btn-primary[disabled]:focus,.btn-primary[disabled]:active,.btn-primary[disabled].active,fieldset[disabled] .btn-primary,fieldset[disabled] .btn-primary:hover,fieldset[disabled] .btn-primary:focus,fieldset[disabled] .btn-primary:active,fieldset[disabled] .btn-primary.active{background-color:#428bca;border-color:#357ebd}.btn-primary .badge{color:#428bca;background-color:#fff}.btn-success{color:#fff;background-color:#5cb85c;border-color:#4cae4c}.btn-success:hover,.btn-success:focus,.btn-success:active,.btn-success.active,.open>.btn-success.dropdown-toggle{color:#fff;background-color:#449d44;border-color:#398439}.btn-success:active,.btn-success.active,.open>.btn-success.dropdown-toggle{background-image:none}.btn-success.disabled,.btn-success.disabled:hover,.btn-success.disabled:focus,.btn-success.disabled:active,.btn-success.disabled.active,.btn-success[disabled],.btn-success[disabled]:hover,.btn-success[disabled]:focus,.btn-success[disabled]:active,.btn-success[disabled].active,fieldset[disabled] .btn-success,fieldset[disabled] .btn-success:hover,fieldset[disabled] .btn-success:focus,fieldset[disabled] .btn-success:active,fieldset[disabled] .btn-success.active{background-color:#5cb85c;border-color:#4cae4c}.btn-success .badge{color:#5cb85c;background-color:#fff}.btn-info{color:#fff;background-color:#5bc0de;border-color:#46b8da}.btn-info:hover,.btn-info:focus,.btn-info:active,.btn-info.active,.open>.btn-info.dropdown-toggle{color:#fff;background-color:#31b0d5;border-color:#269abc}.btn-info:active,.btn-info.active,.open>.btn-info.dropdown-toggle{background-image:none}.btn-info.disabled,.btn-info.disabled:hover,.btn-info.disabled:focus,.btn-info.disabled:active,.btn-info.disabled.active,.btn-info[disabled],.btn-info[disabled]:hover,.btn-info[disabled]:focus,.btn-info[disabled]:active,.btn-info[disabled].active,fieldset[disabled] .btn-info,fieldset[disabled] .btn-info:hover,fieldset[disabled] .btn-info:focus,fieldset[disabled] .btn-info:active,fieldset[disabled] .btn-info.active{background-color:#5bc0de;border-color:#46b8da}.btn-info .badge{color:#5bc0de;background-color:#fff}.btn-warning{color:#fff;background-color:#f0ad4e;border-color:#eea236}.btn-warning:hover,.btn-warning:focus,.btn-warning:active,.btn-warning.active,.open>.btn-warning.dropdown-toggle{color:#fff;background-color:#ec971f;border-color:#d58512}.btn-warning:active,.btn-warning.active,.open>.btn-warning.dropdown-toggle{background-image:none}.btn-warning.disabled,.btn-warning.disabled:hover,.btn-warning.disabled:focus,.btn-warning.disabled:active,.btn-warning.disabled.active,.btn-warning[disabled],.btn-warning[disabled]:hover,.btn-warning[disabled]:focus,.btn-warning[disabled]:active,.btn-warning[disabled].active,fieldset[disabled] .btn-warning,fieldset[disabled] .btn-warning:hover,fieldset[disabled] .btn-warning:focus,fieldset[disabled] .btn-warning:active,fieldset[disabled] .btn-warning.active{background-color:#f0ad4e;border-color:#eea236}.btn-warning .badge{color:#f0ad4e;background-color:#fff}.btn-danger{color:#fff;background-color:#d9534f;border-color:#d43f3a}.btn-danger:hover,.btn-danger:focus,.btn-danger:active,.btn-danger.active,.open>.btn-danger.dropdown-toggle{color:#fff;background-color:#c9302c;border-color:#ac2925}.btn-danger:active,.btn-danger.active,.open>.btn-danger.dropdown-toggle{background-image:none}.btn-danger.disabled,.btn-danger.disabled:hover,.btn-danger.disabled:focus,.btn-danger.disabled:active,.btn-danger.disabled.active,.btn-danger[disabled],.btn-danger[disabled]:hover,.btn-danger[disabled]:focus,.btn-danger[disabled]:active,.btn-danger[disabled].active,fieldset[disabled] .btn-danger,fieldset[disabled] .btn-danger:hover,fieldset[disabled] .btn-danger:focus,fieldset[disabled] .btn-danger:active,fieldset[disabled] .btn-danger.active{background-color:#d9534f;border-color:#d43f3a}.btn-danger .badge{color:#d9534f;background-color:#fff}.btn-link{color:#428bca;font-weight:400;cursor:pointer;border-radius:0}.btn-link,.btn-link:active,.btn-link[disabled],fieldset[disabled] .btn-link{background-color:transparent;box-shadow:none}.btn-link,.btn-link:hover,.btn-link:focus,.btn-link:active{border-color:transparent}.btn-link:hover,.btn-link:focus{color:#2a6496;text-decoration:underline;background-color:transparent}.btn-link[disabled]:hover,.btn-link[disabled]:focus,fieldset[disabled] .btn-link:hover,fieldset[disabled] .btn-link:focus{color:#777;text-decoration:none}.btn-lg{padding:10px 16px;font-size:18px;line-height:1.33;border-radius:6px}.btn-sm{padding:5px 10px}.btn-sm,.btn-xs{font-size:12px;line-height:1.5;border-radius:3px}.btn-xs{padding:1px 5px}.btn-block{display:block;width:100%}.btn-block+.btn-block{margin-top:5px}input[type="submit"].btn-block,input[type="reset"].btn-block,input[type="button"].btn-block{width:100%}.fade{opacity:0;transition:opacity .15s linear}.fade.in{opacity:1}.collapse{display:none}.collapse.in{display:block}tr.collapse.in{display:table-row}tbody.collapse.in{display:table-row-group}.collapsing{position:relative;height:0;overflow:hidden;transition:height .35s ease}.input-group{position:relative;display:table;border-collapse:separate}.input-group[class*="col-"]{float:none;padding-left:0;padding-right:0}.input-group .form-control{position:relative;z-index:2;float:left;width:100%;margin-bottom:0}.input-group-addon,.input-group-btn,.input-group .form-control{display:table-cell}.input-group-addon:not(:first-child):not(:last-child),.input-group-btn:not(:first-child):not(:last-child),.input-group .form-control:not(:first-child):not(:last-child){border-radius:0}.input-group-addon{white-space:nowrap}.input-group-addon,.input-group-btn{width:1%;vertical-align:middle}.input-group-addon{padding:6px 12px;font-size:14px;font-weight:400;line-height:1;color:#555;text-align:center;background-color:#eee;border:1px solid #ccc;border-radius:4px}.input-group-addon.input-sm,.form-horizontal .form-group-sm .input-group-addon.form-control,.input-group-sm>.input-group-addon,.input-group-sm>.input-group-btn>.input-group-addon.btn{padding:5px 10px;font-size:12px;border-radius:3px}.input-group-addon.input-lg,.form-horizontal .form-group-lg .input-group-addon.form-control,.input-group-lg>.input-group-addon,.input-group-lg>.input-group-btn>.input-group-addon.btn{padding:10px 16px;font-size:18px;border-radius:6px}.input-group-addon input[type="radio"],.input-group-addon input[type="checkbox"]{margin-top:0}.input-group .form-control:first-child,.input-group-addon:first-child,.input-group-btn:first-child>.btn,.input-group-btn:first-child>.btn-group>.btn,.input-group-btn:first-child>.dropdown-toggle,.input-group-btn:last-child>.btn:not(:last-child):not(.dropdown-toggle),.input-group-btn:last-child>.btn-group:not(:last-child)>.btn{border-bottom-right-radius:0;border-top-right-radius:0}.input-group-addon:first-child{border-right:0}.input-group .form-control:last-child,.input-group-addon:last-child,.input-group-btn:last-child>.btn,.input-group-btn:last-child>.btn-group>.btn,.input-group-btn:last-child>.dropdown-toggle,.input-group-btn:first-child>.btn:not(:first-child),.input-group-btn:first-child>.btn-group:not(:first-child)>.btn{border-bottom-left-radius:0;border-top-left-radius:0}.input-group-addon:last-child{border-left:0}.input-group-btn{font-size:0;white-space:nowrap}.input-group-btn,.input-group-btn>.btn{position:relative}.input-group-btn>.btn+.btn{margin-left:-1px}.input-group-btn>.btn:hover,.input-group-btn>.btn:focus,.input-group-btn>.btn:active{z-index:2}.input-group-btn:first-child>.btn,.input-group-btn:first-child>.btn-group{margin-right:-1px}.input-group-btn:last-child>.btn,.input-group-btn:last-child>.btn-group{margin-left:-1px}.pagination{display:inline-block;padding-left:0;margin:20px 0;border-radius:4px}.pagination>li{display:inline}.pagination>li>a,.pagination>li>span{position:relative;float:left;padding:6px 12px;line-height:1.4285714;text-decoration:none;color:#428bca;background-color:#fff;border:1px solid #ddd;margin-left:-1px}.pagination>li:first-child>a,.pagination>li:first-child>span{margin-left:0;border-bottom-left-radius:4px;border-top-left-radius:4px}.pagination>li:last-child>a,.pagination>li:last-child>span{border-bottom-right-radius:4px;border-top-right-radius:4px}.pagination>li>a:hover,.pagination>li>a:focus,.pagination>li>span:hover,.pagination>li>span:focus{color:#2a6496;background-color:#eee;border-color:#ddd}.pagination>.active>a,.pagination>.active>a:hover,.pagination>.active>a:focus,.pagination>.active>span,.pagination>.active>span:hover,.pagination>.active>span:focus{z-index:2;color:#fff;background-color:#428bca;border-color:#428bca;cursor:default}.pagination>.disabled>span,.pagination>.disabled>span:hover,.pagination>.disabled>span:focus,.pagination>.disabled>a,.pagination>.disabled>a:hover,.pagination>.disabled>a:focus{color:#777;background-color:#fff;border-color:#ddd;cursor:not-allowed}.pagination-lg>li>a,.pagination-lg>li>span{padding:10px 16px;font-size:18px}.pagination-lg>li:first-child>a,.pagination-lg>li:first-child>span{border-bottom-left-radius:6px;border-top-left-radius:6px}.pagination-lg>li:last-child>a,.pagination-lg>li:last-child>span{border-bottom-right-radius:6px;border-top-right-radius:6px}.pagination-sm>li>a,.pagination-sm>li>span{padding:5px 10px;font-size:12px}.pagination-sm>li:first-child>a,.pagination-sm>li:first-child>span{border-bottom-left-radius:3px;border-top-left-radius:3px}.pagination-sm>li:last-child>a,.pagination-sm>li:last-child>span{border-bottom-right-radius:3px;border-top-right-radius:3px}.close{float:right;font-size:21px;font-weight:700;line-height:1;color:#000;text-shadow:0 1px 0 #fff;opacity:.2;filter:alpha(opacity=20)}.close:hover,.close:focus{color:#000;text-decoration:none;cursor:pointer;opacity:.5;filter:alpha(opacity=50)}button.close{padding:0;cursor:pointer;background:0 0;border:0;-webkit-appearance:none}.modal-open,.modal{overflow:hidden}.modal{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:1050;-webkit-overflow-scrolling:touch;outline:0}.modal.fade .modal-dialog{transform:translate3d(0,-25%,0);transition:transform .3s ease-out}.modal.in .modal-dialog{transform:translate3d(0,0,0)}.modal-open .modal{overflow-x:hidden;overflow-y:auto}.modal-dialog{position:relative;width:auto;margin:10px}.modal-content{position:relative;background-color:#fff;border:1px solid #999;border:1px solid rgba(0,0,0,.2);border-radius:6px;box-shadow:0 3px 9px rgba(0,0,0,.5);background-clip:padding-box;outline:0}.modal-backdrop{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1040;background-color:#000}.modal-backdrop.fade{opacity:0;filter:alpha(opacity=0)}.modal-backdrop.in{opacity:.5;filter:alpha(opacity=50)}.modal-header{padding:15px;border-bottom:1px solid #e5e5e5;min-height:16.4285714px}.modal-header .close{margin-top:-2px}.modal-title{margin:0;line-height:1.4285714}.modal-body{position:relative;padding:15px}.modal-footer{padding:15px;text-align:right;border-top:1px solid #e5e5e5}.modal-footer:before,.modal-footer:after{content:" ";display:table}.modal-footer:after{clear:both}.modal-footer .btn+.btn{margin-left:5px;margin-bottom:0}.modal-footer .btn-group .btn+.btn{margin-left:-1px}.modal-footer .btn-block+.btn-block{margin-left:0}.modal-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.center-block{display:block;margin-left:auto;margin-right:auto}.pull-right{float:right!important}.pull-left{float:left!important}.hide{display:none!important}.show{display:block!important}.invisible{visibility:hidden}.text-hide{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0}.hidden{display:none!important;visibility:hidden!important}.affix{position:fixed;transform:translate3d(0,0,0)}.hljs{display:block;overflow-x:auto;padding:.5em;background:#002b36;color:#839496;-webkit-text-size-adjust:none}.hljs-comment,.hljs-template_comment,.diff .hljs-header,.hljs-doctype,.hljs-pi,.lisp .hljs-string,.hljs-javadoc{color:#586e75}.hljs-keyword,.hljs-winutils,.method,.hljs-addition,.css .hljs-tag,.hljs-request,.hljs-status,.nginx .hljs-title{color:#859900}.hljs-number,.hljs-command,.hljs-string,.hljs-tag .hljs-value,.hljs-rules .hljs-value,.hljs-phpdoc,.hljs-dartdoc,.tex .hljs-formula,.hljs-regexp,.hljs-hexcolor,.hljs-link_url{color:#2aa198}.hljs-title,.hljs-localvars,.hljs-chunk,.hljs-decorator,.hljs-built_in,.hljs-identifier,.vhdl .hljs-literal,.hljs-id,.css .hljs-function{color:#268bd2}.hljs-attribute,.hljs-variable,.lisp .hljs-body,.smalltalk .hljs-number,.hljs-constant,.hljs-class .hljs-title,.hljs-parent,.hljs-type,.hljs-link_reference{color:#b58900}.hljs-preprocessor,.hljs-preprocessor .hljs-keyword,.hljs-pragma,.hljs-shebang,.hljs-symbol,.hljs-symbol .hljs-string,.diff .hljs-change,.hljs-special,.hljs-attr_selector,.hljs-subst,.hljs-cdata,.css .hljs-pseudo,.hljs-header{color:#cb4b16}.hljs-deletion,.hljs-important{color:#dc322f}.hljs-link_label{color:#6c71c4}.tex .hljs-formula{background:#073642}*,*:before,*:after{box-sizing:border-box}html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background:0 0}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:700}dfn{font-style:italic}h1{margin:.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}images{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}pre{overflow:auto}code,kbd{font-size:1em}code,kbd,pre,samp{font-family:monospace,monospace}samp{font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;margin-right:5px}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield;box-sizing:content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:700}table{border-collapse:collapse;border-spacing:0}.debug{background-color:#ffc0cb!important}.ellipsis{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ir{background-color:transparent;border:0;overflow:hidden}.ir::before{content:'';display:block;height:150%;width:0}html{font-size:.875em;background:#fff;color:#373D49}html,body{font-family:Georgia,Cambria,serif;height:100%}body{font-size:1rem;font-weight:400;line-height:2rem}ul,ol{margin-bottom:.83999rem;padding-top:.16001rem}li{font-feature-settings:'kern' 1,'onum' 1,'liga' 1;margin-left:1rem}li>ul,li>ol{margin-bottom:0}p{padding-top:.66001rem;font-feature-settings:'kern' 1,'onum' 1,'liga' 1;margin-top:0}p,pre{margin-bottom:1.33999rem}pre{font-size:1rem;padding:.66001rem 9.5px 9.5px;line-height:2rem;background:linear-gradient(to bottom,#fff 0,#fff .75rem,#f5f7fa .75rem,#f5f7fa 2.75rem,#fff 2.75rem,#fff 4rem);background-size:100% 4rem;border-color:#D3DAEA}blockquote{margin:0}blockquote p{font-size:1rem;margin-bottom:.33999rem;font-style:italic;padding:.66001rem 1rem 1rem;border-left:3px solid #A0AABF}th,td{padding:12px}h1,h2,h3,h4,h5,h6{font-family:"Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;font-feature-settings:'dlig' 1,'liga' 1,'lnum' 1,'kern' 1;font-style:normal;font-weight:600;margin-top:0}h1{line-height:3rem;font-size:2.0571429rem;margin-bottom:.21999rem;padding-top:.78001rem}h2{font-size:1.953125rem;margin-bottom:.1835837rem;padding-top:.8164163rem}h2,h3{line-height:3rem}h3{font-size:1.6457143rem;margin-bottom:.07599rem;padding-top:.92401rem}h4{font-size:1.5625rem;margin-bottom:.546865rem;padding-top:.453135rem}h5{font-size:1.25rem;margin-bottom:-.56251rem;padding-top:.56251rem}h6{font-size:1rem;margin-bottom:-.65001rem;padding-top:.65001rem}a{cursor:pointer;color:#35D7BB;text-decoration:none}a:hover,a:focus{border-bottom-color:#35D7BB;color:#dff9f4}img{height:auto;max-width:100%}dt{font-style:italic;font-weight:600}.g{display:block}.g:after{clear:both;content:'';display:table}.g-b{float:left;margin:0;width:100%}.g{margin-left:-16px;margin-right:-16px}.g-b{padding-left:16px;padding-right:16px}.g-b--center{display:block;float:none;margin:0 auto}.g-b--right{float:right}.g-b--1of1{width:100%}.g-b--1of2,.g-b--2of4,.g-b--3of6,.g-b--4of8,.g-b--5of10,.g-b--6of12{width:50%}.g-b--1of3,.g-b--2of6,.g-b--4of12{width:33.333%}.g-b--2of3,.g-b--4of6,.g-b--8of12{width:66.666%}.g-b--1of4,.g-b--2of8,.g-b--3of12{width:25%}.g-b--3of4,.g-b--6of8,.g-b--9of12{width:75%}.g-b--1of5,.g-b--2of10{width:20%}.g-b--2of5,.g-b--4of10{width:40%}.g-b--3of5,.g-b--6of10{width:60%}.g-b--4of5,.g-b--8of10{width:80%}.g-b--1of6,.g-b--2of12{width:16.666%}.g-b--5of6,.g-b--10of12{width:83.333%}.g-b--1of8{width:12.5%}.g-b--3of8{width:37.5%}.g-b--5of8{width:62.5%}.g-b--7of8{width:87.5%}.g-b--1of10{width:10%}.g-b--3of10{width:30%}.g-b--7of10{width:70%}.g-b--9of10{width:90%}.g-b--1of12{width:8.333%}.g-b--5of12{width:41.666%}.g-b--7of12{width:58.333%}.g-b--11of12{width:91.666%}.g-b--push--1of1{margin-left:100%}.g-b--push--1of2,.g-b--push--2of4,.g-b--push--3of6,.g-b--push--4of8,.g-b--push--5of10,.g-b--push--6of12{margin-left:50%}.g-b--push--1of3,.g-b--push--2of6,.g-b--push--4of12{margin-left:33.333%}.g-b--push--2of3,.g-b--push--4of6,.g-b--push--8of12{margin-left:66.666%}.g-b--push--1of4,.g-b--push--2of8,.g-b--push--3of12{margin-left:25%}.g-b--push--3of4,.g-b--push--6of8,.g-b--push--9of12{margin-left:75%}.g-b--push--1of5,.g-b--push--2of10{margin-left:20%}.g-b--push--2of5,.g-b--push--4of10{margin-left:40%}.g-b--push--3of5,.g-b--push--6of10{margin-left:60%}.g-b--push--4of5,.g-b--push--8of10{margin-left:80%}.g-b--push--1of6,.g-b--push--2of12{margin-left:16.666%}.g-b--push--5of6,.g-b--push--10of12{margin-left:83.333%}.g-b--push--1of8{margin-left:12.5%}.g-b--push--3of8{margin-left:37.5%}.g-b--push--5of8{margin-left:62.5%}.g-b--push--7of8{margin-left:87.5%}.g-b--push--1of10{margin-left:10%}.g-b--push--3of10{margin-left:30%}.g-b--push--7of10{margin-left:70%}.g-b--push--9of10{margin-left:90%}.g-b--push--1of12{margin-left:8.333%}.g-b--push--5of12{margin-left:41.666%}.g-b--push--7of12{margin-left:58.333%}.g-b--push--11of12{margin-left:91.666%}.g-b--pull--1of1{margin-right:100%}.g-b--pull--1of2,.g-b--pull--2of4,.g-b--pull--3of6,.g-b--pull--4of8,.g-b--pull--5of10,.g-b--pull--6of12{margin-right:50%}.g-b--pull--1of3,.g-b--pull--2of6,.g-b--pull--4of12{margin-right:33.333%}.g-b--pull--2of3,.g-b--pull--4of6,.g-b--pull--8of12{margin-right:66.666%}.g-b--pull--1of4,.g-b--pull--2of8,.g-b--pull--3of12{margin-right:25%}.g-b--pull--3of4,.g-b--pull--6of8,.g-b--pull--9of12{margin-right:75%}.g-b--pull--1of5,.g-b--pull--2of10{margin-right:20%}.g-b--pull--2of5,.g-b--pull--4of10{margin-right:40%}.g-b--pull--3of5,.g-b--pull--6of10{margin-right:60%}.g-b--pull--4of5,.g-b--pull--8of10{margin-right:80%}.g-b--pull--1of6,.g-b--pull--2of12{margin-right:16.666%}.g-b--pull--5of6,.g-b--pull--10of12{margin-right:83.333%}.g-b--pull--1of8{margin-right:12.5%}.g-b--pull--3of8{margin-right:37.5%}.g-b--pull--5of8{margin-right:62.5%}.g-b--pull--7of8{margin-right:87.5%}.g-b--pull--1of10{margin-right:10%}.g-b--pull--3of10{margin-right:30%}.g-b--pull--7of10{margin-right:70%}.g-b--pull--9of10{margin-right:90%}.g-b--pull--1of12{margin-right:8.333%}.g-b--pull--5of12{margin-right:41.666%}.g-b--pull--7of12{margin-right:58.333%}.g-b--pull--11of12{margin-right:91.666%}.splashscreen{position:fixed;top:0;left:0;width:100%;height:100%;background-color:#373D49;z-index:22}.splashscreen-dillinger{width:260px;height:auto;display:block;margin:0 auto;padding-bottom:3rem}.splashscreen p{font-size:1.25rem;padding-top:.56251rem;font-family:"Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:400;text-align:center;max-width:500px;margin:0 auto;color:#FFF}.sp-center{position:relative;transform:translateY(-50%);top:50%}.open-menu>.wrapper{overflow-x:hidden}.page{margin:0 auto;position:relative;top:0;left:0;width:100%;height:100%;z-index:2;transition:all .25s ease-in-out;background-color:#fff;padding-top:51px;will-change:left}.open-menu .page{left:270px}.title{line-height:1rem;font-size:.8rem;margin-bottom:.77999rem;padding-top:.22001rem;font-weight:500;color:#A0AABF;letter-spacing:1px;text-transform:uppercase;padding-left:16px;padding-right:16px;margin-top:1rem}.split-preview .title{padding-left:0}.title-document{line-height:1rem;font-size:1.25rem;margin-bottom:.89999rem;padding-top:.10001rem;font-weight:400;font-family:"Ubuntu Mono",Monaco;color:#373D49;padding-left:16px;padding-right:16px;width:80%;min-width:300px;outline:0;border:none}.icon{display:block;margin:0 auto;width:36px;height:36px;border-radius:3px;text-align:center}.icon svg{display:inline-block;margin-left:auto;margin-right:auto}.icon-preview{background-color:#373D49;line-height:40px}.icon-preview svg{width:19px;height:12px}.icon-settings{background-color:#373D49;line-height:44px}.icon-settings svg{width:18px;height:18px}.icon-link{width:16px;height:16px;line-height:1;margin-right:24px;text-align:right}.navbar{background-color:#373D49;height:51px;width:100%;position:fixed;top:0;left:0;z-index:6;transition:all .25s ease-in-out;will-change:left}.navbar:after{content:"";display:table;clear:both}.open-menu .navbar{left:270px}.navbar-brand{float:left;margin:0 0 0 24px;padding:0;line-height:42px}.navbar-brand svg{width:85px;height:11px}.nav-left{float:left}.nav-right{float:right}.nav-sidebar{width:100%}.menu{list-style:none;margin:0;padding:0}.menu a{border:0;color:#A0AABF;font-family:"Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;outline:none;text-transform:uppercase}.menu a:hover{color:#35D7BB}.menu .menu-item{border:0;display:none;float:left;margin:0;position:relative}.menu .menu-item>a{display:block;font-size:12px;height:51px;letter-spacing:1px;line-height:51px;padding:0 24px}.menu .menu-item--settings,.menu .menu-item--preview,.menu .menu-item--save-to.in-sidebar,.menu .menu-item--import-from.in-sidebar,.menu .menu-item--link-unlink.in-sidebar,.menu .menu-item--documents.in-sidebar{display:block}.menu .menu-item--documents{padding-bottom:1rem}.menu .menu-item.open>a{background-color:#1D212A}.menu .menu-item-icon>a{height:auto;padding:0}.menu .menu-item-icon:hover>a{background-color:transparent}.menu .menu-link.open i{background-color:#1D212A}.menu .menu-link.open g{fill:#35D7BB}.menu .menu-link-preview,.menu .menu-link-settings{margin-top:8px;width:51px}.menu-sidebar{width:100%}.menu-sidebar .menu-item{float:none;margin-bottom:1px;width:100%}.menu-sidebar .menu-item.open>a{background-color:#373D49}.menu-sidebar .open .caret{transform:rotate(180deg)}.menu-sidebar>.menu-item:hover .dropdown a,.menu-sidebar>.menu-item:hover .settings a{background-color:transparent}.menu-sidebar .menu-link{background-color:#373D49;font-weight:600}.menu-sidebar .menu-link:after{content:"";display:table;clear:both}.menu-sidebar .menu-link>span{float:left}.menu-sidebar .menu-link>.caret{float:right;text-align:right;top:22px}.menu-sidebar .dropdown,.menu-sidebar .settings{background-color:transparent;position:static;width:100%}.dropdown{position:absolute;right:0;top:51px;width:188px}.dropdown,.settings{display:none;background-color:#1D212A}.dropdown{padding:0}.dropdown,.settings,.sidebar-list{list-style:none;margin:0}.sidebar-list{padding:0}.dropdown li{margin:32px 0;padding:0 0 0 32px}.dropdown li,.settings li{line-height:1}.sidebar-list li{line-height:1;margin:32px 0;padding:0 0 0 32px}.dropdown a{color:#D0D6E2}.dropdown a,.settings a,.sidebar-list a{display:block;text-transform:none}.sidebar-list a{color:#D0D6E2}.dropdown a:after,.settings a:after,.sidebar-list a:after{content:"";display:table;clear:both}.dropdown .icon,.settings .icon,.sidebar-list .icon{float:right}.open .dropdown,.open .settings,.open .sidebar-list{display:block}.open .dropdown.collapse,.open .collapse.settings,.open .sidebar-list.collapse{display:none}.open .dropdown.collapse.in,.open .collapse.in.settings,.open .sidebar-list.collapse.in{display:block}.dropdown .unlinked .icon,.settings .unlinked .icon,.sidebar-list .unlinked .icon{opacity:.3}.dropdown.documents li,.documents.settings li,.sidebar-list.documents li{background-image:url("../img/icons/file.svg");background-position:240px center;background-repeat:no-repeat;background-size:14px 16px;padding:3px 32px}.dropdown.documents li.octocat,.documents.settings li.octocat,.sidebar-list.documents li.octocat{background-image:url("../img/icons/octocat.svg");background-position:234px center;background-size:24px 24px}.dropdown.documents li:last-child,.documents.settings li:last-child,.sidebar-list.documents li:last-child{margin-bottom:1rem}.dropdown.documents li.active a,.documents.settings li.active a,.sidebar-list.documents li.active a{color:#35D7BB}.settings{position:fixed;top:67px;right:16px;border-radius:3px;width:288px;background-color:#373D49;padding:16px;z-index:7}.show-settings .settings{display:block}.settings .has-checkbox{float:left}.settings form{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-pack:justify;justify-content:space-between}.settings input{width:20%}.settings a{font-size:1.25rem;font-family:"Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;line-height:28px;color:#D0D6E2}.settings a:after{content:"";display:table;clear:both}.settings a:hover{color:#35D7BB}.settings li{border-bottom:1px solid #4F535B;margin:0;padding:16px 0}.settings li:last-child{border-bottom:none}.brand{border:none;display:block}.brand:hover g{fill:#35D7BB}.toggle{display:block;float:left;height:16px;padding:25px 16px 26px;width:40px}.toggle span:after,.toggle span:before{content:'';left:0;position:absolute;top:-6px}.toggle span:after{top:6px}.toggle span{display:block;position:relative}.toggle span,.toggle span:after,.toggle span:before{-webkit-backface-visibility:hidden;backface-visibility:hidden;background-color:#D3DAEA;height:2px;transition:all .3s;width:20px}.open-menu .toggle span{background-color:transparent}.open-menu .toggle span:before{transform:rotate(45deg) translate(3px,3px)}.open-menu .toggle span:after{transform:rotate(-45deg) translate(5px,-6px)}.caret{display:inline-block;width:0;height:0;margin-left:6px;vertical-align:middle;position:relative;top:-1px;border-top:4px solid;border-right:4px solid transparent;border-left:4px solid transparent}.sidebar{overflow:auto;height:100%;padding-right:15px;padding-bottom:15px;width:285px}.sidebar-wrapper{-webkit-overflow-scrolling:touch;background-color:#2B2F36;left:0;height:100%;overflow-y:hidden;position:fixed;top:0;width:285px;z-index:1}.sidebar-branding{width:160px;padding:0;margin:16px auto}.header{border-bottom:1px solid #E8E8E8;position:relative}.words,.characters{line-height:1rem;font-size:.8rem;margin-bottom:.77999rem;padding-top:.22001rem;font-weight:500;font-family:"Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;letter-spacing:1px;text-transform:uppercase;z-index:5;position:absolute;right:16px;top:0}.words span,.characters span{color:#A0AABF}.words .counter,.characters .counter{color:#000}.words+.characters{top:22px}.mr10{margin-right:10px}.btn{text-align:center;display:inline-block;width:100%;text-transform:uppercase;font-weight:600;font-family:"Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;text-shadow:0 1px 0 #1b8b77;padding:16px 24px;background-color:#35D7BB;border-radius:3px;margin:0 auto 16px;line-height:1;color:#fff;transition:all .15s linear;-webkit-font-smoothing:antialiased}.btn--new,.btn--save{display:block;width:238px}.btn--new:hover,.btn--new:focus,.btn--save:hover,.btn--save:focus{color:#fff;border-bottom-color:transparent;box-shadow:0 1px 3px #24b59c;text-shadow:0 1px 0 #24b59c}.btn--save{background-color:#4A5261;text-shadow:0 1px 1px #1e2127}.btn--save:hover,.btn--save:focus{color:#fff;border-bottom-color:transparent;box-shadow:0 1px 5px #08090a;text-shadow:none}.btn--delete{display:block;width:238px;background-color:transparent;font-size:12px;text-shadow:none}.btn--delete:hover,.btn--delete:focus{color:#fff;border-bottom-color:transparent;text-shadow:0 1px 0 #08090a;opacity:.8}.btn--delete-modal,.btn--ok,.btn--close{border-top:0;background-color:#4A5261;text-shadow:0 1px 0 #08090a;margin:0}.btn--delete-modal:hover,.btn--delete-modal:focus,.btn--ok:hover,.btn--ok:focus,.btn--close:hover,.btn--close:focus{color:#fff;background-color:#292d36;text-shadow:none}.btn--delete-modal{display:inline;width:auto}.overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(55,61,73,.8);transition:all .25s ease-in-out;transition-timing-function:ease-out;will-change:left,opacity,visibility;z-index:5;opacity:0;visibility:hidden}.show-settings .overlay{visibility:visible;opacity:1}.switch{float:right;line-height:1}.switch input{display:none}.switch small{display:inline-block;cursor:pointer;padding:0 24px 0 0;transition:all ease .2s;background-color:#2B2F36;border-color:#2B2F36}.switch small,.switch small:before{border-radius:30px;box-shadow:inset 0 0 2px 0 #14171F}.switch small:before{display:block;content:'';width:28px;height:28px;background:#fff}.switch.checked small{padding-right:0;padding-left:24px;background-color:#35D7BB;box-shadow:none}.modal--dillinger.about .modal-dialog{font-size:1.25rem;max-width:500px}.modal--dillinger.scope .modal-dialog{max-width:300px;margin:5rem auto}.modal--dillinger .modal-dialog{max-width:600px;width:auto;margin:5rem auto}.modal--dillinger .modal-content{background:#373D49;border-radius:3px;box-shadow:0 2px 5px 0 #2C3B59;color:#fff;font-family:"Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:400;padding:2rem}.modal--dillinger ul{list-style-type:disc;margin:1rem 0;padding:0 0 0 1rem}.modal--dillinger li{padding:0;margin:0}.modal--dillinger .modal-header{border:0;padding:0}.modal--dillinger .modal-body{padding:0}.modal--dillinger .modal-footer{border:0;padding:0}.modal--dillinger .close{color:#fff;opacity:1}.modal-backdrop{background-color:#373D49}.pagination--dillinger{padding:0!important;margin:1.5rem 0!important;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-direction:row;flex-direction:row;-ms-flex-align:center;align-items:center;-ms-flex-line-pack:stretch;align-content:stretch}.pagination--dillinger li{display:-ms-flexbox;display:flex;-ms-flex-positive:1;flex-grow:1;text-align:center}.pagination--dillinger li:first-child>a,.pagination--dillinger li.disabled>a,.pagination--dillinger li.disabled>a:hover,.pagination--dillinger li.disabled>a:focus,.pagination--dillinger li>a{background-color:transparent;border-color:#4F535B;border-right-color:transparent}.pagination--dillinger li.active>a,.pagination--dillinger li.active>a:hover,.pagination--dillinger li.active>a:focus{border-color:#4A5261;background-color:#4A5261;color:#fff}.pagination--dillinger li>a{float:none;color:#fff;width:100%;display:block;text-align:center;margin:0;border-right-color:transparent;padding:6px}.pagination--dillinger li>a:hover,.pagination--dillinger li>a:focus{border-color:#35D7BB;background-color:#35D7BB;color:#fff}.pagination--dillinger li:last-child a{border-color:#4F535B}.pagination--dillinger li:first-child a{border-right-color:transparent}.diNotify{position:absolute;z-index:9999;left:0;right:0;top:0;margin:0 auto;max-width:400px;text-align:center;transition:top .5s ease-in-out,opacity .5s ease-in-out;visibility:hidden}.diNotify-body{-webkit-font-smoothing:antialiased;background-color:#35D7BB;background:#666E7F;border-radius:3px;color:#fff;font-family:"Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:400;overflow:hidden;padding:1rem 2rem .5rem;display:-ms-flexbox;display:flex;-ms-flex-align:baseline;align-items:baseline;-ms-flex-pack:center;justify-content:center}.diNotify-icon{display:block;width:16px;height:16px;line-height:16px;position:relative;top:3px}.diNotify-message{padding-left:1rem}.zen-wrapper{position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;z-index:10;background-color:#FFF;opacity:0;transition:opacity .25s ease-in-out}.zen-wrapper.on{opacity:1}.enter-zen-mode{background-image:url("../img/icons/enter-zen.svg");right:.5rem;top:.313rem;display:none}.enter-zen-mode,.close-zen-mode{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;background-repeat:no-repeat;width:32px;height:32px;display:block;position:absolute}.close-zen-mode{background-image:url("../img/icons/exit-zen.svg");right:1rem;top:1rem}.zen-page{position:relative;top:0;bottom:0;z-index:11;height:100%;width:100%}#zen{font-size:1.25rem;width:300px;height:80%;margin:0 auto;position:relative;top:10%}#zen:before,#zen:after{content:"";position:absolute;height:10%;width:100%;z-index:12;pointer-events:none}#preview .table{width:auto}.ui-resizable{position:relative}.ui-resizable-handle{position:absolute;font-size:.1px;z-index:99999;display:block}.ui-resizable-e{background-color:#666;border-right:8px solid #e8e8e8;border-left:1px solid #222;width:10px;z-index:88!important;position:relative}.ui-resizable-e:after{content:"-";display:block;position:absolute;top:calc(50% - 16px);left:0;height:25px;width:2px;background-color:rgba(0,0,0,.4);margin:3px}#editor{cursor:ew-resize;position:relative;z-index:auto}.profile-pic{float:left;width:250px}#_default_ a::before{color:#A0AABF}#_default_ img{display:none}#_default_ #_default_{display:block;float:left;max-width:38%;word-wrap:break-word}#_default_ .default-ad{display:none}#_default_ ._default_{display:block}#_default_ a{color:#35d7bb;text-decoration:none}#_default_ a:hover{color:#8ae8d8}#_default_ .default-image{display:none}#_default_ .default-title:after{content:" — "}#_default_ .default-title,#_default_ .default-text,#_default_ .default-description{display:inline}#_default_ .default-title{position:relative;font-weight:600;display:none}#_default_ a:before{position:relative;top:0;padding:5px;color:#a0aabf;content:"Ad";text-transform:uppercase;font-size:8px;font-family:Verdana,sans-serif}#_default_{display:block;float:left;max-width:38%;word-wrap:break-word}#_default_ ._default_{display:block;font-size:.75rem;height:51px;letter-spacing:1px;line-height:1rem;padding:18px 24px}body{max-width:1024px;margin:0 auto;overflow:auto;padding:2%}.split{overflow:scroll;padding:0!important;-webkit-overflow-scrolling:touch}.split-editor{padding-left:0;padding-right:0;position:relative;z-index:3}.show-preview .split-editor{display:none}.split-preview{background-color:#fff;display:none;top:0;position:relative;z-index:4}.show-preview .split-preview{display:block}#editor{font-size:1rem;font-family:"Ubuntu Mono",Monaco;font-weight:400;line-height:2rem;width:100%;height:100%}#editor .ace_gutter{-webkit-font-smoothing:antialiased}.editor-header{width:50%;float:left;border-bottom:1px solid #E8E8E8;position:relative}.editor-header--first{border-right:1px solid #E8E8E8}.editor-header .title{display:inline-block}.preview-html{padding:15px}.preview-html a{color:#A0AABF;text-decoration:underline}.preview-src{white-space:normal}.preview-mode-toggle-src{background-image:url("../img/icons/code.svg")}.preview-mode-toggle-src,.preview-mode-toggle-html{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;background-repeat:no-repeat;width:32px;height:32px;display:block;position:absolute;right:.5rem;top:.5rem;display:none}.preview-mode-toggle-html{background-image:url("../img/icons/eye.svg")}.sr-only{visibility:hidden;text-overflow:110%;overflow:hidden;top:-100px;position:absolute}.mnone{margin:0!important}@media screen and (min-width:27.5em){html{font-size:.875em}body{font-size:1rem}ul,ol{margin-bottom:.83999rem;padding-top:.16001rem}p{padding-top:.66001rem}p,pre{margin-bottom:1.33999rem}pre,blockquote p{font-size:1rem;padding-top:.66001rem}blockquote p{margin-bottom:.33999rem}h1{font-size:2.0571429rem;margin-bottom:.21999rem;padding-top:.78001rem}h2{font-size:1.953125rem;margin-bottom:.1835837rem;padding-top:.8164163rem}h3{font-size:1.6457143rem;margin-bottom:.07599rem;padding-top:.92401rem}h4{font-size:1.5625rem;margin-bottom:.546865rem;padding-top:.453135rem}h5{font-size:1.25rem;margin-bottom:-.56251rem;padding-top:.56251rem}h6{font-size:1rem;margin-bottom:-.65001rem;padding-top:.65001rem}.g{margin-left:-16px;margin-right:-16px}.g-b{padding-left:16px;padding-right:16px}.g-b--m1of1{width:100%}.g-b--m1of2,.g-b--m2of4,.g-b--m3of6,.g-b--m4of8,.g-b--m5of10,.g-b--m6of12{width:50%}.g-b--m1of3,.g-b--m2of6,.g-b--m4of12{width:33.333%}.g-b--m2of3,.g-b--m4of6,.g-b--m8of12{width:66.666%}.g-b--m1of4,.g-b--m2of8,.g-b--m3of12{width:25%}.g-b--m3of4,.g-b--m6of8,.g-b--m9of12{width:75%}.g-b--m1of5,.g-b--m2of10{width:20%}.g-b--m2of5,.g-b--m4of10{width:40%}.g-b--m3of5,.g-b--m6of10{width:60%}.g-b--m4of5,.g-b--m8of10{width:80%}.g-b--m1of6,.g-b--m2of12{width:16.666%}.g-b--m5of6,.g-b--m10of12{width:83.333%}.g-b--m1of8{width:12.5%}.g-b--m3of8{width:37.5%}.g-b--m5of8{width:62.5%}.g-b--m7of8{width:87.5%}.g-b--m1of10{width:10%}.g-b--m3of10{width:30%}.g-b--m7of10{width:70%}.g-b--m9of10{width:90%}.g-b--m1of12{width:8.333%}.g-b--m5of12{width:41.666%}.g-b--m7of12{width:58.333%}.g-b--m11of12{width:91.666%}.g-b--push--m1of1{margin-left:100%}.g-b--push--m1of2,.g-b--push--m2of4,.g-b--push--m3of6,.g-b--push--m4of8,.g-b--push--m5of10,.g-b--push--m6of12{margin-left:50%}.g-b--push--m1of3,.g-b--push--m2of6,.g-b--push--m4of12{margin-left:33.333%}.g-b--push--m2of3,.g-b--push--m4of6,.g-b--push--m8of12{margin-left:66.666%}.g-b--push--m1of4,.g-b--push--m2of8,.g-b--push--m3of12{margin-left:25%}.g-b--push--m3of4,.g-b--push--m6of8,.g-b--push--m9of12{margin-left:75%}.g-b--push--m1of5,.g-b--push--m2of10{margin-left:20%}.g-b--push--m2of5,.g-b--push--m4of10{margin-left:40%}.g-b--push--m3of5,.g-b--push--m6of10{margin-left:60%}.g-b--push--m4of5,.g-b--push--m8of10{margin-left:80%}.g-b--push--m1of6,.g-b--push--m2of12{margin-left:16.666%}.g-b--push--m5of6,.g-b--push--m10of12{margin-left:83.333%}.g-b--push--m1of8{margin-left:12.5%}.g-b--push--m3of8{margin-left:37.5%}.g-b--push--m5of8{margin-left:62.5%}.g-b--push--m7of8{margin-left:87.5%}.g-b--push--m1of10{margin-left:10%}.g-b--push--m3of10{margin-left:30%}.g-b--push--m7of10{margin-left:70%}.g-b--push--m9of10{margin-left:90%}.g-b--push--m1of12{margin-left:8.333%}.g-b--push--m5of12{margin-left:41.666%}.g-b--push--m7of12{margin-left:58.333%}.g-b--push--m11of12{margin-left:91.666%}.g-b--pull--m1of1{margin-right:100%}.g-b--pull--m1of2,.g-b--pull--m2of4,.g-b--pull--m3of6,.g-b--pull--m4of8,.g-b--pull--m5of10,.g-b--pull--m6of12{margin-right:50%}.g-b--pull--m1of3,.g-b--pull--m2of6,.g-b--pull--m4of12{margin-right:33.333%}.g-b--pull--m2of3,.g-b--pull--m4of6,.g-b--pull--m8of12{margin-right:66.666%}.g-b--pull--m1of4,.g-b--pull--m2of8,.g-b--pull--m3of12{margin-right:25%}.g-b--pull--m3of4,.g-b--pull--m6of8,.g-b--pull--m9of12{margin-right:75%}.g-b--pull--m1of5,.g-b--pull--m2of10{margin-right:20%}.g-b--pull--m2of5,.g-b--pull--m4of10{margin-right:40%}.g-b--pull--m3of5,.g-b--pull--m6of10{margin-right:60%}.g-b--pull--m4of5,.g-b--pull--m8of10{margin-right:80%}.g-b--pull--m1of6,.g-b--pull--m2of12{margin-right:16.666%}.g-b--pull--m5of6,.g-b--pull--m10of12{margin-right:83.333%}.g-b--pull--m1of8{margin-right:12.5%}.g-b--pull--m3of8{margin-right:37.5%}.g-b--pull--m5of8{margin-right:62.5%}.g-b--pull--m7of8{margin-right:87.5%}.g-b--pull--m1of10{margin-right:10%}.g-b--pull--m3of10{margin-right:30%}.g-b--pull--m7of10{margin-right:70%}.g-b--pull--m9of10{margin-right:90%}.g-b--pull--m1of12{margin-right:8.333%}.g-b--pull--m5of12{margin-right:41.666%}.g-b--pull--m7of12{margin-right:58.333%}.g-b--pull--m11of12{margin-right:91.666%}.splashscreen p{font-size:1.25rem;margin-bottom:1.43749rem;padding-top:.56251rem}.title{font-size:.8rem;margin-bottom:.77999rem;padding-top:.22001rem}.title-document{margin-bottom:.89999rem;padding-top:.10001rem}.title-document,.settings a{font-size:1.25rem}.words,.characters{font-size:.8rem;margin-bottom:.77999rem;padding-top:.22001rem}.modal--dillinger.about .modal-dialog,#zen{font-size:1.25rem}#zen{width:400px}#editor{font-size:1rem}}@media screen and (min-width:46.25em){html{font-size:.875em}body{font-size:1rem}ul,ol{margin-bottom:.83999rem;padding-top:.16001rem}p{padding-top:.66001rem}p,pre{margin-bottom:1.33999rem}pre,blockquote p{font-size:1rem;padding-top:.66001rem}blockquote p{margin-bottom:.33999rem}h1{font-size:2.0571429rem;margin-bottom:.21999rem;padding-top:.78001rem}h2{font-size:1.953125rem;margin-bottom:.1835837rem;padding-top:.8164163rem}h3{font-size:1.6457143rem;margin-bottom:.07599rem;padding-top:.92401rem}h4{font-size:1.5625rem;margin-bottom:.546865rem;padding-top:.453135rem}h5{font-size:1.25rem;margin-bottom:-.56251rem;padding-top:.56251rem}h6{font-size:1rem;margin-bottom:-.65001rem;padding-top:.65001rem}.g{margin-left:-16px;margin-right:-16px}.g-b{padding-left:16px;padding-right:16px}.g-b--t1of1{width:100%}.g-b--t1of2,.g-b--t2of4,.g-b--t3of6,.g-b--t4of8,.g-b--t5of10,.g-b--t6of12{width:50%}.g-b--t1of3,.g-b--t2of6,.g-b--t4of12{width:33.333%}.g-b--t2of3,.g-b--t4of6,.g-b--t8of12{width:66.666%}.g-b--t1of4,.g-b--t2of8,.g-b--t3of12{width:25%}.g-b--t3of4,.g-b--t6of8,.g-b--t9of12{width:75%}.g-b--t1of5,.g-b--t2of10{width:20%}.g-b--t2of5,.g-b--t4of10{width:40%}.g-b--t3of5,.g-b--t6of10{width:60%}.g-b--t4of5,.g-b--t8of10{width:80%}.g-b--t1of6,.g-b--t2of12{width:16.666%}.g-b--t5of6,.g-b--t10of12{width:83.333%}.g-b--t1of8{width:12.5%}.g-b--t3of8{width:37.5%}.g-b--t5of8{width:62.5%}.g-b--t7of8{width:87.5%}.g-b--t1of10{width:10%}.g-b--t3of10{width:30%}.g-b--t7of10{width:70%}.g-b--t9of10{width:90%}.g-b--t1of12{width:8.333%}.g-b--t5of12{width:41.666%}.g-b--t7of12{width:58.333%}.g-b--t11of12{width:91.666%}.g-b--push--t1of1{margin-left:100%}.g-b--push--t1of2,.g-b--push--t2of4,.g-b--push--t3of6,.g-b--push--t4of8,.g-b--push--t5of10,.g-b--push--t6of12{margin-left:50%}.g-b--push--t1of3,.g-b--push--t2of6,.g-b--push--t4of12{margin-left:33.333%}.g-b--push--t2of3,.g-b--push--t4of6,.g-b--push--t8of12{margin-left:66.666%}.g-b--push--t1of4,.g-b--push--t2of8,.g-b--push--t3of12{margin-left:25%}.g-b--push--t3of4,.g-b--push--t6of8,.g-b--push--t9of12{margin-left:75%}.g-b--push--t1of5,.g-b--push--t2of10{margin-left:20%}.g-b--push--t2of5,.g-b--push--t4of10{margin-left:40%}.g-b--push--t3of5,.g-b--push--t6of10{margin-left:60%}.g-b--push--t4of5,.g-b--push--t8of10{margin-left:80%}.g-b--push--t1of6,.g-b--push--t2of12{margin-left:16.666%}.g-b--push--t5of6,.g-b--push--t10of12{margin-left:83.333%}.g-b--push--t1of8{margin-left:12.5%}.g-b--push--t3of8{margin-left:37.5%}.g-b--push--t5of8{margin-left:62.5%}.g-b--push--t7of8{margin-left:87.5%}.g-b--push--t1of10{margin-left:10%}.g-b--push--t3of10{margin-left:30%}.g-b--push--t7of10{margin-left:70%}.g-b--push--t9of10{margin-left:90%}.g-b--push--t1of12{margin-left:8.333%}.g-b--push--t5of12{margin-left:41.666%}.g-b--push--t7of12{margin-left:58.333%}.g-b--push--t11of12{margin-left:91.666%}.g-b--pull--t1of1{margin-right:100%}.g-b--pull--t1of2,.g-b--pull--t2of4,.g-b--pull--t3of6,.g-b--pull--t4of8,.g-b--pull--t5of10,.g-b--pull--t6of12{margin-right:50%}.g-b--pull--t1of3,.g-b--pull--t2of6,.g-b--pull--t4of12{margin-right:33.333%}.g-b--pull--t2of3,.g-b--pull--t4of6,.g-b--pull--t8of12{margin-right:66.666%}.g-b--pull--t1of4,.g-b--pull--t2of8,.g-b--pull--t3of12{margin-right:25%}.g-b--pull--t3of4,.g-b--pull--t6of8,.g-b--pull--t9of12{margin-right:75%}.g-b--pull--t1of5,.g-b--pull--t2of10{margin-right:20%}.g-b--pull--t2of5,.g-b--pull--t4of10{margin-right:40%}.g-b--pull--t3of5,.g-b--pull--t6of10{margin-right:60%}.g-b--pull--t4of5,.g-b--pull--t8of10{margin-right:80%}.g-b--pull--t1of6,.g-b--pull--t2of12{margin-right:16.666%}.g-b--pull--t5of6,.g-b--pull--t10of12{margin-right:83.333%}.g-b--pull--t1of8{margin-right:12.5%}.g-b--pull--t3of8{margin-right:37.5%}.g-b--pull--t5of8{margin-right:62.5%}.g-b--pull--t7of8{margin-right:87.5%}.g-b--pull--t1of10{margin-right:10%}.g-b--pull--t3of10{margin-right:30%}.g-b--pull--t7of10{margin-right:70%}.g-b--pull--t9of10{margin-right:90%}.g-b--pull--t1of12{margin-right:8.333%}.g-b--pull--t5of12{margin-right:41.666%}.g-b--pull--t7of12{margin-right:58.333%}.g-b--pull--t11of12{margin-right:91.666%}.splashscreen-dillinger{width:500px}.splashscreen p{font-size:1.25rem;margin-bottom:1.43749rem;padding-top:.56251rem}.title{font-size:.8rem;margin-bottom:.77999rem;padding-top:.22001rem}.title-document{font-size:1.25rem;margin-bottom:.89999rem;padding-top:.10001rem}.menu .menu-item--save-to,.menu .menu-item--import-from{display:block}.menu .menu-item--preview,.menu .menu-item--save-to.in-sidebar,.menu .menu-item--import-from.in-sidebar{display:none}.settings a{font-size:1.25rem}.words,.characters{font-size:.8rem;margin-bottom:.77999rem;padding-top:.22001rem}.modal--dillinger.about .modal-dialog{font-size:1.25rem}.enter-zen-mode{display:block}.close-zen-mode{right:3rem;top:3rem}#zen{font-size:1.25rem;width:500px}.split-editor{border-right:1px solid #E8E8E8;float:left;padding-right:16px;width:50%}.show-preview .split-editor{display:block}.split-preview{display:block;float:right;position:relative;top:0;width:50%}#editor{font-size:1rem}.preview-mode-toggle-src,.preview-mode-toggle-html{display:block}}@media screen and (min-width:62.5em){html{font-size:.875em}body{font-size:1rem}ul,ol{margin-bottom:.83999rem;padding-top:.16001rem}p{padding-top:.66001rem}p,pre{margin-bottom:1.33999rem}pre,blockquote p{font-size:1rem;padding-top:.66001rem}blockquote p{margin-bottom:.33999rem}h1{font-size:2.0571429rem;margin-bottom:.21999rem;padding-top:.78001rem}h2{font-size:1.953125rem;margin-bottom:.1835837rem;padding-top:.8164163rem}h3{font-size:1.6457143rem;margin-bottom:.07599rem;padding-top:.92401rem}h4{font-size:1.5625rem;margin-bottom:.546865rem;padding-top:.453135rem}h5{font-size:1.25rem;margin-bottom:-.56251rem;padding-top:.56251rem}h6{font-size:1rem;margin-bottom:-.65001rem;padding-top:.65001rem}.g{margin-left:-16px;margin-right:-16px}.g-b{padding-left:16px;padding-right:16px}.g-b--d1of1{width:100%}.g-b--d1of2,.g-b--d2of4,.g-b--d3of6,.g-b--d4of8,.g-b--d5of10,.g-b--d6of12{width:50%}.g-b--d1of3,.g-b--d2of6,.g-b--d4of12{width:33.333%}.g-b--d2of3,.g-b--d4of6,.g-b--d8of12{width:66.666%}.g-b--d1of4,.g-b--d2of8,.g-b--d3of12{width:25%}.g-b--d3of4,.g-b--d6of8,.g-b--d9of12{width:75%}.g-b--d1of5,.g-b--d2of10{width:20%}.g-b--d2of5,.g-b--d4of10{width:40%}.g-b--d3of5,.g-b--d6of10{width:60%}.g-b--d4of5,.g-b--d8of10{width:80%}.g-b--d1of6,.g-b--d2of12{width:16.666%}.g-b--d5of6,.g-b--d10of12{width:83.333%}.g-b--d1of8{width:12.5%}.g-b--d3of8{width:37.5%}.g-b--d5of8{width:62.5%}.g-b--d7of8{width:87.5%}.g-b--d1of10{width:10%}.g-b--d3of10{width:30%}.g-b--d7of10{width:70%}.g-b--d9of10{width:90%}.g-b--d1of12{width:8.333%}.g-b--d5of12{width:41.666%}.g-b--d7of12{width:58.333%}.g-b--d11of12{width:91.666%}.g-b--push--d1of1{margin-left:100%}.g-b--push--d1of2,.g-b--push--d2of4,.g-b--push--d3of6,.g-b--push--d4of8,.g-b--push--d5of10,.g-b--push--d6of12{margin-left:50%}.g-b--push--d1of3,.g-b--push--d2of6,.g-b--push--d4of12{margin-left:33.333%}.g-b--push--d2of3,.g-b--push--d4of6,.g-b--push--d8of12{margin-left:66.666%}.g-b--push--d1of4,.g-b--push--d2of8,.g-b--push--d3of12{margin-left:25%}.g-b--push--d3of4,.g-b--push--d6of8,.g-b--push--d9of12{margin-left:75%}.g-b--push--d1of5,.g-b--push--d2of10{margin-left:20%}.g-b--push--d2of5,.g-b--push--d4of10{margin-left:40%}.g-b--push--d3of5,.g-b--push--d6of10{margin-left:60%}.g-b--push--d4of5,.g-b--push--d8of10{margin-left:80%}.g-b--push--d1of6,.g-b--push--d2of12{margin-left:16.666%}.g-b--push--d5of6,.g-b--push--d10of12{margin-left:83.333%}.g-b--push--d1of8{margin-left:12.5%}.g-b--push--d3of8{margin-left:37.5%}.g-b--push--d5of8{margin-left:62.5%}.g-b--push--d7of8{margin-left:87.5%}.g-b--push--d1of10{margin-left:10%}.g-b--push--d3of10{margin-left:30%}.g-b--push--d7of10{margin-left:70%}.g-b--push--d9of10{margin-left:90%}.g-b--push--d1of12{margin-left:8.333%}.g-b--push--d5of12{margin-left:41.666%}.g-b--push--d7of12{margin-left:58.333%}.g-b--push--d11of12{margin-left:91.666%}.g-b--pull--d1of1{margin-right:100%}.g-b--pull--d1of2,.g-b--pull--d2of4,.g-b--pull--d3of6,.g-b--pull--d4of8,.g-b--pull--d5of10,.g-b--pull--d6of12{margin-right:50%}.g-b--pull--d1of3,.g-b--pull--d2of6,.g-b--pull--d4of12{margin-right:33.333%}.g-b--pull--d2of3,.g-b--pull--d4of6,.g-b--pull--d8of12{margin-right:66.666%}.g-b--pull--d1of4,.g-b--pull--d2of8,.g-b--pull--d3of12{margin-right:25%}.g-b--pull--d3of4,.g-b--pull--d6of8,.g-b--pull--d9of12{margin-right:75%}.g-b--pull--d1of5,.g-b--pull--d2of10{margin-right:20%}.g-b--pull--d2of5,.g-b--pull--d4of10{margin-right:40%}.g-b--pull--d3of5,.g-b--pull--d6of10{margin-right:60%}.g-b--pull--d4of5,.g-b--pull--d8of10{margin-right:80%}.g-b--pull--d1of6,.g-b--pull--d2of12{margin-right:16.666%}.g-b--pull--d5of6,.g-b--pull--d10of12{margin-right:83.333%}.g-b--pull--d1of8{margin-right:12.5%}.g-b--pull--d3of8{margin-right:37.5%}.g-b--pull--d5of8{margin-right:62.5%}.g-b--pull--d7of8{margin-right:87.5%}.g-b--pull--d1of10{margin-right:10%}.g-b--pull--d3of10{margin-right:30%}.g-b--pull--d7of10{margin-right:70%}.g-b--pull--d9of10{margin-right:90%}.g-b--pull--d1of12{margin-right:8.333%}.g-b--pull--d5of12{margin-right:41.666%}.g-b--pull--d7of12{margin-right:58.333%}.g-b--pull--d11of12{margin-right:91.666%}.splashscreen-dillinger{width:700px}.splashscreen p{font-size:1.25rem;margin-bottom:1.43749rem;padding-top:.56251rem}.title{font-size:.8rem;margin-bottom:.77999rem;padding-top:.22001rem}.title-document{font-size:1.25rem;margin-bottom:.89999rem;padding-top:.10001rem}.menu .menu-item--export-as{display:block}.menu .menu-item--preview{display:none}.settings a{font-size:1.25rem}.words,.characters{font-size:.8rem;margin-bottom:.77999rem;padding-top:.22001rem}.modal--dillinger.about .modal-dialog,#zen{font-size:1.25rem}#zen{width:700px}#editor{font-size:1rem}}@media screen and (min-width:87.5em){html{font-size:.875em}body{font-size:1rem}ul,ol{margin-bottom:.83999rem;padding-top:.16001rem}p{padding-top:.66001rem}p,pre{margin-bottom:1.33999rem}pre,blockquote p{font-size:1rem;padding-top:.66001rem}blockquote p{margin-bottom:.33999rem}h1{font-size:2.0571429rem;margin-bottom:.21999rem;padding-top:.78001rem}h2{font-size:1.953125rem;margin-bottom:.1835837rem;padding-top:.8164163rem}h3{font-size:1.6457143rem;margin-bottom:.07599rem;padding-top:.92401rem}h4{font-size:1.5625rem;margin-bottom:.546865rem;padding-top:.453135rem}h5{font-size:1.25rem;margin-bottom:-.56251rem;padding-top:.56251rem}h6{font-size:1rem;margin-bottom:-.65001rem;padding-top:.65001rem}.splashscreen-dillinger{width:800px}.splashscreen p{font-size:1.25rem;margin-bottom:1.43749rem;padding-top:.56251rem}.title{font-size:.8rem;margin-bottom:.77999rem;padding-top:.22001rem}.title-document{margin-bottom:.89999rem;padding-top:.10001rem}.title-document,.settings a{font-size:1.25rem}.words,.characters{font-size:.8rem;margin-bottom:.77999rem;padding-top:.22001rem}.modal--dillinger.about .modal-dialog,#zen{font-size:1.25rem}#editor{font-size:1rem}}@media (min-width:768px){.form-inline .form-group{display:inline-block;margin-bottom:0;vertical-align:middle}.form-inline .form-control{display:inline-block;width:auto;vertical-align:middle}.form-inline .input-group{display:inline-table;vertical-align:middle}.form-inline .input-group .input-group-addon,.form-inline .input-group .input-group-btn,.form-inline .input-group .form-control{width:auto}.form-inline .input-group>.form-control{width:100%}.form-inline .control-label{margin-bottom:0;vertical-align:middle}.form-inline .radio,.form-inline .checkbox{display:inline-block;margin-top:0;margin-bottom:0;vertical-align:middle}.form-inline .radio label,.form-inline .checkbox label{padding-left:0}.form-inline .radio input[type="radio"],.form-inline .checkbox input[type="checkbox"]{position:relative;margin-left:0}.form-inline .has-feedback .form-control-feedback{top:0}.form-horizontal .control-label{text-align:right;margin-bottom:0;padding-top:7px}.form-horizontal .form-group-lg .control-label{padding-top:14.3px}.form-horizontal .form-group-sm .control-label{padding-top:6px}.modal-dialog{width:600px;margin:30px auto}.modal-content{box-shadow:0 5px 15px rgba(0,0,0,.5)}.modal-sm{width:300px}}@media (min-width:992px){.modal-lg{width:900px}}@media screen and (max-width:1200px){#_default_{max-width:30%}#_default_ ._default_{font-size:.825rem;line-height:.875rem;padding:12px 12px 6px 24px;text-align:justify}}@media screen and (max-width:1100px){#_default_{max-width:27%}#_default_ ._default_{font-size:.8rem;line-height:.85rem;padding:12px 6px 6px 24px;text-align:justify}}@media screen and (max-width:1000px){#_default_{max-width:24%}#_default_ ._default_{font-size:.775rem;line-height:.8rem;padding:12px 6px 6px 24px;text-align:justify}}@media screen and (max-width:900px){#_default_{max-width:30%}}@media screen and (max-width:767px){.table-responsive{width:100%;margin-bottom:15px;overflow-y:hidden;overflow-x:auto;-ms-overflow-style:-ms-autohiding-scrollbar;border:1px solid #ddd;-webkit-overflow-scrolling:touch}.table-responsive>.table{margin-bottom:0}.table-responsive>.table>thead>tr>th,.table-responsive>.table>thead>tr>td,.table-responsive>.table>tbody>tr>th,.table-responsive>.table>tbody>tr>td,.table-responsive>.table>tfoot>tr>th,.table-responsive>.table>tfoot>tr>td{white-space:nowrap}.table-responsive>.table-bordered{border:0}.table-responsive>.table-bordered>thead>tr>th:first-child,.table-responsive>.table-bordered>thead>tr>td:first-child,.table-responsive>.table-bordered>tbody>tr>th:first-child,.table-responsive>.table-bordered>tbody>tr>td:first-child,.table-responsive>.table-bordered>tfoot>tr>th:first-child,.table-responsive>.table-bordered>tfoot>tr>td:first-child{border-left:0}.table-responsive>.table-bordered>thead>tr>th:last-child,.table-responsive>.table-bordered>thead>tr>td:last-child,.table-responsive>.table-bordered>tbody>tr>th:last-child,.table-responsive>.table-bordered>tbody>tr>td:last-child,.table-responsive>.table-bordered>tfoot>tr>th:last-child,.table-responsive>.table-bordered>tfoot>tr>td:last-child{border-right:0}.table-responsive>.table-bordered>tbody>tr:last-child>th,.table-responsive>.table-bordered>tbody>tr:last-child>td,.table-responsive>.table-bordered>tfoot>tr:last-child>th,.table-responsive>.table-bordered>tfoot>tr:last-child>td{border-bottom:0}}@media screen and (max-width:720px){#_default_{max-width:60%}#_default_ ._default_{font-size:.75rem;line-height:1rem;padding:12px 24px}}@media screen and (max-width:620px){#_default_{max-width:50%}#_default_ ._default_{font-size:.66rem;letter-spacing:1px;line-height:1rem;padding:10px 24px}}@media screen and (max-width:520px){#_default_ ._default_{font-size:.4rem;line-height:.875rem;padding:6px 12px 6px 24px;text-align:justify}}@media screen and (max-width:460px){#_default_{display:none}}@media screen and (max-width:46.1875em){.editor-header{display:none}.editor-header--first{display:block;width:100%}}</style></head><body id="preview">
+<ol>
+<li class="has-line-data" data-line-start="0" data-line-end="3">
+<p class="has-line-data" data-line-start="0" data-line-end="2"><strong>What is the difference between <code>ChangeDetectorRef.detectChanges()</code> and <code>ApplicationRef.tick()</code>?</strong><br>
+<code>detectChanges()</code> triggers change detection for a specific component, while <code>tick()</code> triggers it for the whole application.</p>
+</li>
+<li class="has-line-data" data-line-start="3" data-line-end="6">
+<p class="has-line-data" data-line-start="3" data-line-end="5"><strong>How does Angular handle two-way data binding under the hood?</strong><br>
+Angular uses property binding with <code>[]</code> and event binding with <code>()</code> via <code>[(ngModel)]</code> to achieve two-way data binding.</p>
+</li>
+<li class="has-line-data" data-line-start="6" data-line-end="9">
+<p class="has-line-data" data-line-start="6" data-line-end="8"><strong>What are the performance implications of using <code>trackBy</code> with <code>ngFor</code>?</strong><br>
+<code>trackBy</code> improves performance by identifying items by a unique key, avoiding unnecessary DOM re-renders.</p>
+</li>
+<li class="has-line-data" data-line-start="9" data-line-end="12">
+<p class="has-line-data" data-line-start="9" data-line-end="11"><strong>How does <code>ngZone</code> improve performance in Angular applications?</strong><br>
+<code>ngZone</code> reduces the frequency of change detection cycles by running outside Angular’s zone when needed.</p>
+</li>
+<li class="has-line-data" data-line-start="12" data-line-end="15">
+<p class="has-line-data" data-line-start="12" data-line-end="14"><strong>What is the role of <code>NgModule</code> metadata in bootstrapping Angular applications?</strong><br>
+<code>NgModule</code> organizes components, directives, and services into cohesive blocks and provides entry points for bootstrapping.</p>
+</li>
+<li class="has-line-data" data-line-start="15" data-line-end="18">
+<p class="has-line-data" data-line-start="15" data-line-end="17"><strong>How do you implement lazy loading with route guards?</strong><br>
+You use the <code>canLoad</code> guard with lazy-loaded modules to control module loading based on conditions.</p>
+</li>
+<li class="has-line-data" data-line-start="18" data-line-end="21">
+<p class="has-line-data" data-line-start="18" data-line-end="20"><strong>What are dynamic components, and how do you load them dynamically?</strong><br>
+Dynamic components are created at runtime and can be loaded using <code>ComponentFactoryResolver</code> and <code>ViewContainerRef</code>.</p>
+</li>
+<li class="has-line-data" data-line-start="21" data-line-end="24">
+<p class="has-line-data" data-line-start="21" data-line-end="23"><strong>How does the Angular Ahead-of-Time (AOT) compiler optimize applications?</strong><br>
+AOT pre-compiles the application during the build, reducing runtime compilation, improving load time, and detecting errors early.</p>
+</li>
+<li class="has-line-data" data-line-start="24" data-line-end="27">
+<p class="has-line-data" data-line-start="24" data-line-end="26"><strong>What is the difference between <code>ViewContainerRef</code> and <code>ComponentFactoryResolver</code>?</strong><br>
+<code>ViewContainerRef</code> manages the view of components, while <code>ComponentFactoryResolver</code> is used to create components dynamically.</p>
+</li>
+<li class="has-line-data" data-line-start="27" data-line-end="30">
+<p class="has-line-data" data-line-start="27" data-line-end="29"><strong>How do you use Angular Ivy for advanced tree-shaking and performance optimization?</strong><br>
+Angular Ivy reduces bundle sizes by eliminating unused code (tree-shaking) and enhances performance with improved rendering.</p>
+</li>
+<li class="has-line-data" data-line-start="30" data-line-end="33">
+<p class="has-line-data" data-line-start="30" data-line-end="32"><strong>How does Angular handle change detection when using Observables and <code>async</code> pipes?</strong><br>
+The <code>async</code> pipe subscribes to Observables and triggers change detection when new data is emitted.</p>
+</li>
+<li class="has-line-data" data-line-start="33" data-line-end="36">
+<p class="has-line-data" data-line-start="33" data-line-end="35"><strong>Explain the <code>OnPush</code> change detection strategy in Angular and its use cases.</strong><br>
+<code>OnPush</code> optimizes performance by running change detection only when input properties change or events occur.</p>
+</li>
+<li class="has-line-data" data-line-start="36" data-line-end="39">
+<p class="has-line-data" data-line-start="36" data-line-end="38"><strong>How do you optimize Angular templates for better performance?</strong><br>
+Use techniques like <code>OnPush</code> change detection, <code>trackBy</code> in <code>ngFor</code>, and minimizing DOM manipulations for optimization.</p>
+</li>
+<li class="has-line-data" data-line-start="39" data-line-end="42">
+<p class="has-line-data" data-line-start="39" data-line-end="41"><strong>How do you create a multi-step form with dynamic controls in Angular?</strong><br>
+Create reactive forms, and use FormArray to dynamically add and manage controls across multiple steps.</p>
+</li>
+<li class="has-line-data" data-line-start="42" data-line-end="45">
+<p class="has-line-data" data-line-start="42" data-line-end="44"><strong>What is the difference between reactive forms and template-driven forms in terms of performance?</strong><br>
+Reactive forms provide better performance and control over form validation and updates compared to template-driven forms.</p>
+</li>
+<li class="has-line-data" data-line-start="45" data-line-end="48">
+<p class="has-line-data" data-line-start="45" data-line-end="47"><strong>How do you handle large data sets efficiently in Angular?</strong><br>
+Use techniques like virtual scrolling, pagination, and optimizing change detection with <code>OnPush</code>.</p>
+</li>
+<li class="has-line-data" data-line-start="48" data-line-end="51">
+<p class="has-line-data" data-line-start="48" data-line-end="50"><strong>How do you manage state using NgRx in Angular applications?</strong><br>
+NgRx uses a Redux-like pattern for state management, allowing you to handle state as a single source of truth with actions and reducers.</p>
+</li>
+<li class="has-line-data" data-line-start="51" data-line-end="54">
+<p class="has-line-data" data-line-start="51" data-line-end="53"><strong>What are the differences between <code>ActivatedRoute</code>, <code>RouterState</code>, and <code>RouterStateSnapshot</code>?</strong><br>
+<code>ActivatedRoute</code> provides route-specific information, <code>RouterState</code> tracks the current route tree, and <code>RouterStateSnapshot</code> gives a static snapshot of the current route state.</p>
+</li>
+<li class="has-line-data" data-line-start="54" data-line-end="57">
+<p class="has-line-data" data-line-start="54" data-line-end="56"><strong>How do you manage route transitions with complex animations in Angular?</strong><br>
+Use Angular’s built-in animation APIs and define transition states in the routing configuration.</p>
+</li>
+<li class="has-line-data" data-line-start="57" data-line-end="60">
+<p class="has-line-data" data-line-start="57" data-line-end="59"><strong>How does Angular handle security vulnerabilities such as XSS and CSRF?</strong><br>
+Angular provides built-in security features like automatic XSS sanitization, and it integrates with CSRF protection mechanisms via HTTP headers.</p>
+</li>
+<li class="has-line-data" data-line-start="60" data-line-end="63">
+<p class="has-line-data" data-line-start="60" data-line-end="62"><strong>What is Angular’s hierarchical dependency injection system, and how does it work?</strong><br>
+Angular’s dependency injection system works hierarchically, providing services at different levels, from root to component level, allowing shared and isolated services.</p>
+</li>
+<li class="has-line-data" data-line-start="63" data-line-end="66">
+<p class="has-line-data" data-line-start="63" data-line-end="65"><strong>How do you implement custom form validation at the control and form group levels?</strong><br>
+Define custom validators and assign them to form controls or groups using <code>Validators.compose()</code>.</p>
+</li>
+<li class="has-line-data" data-line-start="66" data-line-end="69">
+<p class="has-line-data" data-line-start="66" data-line-end="68"><strong>What is the role of providers in the dependency injection system?</strong><br>
+Providers are used to register services with Angular’s dependency injection system for making them available throughout the application.</p>
+</li>
+<li class="has-line-data" data-line-start="69" data-line-end="72">
+<p class="has-line-data" data-line-start="69" data-line-end="71"><strong>How do you create singleton services in a multi-module Angular application?</strong><br>
+Register the service with <code>providedIn: 'root'</code> to ensure it’s a singleton across the entire application.</p>
+</li>
+<li class="has-line-data" data-line-start="72" data-line-end="75">
+<p class="has-line-data" data-line-start="72" data-line-end="74"><strong>What is the difference between <code>providedIn: 'root'</code> and module-level providers?</strong><br>
+<code>providedIn: 'root'</code> creates a singleton service application-wide, while module-level providers limit the scope to a specific module.</p>
+</li>
+<li class="has-line-data" data-line-start="75" data-line-end="78">
+<p class="has-line-data" data-line-start="75" data-line-end="77"><strong>How do you use Angular’s Renderer2 for DOM manipulation?</strong><br>
+Use <code>Renderer2</code> to manipulate DOM elements in a platform-agnostic way, ensuring better compatibility and security.</p>
+</li>
+<li class="has-line-data" data-line-start="78" data-line-end="81">
+<p class="has-line-data" data-line-start="78" data-line-end="80"><strong>What is differential loading, and how does it improve Angular performance?</strong><br>
+Differential loading generates separate bundles for legacy and modern browsers, improving load times and performance.</p>
+</li>
+<li class="has-line-data" data-line-start="81" data-line-end="84">
+<p class="has-line-data" data-line-start="81" data-line-end="83"><strong>How do you handle route parameter changes without reloading the component?</strong><br>
+Use <code>ActivatedRoute.params</code> or <code>ActivatedRoute.queryParams</code> to observe and handle parameter changes dynamically.</p>
+</li>
+<li class="has-line-data" data-line-start="84" data-line-end="87">
+<p class="has-line-data" data-line-start="84" data-line-end="86"><strong>What is the role of service workers in Angular Progressive Web Apps (PWAs)?</strong><br>
+Service workers enable caching, offline functionality, and background syncing in Angular PWAs.</p>
+</li>
+<li class="has-line-data" data-line-start="87" data-line-end="90">
+<p class="has-line-data" data-line-start="87" data-line-end="89"><strong>How do you optimize Angular applications for mobile devices?</strong><br>
+Use techniques like lazy loading, AOT compilation, differential loading, and reducing bundle sizes to optimize for mobile.</p>
+</li>
+<li class="has-line-data" data-line-start="90" data-line-end="93">
+<p class="has-line-data" data-line-start="90" data-line-end="92"><strong>How do you implement server-side rendering (SSR) in Angular using Angular Universal?</strong><br>
+Use Angular Universal to render the application on the server, improving performance and SEO.</p>
+</li>
+<li class="has-line-data" data-line-start="93" data-line-end="96">
+<p class="has-line-data" data-line-start="93" data-line-end="95"><strong>How do you handle memory leaks in Angular applications?</strong><br>
+Unsubscribe from Observables, avoid unnecessary DOM manipulations, and clean up component subscriptions using <code>ngOnDestroy</code>.</p>
+</li>
+<li class="has-line-data" data-line-start="96" data-line-end="99">
+<p class="has-line-data" data-line-start="96" data-line-end="98"><strong>How do you implement route preloading strategies in Angular?</strong><br>
+Use Angular’s <code>PreloadAllModules</code> strategy to preload all lazy-loaded modules or create custom strategies for selective preloading.</p>
+</li>
+<li class="has-line-data" data-line-start="99" data-line-end="102">
+<p class="has-line-data" data-line-start="99" data-line-end="101"><strong>What are the differences between <code>@ViewChild</code> and <code>@ContentChild</code> decorators?</strong><br>
+<code>@ViewChild</code> accesses elements in the component’s template, while <code>@ContentChild</code> accesses projected content from a parent component.</p>
+</li>
+<li class="has-line-data" data-line-start="102" data-line-end="105">
+<p class="has-line-data" data-line-start="102" data-line-end="104"><strong>How does Angular handle dependency injection with multiple instances of services?</strong><br>
+Angular allows multiple instances by providing services at different levels, such as in a specific component or module.</p>
+</li>
+<li class="has-line-data" data-line-start="105" data-line-end="108">
+<p class="has-line-data" data-line-start="105" data-line-end="107"><strong>How do you ensure deep linking works correctly in an Angular SPA?</strong><br>
+Configure routes properly and use the <code>LocationStrategy</code> API to handle deep linking in a single-page application.</p>
+</li>
+<li class="has-line-data" data-line-start="108" data-line-end="111">
+<p class="has-line-data" data-line-start="108" data-line-end="110"><strong>How do you implement custom pipes that work with asynchronous data?</strong><br>
+Use the <code>async</code> pipe to automatically handle asynchronous data, such as Observables and Promises, in custom pipes.</p>
+</li>
+<li class="has-line-data" data-line-start="111" data-line-end="114">
+<p class="has-line-data" data-line-start="111" data-line-end="113"><strong>What is the difference between <code>ControlValueAccessor</code> and form controls?</strong><br>
+<code>ControlValueAccessor</code> is an interface used to bridge between native DOM elements and Angular form controls.</p>
+</li>
+<li class="has-line-data" data-line-start="114" data-line-end="117">
+<p class="has-line-data" data-line-start="114" data-line-end="116"><strong>How do you unit test Angular components with complex dependencies?</strong><br>
+Use Angular’s <code>TestBed</code>, mocking dependencies, and isolating units for testing with spies and stubs.</p>
+</li>
+<li class="has-line-data" data-line-start="117" data-line-end="120">
+<p class="has-line-data" data-line-start="117" data-line-end="119"><strong>What are Angular’s lifecycle hooks, and how do they work together?</strong><br>
+Lifecycle hooks like <code>ngOnInit</code>, <code>ngOnDestroy</code>, etc., manage the component’s lifecycle, from initialization to destruction.</p>
+</li>
+<li class="has-line-data" data-line-start="120" data-line-end="123">
+<p class="has-line-data" data-line-start="120" data-line-end="122"><strong>How do you implement a custom directive with input bindings and event handling?</strong><br>
+Define input properties with <code>@Input()</code> and event listeners with <code>@HostListener()</code> to handle user interactions in custom directives.</p>
+</li>
+<li class="has-line-data" data-line-start="123" data-line-end="126">
+<p class="has-line-data" data-line-start="123" data-line-end="125"><strong>How does Angular handle component re-rendering when using <code>OnPush</code> change detection?</strong><br>
+<code>OnPush</code> strategy re-renders components only when input properties change or events are explicitly triggered.</p>
+</li>
+<li class="has-line-data" data-line-start="126" data-line-end="129">
+<p class="has-line-data" data-line-start="126" data-line-end="128"><strong>How do you debug change detection issues in Angular?</strong><br>
+Use tools like <code>console.log()</code>, <code>Augury</code>, and <code>ChangeDetectorRef</code> to investigate and manually trigger change detection.</p>
+</li>
+<li class="has-line-data" data-line-start="129" data-line-end="132">
+<p class="has-line-data" data-line-start="129" data-line-end="131"><strong>How do you configure route guards for child routes?</strong><br>
+Implement guards like <code>canActivateChild</code> to restrict access to child routes based on specific conditions.</p>
+</li>
+<li class="has-line-data" data-line-start="132" data-line-end="135">
+<p class="has-line-data" data-line-start="132" data-line-end="134"><strong>How does Angular handle internationalization (i18n) and localization (l10n)?</strong><br>
+Angular provides the <code>i18n</code> attribute for internationalization and tools for extracting translation files.</p>
+</li>
+<li class="has-line-data" data-line-start="135" data-line-end="138">
+<p class="has-line-data" data-line-start="135" data-line-end="137"><strong>How do you configure Angular’s HttpClient to automatically handle retries and timeouts?</strong><br>
+Use <code>HttpInterceptor</code> to modify HTTP requests and implement retry and timeout logic.</p>
+</li>
+<li class="has-line-data" data-line-start="138" data-line-end="141">
+<p class="has-line-data" data-line-start="138" data-line-end="140"><strong>What are the differences between declarative and imperative forms of handling state in Angular?</strong><br>
+Declarative state management uses frameworks like NgRx, while imperative state management relies on direct manipulation in the component.</p>
+</li>
+<li class="has-line-data" data-line-start="141" data-line-end="144">
+<p class="has-line-data" data-line-start="141" data-line-end="143"><strong>How do you optimize lazy-loaded modules in Angular applications?</strong><br>
+Use techniques like route preloading, splitting large modules, and utilizing <code>loadChildren</code> for better performance.</p>
+</li>
+<li class="has-line-data" data-line-start="144" data-line-end="147">
+<p class="has-line-data" data-line-start="144" data-line-end="146"><strong>How do you manage asynchronous validators in reactive forms?</strong><br>
+Pass asynchronous validators to form controls using <code>Validators.async()</code> and handle errors accordingly.</p>
+</li>
+<li class="has-line-data" data-line-start="147" data-line-end="150">
+<p class="has-line-data" data-line-start="147" data-line-end="149"><strong>What is the role of meta-reducers in NgRx, and how do they enhance state management?</strong><br>
+Meta-reducers are higher-order reducers that modify or enhance the behavior of normal reducers, enabling tasks like logging, state persistence, or global error handling.</p>
+</li>
+<li class="has-line-data" data-line-start="150" data-line-end="153">
+<p class="has-line-data" data-line-start="150" data-line-end="152"><strong>How do you manage side effects in NgRx using effects?</strong><br>
+You manage side effects in NgRx using <code>@ngrx/effects</code> by listening to actions and dispatching new actions based on the side effect.</p>
+</li>
+<li class="has-line-data" data-line-start="153" data-line-end="156">
+<p class="has-line-data" data-line-start="153" data-line-end="155"><strong>How do you implement hierarchical routing in Angular?</strong><br>
+Hierarchical routing is implemented by defining child routes inside a parent route using the <code>children</code> property in the route configuration.</p>
+</li>
+<li class="has-line-data" data-line-start="156" data-line-end="159">
+<p class="has-line-data" data-line-start="156" data-line-end="158"><strong>How does Angular’s template parsing differ between AOT and JIT compilations?</strong><br>
+AOT compiles templates during build time, while JIT compiles them in the browser at runtime.</p>
+</li>
+<li class="has-line-data" data-line-start="159" data-line-end="162">
+<p class="has-line-data" data-line-start="159" data-line-end="161"><strong>How do you handle conditional content projection in Angular?</strong><br>
+Conditional content projection can be handled using <code>ng-content</code> with structural directives like <code>ngIf</code>.</p>
+</li>
+<li class="has-line-data" data-line-start="162" data-line-end="165">
+<p class="has-line-data" data-line-start="162" data-line-end="164"><strong>What is the purpose of <code>ng-template</code> and how does it work with structural directives?</strong><br>
+<code>ng-template</code> defines a chunk of HTML that Angular doesn’t render until explicitly used by a structural directive like <code>ngIf</code> or <code>ngFor</code>.</p>
+</li>
+<li class="has-line-data" data-line-start="165" data-line-end="168">
+<p class="has-line-data" data-line-start="165" data-line-end="167"><strong>How do you prevent expression changed after it has been checked errors in Angular?</strong><br>
+Prevent this error by ensuring that values in the view are updated within the same change detection cycle or by using <code>ChangeDetectorRef</code>.</p>
+</li>
+<li class="has-line-data" data-line-start="168" data-line-end="171">
+<p class="has-line-data" data-line-start="168" data-line-end="170"><strong>What are the key differences between <code>ngFor</code>, <code>ngIf</code>, and <code>ngSwitch</code>?</strong><br>
+<code>ngFor</code> loops over a list, <code>ngIf</code> conditionally renders elements, and <code>ngSwitch</code> allows conditional rendering based on a set of values.</p>
+</li>
+<li class="has-line-data" data-line-start="171" data-line-end="174">
+<p class="has-line-data" data-line-start="171" data-line-end="173"><strong>How do you use <code>@HostBinding</code> and <code>@HostListener</code> for dynamic styling and event handling?</strong><br>
+<code>@HostBinding</code> dynamically binds properties to host elements, while <code>@HostListener</code> listens to host events.</p>
+</li>
+<li class="has-line-data" data-line-start="174" data-line-end="177">
+<p class="has-line-data" data-line-start="174" data-line-end="176"><strong>How does Angular handle dynamic content and view encapsulation?</strong><br>
+Angular uses shadow DOM, emulated encapsulation, or none, depending on the strategy chosen for encapsulating styles and content.</p>
+</li>
+<li class="has-line-data" data-line-start="177" data-line-end="180">
+<p class="has-line-data" data-line-start="177" data-line-end="179"><strong>What are the key optimizations provided by Angular Ivy?</strong><br>
+Ivy improves tree-shaking, reduces bundle sizes, and enables faster compilation and better debugging.</p>
+</li>
+<li class="has-line-data" data-line-start="180" data-line-end="183">
+<p class="has-line-data" data-line-start="180" data-line-end="182"><strong>How do you handle race conditions with multiple HTTP requests in Angular?</strong><br>
+Use RxJS operators like <code>forkJoin</code>, <code>concatMap</code>, or <code>combineLatest</code> to handle multiple HTTP requests and avoid race conditions.</p>
+</li>
+<li class="has-line-data" data-line-start="183" data-line-end="186">
+<p class="has-line-data" data-line-start="183" data-line-end="185"><strong>How do you implement a custom HTTP interceptor for request and response manipulation?</strong><br>
+Implement a custom HTTP interceptor by creating a class that implements <code>HttpInterceptor</code> and modifying requests or responses as needed.</p>
+</li>
+<li class="has-line-data" data-line-start="186" data-line-end="189">
+<p class="has-line-data" data-line-start="186" data-line-end="188"><strong>How do you handle client-side caching in Angular applications?</strong><br>
+Use HTTP interceptors, <code>localStorage</code>, or <code>sessionStorage</code> to cache responses or data on the client side.</p>
+</li>
+<li class="has-line-data" data-line-start="189" data-line-end="192">
+<p class="has-line-data" data-line-start="189" data-line-end="191"><strong>How do you debug routing issues in Angular applications?</strong><br>
+Debug routing by enabling route tracing using <code>RouterModule.forRoot()</code> with the <code>enableTracing</code> option or using browser developer tools.</p>
+</li>
+<li class="has-line-data" data-line-start="192" data-line-end="195">
+<p class="has-line-data" data-line-start="192" data-line-end="194"><strong>What are the differences between template-driven and reactive forms in handling complex form logic?</strong><br>
+Reactive forms provide more control and flexibility for handling complex logic, while template-driven forms are simpler and less scalable.</p>
+</li>
+<li class="has-line-data" data-line-start="195" data-line-end="198">
+<p class="has-line-data" data-line-start="195" data-line-end="197"><strong>How does Angular handle errors in routing?</strong><br>
+Angular handles routing errors through route guards, error pages, and the <code>ErrorHandler</code> service.</p>
+</li>
+<li class="has-line-data" data-line-start="198" data-line-end="201">
+<p class="has-line-data" data-line-start="198" data-line-end="200"><strong>How do you use dependency injection with dynamic component loading?</strong><br>
+Use <code>ComponentFactoryResolver</code> or <code>ViewContainerRef</code> to inject services into dynamically loaded components.</p>
+</li>
+<li class="has-line-data" data-line-start="201" data-line-end="204">
+<p class="has-line-data" data-line-start="201" data-line-end="203"><strong>How do you handle query parameters and fragments in Angular routes?</strong><br>
+Use <code>ActivatedRoute</code> to capture query parameters and fragments, and subscribe to route changes.</p>
+</li>
+<li class="has-line-data" data-line-start="204" data-line-end="207">
+<p class="has-line-data" data-line-start="204" data-line-end="206"><strong>How do you create a multi-module Angular application with shared modules?</strong><br>
+Create feature and shared modules, exporting commonly used components and services for reuse across the application.</p>
+</li>
+<li class="has-line-data" data-line-start="207" data-line-end="210">
+<p class="has-line-data" data-line-start="207" data-line-end="209"><strong>How do you configure Web Workers in Angular for background processing?</strong><br>
+Use Angular CLI to generate Web Workers and offload expensive tasks to the background to improve performance.</p>
+</li>
+<li class="has-line-data" data-line-start="210" data-line-end="213">
+<p class="has-line-data" data-line-start="210" data-line-end="212"><strong>How does Angular’s Renderer2 differ from direct DOM manipulation?</strong><br>
+<code>Renderer2</code> provides a platform-agnostic way to manipulate the DOM, ensuring cross-browser compatibility and better security.</p>
+</li>
+<li class="has-line-data" data-line-start="213" data-line-end="216">
+<p class="has-line-data" data-line-start="213" data-line-end="215"><strong>What are Angular zones, and how do they impact performance and change detection?</strong><br>
+Zones track asynchronous operations, automatically triggering change detection when those operations complete.</p>
+</li>
+<li class="has-line-data" data-line-start="216" data-line-end="219">
+<p class="has-line-data" data-line-start="216" data-line-end="218"><strong>How do you manage authentication tokens with Angular’s HttpInterceptor?</strong><br>
+Use an <code>HttpInterceptor</code> to automatically attach authentication tokens to outgoing HTTP requests.</p>
+</li>
+<li class="has-line-data" data-line-start="219" data-line-end="222">
+<p class="has-line-data" data-line-start="219" data-line-end="221"><strong>How do you handle dynamic routes based on user roles or permissions?</strong><br>
+Use route guards like <code>CanActivate</code> to dynamically load routes based on user roles or permissions.</p>
+</li>
+<li class="has-line-data" data-line-start="222" data-line-end="225">
+<p class="has-line-data" data-line-start="222" data-line-end="224"><strong>What are the benefits and trade-offs of using Angular’s <code>providedIn</code> for service registration?</strong><br>
+<code>providedIn: 'root'</code> ensures singleton services at the root level, but it can increase bundle size if overused.</p>
+</li>
+<li class="has-line-data" data-line-start="225" data-line-end="228">
+<p class="has-line-data" data-line-start="225" data-line-end="227"><strong>How do you manage component-level caching in Angular?</strong><br>
+Use <code>ngx-cacheable</code> or manual caching strategies with services to store component data.</p>
+</li>
+<li class="has-line-data" data-line-start="228" data-line-end="231">
+<p class="has-line-data" data-line-start="228" data-line-end="230"><strong>How do you create reusable animations across multiple components in Angular?</strong><br>
+Define animations in a separate file and import them into the components where they are needed.</p>
+</li>
+<li class="has-line-data" data-line-start="231" data-line-end="234">
+<p class="has-line-data" data-line-start="231" data-line-end="233"><strong>How do you handle multiple router outlets in an Angular application?</strong><br>
+Configure multiple named outlets in the route configuration and specify the outlet for each route.</p>
+</li>
+<li class="has-line-data" data-line-start="234" data-line-end="237">
+<p class="has-line-data" data-line-start="234" data-line-end="236"><strong>How do you handle state in large-scale Angular applications?</strong><br>
+Use state management libraries like NgRx or Akita to manage complex state in large-scale applications.</p>
+</li>
+<li class="has-line-data" data-line-start="237" data-line-end="240">
+<p class="has-line-data" data-line-start="237" data-line-end="239"><strong>What are the differences between using Redux and NgRx for state management in Angular?</strong><br>
+NgRx is built specifically for Angular with RxJS integration, while Redux is a generic state management pattern.</p>
+</li>
+<li class="has-line-data" data-line-start="240" data-line-end="243">
+<p class="has-line-data" data-line-start="240" data-line-end="242"><strong>How does Angular handle file uploads and downloads efficiently?</strong><br>
+Use <code>HttpClient</code> with FormData for file uploads and Blob objects for downloads, along with progress tracking.</p>
+</li>
+<li class="has-line-data" data-line-start="243" data-line-end="246">
+<p class="has-line-data" data-line-start="243" data-line-end="245"><strong>How do you implement Angular animations for complex UI transitions?</strong><br>
+Use Angular’s <code>@angular/animations</code> module, defining triggers and transitions for complex animations.</p>
+</li>
+<li class="has-line-data" data-line-start="246" data-line-end="249">
+<p class="has-line-data" data-line-start="246" data-line-end="248"><strong>How do you ensure accessibility (a11y) in Angular applications?</strong><br>
+Follow ARIA guidelines, use semantic HTML, and test with screen readers to ensure accessibility.</p>
+</li>
+<li class="has-line-data" data-line-start="249" data-line-end="252">
+<p class="has-line-data" data-line-start="249" data-line-end="251"><strong>How does Angular handle asynchronous data streams in templates?</strong><br>
+Angular uses <code>async</code> pipes to handle and automatically subscribe to observables in templates.</p>
+</li>
+<li class="has-line-data" data-line-start="252" data-line-end="255">
+<p class="has-line-data" data-line-start="252" data-line-end="254"><strong>How do you manage multiple language support in Angular applications?</strong><br>
+Use Angular’s <code>i18n</code> module or third-party libraries like <code>ngx-translate</code> for multi-language support.</p>
+</li>
+<li class="has-line-data" data-line-start="255" data-line-end="258">
+<p class="has-line-data" data-line-start="255" data-line-end="257"><strong>How do you handle route guards based on dynamic conditions in Angular?</strong><br>
+Implement <code>CanActivate</code> or <code>CanLoad</code> guards with logic based on user roles, permissions, or other conditions.</p>
+</li>
+<li class="has-line-data" data-line-start="258" data-line-end="261">
+<p class="has-line-data" data-line-start="258" data-line-end="260"><strong>How do you implement nested reactive forms in Angular?</strong><br>
+Use <code>FormGroup</code> and <code>FormArray</code> to create and manage nested reactive forms.</p>
+</li>
+<li class="has-line-data" data-line-start="261" data-line-end="264">
+<p class="has-line-data" data-line-start="261" data-line-end="263"><strong>How do you manage complex component hierarchies in Angular?</strong><br>
+Use service-based communication, shared modules, and well-defined inputs/outputs to manage complexity.</p>
+</li>
+<li class="has-line-data" data-line-start="264" data-line-end="267">
+<p class="has-line-data" data-line-start="264" data-line-end="266"><strong>What are the performance considerations when using Angular animations?</strong><br>
+Avoid complex animations in heavy UI areas, use <code>OnPush</code> change detection, and offload animations to the GPU where possible.</p>
+</li>
+<li class="has-line-data" data-line-start="267" data-line-end="270">
+<p class="has-line-data" data-line-start="267" data-line-end="269"><strong>How do you implement modularized lazy loading with multiple feature modules in Angular?</strong><br>
+Use <code>loadChildren</code> in route configuration to lazily load feature modules.</p>
+</li>
+<li class="has-line-data" data-line-start="270" data-line-end="273">
+<p class="has-line-data" data-line-start="270" data-line-end="272"><strong>How do you handle server-side pagination with Angular and REST APIs?</strong><br>
+Use Angular’s <code>HttpClient</code> to request data in pages and pass pagination parameters like page number and size.</p>
+</li>
+<li class="has-line-data" data-line-start="273" data-line-end="276">
+<p class="has-line-data" data-line-start="273" data-line-end="275"><strong>How do you manage complex view states using Angular’s dynamic forms and conditional rendering?</strong><br>
+Dynamically create form controls and use structural directives to conditionally render sections of the form.</p>
+</li>
+<li class="has-line-data" data-line-start="276" data-line-end="279">
+<p class="has-line-data" data-line-start="276" data-line-end="278"><strong>How do you secure Angular applications with JWT tokens and role-based access control?</strong><br>
+Use <code>HttpInterceptor</code> to attach JWT tokens to requests and route guards to implement role-based access control.</p>
+</li>
+<li class="has-line-data" data-line-start="279" data-line-end="282">
+<p class="has-line-data" data-line-start="279" data-line-end="281"><strong>How do you handle deep links in Angular SPAs while maintaining SEO?</strong><br>
+Use Angular Universal for server-side rendering and configure metadata tags to handle SEO.</p>
+</li>
+<li class="has-line-data" data-line-start="282" data-line-end="285">
+<p class="has-line-data" data-line-start="282" data-line-end="284"><strong>How do you configure and use Angular’s service worker for offline capabilities?</strong><br>
+Use Angular’s PWA support to register a service worker, cache assets, and enable offline capabilities.</p>
+</li>
+<li class="has-line-data" data-line-start="285" data-line-end="288">
+<p class="has-line-data" data-line-start="285" data-line-end="287"><strong>How do you implement feature flags in an Angular application?</strong><br>
+Use service-based toggles or configuration files to control feature visibility and behavior dynamically.</p>
+</li>
+<li class="has-line-data" data-line-start="288" data-line-end="291">
+<p class="has-line-data" data-line-start="288" data-line-end="290"><strong>How do you manage component communication across sibling components in Angular?</strong><br>
+Use shared services or event emitters to facilitate communication between sibling components.</p>
+</li>
+<li class="has-line-data" data-line-start="291" data-line-end="294">
+<p class="has-line-data" data-line-start="291" data-line-end="293"><strong>How do you handle browser history manipulation with Angular Router?</strong><br>
+Use <code>Router.navigate</code> and <code>Location</code> services to control browser history and navigate programmatically.</p>
+</li>
+<li class="has-line-data" data-line-start="294" data-line-end="297">
+<p class="has-line-data" data-line-start="294" data-line-end="296"><strong>What are the trade-offs between different change detection strategies in Angular?</strong><br>
+<code>Default</code> strategy checks the whole component tree, while <code>OnPush</code> improves performance but requires manual updates.</p>
+</li>
+<li class="has-line-data" data-line-start="297" data-line-end="300">
+<p class="has-line-data" data-line-start="297" data-line-end="299"><strong>How do you create a fully dynamic component loader with configuration-driven content?</strong><br>
+Use <code>ComponentFactoryResolver</code> to dynamically create components based on external configurations or user input.</p>
+</li>
+<li class="has-line-data" data-line-start="300" data-line-end="303">
+<p class="has-line-data" data-line-start="300" data-line-end="302"><strong>How do you handle observables with multiple subscribers in Angular?</strong><br>
+Use <code>shareReplay()</code> to share a single observable execution among multiple subscribers while replaying the last emitted value.</p>
+</li>
+<li class="has-line-data" data-line-start="303" data-line-end="306">
+<p class="has-line-data" data-line-start="303" data-line-end="305"><strong>What is the role of <code>ng-content</code> and how do you control content projection?</strong><br>
+<code>ng-content</code> is used for content projection, allowing a parent component to project its content into the child component. Multiple <code>ng-content</code> tags can be used with <code>select</code> attributes to control where projected content goes.</p>
+</li>
+<li class="has-line-data" data-line-start="306" data-line-end="309">
+<p class="has-line-data" data-line-start="306" data-line-end="308"><strong>How do you prevent memory leaks in Angular when subscribing to observables?</strong><br>
+Use <code>takeUntil()</code> or <code>async</code> pipes to automatically unsubscribe from observables, preventing memory leaks.</p>
+</li>
+<li class="has-line-data" data-line-start="309" data-line-end="312">
+<p class="has-line-data" data-line-start="309" data-line-end="311"><strong>How does Angular optimize template bindings for performance?</strong><br>
+Angular optimizes template bindings by caching and updating only the values that change, reducing unnecessary re-renders during change detection.</p>
+</li>
+<li class="has-line-data" data-line-start="312" data-line-end="315">
+<p class="has-line-data" data-line-start="312" data-line-end="314"><strong>How do you handle optimistic updates in Angular applications?</strong><br>
+For optimistic updates, update the UI first, assuming the operation will succeed, and roll back the changes in case of a failure.</p>
+</li>
+<li class="has-line-data" data-line-start="315" data-line-end="318">
+<p class="has-line-data" data-line-start="315" data-line-end="317"><strong>What is the difference between <code>mergeMap</code>, <code>switchMap</code>, <code>concatMap</code>, and <code>exhaustMap</code> in RxJS?</strong><br>
+<code>mergeMap</code> handles multiple observables concurrently, <code>switchMap</code> cancels the previous observable, <code>concatMap</code> queues observables in sequence, and <code>exhaustMap</code> ignores new observables until the current one completes.</p>
+</li>
+<li class="has-line-data" data-line-start="318" data-line-end="321">
+<p class="has-line-data" data-line-start="318" data-line-end="320"><strong>How do you optimize a large Angular application for faster initial load?</strong><br>
+Use lazy loading, AOT compilation, differential loading, and tree-shaking to reduce the initial load size.</p>
+</li>
+<li class="has-line-data" data-line-start="321" data-line-end="324">
+<p class="has-line-data" data-line-start="321" data-line-end="323"><strong>How do you handle API rate-limiting with Angular and RxJS?</strong><br>
+Use <code>throttleTime()</code>, <code>debounceTime()</code>, or <code>exponential backoff</code> to handle API rate-limiting and avoid sending too many requests in a short time.</p>
+</li>
+<li class="has-line-data" data-line-start="324" data-line-end="327">
+<p class="has-line-data" data-line-start="324" data-line-end="326"><strong>How do you handle long-running tasks in Angular to keep the UI responsive?</strong><br>
+Offload long-running tasks to Web Workers or break the tasks into smaller chunks with <code>setTimeout()</code> or <code>requestAnimationFrame()</code>.</p>
+</li>
+<li class="has-line-data" data-line-start="327" data-line-end="330">
+<p class="has-line-data" data-line-start="327" data-line-end="329"><strong>How does Angular handle WebSockets and real-time data streams?</strong><br>
+Angular handles WebSockets by wrapping them in observables using the <code>WebSocketSubject</code> from RxJS for real-time data streaming.</p>
+</li>
+<li class="has-line-data" data-line-start="330" data-line-end="333">
+<p class="has-line-data" data-line-start="330" data-line-end="332"><strong>What is the purpose of <code>TransferState</code> in Angular Universal?</strong><br>
+<code>TransferState</code> is used to pass the state between server-side and client-side rendering in Angular Universal to avoid duplicate HTTP calls and improve performance.</p>
+</li>
+<li class="has-line-data" data-line-start="333" data-line-end="336">
+<p class="has-line-data" data-line-start="333" data-line-end="335"><strong>How do you perform lazy loading of components without using the router?</strong><br>
+Use <code>import()</code> and <code>ComponentFactoryResolver</code> to lazy load components dynamically, without routing.</p>
+</li>
+<li class="has-line-data" data-line-start="336" data-line-end="339">
+<p class="has-line-data" data-line-start="336" data-line-end="338"><strong>How do you handle large forms and their validation in Angular?</strong><br>
+Use <code>FormGroup</code> and <code>FormArray</code> to manage large forms, while breaking validations into smaller units and using <code>async</code> validators for complex logic.</p>
+</li>
+<li class="has-line-data" data-line-start="339" data-line-end="342">
+<p class="has-line-data" data-line-start="339" data-line-end="341"><strong>How do you implement a multi-theme setup in an Angular application?</strong><br>
+Use CSS variables or SCSS, and dynamically switch themes by toggling styles based on user preferences stored in services or <code>localStorage</code>.</p>
+</li>
+<li class="has-line-data" data-line-start="342" data-line-end="345">
+<p class="has-line-data" data-line-start="342" data-line-end="344"><strong>How do you ensure smooth scrolling between routes in an Angular application?</strong><br>
+Use Angular Router’s <code>scrollPositionRestoration</code> feature, or manually scroll to the required position using <code>window.scrollTo()</code>.</p>
+</li>
+<li class="has-line-data" data-line-start="345" data-line-end="348">
+<p class="has-line-data" data-line-start="345" data-line-end="347"><strong>How do you handle parent-child component communication without using input/output decorators?</strong><br>
+Use a shared service to manage communication between parent and child components without relying on input/output decorators.</p>
+</li>
+<li class="has-line-data" data-line-start="348" data-line-end="351">
+<p class="has-line-data" data-line-start="348" data-line-end="350"><strong>What are some strategies for error handling in large Angular applications?</strong><br>
+Implement a global error handler using <code>ErrorHandler</code>, use HTTP interceptors for API errors, and handle specific errors at the component level.</p>
+</li>
+<li class="has-line-data" data-line-start="351" data-line-end="354">
+<p class="has-line-data" data-line-start="351" data-line-end="353"><strong>How do you avoid redundant HTTP requests when multiple components request the same data?</strong><br>
+Use caching mechanisms such as <code>BehaviorSubject</code> or <code>ReplaySubject</code> in services to store data and reuse it across components.</p>
+</li>
+<li class="has-line-data" data-line-start="354" data-line-end="357">
+<p class="has-line-data" data-line-start="354" data-line-end="356"><strong>How do you use Angular CLI to create custom schematics for project generation?</strong><br>
+Use <code>@angular-devkit/schematics</code> to create custom schematics by defining templates and rules to automate project scaffolding and code generation.</p>
+</li>
+<li class="has-line-data" data-line-start="357" data-line-end="360">
+<p class="has-line-data" data-line-start="357" data-line-end="359"><strong>How do you handle browser back/forward button navigation in Angular while preserving state?</strong><br>
+Use <code>Router</code> with state-saving techniques like <code>localStorage</code>, <code>sessionStorage</code>, or NgRx to maintain state during navigation.</p>
+</li>
+<li class="has-line-data" data-line-start="360" data-line-end="363">
+<p class="has-line-data" data-line-start="360" data-line-end="362"><strong>How do you handle race conditions with multiple HTTP requests in Angular?</strong><br>
+Use <code>forkJoin</code>, <code>zip</code>, or <code>combineLatest</code> to control multiple HTTP requests and ensure they are executed in the desired order.</p>
+</li>
+<li class="has-line-data" data-line-start="363" data-line-end="366">
+<p class="has-line-data" data-line-start="363" data-line-end="365"><strong>How do you manage multiple router outlets in an Angular application?</strong><br>
+Use named router outlets in the route configuration and specify which component should be loaded in each outlet.</p>
+</li>
+<li class="has-line-data" data-line-start="366" data-line-end="369">
+<p class="has-line-data" data-line-start="366" data-line-end="368"><strong>How does Angular handle view encapsulation in dynamic components?</strong><br>
+Angular applies view encapsulation (<code>Emulated</code>, <code>Native</code>, or <code>None</code>) even in dynamically loaded components, by ensuring that scoped styles are applied to the component’s view.</p>
+</li>
+<li class="has-line-data" data-line-start="369" data-line-end="372">
+<p class="has-line-data" data-line-start="369" data-line-end="371"><strong>What are the key differences between structural and attribute directives?</strong><br>
+Structural directives (<code>ngIf</code>, <code>ngFor</code>) change the structure of the DOM by adding/removing elements, while attribute directives (<code>ngClass</code>, <code>ngStyle</code>) modify the appearance or behavior of an existing element.</p>
+</li>
+<li class="has-line-data" data-line-start="372" data-line-end="375">
+<p class="has-line-data" data-line-start="372" data-line-end="374"><strong>How do you implement custom structural directives in Angular?</strong><br>
+Implement a custom structural directive by creating a directive class, using the <code>*</code> prefix, and controlling the template rendering with <code>TemplateRef</code> and <code>ViewContainerRef</code>.</p>
+</li>
+<li class="has-line-data" data-line-start="375" data-line-end="378">
+<p class="has-line-data" data-line-start="375" data-line-end="377"><strong>How do you handle versioning of Angular applications with API compatibility?</strong><br>
+Use versioned APIs, semantic versioning, and feature flags to ensure backward compatibility while managing different versions of the application.</p>
+</li>
+<li class="has-line-data" data-line-start="378" data-line-end="381">
+<p class="has-line-data" data-line-start="378" data-line-end="380"><strong>How do you configure Angular’s <code>AppInitializer</code> to perform async tasks before app bootstrapping?</strong><br>
+Use <code>APP_INITIALIZER</code> to execute asynchronous operations, such as fetching configuration data, before the application fully initializes.</p>
+</li>
+<li class="has-line-data" data-line-start="381" data-line-end="384">
+<p class="has-line-data" data-line-start="381" data-line-end="383"><strong>How do you debug performance bottlenecks in Angular applications?</strong><br>
+Use browser dev tools, Angular Profiler, and the <code>ChangeDetectorRef</code> to identify and optimize slow change detection cycles, template binding issues, or heavy network requests.</p>
+</li>
+<li class="has-line-data" data-line-start="384" data-line-end="387">
+<p class="has-line-data" data-line-start="384" data-line-end="386"><strong>How does Angular handle zone-less change detection with Ivy?</strong><br>
+Ivy decouples Angular’s change detection from <code>NgZone</code>, allowing developers to manually trigger change detection or use <code>zone.js</code> selectively.</p>
+</li>
+<li class="has-line-data" data-line-start="387" data-line-end="390">
+<p class="has-line-data" data-line-start="387" data-line-end="389"><strong>How do you implement debounce or throttle behavior with Angular forms?</strong><br>
+Use RxJS operators like <code>debounceTime()</code> or <code>throttleTime()</code> in form controls to limit how frequently input changes trigger value updates or validations.</p>
+</li>
+<li class="has-line-data" data-line-start="390" data-line-end="393">
+<p class="has-line-data" data-line-start="390" data-line-end="392"><strong>How do you manage component lifecycle in complex Angular applications with deep component trees?</strong><br>
+Use <code>OnPush</code> change detection, shared services for state management, and <code>ngOnDestroy</code> to manage memory and performance in deep component trees.</p>
+</li>
+<li class="has-line-data" data-line-start="393" data-line-end="396">
+<p class="has-line-data" data-line-start="393" data-line-end="395"><strong>How do you handle conditional lazy loading based on user permissions?</strong><br>
+Use route guards (<code>CanLoad</code>) or service-based permissions to conditionally load modules based on user roles.</p>
+</li>
+<li class="has-line-data" data-line-start="396" data-line-end="399">
+<p class="has-line-data" data-line-start="396" data-line-end="398"><strong>How does Angular optimize change detection for large, complex UIs?</strong><br>
+Use the <code>OnPush</code> change detection strategy, detach change detection manually, and minimize DOM updates to optimize performance.</p>
+</li>
+<li class="has-line-data" data-line-start="399" data-line-end="402">
+<p class="has-line-data" data-line-start="399" data-line-end="401"><strong>How do you implement retry logic with Angular’s HttpClient?</strong><br>
+Use RxJS’s <code>retry()</code> or <code>retryWhen()</code> operators in conjunction with <code>HttpClient</code> to implement retry logic for failed HTTP requests.</p>
+</li>
+<li class="has-line-data" data-line-start="402" data-line-end="405">
+<p class="has-line-data" data-line-start="402" data-line-end="404"><strong>How do you track performance issues in Angular applications using built-in tools?</strong><br>
+Use Angular DevTools or Chrome DevTools for performance profiling, inspecting change detection cycles, and analyzing network requests.</p>
+</li>
+<li class="has-line-data" data-line-start="405" data-line-end="408">
+<p class="has-line-data" data-line-start="405" data-line-end="407"><strong>How does Angular handle URL serialization and deserialization for routing?</strong><br>
+Angular uses <code>UrlSerializer</code> to encode and decode route parameters and query strings, handling complex characters and ensuring proper URL format.</p>
+</li>
+<li class="has-line-data" data-line-start="408" data-line-end="411">
+<p class="has-line-data" data-line-start="408" data-line-end="410"><strong>How do you integrate third-party libraries seamlessly into Angular applications?</strong><br>
+Integrate third-party libraries by installing the package, wrapping the library in an Angular service, and using it within components or services.</p>
+</li>
+<li class="has-line-data" data-line-start="411" data-line-end="414">
+<p class="has-line-data" data-line-start="411" data-line-end="413"><strong>How do you implement deep linking and scroll restoration in Angular?</strong><br>
+Use Angular Router’s <code>scrollPositionRestoration</code> and deep link by defining meaningful URLs for each view and state.</p>
+</li>
+<li class="has-line-data" data-line-start="414" data-line-end="417">
+<p class="has-line-data" data-line-start="414" data-line-end="416"><strong>How do you ensure cross-browser compatibility in Angular applications?</strong><br>
+Use polyfills, test in multiple browsers, and follow web standards to ensure compatibility across browsers.</p>
+</li>
+<li class="has-line-data" data-line-start="417" data-line-end="420">
+<p class="has-line-data" data-line-start="417" data-line-end="419"><strong>How do you handle Angular module dependencies across a large-scale enterprise app?</strong><br>
+Organize the application into feature modules, use shared modules for common functionality, and lazy load modules to reduce dependencies.</p>
+</li>
+<li class="has-line-data" data-line-start="420" data-line-end="423">
+<p class="has-line-data" data-line-start="420" data-line-end="422"><strong>How do you handle recursive component structures in Angular?</strong><br>
+Create recursive components by using <code>ngTemplateOutlet</code> and recursive component instantiation to handle hierarchical or tree-like structures.</p>
+</li>
+<li class="has-line-data" data-line-start="423" data-line-end="426">
+<p class="has-line-data" data-line-start="423" data-line-end="425"><strong>How do you create dynamic forms based on configuration or external data in Angular?</strong><br>
+Use <code>FormGroup</code> and <code>FormArray</code> to generate forms dynamically based on a configuration object or external data.</p>
+</li>
+<li class="has-line-data" data-line-start="426" data-line-end="429">
+<p class="has-line-data" data-line-start="426" data-line-end="428"><strong>How do you manage performance when dealing with Angular forms with hundreds of controls?</strong><br>
+Break large forms into smaller, reusable form components, and use <code>OnPush</code> change detection to optimize performance.</p>
+</li>
+<li class="has-line-data" data-line-start="429" data-line-end="432">
+<p class="has-line-data" data-line-start="429" data-line-end="431"><strong>How do you handle routing with parameters across child routes and lazy-loaded modules?</strong><br>
+Use <code>ActivatedRoute</code> to access parameters across child routes and ensure proper configuration of <code>path</code> and <code>loadChildren</code> for lazy-loaded modules.</p>
+</li>
+<li class="has-line-data" data-line-start="432" data-line-end="435">
+<p class="has-line-data" data-line-start="432" data-line-end="434"><strong>How do you manage application-wide state without NgRx in Angular?</strong><br>
+Use services with <code>BehaviorSubject</code> or <code>ReplaySubject</code> to manage application-wide state, and leverage Angular’s dependency injection system for state sharing across components.</p>
+</li>
+<li class="has-line-data" data-line-start="435" data-line-end="438">
+<p class="has-line-data" data-line-start="435" data-line-end="437"><strong>What are the considerations for using Angular Elements in a micro-frontend architecture?</strong><br>
+Consider bundle size, shared dependencies, communication between elements, and ensuring that Angular Elements are self-contained and can work independently in a micro-frontend setup.</p>
+</li>
+<li class="has-line-data" data-line-start="438" data-line-end="441">
+<p class="has-line-data" data-line-start="438" data-line-end="440"><strong>How do you configure Angular’s compiler options to reduce bundle size?</strong><br>
+Use AOT compilation, enable tree-shaking, apply lazy loading, and use <code>--prod</code> build configurations to minimize the bundle size. Also, consider turning on <code>buildOptimizer</code> and <code>sourceMap: false</code>.</p>
+</li>
+<li class="has-line-data" data-line-start="441" data-line-end="444">
+<p class="has-line-data" data-line-start="441" data-line-end="443"><strong>How do you implement progressive image loading in Angular applications?</strong><br>
+Implement progressive image loading by using <code>loading=&quot;lazy&quot;</code> for image elements, or creating a custom directive that loads smaller versions of images first, followed by full-resolution ones.</p>
+</li>
+<li class="has-line-data" data-line-start="444" data-line-end="447">
+<p class="has-line-data" data-line-start="444" data-line-end="446"><strong>How do you avoid excessive Angular digest cycles and improve performance?</strong><br>
+Use <code>OnPush</code> change detection, avoid heavy computations in templates, and reduce the number of watchers by minimizing the use of dynamic bindings.</p>
+</li>
+<li class="has-line-data" data-line-start="447" data-line-end="450">
+<p class="has-line-data" data-line-start="447" data-line-end="449"><strong>How do you manage feature toggles or A/B testing in Angular applications?</strong><br>
+Use feature flags in a service that checks toggles at runtime, or integrate third-party services to dynamically enable or disable features based on user segments for A/B testing.</p>
+</li>
+</ol>
+<p class="has-line-data" data-line-start="450" data-line-end="451">Sure! Here’s the next set of questions with answers:</p>
+<ol start="151">
+<li class="has-line-data" data-line-start="452" data-line-end="455">
+<p class="has-line-data" data-line-start="452" data-line-end="454"><strong>How do you handle error handling globally across an Angular application?</strong><br>
+Use Angular’s <code>ErrorHandler</code> class to create a global error handling service that catches errors and logs them or displays user-friendly messages.</p>
+</li>
+<li class="has-line-data" data-line-start="455" data-line-end="458">
+<p class="has-line-data" data-line-start="455" data-line-end="457"><strong>How do you optimize Angular applications for first-contentful paint (FCP)?</strong><br>
+Minimize bundle size, use AOT compilation, implement lazy loading, and optimize images and assets to improve FCP.</p>
+</li>
+<li class="has-line-data" data-line-start="458" data-line-end="461">
+<p class="has-line-data" data-line-start="458" data-line-end="460"><strong>How do you debug a zone-related performance issue in Angular?</strong><br>
+Use the <code>NgZone</code> service to run code outside of Angular’s zone, and leverage performance profiling tools to identify unnecessary change detection cycles.</p>
+</li>
+<li class="has-line-data" data-line-start="461" data-line-end="464">
+<p class="has-line-data" data-line-start="461" data-line-end="463"><strong>How do you manage dynamic imports for libraries in Angular to reduce bundle size?</strong><br>
+Use dynamic <code>import()</code> syntax to load libraries conditionally when needed, which allows for lazy loading and reduces the initial bundle size.</p>
+</li>
+<li class="has-line-data" data-line-start="464" data-line-end="467">
+<p class="has-line-data" data-line-start="464" data-line-end="466"><strong>How does Angular handle event delegation and how can you optimize it?</strong><br>
+Angular uses event binding for delegation; optimize it by limiting the number of listeners, using <code>trackBy</code> in <code>ngFor</code>, and avoiding complex bindings in templates.</p>
+</li>
+<li class="has-line-data" data-line-start="467" data-line-end="470">
+<p class="has-line-data" data-line-start="467" data-line-end="469"><strong>How do you dynamically load external scripts or styles in Angular applications?</strong><br>
+Use the <code>Renderer2</code> service to create and append <code>&lt;script&gt;</code> or <code>&lt;link&gt;</code> elements to the DOM dynamically.</p>
+</li>
+<li class="has-line-data" data-line-start="470" data-line-end="473">
+<p class="has-line-data" data-line-start="470" data-line-end="472"><strong>How do you implement a breadcrumb navigation component that handles dynamic routes?</strong><br>
+Use Angular’s <code>Router</code> to get active routes, subscribe to route changes, and build the breadcrumb array dynamically based on the route configuration.</p>
+</li>
+<li class="has-line-data" data-line-start="473" data-line-end="476">
+<p class="has-line-data" data-line-start="473" data-line-end="475"><strong>How do you manage multiple subscriptions to observables in Angular without memory leaks?</strong><br>
+Use <code>takeUntil</code> or <code>AsyncPipe</code> to manage subscriptions and automatically unsubscribe when the component is destroyed.</p>
+</li>
+<li class="has-line-data" data-line-start="476" data-line-end="479">
+<p class="has-line-data" data-line-start="476" data-line-end="478"><strong>How do you implement a custom error handling service for HTTP requests in Angular?</strong><br>
+Create an <code>HttpInterceptor</code> that catches HTTP errors and routes them to a centralized error handling service for logging and user notifications.</p>
+</li>
+<li class="has-line-data" data-line-start="479" data-line-end="482">
+<p class="has-line-data" data-line-start="479" data-line-end="481"><strong>How do you handle multiple API calls with different dependencies using RxJS operators?</strong><br>
+Use operators like <code>forkJoin</code>, <code>combineLatest</code>, or <code>zip</code> to manage multiple API calls and handle their responses together.</p>
+</li>
+<li class="has-line-data" data-line-start="482" data-line-end="485">
+<p class="has-line-data" data-line-start="482" data-line-end="484"><strong>How do you implement multi-tenancy in an Angular application?</strong><br>
+Use route parameters or a configuration service to determine the current tenant and load relevant resources, themes, and data dynamically.</p>
+</li>
+<li class="has-line-data" data-line-start="485" data-line-end="488">
+<p class="has-line-data" data-line-start="485" data-line-end="487"><strong>How do you handle session expiration and auto-logout in an Angular SPA?</strong><br>
+Monitor session tokens using <code>HttpInterceptor</code>, and implement logic to redirect users to the login page upon token expiration.</p>
+</li>
+<li class="has-line-data" data-line-start="488" data-line-end="491">
+<p class="has-line-data" data-line-start="488" data-line-end="490"><strong>How do you implement OAuth or OpenID Connect in Angular applications?</strong><br>
+Use libraries like <code>angular-oauth2-oidc</code> to manage authentication flows, token handling, and user sessions securely.</p>
+</li>
+<li class="has-line-data" data-line-start="491" data-line-end="494">
+<p class="has-line-data" data-line-start="491" data-line-end="493"><strong>How do you maintain smooth routing transitions with heavy data loading in Angular?</strong><br>
+Use route resolvers to pre-fetch data before route activation, ensuring that data is ready before the component is displayed.</p>
+</li>
+<li class="has-line-data" data-line-start="494" data-line-end="497">
+<p class="has-line-data" data-line-start="494" data-line-end="496"><strong>How do you manage multi-step forms with validations and dynamic sections in Angular?</strong><br>
+Use reactive forms with form groups and form arrays to create dynamic sections, and validate at each step based on user input.</p>
+</li>
+<li class="has-line-data" data-line-start="497" data-line-end="500">
+<p class="has-line-data" data-line-start="497" data-line-end="499"><strong>How do you handle optimistic UI updates in Angular while awaiting server confirmation?</strong><br>
+Update the UI immediately on user action, then revert changes if the server response indicates a failure.</p>
+</li>
+<li class="has-line-data" data-line-start="500" data-line-end="503">
+<p class="has-line-data" data-line-start="500" data-line-end="502"><strong>How do you handle user roles and permissions in Angular with dynamic route guards?</strong><br>
+Implement route guards that check user roles or permissions against route data, allowing or denying access based on the criteria.</p>
+</li>
+<li class="has-line-data" data-line-start="503" data-line-end="506">
+<p class="has-line-data" data-line-start="503" data-line-end="505"><strong>How do you configure Angular CLI to generate custom modules, components, or services with specific settings?</strong><br>
+Use the Angular CLI configuration file (<code>angular.json</code>) to define schematics or customize the generation process with specific templates or options.</p>
+</li>
+<li class="has-line-data" data-line-start="506" data-line-end="509">
+<p class="has-line-data" data-line-start="506" data-line-end="508"><strong>How do you monitor Angular application’s performance in production using logging or monitoring tools?</strong><br>
+Use tools like Google Analytics, Sentry, or performance monitoring libraries to log events, track errors, and monitor user interactions.</p>
+</li>
+<li class="has-line-data" data-line-start="509" data-line-end="512">
+<p class="has-line-data" data-line-start="509" data-line-end="511"><strong>How do you use decorators for dynamic function modifications in Angular services or components?</strong><br>
+Create custom decorators that wrap the original function, adding logic before or after its execution to modify behavior dynamically.</p>
+</li>
+<li class="has-line-data" data-line-start="512" data-line-end="515">
+<p class="has-line-data" data-line-start="512" data-line-end="514"><strong>How do you implement file uploads with progress indicators using Angular?</strong><br>
+Use <code>HttpClient</code> with <code>observe: 'events'</code> to track upload progress, and update the UI accordingly to show progress.</p>
+</li>
+<li class="has-line-data" data-line-start="515" data-line-end="518">
+<p class="has-line-data" data-line-start="515" data-line-end="517"><strong>How do you handle polyfills for browser compatibility in Angular applications?</strong><br>
+Include necessary polyfills in the <code>polyfills.ts</code> file, and configure them based on the target browsers specified in the project.</p>
+</li>
+<li class="has-line-data" data-line-start="518" data-line-end="521">
+<p class="has-line-data" data-line-start="518" data-line-end="520"><strong>How do you manage complex state that spans multiple Angular components without performance issues?</strong><br>
+Use services with <code>BehaviorSubject</code> or state management libraries to centralize state and provide efficient updates to components.</p>
+</li>
+<li class="has-line-data" data-line-start="521" data-line-end="524">
+<p class="has-line-data" data-line-start="521" data-line-end="523"><strong>How do you implement service workers for custom caching strategies in Angular?</strong><br>
+Use Angular’s Service Worker API and configure caching strategies in <code>ngsw-config.json</code> to control how resources are cached.</p>
+</li>
+<li class="has-line-data" data-line-start="524" data-line-end="527">
+<p class="has-line-data" data-line-start="524" data-line-end="526"><strong>How do you handle long-polling or server-sent events in Angular applications?</strong><br>
+Use RxJS to create observables that manage long-polling or listen to server-sent events, updating the UI accordingly.</p>
+</li>
+<li class="has-line-data" data-line-start="527" data-line-end="530">
+<p class="has-line-data" data-line-start="527" data-line-end="529"><strong>How do you secure Angular applications against DOM-based XSS vulnerabilities?</strong><br>
+Use Angular’s built-in security features like sanitization, avoid using <code>innerHTML</code> directly, and use property binding instead.</p>
+</li>
+<li class="has-line-data" data-line-start="530" data-line-end="533">
+<p class="has-line-data" data-line-start="530" data-line-end="532"><strong>How do you optimize Angular templates when rendering large lists or tables?</strong><br>
+Implement <code>trackBy</code> in <code>ngFor</code>, virtual scrolling, and pagination to reduce rendering overhead for large datasets.</p>
+</li>
+<li class="has-line-data" data-line-start="533" data-line-end="536">
+<p class="has-line-data" data-line-start="533" data-line-end="535"><strong>How do you manage URL state and query parameters in Angular?</strong><br>
+Use the Angular <code>Router</code> to navigate and manage query parameters, leveraging <code>ActivatedRoute</code> to read them and respond to changes.</p>
+</li>
+<li class="has-line-data" data-line-start="536" data-line-end="539">
+<p class="has-line-data" data-line-start="536" data-line-end="538"><strong>How do you handle user navigation based on business logic across multiple Angular routes?</strong><br>
+Implement route guards or resolvers that execute business logic to determine navigation eligibility before transitioning to the next route.</p>
+</li>
+<li class="has-line-data" data-line-start="539" data-line-end="542">
+<p class="has-line-data" data-line-start="539" data-line-end="541"><strong>How do you track Angular application’s runtime errors and implement crash reporting?</strong><br>
+Use global error handlers or third-party services like Sentry to capture and report runtime errors for monitoring and debugging.</p>
+</li>
+<li class="has-line-data" data-line-start="542" data-line-end="545">
+<p class="has-line-data" data-line-start="542" data-line-end="544"><strong>How do you handle dynamic route generation in Angular for multi-level menus?</strong><br>
+Create a route configuration that builds routes based on data structures, allowing for dynamic menu generation from route definitions.</p>
+</li>
+<li class="has-line-data" data-line-start="545" data-line-end="548">
+<p class="has-line-data" data-line-start="545" data-line-end="547"><strong>How do you implement advanced caching strategies with Angular’s HttpClient?</strong><br>
+Use interceptors to implement caching mechanisms, such as storing responses in local storage and serving cached data on subsequent requests.</p>
+</li>
+<li class="has-line-data" data-line-start="548" data-line-end="551">
+<p class="has-line-data" data-line-start="548" data-line-end="550"><strong>How do you handle complex asynchronous data flows using RxJS in Angular applications?</strong><br>
+Leverage operators like <code>switchMap</code>, <code>mergeMap</code>, and <code>combineLatest</code> to manage and synchronize multiple asynchronous data streams effectively.</p>
+</li>
+<li class="has-line-data" data-line-start="551" data-line-end="554">
+<p class="has-line-data" data-line-start="551" data-line-end="553"><strong>How do you optimize change detection in Angular when dealing with deep object structures?</strong><br>
+Use <code>OnPush</code> change detection strategy, immutable data patterns, and manual change detection strategies when necessary.</p>
+</li>
+<li class="has-line-data" data-line-start="554" data-line-end="557">
+<p class="has-line-data" data-line-start="554" data-line-end="556"><strong>How do you manage shared state between different lazy-loaded modules?</strong><br>
+Use a shared service in a core module or leverage state management libraries to maintain shared state accessible across lazy-loaded modules.</p>
+</li>
+<li class="has-line-data" data-line-start="557" data-line-end="560">
+<p class="has-line-data" data-line-start="557" data-line-end="559"><strong>How do you configure Angular to support multiple environments (e.g., dev, staging, prod)?</strong><br>
+Use environment files (e.g., <code>environment.ts</code>, <code>environment.prod.ts</code>) to define environment-specific variables and configurations.</p>
+</li>
+<li class="has-line-data" data-line-start="560" data-line-end="563">
+<p class="has-line-data" data-line-start="560" data-line-end="562"><strong>How do you handle stale or outdated data in Angular when using HTTP caching?</strong><br>
+Implement strategies to check data freshness, such as adding timestamp checks or utilizing cache headers to determine when to refresh data.</p>
+</li>
+<li class="has-line-data" data-line-start="563" data-line-end="566">
+<p class="has-line-data" data-line-start="563" data-line-end="565"><strong>How do you prevent unnecessary API calls when using route resolvers?</strong><br>
+Use caching mechanisms to store resolved data, checking if data is already available before making additional API requests.</p>
+</li>
+<li class="has-line-data" data-line-start="566" data-line-end="569">
+<p class="has-line-data" data-line-start="566" data-line-end="568"><strong>How do you handle WebSocket connections in Angular and manage real-time data updates?</strong><br>
+Use the native WebSocket API or libraries like <code>RxJS</code> to establish connections and handle real-time data updates via observables.</p>
+</li>
+<li class="has-line-data" data-line-start="569" data-line-end="572">
+<p class="has-line-data" data-line-start="569" data-line-end="571"><strong>How do you create a plugin system within an Angular application for extensibility?</strong><br>
+Design a service that allows plugins to register themselves and provide an interface for the main application to communicate with them.</p>
+</li>
+<li class="has-line-data" data-line-start="572" data-line-end="575">
+<p class="has-line-data" data-line-start="572" data-line-end="574"><strong>How do you manage localization and dynamic content translation in Angular?</strong><br>
+Use the Angular i18n library or third-party libraries like <code>ngx-translate</code> to handle translations and dynamically load language files.</p>
+</li>
+<li class="has-line-data" data-line-start="575" data-line-end="578">
+<p class="has-line-data" data-line-start="575" data-line-end="577"><strong>How do you implement infinite scrolling with Angular?</strong><br>
+Use the <code>Intersection Observer</code> API or listen for scroll events to detect when the user reaches the bottom of a container, then fetch more data.</p>
+</li>
+<li class="has-line-data" data-line-start="578" data-line-end="581">
+<p class="has-line-data" data-line-start="578" data-line-end="580"><strong>How do you implement custom animations that work seamlessly across route transitions in Angular?</strong><br>
+Use Angular’s <code>Animation</code> API to define animations in the component metadata and trigger them during route changes.</p>
+</li>
+<li class="has-line-data" data-line-start="581" data-line-end="584">
+<p class="has-line-data" data-line-start="581" data-line-end="583"><strong>How do you handle SSR (server-side rendering) hydration issues in Angular Universal?</strong><br>
+Ensure that server-rendered content matches client-side rendering to prevent hydration mismatches, using consistent data fetching methods.</p>
+</li>
+<li class="has-line-data" data-line-start="584" data-line-end="587">
+<p class="has-line-data" data-line-start="584" data-line-end="586"><strong>How do you manage concurrent HTTP requests and avoid data collisions in Angular?</strong><br>
+Use <code>forkJoin</code> for parallel requests and synchronize updates in the state management layer to prevent overwriting data.</p>
+</li>
+<li class="has-line-data" data-line-start="587" data-line-end="590">
+<p class="has-line-data" data-line-start="587" data-line-end="589"><strong>How do you handle performance monitoring and profiling in production Angular applications?</strong><br>
+Utilize tools like Google Analytics, Lighthouse, or APM solutions to monitor application performance and gather profiling data.</p>
+</li>
+</ol>
+<p class="has-line-data" data-line-start="590" data-line-end="591">Sure! Continuing from where we left off:</p>
+<ol start="197">
+<li class="has-line-data" data-line-start="592" data-line-end="595">
+<p class="has-line-data" data-line-start="592" data-line-end="594"><strong>How do you set up Angular for micro-frontend architecture?</strong><br>
+Use module federation with Webpack to allow multiple Angular applications to coexist, share dependencies, and load dynamically.</p>
+</li>
+<li class="has-line-data" data-line-start="595" data-line-end="598">
+<p class="has-line-data" data-line-start="595" data-line-end="597"><strong>How do you handle browser-specific quirks and ensure cross-browser compatibility in Angular?</strong><br>
+Use feature detection, polyfills, and CSS resets; test across multiple browsers, and consider using tools like BrowserStack for testing.</p>
+</li>
+<li class="has-line-data" data-line-start="598" data-line-end="601">
+<p class="has-line-data" data-line-start="598" data-line-end="600"><strong>How do you structure a large-scale Angular application for scalability and maintainability?</strong><br>
+Organize by feature modules, enforce consistent coding standards, implement shared services, and use state management to keep components decoupled.</p>
+</li>
+<li class="has-line-data" data-line-start="601" data-line-end="604">
+<p class="has-line-data" data-line-start="601" data-line-end="603"><strong>How do you implement drag-and-drop functionality in Angular without using external libraries?</strong><br>
+Use Angular’s <code>@angular/cdk/drag-drop</code> module, which provides APIs for creating drag-and-drop interfaces directly within your components.</p>
+</li>
+</ol>
+<p class="has-line-data" data-line-start="604" data-line-end="605">Sure! Here’s the continuation with questions and answers:</p>
+<ol start="201">
+<li class="has-line-data" data-line-start="606" data-line-end="609">
+<p class="has-line-data" data-line-start="606" data-line-end="608"><strong>How do you handle client-side routing in an Angular application that needs to be SEO-friendly?</strong><br>
+Use server-side rendering (SSR) with Angular Universal, which allows search engines to crawl the fully rendered HTML. Implement pre-rendering for critical pages.</p>
+</li>
+<li class="has-line-data" data-line-start="609" data-line-end="612">
+<p class="has-line-data" data-line-start="609" data-line-end="611"><strong>How do you implement an authorization framework with role-based access control in Angular?</strong><br>
+Create an authentication service that checks user roles and permissions, then use route guards to protect routes based on these roles.</p>
+</li>
+<li class="has-line-data" data-line-start="612" data-line-end="615">
+<p class="has-line-data" data-line-start="612" data-line-end="614"><strong>How do you manage state persistence between page reloads in an Angular application?</strong><br>
+Utilize local storage or session storage to save the state, and restore it in the app’s initialization logic.</p>
+</li>
+<li class="has-line-data" data-line-start="615" data-line-end="618">
+<p class="has-line-data" data-line-start="615" data-line-end="617"><strong>How do you handle complex data transformations and aggregations in Angular with RxJS?</strong><br>
+Use operators like <code>map</code>, <code>filter</code>, <code>reduce</code>, and <code>mergeMap</code> to process data streams, allowing for efficient transformations and aggregations.</p>
+</li>
+<li class="has-line-data" data-line-start="618" data-line-end="621">
+<p class="has-line-data" data-line-start="618" data-line-end="620"><strong>How do you use Angular’s dependency injection to manage and mock services in unit tests?</strong><br>
+Provide the services using the <code>TestBed</code> configuration, allowing you to create mock services or use spies for testing purposes.</p>
+</li>
+<li class="has-line-data" data-line-start="621" data-line-end="624">
+<p class="has-line-data" data-line-start="621" data-line-end="623"><strong>How do you implement a custom Angular element and integrate it into a non-Angular application?</strong><br>
+Use Angular Elements to create custom elements that can be compiled and used in any HTML page, integrating them as regular HTML elements.</p>
+</li>
+<li class="has-line-data" data-line-start="624" data-line-end="627">
+<p class="has-line-data" data-line-start="624" data-line-end="626"><strong>How do you manage global application state with context APIs or custom solutions in Angular?</strong><br>
+Implement a service that holds the state and expose it via Angular’s dependency injection, or use libraries like NgRx for more complex scenarios.</p>
+</li>
+<li class="has-line-data" data-line-start="627" data-line-end="630">
+<p class="has-line-data" data-line-start="627" data-line-end="629"><strong>How do you implement server-side pagination with complex query parameters in Angular?</strong><br>
+Send the necessary pagination and filtering parameters with HTTP requests, and handle the responses to update the displayed data accordingly.</p>
+</li>
+<li class="has-line-data" data-line-start="630" data-line-end="633">
+<p class="has-line-data" data-line-start="630" data-line-end="632"><strong>How do you handle concurrency and data consistency when multiple users are interacting with the same data?</strong><br>
+Implement optimistic concurrency control with versioning, and consider using WebSockets for real-time updates to keep data in sync.</p>
+</li>
+<li class="has-line-data" data-line-start="633" data-line-end="636">
+<p class="has-line-data" data-line-start="633" data-line-end="635"><strong>How do you ensure that Angular components are reusable across different applications or modules?</strong><br>
+Design components with inputs and outputs to make them configurable, and encapsulate styles and logic within the component.</p>
+</li>
+<li class="has-line-data" data-line-start="636" data-line-end="639">
+<p class="has-line-data" data-line-start="636" data-line-end="638"><strong>How do you implement a custom router strategy to handle deep linking and navigation state in Angular?</strong><br>
+Create a custom <code>RouteReuseStrategy</code> to manage the caching and restoration of routes based on navigation events.</p>
+</li>
+<li class="has-line-data" data-line-start="639" data-line-end="642">
+<p class="has-line-data" data-line-start="639" data-line-end="641"><strong>How do you handle nested component updates efficiently with Angular’s change detection?</strong><br>
+Use the <code>OnPush</code> change detection strategy to limit checks to only when inputs change, optimizing performance for nested components.</p>
+</li>
+<li class="has-line-data" data-line-start="642" data-line-end="645">
+<p class="has-line-data" data-line-start="642" data-line-end="644"><strong>How do you implement a retry and backoff strategy for failed HTTP requests in Angular?</strong><br>
+Use RxJS operators like <code>retryWhen</code> along with <code>delay</code> to implement retry logic with exponential backoff.</p>
+</li>
+<li class="has-line-data" data-line-start="645" data-line-end="648">
+<p class="has-line-data" data-line-start="645" data-line-end="647"><strong>How do you leverage Angular’s dynamic component loader for complex UI scenarios?</strong><br>
+Use <code>ViewContainerRef</code> and <code>ComponentFactoryResolver</code> to create and insert components dynamically at runtime.</p>
+</li>
+<li class="has-line-data" data-line-start="648" data-line-end="651">
+<p class="has-line-data" data-line-start="648" data-line-end="650"><strong>How do you handle Angular’s zone.js and its impact on performance and change detection?</strong><br>
+Use <code>NgZone.runOutsideAngular</code> to execute code outside the Angular zone, preventing unnecessary change detection cycles and improving performance.</p>
+</li>
+<li class="has-line-data" data-line-start="651" data-line-end="654">
+<p class="has-line-data" data-line-start="651" data-line-end="653"><strong>How do you implement offline-first capabilities in an Angular application using service workers?</strong><br>
+Configure service workers to cache essential assets and API responses, allowing the application to function offline or with poor connectivity.</p>
+</li>
+<li class="has-line-data" data-line-start="654" data-line-end="657">
+<p class="has-line-data" data-line-start="654" data-line-end="656"><strong>How do you use Angular’s Ahead-of-Time (AOT) compilation to optimize bundle sizes and load times?</strong><br>
+Enable AOT in the Angular CLI to pre-compile templates and components, reducing the amount of code processed at runtime.</p>
+</li>
+<li class="has-line-data" data-line-start="657" data-line-end="660">
+<p class="has-line-data" data-line-start="657" data-line-end="659"><strong>How do you implement a complex multi-step wizard with validation and conditional logic in Angular?</strong><br>
+Use reactive forms to manage the state and validation of each step, incorporating conditional logic to control flow between steps.</p>
+</li>
+<li class="has-line-data" data-line-start="660" data-line-end="663">
+<p class="has-line-data" data-line-start="660" data-line-end="662"><strong>How do you handle secure data storage and management in Angular applications?</strong><br>
+Use secure storage options (like IndexedDB or encrypted local storage) and manage sensitive data through services that enforce security policies.</p>
+</li>
+<li class="has-line-data" data-line-start="663" data-line-end="666">
+<p class="has-line-data" data-line-start="663" data-line-end="665"><strong>How do you optimize the Angular CLI build process for production deployments?</strong><br>
+Use production flags, enable optimizations, and configure build options like <code>sourceMap</code>, <code>optimization</code>, and <code>extractCss</code> in <code>angular.json</code>.</p>
+</li>
+<li class="has-line-data" data-line-start="666" data-line-end="669">
+<p class="has-line-data" data-line-start="666" data-line-end="668"><strong>How do you handle data synchronization between the client and server in real-time applications?</strong><br>
+Use WebSockets for real-time communication or implement long polling techniques to keep data synchronized.</p>
+</li>
+<li class="has-line-data" data-line-start="669" data-line-end="672">
+<p class="has-line-data" data-line-start="669" data-line-end="671"><strong>How do you integrate Angular with server-side technologies for full-stack development?</strong><br>
+Use RESTful APIs or GraphQL to communicate between Angular and back-end technologies like Node.js, Django, or Ruby on Rails.</p>
+</li>
+<li class="has-line-data" data-line-start="672" data-line-end="675">
+<p class="has-line-data" data-line-start="672" data-line-end="674"><strong>How do you implement and manage feature modules with shared services and components?</strong><br>
+Organize features into modules, import shared modules where needed, and provide services at the module level to maintain encapsulation.</p>
+</li>
+<li class="has-line-data" data-line-start="675" data-line-end="678">
+<p class="has-line-data" data-line-start="675" data-line-end="677"><strong>How do you handle version control and migrations for Angular applications with frequent updates?</strong><br>
+Use Git for version control and maintain a structured changelog; leverage migrations with Angular CLI to handle schema changes.</p>
+</li>
+<li class="has-line-data" data-line-start="678" data-line-end="681">
+<p class="has-line-data" data-line-start="678" data-line-end="680"><strong>How do you use Angular’s Dependency Injection to manage and inject configuration settings?</strong><br>
+Create an <code>InjectionToken</code> for configuration settings and provide them in your application’s module, allowing components and services to inject them.</p>
+</li>
+<li class="has-line-data" data-line-start="681" data-line-end="684">
+<p class="has-line-data" data-line-start="681" data-line-end="683"><strong>How do you create and manage custom Angular libraries for reuse across multiple projects?</strong><br>
+Use the Angular CLI to generate libraries, structure them for easy integration, and publish them to npm or a private registry for reuse.</p>
+</li>
+<li class="has-line-data" data-line-start="684" data-line-end="687">
+<p class="has-line-data" data-line-start="684" data-line-end="686"><strong>How do you handle complex data visualizations and charts within Angular applications?</strong><br>
+Utilize chart libraries like Chart.js or D3.js, integrating them with Angular components to render data dynamically.</p>
+</li>
+<li class="has-line-data" data-line-start="687" data-line-end="690">
+<p class="has-line-data" data-line-start="687" data-line-end="689"><strong>How do you implement and manage user permissions and feature flags in Angular applications?</strong><br>
+Store user permissions and feature flags in a service, checking them before rendering components or executing actions.</p>
+</li>
+<li class="has-line-data" data-line-start="690" data-line-end="693">
+<p class="has-line-data" data-line-start="690" data-line-end="692"><strong>How do you handle cross-origin requests and set up CORS in Angular applications?</strong><br>
+Configure CORS on the server to allow specific origins, and use Angular’s HttpClient to handle requests properly.</p>
+</li>
+<li class="has-line-data" data-line-start="693" data-line-end="696">
+<p class="has-line-data" data-line-start="693" data-line-end="695"><strong>How do you test Angular components with complex interactions and dependencies?</strong><br>
+Use TestBed to create a testing module, mock dependencies, and employ spies to verify interactions and outputs.</p>
+</li>
+<li class="has-line-data" data-line-start="696" data-line-end="699">
+<p class="has-line-data" data-line-start="696" data-line-end="698"><strong>How do you implement and manage Angular’s internationalization (i18n) with dynamic translations?</strong><br>
+Use the i18n tools provided by Angular, loading translations dynamically from a service or external file based on the user’s locale.</p>
+</li>
+<li class="has-line-data" data-line-start="699" data-line-end="702">
+<p class="has-line-data" data-line-start="699" data-line-end="701"><strong>How do you handle Angular’s dependency injection with lazy-loaded modules and circular dependencies?</strong><br>
+Use forward references and carefully structure imports to avoid circular dependencies, ensuring services are provided at the right level.</p>
+</li>
+<li class="has-line-data" data-line-start="702" data-line-end="705">
+<p class="has-line-data" data-line-start="702" data-line-end="704"><strong>How do you create custom Angular validators and integrate them into reactive forms?</strong><br>
+Implement a function that returns an object or null, and register it in the form control as a validator.</p>
+</li>
+<li class="has-line-data" data-line-start="705" data-line-end="708">
+<p class="has-line-data" data-line-start="705" data-line-end="707"><strong>How do you use Angular’s Content Projection to create flexible and reusable UI components?</strong><br>
+Use <code>&lt;ng-content&gt;</code> to define insertion points for external content, allowing for flexible component designs.</p>
+</li>
+<li class="has-line-data" data-line-start="708" data-line-end="711">
+<p class="has-line-data" data-line-start="708" data-line-end="710"><strong>How do you manage authentication and authorization flows in a single-page application (SPA) with Angular?</strong><br>
+Use services to manage login states, route guards to protect routes, and token-based authentication for secure access.</p>
+</li>
+<li class="has-line-data" data-line-start="711" data-line-end="714">
+<p class="has-line-data" data-line-start="711" data-line-end="713"><strong>How do you implement lazy loading of third-party libraries or modules to optimize application performance?</strong><br>
+Use dynamic imports or the Angular CLI’s lazy loading feature to load libraries only when needed.</p>
+</li>
+<li class="has-line-data" data-line-start="714" data-line-end="717">
+<p class="has-line-data" data-line-start="714" data-line-end="716"><strong>How do you handle state management and synchronization in a complex Angular application with multiple data sources?</strong><br>
+Use a centralized state management solution like NgRx to manage state across various components and services.</p>
+</li>
+<li class="has-line-data" data-line-start="717" data-line-end="720">
+<p class="has-line-data" data-line-start="717" data-line-end="719"><strong>How do you configure Angular’s build process to optimize for different deployment environments (e.g., staging, production)?</strong><br>
+Use environment files to define settings and flags, and configure the build process in <code>angular.json</code> for different targets.</p>
+</li>
+<li class="has-line-data" data-line-start="720" data-line-end="723">
+<p class="has-line-data" data-line-start="720" data-line-end="722"><strong>How do you manage and optimize Angular’s change detection strategy for large, complex data sets?</strong><br>
+Utilize <code>OnPush</code> change detection strategy and track object references to minimize unnecessary checks.</p>
+</li>
+<li class="has-line-data" data-line-start="723" data-line-end="726">
+<p class="has-line-data" data-line-start="723" data-line-end="725"><strong>How do you handle dynamic form creation and validation based on user input or external data?</strong><br>
+Use reactive forms to dynamically add controls and validators based on user interactions or fetched data.</p>
+</li>
+<li class="has-line-data" data-line-start="726" data-line-end="729">
+<p class="has-line-data" data-line-start="726" data-line-end="728"><strong>How do you handle complex data flows between Angular components and services?</strong><br>
+Use services to manage data flow and share state, employing RxJS for asynchronous data handling.</p>
+</li>
+<li class="has-line-data" data-line-start="729" data-line-end="732">
+<p class="has-line-data" data-line-start="729" data-line-end="731"><strong>How do you implement and manage custom Angular decorators for reusable functionality?</strong><br>
+Create custom decorators to add functionality to classes, methods, or properties, and apply them where needed.</p>
+</li>
+<li class="has-line-data" data-line-start="732" data-line-end="735">
+<p class="has-line-data" data-line-start="732" data-line-end="734"><strong>How do you optimize Angular performance when dealing with large numbers of components and directives?</strong><br>
+Use lazy loading, trackBy functions in ngFor, and limit change detection by using <code>OnPush</code> strategy.</p>
+</li>
+<li class="has-line-data" data-line-start="735" data-line-end="738">
+<p class="has-line-data" data-line-start="735" data-line-end="737"><strong>How do you handle data validation and transformation in complex form scenarios in Angular?</strong><br>
+Implement custom validators for complex rules and utilize form controls’ valueChanges observable for transformation.</p>
+</li>
+<li class="has-line-data" data-line-start="738" data-line-end="741">
+<p class="has-line-data" data-line-start="738" data-line-end="740"><strong>How do you ensure data consistency across different modules and components in a large Angular application?</strong><br>
+Centralize state management using services or libraries like NgRx, ensuring a single source of truth for data.</p>
+</li>
+<li class="has-line-data" data-line-start="741" data-line-end="744">
+<p class="has-line-data" data-line-start="741" data-line-end="743"><strong>How do you manage and integrate Angular applications with microservices architectures?</strong><br>
+Design services to communicate with various microservices through REST APIs, ensuring proper error handling and data consistency.</p>
+</li>
+<li class="has-line-data" data-line-start="744" data-line-end="746">
+<p class="has-line-data" data-line-start="744" data-line-end="745">**</p>
+</li>
+</ol>
+<p class="has-line-data" data-line-start="746" data-line-end="748">How do you configure and use Angular’s <code>InjectionToken</code> for custom dependency injection scenarios?**<br>
+Create an <code>InjectionToken</code> to define a unique identifier for a service, providing it in your module to use across your application.</p>
+<ol start="248">
+<li class="has-line-data" data-line-start="749" data-line-end="752">
+<p class="has-line-data" data-line-start="749" data-line-end="751"><strong>How do you implement and manage Angular’s dynamic component creation with complex inputs and outputs?</strong><br>
+Use <code>ViewContainerRef</code> and <code>ComponentFactoryResolver</code> to create components dynamically, passing inputs and listening for outputs.</p>
+</li>
+<li class="has-line-data" data-line-start="752" data-line-end="755">
+<p class="has-line-data" data-line-start="752" data-line-end="754"><strong>How do you handle real-time data updates and synchronization using Angular’s reactive programming tools?</strong><br>
+Use observables and subjects from RxJS to manage real-time data streams, subscribing to updates and reacting accordingly.</p>
+</li>
+<li class="has-line-data" data-line-start="755" data-line-end="758">
+<p class="has-line-data" data-line-start="755" data-line-end="757"><strong>How do you set up and manage Angular applications with multiple authentication providers or strategies?</strong><br>
+Create an authentication service that supports various strategies, handling token storage, user sessions, and API interactions based on the provider used.</p>
+</li>
+</ol>
+<p class="has-line-data" data-line-start="758" data-line-end="759">Here’s the continuation with questions and answers:</p>
+<ol start="251">
+<li class="has-line-data" data-line-start="760" data-line-end="763">
+<p class="has-line-data" data-line-start="760" data-line-end="762"><strong>How do you integrate Angular applications with third-party APIs while managing security and performance?</strong><br>
+Use Angular’s HttpClient for API calls, implement authentication (e.g., OAuth), validate inputs, and handle errors gracefully. Employ caching and lazy loading to improve performance.</p>
+</li>
+<li class="has-line-data" data-line-start="763" data-line-end="766">
+<p class="has-line-data" data-line-start="763" data-line-end="765"><strong>How do you handle complex routing scenarios involving multiple router outlets and nested routes?</strong><br>
+Define multiple router outlets in your templates and configure routes with nested structures in your routing module to manage the hierarchy effectively.</p>
+</li>
+<li class="has-line-data" data-line-start="766" data-line-end="769">
+<p class="has-line-data" data-line-start="766" data-line-end="768"><strong>How do you use Angular’s <code>Renderer2</code> for platform-agnostic DOM manipulation?</strong><br>
+Use the <code>Renderer2</code> service to manipulate the DOM, ensuring compatibility across different platforms (e.g., server-side rendering) while adhering to Angular’s security practices.</p>
+</li>
+<li class="has-line-data" data-line-start="769" data-line-end="772">
+<p class="has-line-data" data-line-start="769" data-line-end="771"><strong>How do you create and manage high-performance Angular applications with server-side rendering (SSR)?</strong><br>
+Utilize Angular Universal for SSR, pre-rendering critical routes to improve load times and SEO. Optimize data fetching and caching strategies to minimize server load.</p>
+</li>
+<li class="has-line-data" data-line-start="772" data-line-end="775">
+<p class="has-line-data" data-line-start="772" data-line-end="774"><strong>How do you implement and manage user session management and token refresh strategies in Angular?</strong><br>
+Store tokens in local storage and implement an interceptor to handle token refresh logic on API calls, ensuring session continuity.</p>
+</li>
+<li class="has-line-data" data-line-start="775" data-line-end="778">
+<p class="has-line-data" data-line-start="775" data-line-end="777"><strong>How do you optimize Angular applications for large-scale deployments with multiple feature flags?</strong><br>
+Use a feature flag service to manage feature toggles, allowing you to enable or disable features based on user roles or environment settings without redeploying.</p>
+</li>
+<li class="has-line-data" data-line-start="778" data-line-end="781">
+<p class="has-line-data" data-line-start="778" data-line-end="780"><strong>How do you handle dependency injection for complex service hierarchies in Angular?</strong><br>
+Use hierarchical injectors by providing services in specific modules or components, allowing different scopes for services based on the injector’s hierarchy.</p>
+</li>
+<li class="has-line-data" data-line-start="781" data-line-end="784">
+<p class="has-line-data" data-line-start="781" data-line-end="783"><strong>How do you implement and test Angular’s custom lifecycle hooks in components and services?</strong><br>
+Create custom hooks in your components/services, and use Angular’s testing utilities to simulate lifecycle events during unit tests.</p>
+</li>
+<li class="has-line-data" data-line-start="784" data-line-end="787">
+<p class="has-line-data" data-line-start="784" data-line-end="786"><strong>How do you manage and implement custom Angular build configurations and environments?</strong><br>
+Define custom environments in the <code>angular.json</code> file, creating separate environment files for different setups (development, staging, production).</p>
+</li>
+<li class="has-line-data" data-line-start="787" data-line-end="790">
+<p class="has-line-data" data-line-start="787" data-line-end="789"><strong>How do you handle complex state management scenarios with Angular and external state management libraries?</strong><br>
+Integrate libraries like NgRx or Akita, designing state slices and effects for side effects, and using observables to connect the state with your components.</p>
+</li>
+<li class="has-line-data" data-line-start="790" data-line-end="793">
+<p class="has-line-data" data-line-start="790" data-line-end="792"><strong>How do you handle complex dependency injection scenarios involving multiple providers and token configurations?</strong><br>
+Use <code>InjectionToken</code> for custom providers, and ensure that you register them correctly within the appropriate module scope to avoid conflicts.</p>
+</li>
+<li class="has-line-data" data-line-start="793" data-line-end="796">
+<p class="has-line-data" data-line-start="793" data-line-end="795"><strong>How do you implement a custom Angular router strategy to control navigation and route resolution?</strong><br>
+Extend <code>Router</code> and implement a custom <code>RouteReuseStrategy</code> to manage how routes are reused and resolved based on your application logic.</p>
+</li>
+<li class="has-line-data" data-line-start="796" data-line-end="799">
+<p class="has-line-data" data-line-start="796" data-line-end="798"><strong>How do you use Angular’s <code>ChangeDetectionStrategy</code> to optimize component rendering in a large application?</strong><br>
+Use <code>OnPush</code> strategy to reduce change detection checks, triggering updates only when input properties change or events occur.</p>
+</li>
+<li class="has-line-data" data-line-start="799" data-line-end="802">
+<p class="has-line-data" data-line-start="799" data-line-end="801"><strong>How do you integrate Angular with a state management solution while managing side effects and asynchronous actions?</strong><br>
+Use effects in state management libraries like NgRx to handle side effects, ensuring that asynchronous actions are managed outside the component logic.</p>
+</li>
+<li class="has-line-data" data-line-start="802" data-line-end="805">
+<p class="has-line-data" data-line-start="802" data-line-end="804"><strong>How do you handle custom data-binding scenarios in Angular, especially for complex components?</strong><br>
+Implement custom input and output properties in components, leveraging <code>@Input()</code> for receiving data and <code>@Output()</code> with <code>EventEmitter</code> for emitting events.</p>
+</li>
+<li class="has-line-data" data-line-start="805" data-line-end="808">
+<p class="has-line-data" data-line-start="805" data-line-end="807"><strong>How do you create and use Angular’s lazy-loaded feature modules with shared dependencies?</strong><br>
+Define feature modules with their own routing and dependencies, and configure them in the main routing module for lazy loading using <code>loadChildren</code>.</p>
+</li>
+<li class="has-line-data" data-line-start="808" data-line-end="811">
+<p class="has-line-data" data-line-start="808" data-line-end="810"><strong>How do you implement and manage Angular’s advanced routing features, such as route guards and resolvers, in a complex app?</strong><br>
+Define route guards to protect routes based on conditions, and use resolvers to fetch data before route activation, ensuring components have the necessary data.</p>
+</li>
+<li class="has-line-data" data-line-start="811" data-line-end="814">
+<p class="has-line-data" data-line-start="811" data-line-end="813"><strong>How do you leverage Angular’s <code>NgModule</code> metadata to streamline module dependencies and configuration?</strong><br>
+Use the <code>imports</code> and <code>exports</code> arrays in <code>@NgModule</code> to manage dependencies efficiently, ensuring shared modules and services are accessible where needed.</p>
+</li>
+<li class="has-line-data" data-line-start="814" data-line-end="817">
+<p class="has-line-data" data-line-start="814" data-line-end="816"><strong>How do you manage application state and data synchronization when working with multiple back-end services?</strong><br>
+Create a centralized state management solution to handle data from various back-end services, using observables to react to data changes.</p>
+</li>
+<li class="has-line-data" data-line-start="817" data-line-end="820">
+<p class="has-line-data" data-line-start="817" data-line-end="819"><strong>How do you handle performance issues related to Angular’s change detection cycle in a data-heavy application?</strong><br>
+Optimize change detection using <code>OnPush</code>, avoid using object references directly in templates, and use immutable data patterns to minimize checks.</p>
+</li>
+<li class="has-line-data" data-line-start="820" data-line-end="823">
+<p class="has-line-data" data-line-start="820" data-line-end="822"><strong>How do you implement Angular’s built-in animation framework for complex and dynamic UI transitions?</strong><br>
+Use Angular’s <code>@angular/animations</code> package to define animations in your components, leveraging trigger states and transitions for dynamic effects.</p>
+</li>
+<li class="has-line-data" data-line-start="823" data-line-end="826">
+<p class="has-line-data" data-line-start="823" data-line-end="825"><strong>How do you configure and optimize Angular’s build process for different environments and deployment targets?</strong><br>
+Use environment files and <code>angular.json</code> configurations to set different build optimizations and file replacements based on the target environment.</p>
+</li>
+<li class="has-line-data" data-line-start="826" data-line-end="829">
+<p class="has-line-data" data-line-start="826" data-line-end="828"><strong>How do you handle and debug performance issues related to Angular’s AOT and JIT compilation modes?</strong><br>
+Analyze bundle sizes, use profiling tools, and review application performance during development and production to identify bottlenecks.</p>
+</li>
+<li class="has-line-data" data-line-start="829" data-line-end="832">
+<p class="has-line-data" data-line-start="829" data-line-end="831"><strong>How do you manage and apply Angular’s dependency injection to dynamically-loaded components and services?</strong><br>
+Provide dependencies at the module level and use <code>Injector</code> to dynamically create and resolve components and services.</p>
+</li>
+<li class="has-line-data" data-line-start="832" data-line-end="835">
+<p class="has-line-data" data-line-start="832" data-line-end="834"><strong>How do you use Angular’s <code>@NgModule</code> and <code>providers</code> for efficient service management and module configuration?</strong><br>
+Organize services in feature modules, using the <code>providers</code> array to manage service scopes and ensuring services are shared as needed.</p>
+</li>
+<li class="has-line-data" data-line-start="835" data-line-end="838">
+<p class="has-line-data" data-line-start="835" data-line-end="837"><strong>How do you implement Angular’s data persistence mechanisms to manage offline functionality and synchronization?</strong><br>
+Use local storage or IndexedDB, combined with service workers, to store data offline and synchronize when the connection is restored.</p>
+</li>
+<li class="has-line-data" data-line-start="838" data-line-end="841">
+<p class="has-line-data" data-line-start="838" data-line-end="840"><strong>How do you integrate and manage external JavaScript libraries or frameworks within an Angular application?</strong><br>
+Use Angular CLI to install the libraries, create wrapper services if necessary, and import them in the appropriate modules.</p>
+</li>
+<li class="has-line-data" data-line-start="841" data-line-end="844">
+<p class="has-line-data" data-line-start="841" data-line-end="843"><strong>How do you handle and manage complex asynchronous data flows in Angular using RxJS operators?</strong><br>
+Leverage operators like <code>switchMap</code>, <code>mergeMap</code>, and <code>forkJoin</code> to handle multiple asynchronous calls, managing responses efficiently.</p>
+</li>
+<li class="has-line-data" data-line-start="844" data-line-end="847">
+<p class="has-line-data" data-line-start="844" data-line-end="846"><strong>How do you create and manage high-performance Angular applications with large data sets and dynamic content?</strong><br>
+Implement pagination, lazy loading, and virtualization techniques to handle large datasets, and optimize change detection.</p>
+</li>
+<li class="has-line-data" data-line-start="847" data-line-end="850">
+<p class="has-line-data" data-line-start="847" data-line-end="849"><strong>How do you implement advanced debugging and profiling techniques for Angular applications in production?</strong><br>
+Use tools like Augury, Angular DevTools, and profiling features in browsers to monitor performance and debug issues.</p>
+</li>
+<li class="has-line-data" data-line-start="850" data-line-end="853">
+<p class="has-line-data" data-line-start="850" data-line-end="852"><strong>How do you manage and optimize Angular’s dependency injection for a large-scale application with multiple modules?</strong><br>
+Use hierarchical injectors wisely, provide services at the appropriate module level, and avoid singleton services unless necessary.</p>
+</li>
+<li class="has-line-data" data-line-start="853" data-line-end="856">
+<p class="has-line-data" data-line-start="853" data-line-end="855"><strong>How do you handle application-specific configuration settings using Angular’s environment files and build configurations?</strong><br>
+Define settings in separate environment files and access them in your application via Angular’s built-in <code>environment</code> module.</p>
+</li>
+<li class="has-line-data" data-line-start="856" data-line-end="859">
+<p class="has-line-data" data-line-start="856" data-line-end="858"><strong>How do you implement custom Angular pipes for complex data transformations and filtering?</strong><br>
+Create a pipe class implementing the <code>PipeTransform</code> interface, defining the transformation logic, and use it in templates.</p>
+</li>
+<li class="has-line-data" data-line-start="859" data-line-end="862">
+<p class="has-line-data" data-line-start="859" data-line-end="861"><strong>How do you integrate Angular with a legacy system or third-party technology stack while ensuring compatibility?</strong><br>
+Create APIs or services that act as intermediaries, ensuring data formats and communication methods align with both systems.</p>
+</li>
+<li class="has-line-data" data-line-start="862" data-line-end="865">
+<p class="has-line-data" data-line-start="862" data-line-end="864"><strong>How do you handle and optimize Angular’s change detection in scenarios with deeply nested component trees?</strong><br>
+Use <code>OnPush</code> strategy in child components, and manage state at a higher level to reduce the frequency of change detection checks.</p>
+</li>
+<li class="has-line-data" data-line-start="865" data-line-end="868">
+<p class="has-line-data" data-line-start="865" data-line-end="867"><strong>How do you create and manage reusable Angular components and services with configurable behavior?</strong><br>
+Design components with <code>@Input()</code> and <code>@Output()</code>, and create services that can be injected into multiple components for shared logic.</p>
+</li>
+<li class="has-line-data" data-line-start="868" data-line-end="871">
+<p class="has-line-data" data-line-start="868" data-line-end="870"><strong>How do you leverage Angular’s built-in tools for automated testing and continuous integration?</strong><br>
+Use Jasmine and Karma for unit testing, and set up CI/CD pipelines with tools like Travis CI or GitHub Actions to automate testing and deployment.</p>
+</li>
+<li class="has-line-data" data-line-start="871" data-line-end="874">
+<p class="has-line-data" data-line-start="871" data-line-end="873"><strong>How do you implement complex routing scenarios with dynamic segments and nested routes in Angular?</strong><br>
+Define routes with parameters and use child routes to create nested structures, leveraging route resolvers for data fetching.</p>
+</li>
+<li class="has-line-data" data-line-start="874" data-line-end="877">
+<p class="has-line-data" data-line-start="874" data-line-end="876"><strong>How do you manage and handle user authentication and authorization flows in an Angular application with multiple providers?</strong><br>
+Create an authentication service that abstracts the logic for handling different providers, implementing guards for route protection.</p>
+</li>
+<li class="has-line-data" data-line-start="877" data-line-end="880">
+<p class="has-line-data" data-line-start="877" data-line-end="879"><strong>How do you implement and manage server-side rendering (SSR) with Angular Universal for SEO and performance optimization?</strong><br>
+Set up Angular Universal to pre-render your application on the server, providing fully rendered pages to users and improving SEO.</p>
+</li>
+<li class="has-line-data" data-line-start="880" data-line-end="883">
+<p class="has-line-data" data-line-start="880" data-line-end="882"><strong>How do you optimize Angular’s build and deployment pipeline to handle large-scale applications efficiently?</strong><br>
+Use lazy loading, ahead-of-time compilation, and differential loading to reduce bundle sizes and improve load times.</p>
+</li>
+<li class="has-line-data" data-line-start="883" data-line-end="886">
+<p class="has-line-data" data-line-start="883" data-line-end="885"><strong>How do you create and manage custom Angular form controls with complex validation and user interaction logic?</strong><br>
+Implement <code>ControlValueAccessor</code> to create custom form controls and manage their state and validation logic effectively.</p>
+</li>
+<li class="has-line-data" data-line-start="886" data-line-end="889">
+<p class="has-line-data" data-line-start="886" data-line-end="888"><strong>How do you handle dynamic content loading and updates efficiently in Angular applications?</strong><br>
+Use</p>
+</li>
+</ol>
+<p class="has-line-data" data-line-start="889" data-line-end="890">observables to listen for data changes, implement change detection strategies, and utilize Angular’s built-in async pipe for performance.</p>
+<ol start="294">
+<li class="has-line-data" data-line-start="891" data-line-end="894">
+<p class="has-line-data" data-line-start="891" data-line-end="893"><strong>How do you use Angular’s <code>NgZone</code> to handle asynchronous operations and improve performance?</strong><br>
+Use <code>NgZone.runOutsideAngular()</code> to execute tasks outside the Angular zone, reducing unnecessary change detection cycles.</p>
+</li>
+<li class="has-line-data" data-line-start="894" data-line-end="897">
+<p class="has-line-data" data-line-start="894" data-line-end="896"><strong>How do you manage and apply Angular’s change detection strategies to balance performance and reactivity?</strong><br>
+Choose between default and <code>OnPush</code> strategies based on the component’s data requirements, and utilize immutability for state changes.</p>
+</li>
+<li class="has-line-data" data-line-start="897" data-line-end="900">
+<p class="has-line-data" data-line-start="897" data-line-end="899"><strong>How do you handle complex component interactions and state management in a modular Angular application?</strong><br>
+Use shared services for state management and event communication, and leverage Angular’s dependency injection for modular design.</p>
+</li>
+<li class="has-line-data" data-line-start="900" data-line-end="903">
+<p class="has-line-data" data-line-start="900" data-line-end="902"><strong>How do you use Angular’s CLI to customize project configurations and extend its functionality?</strong><br>
+Use schematics to generate custom components, services, or modules, and modify <code>angular.json</code> to tweak build configurations.</p>
+</li>
+<li class="has-line-data" data-line-start="903" data-line-end="906">
+<p class="has-line-data" data-line-start="903" data-line-end="905"><strong>How do you implement and manage advanced caching strategies for HTTP requests in Angular applications?</strong><br>
+Use interceptors to cache responses and control cache invalidation logic based on your application’s needs.</p>
+</li>
+<li class="has-line-data" data-line-start="906" data-line-end="909">
+<p class="has-line-data" data-line-start="906" data-line-end="908"><strong>How do you integrate Angular with GraphQL and manage data fetching and state management?</strong><br>
+Use Apollo Client or another GraphQL client to manage queries, mutations, and state, integrating with Angular’s dependency injection.</p>
+</li>
+<li class="has-line-data" data-line-start="909" data-line-end="911">
+<p class="has-line-data" data-line-start="909" data-line-end="911"><strong>How do you handle and optimize Angular’s lazy loading and preloading strategies for a large application?</strong><br>
+Configure lazy-loaded modules in your routing module and use preloading strategies like <code>PreloadAllModules</code> for better performance.</p>
+</li>
+</ol>
+</body></html>

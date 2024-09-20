@@ -39,3 +39,4 @@ https://webwhiteboard.com/
 https://timesofindia.indiatimes.com/briefs
 https://dokumen.pub/
 https://pdfdrive.com.co
+https://zlibrary.to/filedownload/6-sundays-a-week-life
