@@ -7,7 +7,7 @@
     <meta name="description" content="Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.">
     <meta name="author" content="Sraban Pahadasingh">
 
-    <title>Typescript Features :: &lt;/&gt; FullStack Developer</title>
+    <title>Angular Component - Decorator, Communication, Lifecycles :: &lt;/&gt; FullStack Developer</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="&lt;/&gt; FullStack Developer" href="https://sraban.github.io/rss.xml"/>
@@ -69,140 +69,71 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>Typescript Features</h3>
+                <h3>Angular Component - Decorator, Communication, Lifecycles</h3>
                 <span class="glyphicon glyphicon-user"></span> Sraban Pahadasingh
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> June 25, 2024 01:13 AM
+                <span class="glyphicon glyphicon-time"></span> October 02, 2024 09:10 AM
                 <hr>
 
-                <p class="post-content"><p>TypeScript concepts:</p>
-<h3>01. Type Assertion</h3>
-<p>Type assertion in TypeScript is a way to tell the compiler that you know more about the type of a value than TypeScript can infer automatically. It has two forms:</p>
+                <p class="post-content"><h2>Q. Basic Component Decorator</h2>
+<pre><code class="language-typescript">@Component({
+  selector: 'app-pipes',
+  templateUrl: './pipes.component.html',
+  styleUrls: ['./pipes.component.css'],
+  host: { 
+      '[class.active]': 'isActive',
+      '[style.border]': '"1px solid black"',
+      '(click)': 'onClick()',
+      '[attr.role]': '"button"' 
+  }
+})</code></pre>
+<p><em>Componentdecorator provide additional metadata that determines how the component should be processed, instantiated and used at runtime.</em></p>
 <ul>
-<li>
-<p><strong>Angle-bracket syntax</strong>: <code>&lt;Type&gt;value</code></p>
-<pre><code class="language-typescript">
-  let myList = [1, 2, 3];
-  let length1 = (&lt;number[]&gt;myList).length; // Using angle-bracket syntax
-</code></pre>
-</li>
-<li>
-<p><strong>As syntax</strong>: <code>value as Type</code></p>
-<pre><code class="language-typescript">
-  let length2 = (myList as number[]).length; // Using 'as' syntax
-</code></pre>
-</li>
+<li><strong>changeDetection</strong> - change detection strategy used by this component</li>
+<li><strong>encapsulation</strong> - style encapsulation strategy used by this component</li>
+<li><strong>entryComponents</strong> - list of components that are dynamically inserted into the view of this component</li>
+<li><strong>interpolation</strong> - custom interpolation markers used in this component's template</li>
+<li><strong>providers</strong> - list of providers available to this component and its children</li>
+<li><strong>selector</strong> - css selector that identifies this component in a template</li>
+<li><strong>styleUrls</strong> - list of urls to stylesheets to be applied to this component's view</li>
+<li><strong>styles</strong> - inline-defined styles to be applied to this component's view</li>
+<li><strong>template</strong> - inline-defined template for the view</li>
+<li><strong>templateUrl</strong> - url to an external file containing a template for the view</li>
+<li><strong>standalone</strong> - yes - standalone component not depend upon the module system</li>
+<li><strong>import</strong> - Used in conjunction with <code>standalone</code> to specify the imports (other components, pipes, modules) that the standalone component needs</li>
+<li><strong>animate</strong> - to trigger angular animation state</li>
+<li><strong>host</strong> - allows to set host element properties or bind to host element events.</li>
 </ul>
-<p>Type assertion does not change the runtime behavior but helps TypeScript's type checker understand the intended type when the developer has more specific knowledge about it.</p>
-<h3>02. TypeScript Generics</h3>
-<p>Generics in TypeScript allow you to create reusable components that can work with a variety of data types while maintaining type safety. The syntax for generics involves using angle brackets (<code>&lt; &gt;</code>) to declare type parameters:</p>
-<pre><code class="language-typescript">
-    function myMethod&lt;T&gt;(arg: T): T {
-      return arg;
-    }
-
-    let value = myMethod&lt;number&gt;(10); // Specify the type explicitly
-    let anotherValue = myMethod("Hello"); // TypeScript infers the type
-</code></pre>
-<p>Generics can be used with interfaces, classes, functions, properties, and variables to create flexible and type-safe constructs.</p>
-<h3>03. <code>typeof</code> and <code>keyof</code></h3>
+<h2>Q. What are various ways of component communication</h2>
+<p>Ans: To pass data from one component to another there are following ways based on scenarios</p>
+<h3>Parent - Child Relationship</h3>
 <ul>
-<li><strong><code>typeof</code></strong>: Returns the type of a variable, function, or object.</li>
+<li>using @Input[parent-&gt;child] and @Output[child-&gt;parent].</li>
+<li>using viewChild Ref to access in Parent.</li>
+<li>injecting parentComponent in Children</li>
+<li>By registering a custom event and listen it using @HostListner() inside same module</li>
 </ul>
-<pre><code class="language-typescript">
-      let x = 10;
-      type T = typeof x; // T is 'number'
-</code></pre>
+<h3>No Parent - Child Relationship</h3>
 <ul>
-<li><strong><code>keyof</code></strong>: Returns the union of keys of a given type.</li>
+<li>using service injection by storing value into variables/methods.</li>
+<li>using Subject &amp; SubjectBehaviour of RXJS.</li>
+<li>using routing i.e. navigating from one component to another with query param.</li>
+<li>store data in local Storage or session Storage and read data wherever we need.</li>
+<li>store in global predicatble state management library like ngRX,..</li>
 </ul>
-<pre><code class="language-typescript">
-    interface Person {
-     name: string;
-     age: number;
-    }
-
-    type Keys = keyof Person; // Keys is 'name' | 'age'
-</code></pre>
-<h3>04. Type Inference</h3>
-<p>Type inference in TypeScript refers to the ability of the type system to deduce types in certain situations based on the context and initialization values, without requiring explicit type annotations:</p>
-<pre><code class="language-typescript">
-    let x = 10; // TypeScript infers 'number' type for x
-    let y = "Hello"; // TypeScript infers 'string' type for y
-</code></pre>
-<p>Type inference reduces the need for manual type annotations, making code more concise while maintaining type safety.</p>
-<h3>05. Type Aliases</h3>
-<p>Type aliases in TypeScript allow you to create new names for existing types. They are particularly useful for defining complex types or for simplifying type annotations:</p>
-<pre><code class="language-typescript">
-    type Container&lt;T&gt; = { value: T };
-
-    let numContainer: Container&lt;number&gt; = { value: 10 };
-    let strContainer: Container&lt;string&gt; = { value: "Hello" };
-</code></pre>
-<p>Type aliases improve code readability and maintainability by providing descriptive names for types.</p>
-<h3>06. Conditional Types</h3>
-<p>Conditional types in TypeScript enable the creation of types that depend on the relationships between types:</p>
-<pre><code class="language-typescript">
-    type TypeName&lt;T&gt; =
-      T extends string ? "string" :
-      T extends number ? "number" :
-      T extends boolean ? "boolean" :
-      "unknown";
-
-    let strType: TypeName&lt;string&gt; = "string";
-    let numType: TypeName&lt;number&gt; = "number";
-</code></pre>
-<p>Conditional types use the <code>extends</code> keyword to check if a type satisfies a condition and then return different types based on that condition (<code>X</code> if true, <code>Y</code> if false).</p>
-<h3>07. Distributive Conditional Types</h3>
-<p>Distributive conditional types in TypeScript automatically distribute over union types:</p>
-<pre><code class="language-typescript">
-    type BoxedValue&lt;T&gt; = { value: T };
-
-    type BoxedNumber = BoxedValue&lt;number | string&gt;;
-    // Equivalent to:
-    // type BoxedNumber = BoxedValue&lt;number&gt; | BoxedValue&lt;string&gt;;
-</code></pre>
-<p>When a conditional type is applied to a union type, TypeScript applies the type condition to each constituent type of the union.</p>
-<h3>08. Object-Oriented Principles supported by TypeScript</h3>
-<p>TypeScript supports fundamental object-oriented principles such as:</p>
-<ul>
-<li>
-<p><strong>Encapsulation</strong>: Bundling data and methods that operate on the data into a single unit (class).</p>
-</li>
-<li>
-<p><strong>Inheritance</strong>: Creating new classes (derived classes) from existing ones (base classes) to reuse and extend functionality.</p>
-</li>
-<li><strong>Polymorphism</strong>: Using a single interface to represent multiple types (subtyping), allowing objects of different types to be treated as instances of a common superclass.</li>
-</ul>
-<h3>09. Awaited Type and Promise Improvements</h3>
-<p>TypeScript 4.3 introduced the <code>Awaited</code> type to extract the type awaited by a Promise:</p>
-<pre><code class="language-typescript">
-    type Awaited&lt;T&gt; = T extends PromiseLike&lt;infer U&gt; ? U : T;
-
-    async function fetchData(): Promise&lt;string&gt; {
-      return "Data";
-    }
-
-    type Data = Awaited&lt;ReturnType&lt;typeof fetchData&gt;&gt;; // Data is 'string'
-</code></pre>
-<p>This improvement enhances type inference and provides better support for async functions and promise chains.</p>
-<h3>10. Recursive Type Aliases</h3>
-<p>Recursive type aliases in TypeScript allow defining types that reference themselves:</p>
-<pre><code class="language-typescript">
-    type TreeNode&lt;T&gt; = {
-      value: T;
-      left?: TreeNode&lt;T&gt;;
-      right?: TreeNode&lt;T&gt;;
-    };
-
-    let node: TreeNode&lt;number&gt; = {
-      value: 10,
-      left: {
-        value: 5
-      }
-    };
-</code></pre>
-<p>Recursive type aliases are useful for defining recursive data structures like trees or linked lists.</p></p>
+<h2>Q.lifecycle hooks of angular component</h2>
+<ol>
+<li><strong>ngOnChanges</strong>: When the value of a data bound property changes, then this method is called.</li>
+<li><strong>ngOnInit</strong>: This is called whenever the initialization of the directive/component after Angular first displays the data-bound properties happens.</li>
+<li><strong>ngDoCheck</strong>: This is for the detection and to act on changes that Angular can't or won't detect on its own.</li>
+<li><strong>ngAfterContentInit</strong>: This is called in response after Angular projects external content into the component's view.</li>
+<li><strong>ngAfterContentChecked</strong>: This is called in response after Angular checks the content projected into the component.</li>
+<li><strong>ngAfterViewInit</strong>: This is called in response after Angular initializes the component's views and child views.</li>
+<li><strong>ngAfterViewChecked</strong>: This is called in response after Angular checks the component's views and child views.</li>
+<li><strong>ngOnDestroy</strong>: This is the cleanup phase just before Angular destroys the directive/component.</li>
+<li><strong>afterRender</strong>:  often after the view has been rendered.</li>
+<li><strong>afterNextRender</strong>: triggered after the next render cycle of Angular</li>
+</ol></p>
                 <br/><br/>
 
                 <div class="post-info">

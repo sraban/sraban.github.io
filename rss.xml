@@ -6,6 +6,70 @@
 <description>Sraban Pahadasingh @Full Stack Developer: PHP, CodeIgniter, LARAVEL, ANGULAR 6-7-8, React Js, Ionic.</description>
 <language>en-us</language>
 <item>
+<title>Angular Component - Decorator, Communication, Lifecycles</title>
+<description><![CDATA[<h2>Q. Basic Component Decorator</h2>
+<pre><code class="language-typescript">@Component({
+  selector: 'app-pipes',
+  templateUrl: './pipes.component.html',
+  styleUrls: ['./pipes.component.css'],
+  host: { 
+      '[class.active]': 'isActive',
+      '[style.border]': '"1px solid black"',
+      '(click)': 'onClick()',
+      '[attr.role]': '"button"' 
+  }
+})</code></pre>
+<p><em>Componentdecorator provide additional metadata that determines how the component should be processed, instantiated and used at runtime.</em></p>
+<ul>
+<li><strong>changeDetection</strong> - change detection strategy used by this component</li>
+<li><strong>encapsulation</strong> - style encapsulation strategy used by this component</li>
+<li><strong>entryComponents</strong> - list of components that are dynamically inserted into the view of this component</li>
+<li><strong>interpolation</strong> - custom interpolation markers used in this component's template</li>
+<li><strong>providers</strong> - list of providers available to this component and its children</li>
+<li><strong>selector</strong> - css selector that identifies this component in a template</li>
+<li><strong>styleUrls</strong> - list of urls to stylesheets to be applied to this component's view</li>
+<li><strong>styles</strong> - inline-defined styles to be applied to this component's view</li>
+<li><strong>template</strong> - inline-defined template for the view</li>
+<li><strong>templateUrl</strong> - url to an external file containing a template for the view</li>
+<li><strong>standalone</strong> - yes - standalone component not depend upon the module system</li>
+<li><strong>import</strong> - Used in conjunction with <code>standalone</code> to specify the imports (other components, pipes, modules) that the standalone component needs</li>
+<li><strong>animate</strong> - to trigger angular animation state</li>
+<li><strong>host</strong> - allows to set host element properties or bind to host element events.</li>
+</ul>
+<h2>Q. What are various ways of component communication</h2>
+<p>Ans: To pass data from one component to another there are following ways based on scenarios</p>
+<h3>Parent - Child Relationship</h3>
+<ul>
+<li>using @Input[parent-&gt;child] and @Output[child-&gt;parent].</li>
+<li>using viewChild Ref to access in Parent.</li>
+<li>injecting parentComponent in Children</li>
+<li>By registering a custom event and listen it using @HostListner() inside same module</li>
+</ul>
+<h3>No Parent - Child Relationship</h3>
+<ul>
+<li>using service injection by storing value into variables/methods.</li>
+<li>using Subject &amp; SubjectBehaviour of RXJS.</li>
+<li>using routing i.e. navigating from one component to another with query param.</li>
+<li>store data in local Storage or session Storage and read data wherever we need.</li>
+<li>store in global predicatble state management library like ngRX,..</li>
+</ul>
+<h2>Q.lifecycle hooks of angular component</h2>
+<ol>
+<li><strong>ngOnChanges</strong>: When the value of a data bound property changes, then this method is called.</li>
+<li><strong>ngOnInit</strong>: This is called whenever the initialization of the directive/component after Angular first displays the data-bound properties happens.</li>
+<li><strong>ngDoCheck</strong>: This is for the detection and to act on changes that Angular can't or won't detect on its own.</li>
+<li><strong>ngAfterContentInit</strong>: This is called in response after Angular projects external content into the component's view.</li>
+<li><strong>ngAfterContentChecked</strong>: This is called in response after Angular checks the content projected into the component.</li>
+<li><strong>ngAfterViewInit</strong>: This is called in response after Angular initializes the component's views and child views.</li>
+<li><strong>ngAfterViewChecked</strong>: This is called in response after Angular checks the component's views and child views.</li>
+<li><strong>ngOnDestroy</strong>: This is the cleanup phase just before Angular destroys the directive/component.</li>
+<li><strong>afterRender</strong>:  often after the view has been rendered.</li>
+<li><strong>afterNextRender</strong>: triggered after the next render cycle of Angular</li>
+</ol>]]></description>
+<link>https://sraban.github.io/post/angular-component-decorator-communication-lifecycles</link>
+<pubDate>Wed, 02 Oct 2024 09:10:00 +0500</pubDate>
+</item>
+<item>
 <title>Differences in Structure: Angular vs Laravel</title>
 <description><![CDATA[<p>Angular and Laravel are both widely used frameworks, but they belong to different areas of development. Angular is a <strong>front-end</strong> framework for building web applications, while Laravel is a <strong>back-end</strong> PHP framework. Both frameworks adopt modular structures to promote scalability, reusability, and maintainability, but they handle modularity differently due to their distinct purposes.</p>
 <p>Here’s a comparison of their modular structures:</p>
